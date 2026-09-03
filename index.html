@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Master Plan Dashboard Ngành & Cổ Phiếu</title>
+<style>
+:root{
+  color-scheme:light;
+  --page:#f5f6f8;
+  --surface:#ffffff;
+  --soft:#f0f4f6;
+  --soft2:#f8fafb;
+  --ink:#17212b;
+  --ink2:#43515c;
+  --muted:#6d7883;
+  --line:#dbe3e8;
+  --hair:#e9edf1;
+  --teal:#126c70;
+  --blue:#2f6fd6;
+  --green:#28784d;
+  --amber:#b47a18;
+  --red:#b84a45;
+  --violet:#6657c8;
+  --slate:#52616f;
+  --shadow:0 8px 22px rgba(20,35,45,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-variant-numeric:tabular-nums}
+button,input,select{font:inherit}
+button{appearance:none}
+header{position:sticky;top:0;z-index:30;background:rgba(245,246,248,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1480px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:14px;font-weight:900;letter-spacing:.45px;text-transform:uppercase}
+.navright{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 10px;color:var(--ink2);font-size:11.5px;font-weight:750}
+.container{max-width:1480px;margin:auto;padding:20px 20px 36px}
+.intro{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:16px}
+.intro h1{font-size:30px;line-height:1.12;margin:0 0 7px;letter-spacing:0;text-transform:uppercase}
+.intro p{margin:0;color:var(--ink2);font-size:13.5px;line-height:1.55;max-width:920px}
+.introMeta{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.tabs{position:sticky;top:47px;z-index:25;background:rgba(245,246,248,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -20px;padding:10px 20px;display:flex;gap:8px;overflow:auto}
+.tabbtn{white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:850;cursor:pointer}
+.tabbtn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.pane{display:none}
+.pane.active{display:block}
+.section{margin-top:18px}
+.sectionhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:12px;flex-wrap:wrap}
+.sectionhead h2{font-size:19px;margin:0}
+.sectionhead p{margin:4px 0 0;color:var(--muted);font-size:12.5px;line-height:1.45;max-width:980px}
+.grid{display:grid;gap:12px}
+.two{grid-template-columns:1.05fr .95fr}
+.three{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:var(--shadow);overflow:auto}
+.card h3{margin:0 0 8px;font-size:14px}
+.note{border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:12px 13px;color:var(--ink2);font-size:12.5px;line-height:1.55}
+.list{margin:0;padding-left:18px;color:var(--ink2);font-size:12px;line-height:1.55}
+.list li{margin:4px 0}
+.tagrow{display:flex;gap:7px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 8px;font-size:10.5px;font-weight:850;background:var(--soft);color:var(--teal);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{border-bottom:1px solid var(--hair);padding:9px 8px;text-align:left;vertical-align:top}
+th{font-size:10.5px;text-transform:uppercase;letter-spacing:.35px;color:var(--muted)}
+td b{color:var(--ink)}
+.status{display:inline-flex;border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:850;white-space:nowrap}
+.s-now{background:#e6f2f2;color:var(--teal)}
+.s-next{background:#e8effc;color:var(--blue)}
+.s-discuss{background:#fff1dc;color:#8a5d13}
+.s-risk{background:#fae7e5;color:var(--red)}
+.s-later{background:#edf0f3;color:var(--slate)}
+.timelineWrap{overflow:auto;padding-bottom:6px}
+.gantt{min-width:1120px}
+.weeks{display:grid;grid-template-columns:150px repeat(12,1fr);border-bottom:1px solid var(--line)}
+.weeks div{padding:7px 4px;font-size:10px;font-weight:850;color:var(--muted);text-align:center;border-left:1px solid var(--hair);min-width:0}
+.weeks div:first-child{text-align:left;border-left:0}
+.lane{display:grid;grid-template-columns:150px 1fr;min-height:52px;border-bottom:1px solid var(--hair)}
+.laneLabel{padding:11px 9px;border-right:1px solid var(--line)}
+.laneLabel b{display:block;font-size:12px}
+.laneLabel span{display:block;font-size:10.5px;color:var(--muted);line-height:1.35;margin-top:3px}
+.laneTrack{position:relative;background:repeating-linear-gradient(to right,transparent 0,transparent calc(100% / 12 - 1px),var(--hair) calc(100% / 12 - 1px),var(--hair) calc(100% / 12))}
+.bar{position:absolute;top:12px;height:28px;border:0;border-radius:6px;color:#fff;font-size:10.6px;font-weight:900;display:flex;align-items:center;justify-content:center;padding:0 5px;cursor:pointer;box-shadow:0 4px 12px rgba(20,35,45,.13);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0}
+.bar[data-kind="method"]{background:var(--teal)}
+.bar[data-kind="data"]{background:var(--blue)}
+.bar[data-kind="build"]{background:var(--green)}
+.bar[data-kind="qa"]{background:var(--amber)}
+.bar[data-kind="stock"]{background:var(--violet)}
+.bar[data-kind="decision"]{background:var(--red)}
+.bar[data-kind="ops"]{background:var(--slate)}
+.detailBox{background:var(--soft);border:1px dashed var(--line);border-radius:8px;padding:13px;margin-top:12px;color:var(--ink2);font-size:12.5px;line-height:1.55;min-height:70px}
+.detailBox b{color:var(--ink)}
+.workGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.workCard,.option{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:13px;cursor:pointer;text-align:left}
+.workCard{min-height:168px}
+.workCard.active,.option.active{outline:2px solid var(--teal)}
+.workCard h3{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.workCard small{font-size:10px;color:var(--muted);font-weight:850;text-transform:uppercase;text-align:right;max-width:92px}
+.workCard p,.option p{font-size:12px;color:var(--ink2);line-height:1.48;margin:0}
+.optionGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.option h3{margin:0 0 5px;font-size:13px}
+.score{display:grid;gap:5px;margin-top:8px}
+.scoreRow{display:grid;grid-template-columns:74px 1fr 22px;gap:6px;align-items:center;font-size:10.5px;color:var(--muted)}
+.rail{height:6px;border-radius:999px;background:var(--hair);overflow:hidden}
+.rail span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--blue))}
+.raci td:not(:first-child){text-align:center;font-weight:850}
+.raci .a{color:var(--red)} .raci .r{color:var(--blue)} .raci .c{color:var(--amber)} .raci .i{color:var(--muted)}
+.tag.vn30{background:#e6f2f2;color:var(--teal)}
+.tag.vn100{background:#e8effc;color:var(--blue)}
+.tag.later{background:#edf0f3;color:var(--slate)}
+.footer{margin-top:22px;color:var(--muted);font-size:11.5px}
+@media(max-width:1180px){.intro{display:block}.introMeta{justify-content:flex-start;margin-top:12px}.two,.three,.workGrid,.optionGrid{grid-template-columns:1fr}}
+@media(max-width:680px){.container{padding:14px}.nav{padding:10px 14px;align-items:flex-start}.tabs{margin-left:-14px;margin-right:-14px;padding-left:14px}.intro h1{font-size:24px}.chip{font-size:10.5px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">Master Plan — Dashboard Ngành & Cổ Phiếu</div>
+    <div class="navright">
+      <span class="chip">Tháng 9 - Tháng 11/2026</span>
+      <span class="chip">Đọc chính: sếp & team research</span>
+      <span class="chip">Theo dõi theo tuần</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="intro">
+    <div>
+      <h1>Master Plan — Dashboard Ngành & Cổ Phiếu VN30/VN100</h1>
+      <p>Ba tháng tới, mục tiêu là hai việc song song: dựng dashboard ngành đọc theo chuẩn nghiên cứu chuyên sâu và bao quát các ngành trọng yếu của thị trường Việt Nam, đồng thời dựng dashboard cổ phiếu cho các mã trong rổ VN30 và VN100. Đây là giai đoạn chuẩn hóa cách làm, không phải chạy hết danh mục ngay: bắt đầu bằng một mẫu chung, thử ở dầu khí và ngân hàng vì hai ngành này đủ khác nhau để lộ ra chỗ mẫu còn cứng, kiểm tra ngược, rồi test tiếp ở cấp cổ phiếu với GAS và HPG trước khi mở rộng dần theo mức sẵn sàng dữ liệu. Phần ngành đặt mục tiêu phủ hết trong 3 tháng; phần cổ phiếu chỉ chọn một nhóm nhỏ để làm chuẩn trước, còn lại VN30/VN100 đi tiếp ở giai đoạn sau — chi tiết ở tab "VN30/VN100 & nguồn lực".</p>
+    </div>
+    <div class="introMeta">
+      <span class="chip">Mẫu tổng: đã có</span>
+      <span class="chip">Thử nghiệm ngành: dầu khí + ngân hàng</span>
+      <span class="chip">Thử nghiệm doanh nghiệp: GAS + HPG</span>
+      <span class="chip">Mục tiêu dài hạn: phủ dần VN30/VN100</span>
+    </div>
+  </section>
+
+  <nav class="tabs" aria-label="Các phần của bảng điều khiển kế hoạch">
+    <button class="tabbtn active" data-tab="timeline">Lịch 3 tháng</button>
+    <button class="tabbtn" data-tab="tasks">Task chi tiết</button>
+    <button class="tabbtn" data-tab="company">Dữ liệu & phương pháp doanh nghiệp</button>
+    <button class="tabbtn" data-tab="data">Phương án dữ liệu</button>
+    <button class="tabbtn" data-tab="matrix">VN30/VN100 & nguồn lực</button>
+    <button class="tabbtn" data-tab="success">Tiêu chí thành công</button>
+    <button class="tabbtn" data-tab="decision">Checkpoint quyết định</button>
+    <button class="tabbtn" data-tab="ops">RACI & QA</button>
+  </nav>
+
+  <section class="pane active" id="timeline">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Lịch triển khai 3 tháng</h2>
+          <p>Thanh timeline chỉ dùng nhãn ngắn để không bị cắt chữ. Nội dung chi tiết nằm ở bảng việc bên dưới và panel khi bấm vào từng thanh.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="timelineWrap">
+          <div class="gantt" id="gantt">
+            <div class="weeks" id="weeksHeader"></div>
+          </div>
+        </div>
+        <div class="detailBox" id="timelineDetail"><b>Gợi ý đọc:</b> bấm vào từng thanh để xem việc nhỏ, khó khăn và đầu ra cần chốt.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Bảng việc theo tuần</h2>
+          <p>Mỗi tuần có một đầu ra rõ ràng để đưa vào họp weekly với analyst và update cho sếp.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table id="weeklyTable"></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="tasks">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Luồng việc lớn và task nhỏ</h2>
+          <p>Chia theo cách này để không lẫn giữa việc nghiên cứu, việc chuẩn bị dữ liệu, việc dùng AI dựng giao diện, việc rà soát, và việc cần BoD quyết.</p>
+        </div>
+      </div>
+      <div class="workGrid" id="workGrid"></div>
+      <div class="detailBox" id="workDetail"><b>Cách dùng:</b> chọn một luồng việc để xem task nhỏ, khó khăn và đầu ra cần chốt.</div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h3>Các task quan trọng dễ bị bỏ sót</h3>
+        <table>
+          <thead><tr><th>Task</th><th>Vì sao quan trọng</th><th>Khi nào làm</th><th>Output cần có</th></tr></thead>
+          <tbody>
+            <tr><td><b>Nhật ký lỗi sau mỗi bảng điều khiển</b></td><td>Nếu không ghi lỗi, mỗi ngành/mã sau sẽ lặp lại cùng vấn đề.</td><td>Sau dầu khí, ngân hàng, GAS, HPG.</td><td>Danh sách lỗi theo nhóm: dữ liệu, nguồn, biểu đồ, giao diện, luận điểm.</td></tr>
+            <tr><td><b>Tiêu chí PM rà soát</b></td><td>Tránh rà soát cảm tính kiểu đẹp/xấu nhưng không biết bảng điều khiển có dùng được không.</td><td>Trước rà soát dầu khí ngày 09-11/09.</td><td>Checklist 10-15 điểm cho ngành và doanh nghiệp.</td></tr>
+            <tr><td><b>Danh mục nguồn dữ liệu</b></td><td>Giúp biết dữ liệu nào dùng Wi/API, dữ liệu nào tải Excel, dữ liệu nào nhập tay.</td><td>Tuần 2-4 tháng 9.</td><td>Bảng mapping dữ liệu, nguồn, tần suất, owner, độ tin cậy.</td></tr>
+            <tr><td><b>Chuẩn file Excel đầu vào</b></td><td>AI chỉ đọc ổn định nếu chuyên viên phân tích nhập cùng cấu trúc: tên sheet, kỳ dữ liệu, đơn vị, nguồn.</td><td>Trước khi mở rộng doanh nghiệp trong tháng 10.</td><td>Mẫu Excel đầu vào cho ngành và doanh nghiệp.</td></tr>
+            <tr><td><b>Nhật ký quyết định</b></td><td>Các quyết định về Wi, Excel, AI, nhập tay, IT cần có lý do để sau này không tranh luận lại từ đầu.</td><td>Từ cuối tháng 9 trở đi.</td><td>Log: quyết định, lý do, người duyệt, ngày xem lại.</td></tr>
+            <tr><td><b>Danh sách dữ liệu cần cập nhật mới nhất</b></td><td>Bảng điều khiển cổ phiếu phải sống được, không chỉ là ảnh chụp tại một thời điểm.</td><td>Trong lúc thử GAS & HPG.</td><td>Bảng dữ liệu hằng ngày/hằng tuần/hằng tháng/hằng quý/theo sự kiện.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="company">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Chuẩn bị dữ liệu & phương pháp để dựng bảng điều khiển doanh nghiệp</h2>
+          <p>Việc này cần giao sớm cho từng chuyên viên phân tích ngay trong tháng 9, kể cả với những mã chưa đến lượt dựng. Có đầu vào cụ thể ngay từ đầu thì AI mới không phải tự đoán cấu trúc phân tích của từng cổ phiếu — và đoán sai thì công sửa lại còn tốn hơn công viết brief.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Mỗi analyst cần điền gì cho từng mã</h3>
+          <table>
+            <thead><tr><th>Nhóm đầu vào</th><th>Nội dung cần điền</th><th>Đầu ra mong muốn</th></tr></thead>
+            <tbody>
+              <tr><td><b>Phương pháp đầu tư</b></td><td>Luận điểm đầu tư chính, 3-5 động lực giá trị, các tranh luận chính, điều kiện làm thay đổi quan điểm, yếu tố hỗ trợ 3-12 tháng.</td><td>1 trang mô tả cách chuyên viên phân tích nhìn cổ phiếu.</td></tr>
+              <tr><td><b>Biểu đồ/dữ liệu chính</b></td><td>Biểu đồ bắt buộc phải có, chỉ số vận hành cần theo dõi, chỉ số tài chính cần nối từ mô hình, dữ liệu phi tài chính.</td><td>Danh sách biểu đồ/dữ liệu có ưu tiên cao, trung bình, thấp.</td></tr>
+              <tr><td><b>Nguồn & cập nhật</b></td><td>Nguồn chính/phụ, có link hoặc file gốc, tần suất cập nhật, cách lấy dữ liệu: Wi/API, Excel, AI tìm nguồn, nhập tay.</td><td>Bản đồ dữ liệu cho từng chỉ số.</td></tr>
+              <tr><td><b>Cấu trúc bảng điều khiển</b></td><td>Tab bắt buộc, tab đặc thù, phần đọc nhanh, phần luận điểm, phần định giá, phần yếu tố hỗ trợ, phần rủi ro.</td><td>Khung nội dung cho từng mã.</td></tr>
+              <tr><td><b>Liên kết Excel/mô hình</b></td><td>Sheet nào có thể nối, chỉ tiêu nào lấy từ mô hình, giả định nào cần hiển thị, định giá dùng multiples/DCF/SOTP/NAV.</td><td>Danh sách trường dữ liệu cần lấy từ mô hình Excel.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Form giao việc ngắn cho analyst</h3>
+          <ul class="list">
+            <li>Mã cổ phiếu này cần bảng điều khiển để trả lời câu hỏi đầu tư nào?</li>
+            <li>Người đọc cần nhìn thấy 3 thông điệp gì trong 3 phút đầu?</li>
+            <li>5-10 chỉ số hoặc sự kiện nào phải cập nhật liên tục?</li>
+            <li>Mỗi chỉ số lấy từ đâu, cập nhật theo ngày/tuần/tháng/quý hay theo sự kiện?</li>
+            <li>Biểu đồ nào là bắt buộc vì nó phản ánh mô hình kinh doanh?</li>
+            <li>Phần nào lấy từ mô hình Excel định giá, phần nào lấy từ nguồn ngoài?</li>
+            <li>Thông tin nào nếu thiếu thì bảng điều khiển không đáng tin?</li>
+            <li>Phần nào analyst muốn tự tùy chỉnh để giữ phong cách phân tích riêng?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h3>Ví dụ đầu vào cho một số mã chính</h3>
+        <table>
+          <thead><tr><th>Mã</th><th>Data/chart nên chuẩn bị</th><th>Nguồn gợi ý</th><th>Challenge chính</th></tr></thead>
+          <tbody>
+            <tr><td><b>GAS</b></td><td>Sản lượng khí, giá dầu/LPG, LNG/dự án, hợp đồng/giá cước, cổ tức, capex, yếu tố hỗ trợ chính sách.</td><td>Wi, BCTC, báo cáo thường niên, PVN, nguồn giá dầu/hàng hóa.</td><td>Phải tách dữ liệu hằng ngày như giá dầu khỏi dữ liệu theo quý như BCTC.</td></tr>
+            <tr><td><b>HPG</b></td><td>Sản lượng thép, giá HRC, quặng/coke/spread, tồn kho, Dung Quất 2, xuất khẩu, nhu cầu bất động sản/đầu tư công.</td><td>Wi, dữ liệu công ty, nguồn hàng hóa, báo cáo ngành thép, dữ liệu nội bộ.</td><td>Dữ liệu hàng hóa nhiều nguồn, cần thống nhất đơn vị và kỳ.</td></tr>
+            <tr><td><b>CTD</b></td><td>Backlog, giá trị ký mới, gross margin dự án, tiến độ thu tiền, rủi ro công nợ, danh sách dự án lớn.</td><td>BCTC, công bố công ty, ĐHCĐ, báo cáo analyst, dữ liệu nội bộ.</td><td>Backlog không phải lúc nào cũng có dữ liệu cập nhật đều, dễ phải nhập tay có nguồn.</td></tr>
+            <tr><td><b>MWG</b></td><td>Doanh thu/cửa hàng, số cửa hàng, BHX, biên gộp, chi phí vận hành, sức mua tiêu dùng, catalyst tái cấu trúc.</td><td>Báo cáo tháng/quý công ty, Wi, BCTC, dữ liệu ngành bán lẻ.</td><td>Dữ liệu vận hành cập nhật nhanh, cần phân biệt số liệu công ty công bố và ước tính analyst.</td></tr>
+            <tr><td><b>PVS</b></td><td>Backlog M&C, Lô B, FSO/FPSO, hợp đồng mới, tiến độ dự án, biên lợi nhuận theo mảng.</td><td>Công bố công ty, BCTC, tài liệu ĐHCĐ, báo cáo ngành dầu khí.</td><td>Catalyst theo sự kiện quan trọng hơn dữ liệu định kỳ.</td></tr>
+            <tr><td><b>POW/REE</b></td><td>Sản lượng điện, thủy văn, giá khí/than, huy động nhà máy, dự án mới, NAV/SOTP nếu phù hợp.</td><td>EVN, công ty, Wi, BCTC, dữ liệu thời tiết/thủy văn, báo cáo ngành điện.</td><td>Cần kết hợp dữ liệu vận hành, tài chính và định giá theo tài sản.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="data">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Phương án dữ liệu và trial & error</h2>
+          <p>Không nên ép tất cả dữ liệu vào một cách lấy. Mỗi loại dữ liệu cần được chọn theo độ tin cậy, chi phí, khả năng update, công engineering và khả năng bám sát investment thesis.</p>
+        </div>
+      </div>
+      <div class="optionGrid" id="optionGrid"></div>
+      <div class="detailBox" id="optionDetail"><b>Nguyên tắc:</b> dữ liệu cập nhật thường xuyên thì ưu tiên tự động hóa; dữ liệu khó tự động nhưng quan trọng cho thesis thì cho phép Excel hoặc nhập tay có nguồn.</div>
+    </div>
+
+    <div class="section">
+      <div class="grid two">
+        <div class="card">
+          <h3>Cây quyết định chọn nguồn dữ liệu</h3>
+          <table>
+            <thead><tr><th>Câu hỏi</th><th>Nếu câu trả lời là có</th><th>Nếu câu trả lời là không</th></tr></thead>
+            <tbody>
+              <tr><td>Dữ liệu có cần cập nhật hằng ngày/hằng tuần không?</td><td>Ưu tiên Wi API hoặc nguồn tự động đáng tin.</td><td>Dùng tải Excel hoặc nhập tay có nguồn.</td></tr>
+              <tr><td>Dữ liệu có ảnh hưởng trực tiếp đến thesis/valuation không?</td><td>Bắt buộc có nguồn, ngày cập nhật, kiểm tra chéo.</td><td>Có thể để ở mức tham khảo hoặc đưa xuống phụ lục.</td></tr>
+              <tr><td>Wi đã có sẵn data/API chưa?</td><td>Test kết nối và tính chi phí/quyền truy cập.</td><td>Tìm nguồn public, báo cáo ngành, dữ liệu nội bộ hoặc nhập tay.</td></tr>
+              <tr><td>AI lấy dữ liệu có đáng tin không?</td><td>Chỉ dùng nếu có link/file gốc và analyst xác nhận.</td><td>Không dùng AI làm nguồn cuối cùng cho số liệu trọng yếu.</td></tr>
+              <tr><td>Dữ liệu có nên chuyển cho IT dựng cơ sở dữ liệu sau này không?</td><td>Ghi rõ cấu trúc bảng, khóa dữ liệu, tần suất, người phụ trách.</td><td>Giữ ở bảng điều khiển tĩnh/Excel cho tới khi có nhu cầu lặp lại đủ lớn.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Chủ đề cần discussion với team & BoD</h3>
+          <ul class="list">
+            <li>Chốt có deal Wi API hay không, phạm vi dữ liệu nào đáng mua/kết nối.</li>
+            <li>Chuẩn Excel đầu vào để analyst upload thay vì tự động hóa ngay từ đầu.</li>
+            <li>Danh sách dữ liệu bắt buộc tự động: giá cổ phiếu, giá commodity, dữ liệu tài chính, tin tức/catalyst mới.</li>
+            <li>Quy định nguồn: số liệu trọng yếu bắt buộc có nguồn gốc, ngày cập nhật và người xác nhận.</li>
+            <li>Ranh giới AI: AI hỗ trợ nghiên cứu, trích xuất PDF, viết nội dung, dựng bảng điều khiển; chuyên viên phân tích vẫn là người kiểm chứng cuối.</li>
+            <li>Khi nào chuyển từ HTML tĩnh + Excel sang cơ sở dữ liệu/ứng dụng do IT dựng.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h3>Lộ trình nền tảng kỹ thuật</h3>
+        <p style="margin:0 0 10px;color:var(--muted);font-size:12.5px;line-height:1.5">Không nhảy thẳng lên cơ sở dữ liệu ngay. Ba tháng này ưu tiên chốt xong nội dung và thiết kế bằng cách làm rẻ, sửa nhanh; đầu tư kỹ thuật chỉ đến sau khi đã chứng minh được giá trị.</p>
+        <table>
+          <thead><tr><th>Giai đoạn</th><th>Cách làm</th><th>Vì sao chọn lúc này</th></tr></thead>
+          <tbody>
+            <tr><td><b>1 — Hiện tại (T9-T11/2026)</b></td><td>HTML tĩnh + Excel đầu vào chuẩn hóa, PM dùng AI dựng thủ công từng bảng điều khiển.</td><td>Rẻ, sửa nhanh, phù hợp lúc nội dung và thiết kế còn đang thay đổi liên tục sau mỗi lần rà soát.</td></tr>
+            <tr><td><b>2 — Sau T11/2026, nếu BoD duyệt</b></td><td>Bán tự động: script đọc Excel chuẩn hóa + Wi API cho phần dữ liệu cập nhật thường xuyên, vẫn xuất ra dashboard tĩnh nhưng giảm hẳn công nhập tay.</td><td>Lúc này đã biết rõ dữ liệu nào thật sự cần cập nhật đều, tránh tự động hóa nhầm chỗ không cần.</td></tr>
+            <tr><td><b>3 — Dài hạn</b></td><td>Cơ sở dữ liệu thật + ứng dụng web do IT dựng, có phân quyền, lịch cập nhật tự động, thêm mã/ngành mới không phải dựng lại từ đầu.</td><td>Chỉ đáng đầu tư khi số lượng dashboard đủ lớn để việc dựng tay trở thành điểm nghẽn thật sự.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="matrix">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Ma trận ngành × mã đại diện VN30/VN100</h2>
+          <p>12 ngành trọng yếu trong plan này gắn với mã đại diện nào trong rổ VN30/VN100, ngành nào build v1 tháng nào, và mã nào thực sự được dựng dashboard riêng trong 3 tháng này so với mã để lại cho giai đoạn sau. Danh sách mã VN30 do HOSE xét lại hai lần một năm (tháng 1 và tháng 7) — trước khi chốt mã build thật, kiểm tra lại rổ mới nhất chứ đừng lấy nguyên bảng này.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Ngành</th><th>Mã đại diện (VN30/VN100)</th><th>Ngành build v1 lúc nào</th><th>Mã cổ phiếu trong 3 tháng này</th></tr></thead>
+          <tbody>
+            <tr><td><b>Dầu khí</b></td><td><span class="tagrow"><span class="tag vn30">GAS·VN30</span><span class="tag vn30">PLX·VN30</span><span class="tag vn100">PVS·VN100</span><span class="tag vn100">PVD·VN100</span><span class="tag vn100">BSR·VN100</span></span></td><td>Tuần 1-2 (đầu T9)</td><td>GAS là mã pilot bắt buộc, dựng trước cả khi ngành xong để test khung doanh nghiệp. PVS là ứng viên thêm nếu input sẵn sàng; PLX/PVD/BSR để giai đoạn sau.</td></tr>
+            <tr><td><b>Ngân hàng</b></td><td><span class="tagrow"><span class="tag vn30">VCB·VN30</span><span class="tag vn30">BID·VN30</span><span class="tag vn30">CTG·VN30</span><span class="tag vn30">TCB·VN30</span><span class="tag vn30">ACB·VN30</span><span class="tag vn30">MBB·VN30</span><span class="tag vn100">HDB·VN100</span><span class="tag vn100">VIB·VN100</span></span></td><td>Tuần 3 (giữa T9)</td><td>Chưa chọn mã cụ thể để build riêng trong 3 tháng — nếu còn dư nguồn lực sau GAS/HPG, cân nhắc thêm một mã lớn (VCB hoặc TCB); nếu không, để hẳn giai đoạn sau.</td></tr>
+            <tr><td><b>Hàng hóa / Thép</b></td><td><span class="tagrow"><span class="tag vn30">HPG·VN30</span><span class="tag vn100">HSG·VN100</span><span class="tag vn100">NKG·VN100</span></span></td><td>Tuần 7-8 (đầu T10)</td><td>HPG là mã pilot bắt buộc, dựng cuối T9 — lệch pha có chủ đích, đi trước cả ngành để test khung doanh nghiệp sớm. HSG/NKG để giai đoạn sau.</td></tr>
+            <tr><td><b>Năng lượng điện</b></td><td><span class="tagrow"><span class="tag vn30">POW·VN30</span><span class="tag vn30">REE·VN30</span><span class="tag vn100">PC1·VN100</span><span class="tag vn100">GEG·VN100</span></span></td><td>Tuần 7-8 (đầu T10)</td><td>POW hoặc REE là ứng viên cho nhóm 2-4 mã mở rộng thêm (tuần 5-12), chọn một chứ không làm cả hai.</td></tr>
+            <tr><td><b>Tiêu dùng - bán lẻ</b></td><td><span class="tagrow"><span class="tag vn30">MWG·VN30</span><span class="tag vn100">PNJ·VN100</span><span class="tag vn100">DGW·VN100</span><span class="tag vn100">FRT·VN100</span></span></td><td>Tuần 8 (cuối T10)</td><td>MWG là ứng viên ưu tiên trong nhóm mã mở rộng, vì đã có sẵn ví dụ input ở tab doanh nghiệp.</td></tr>
+            <tr><td><b>Thực phẩm</b></td><td><span class="tagrow"><span class="tag vn30">VNM·VN30</span><span class="tag vn30">SAB·VN30</span><span class="tag vn30">MSN·VN30</span><span class="tag vn100">KDC·VN100</span></span></td><td>Tuần 9-10 (đầu T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Hàng không</b></td><td><span class="tagrow"><span class="tag vn30">VJC·VN30</span><span class="tag vn100">HVN·VN100</span><span class="tag vn100">ACV·VN100</span></span></td><td>Tuần 9-10 (đầu T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Vận tải</b></td><td><span class="tagrow"><span class="tag vn100">GMD·VN100</span><span class="tag vn100">PVT·VN100</span><span class="tag vn100">HAH·VN100</span><span class="tag vn100">VSC·VN100</span></span></td><td>Tuần 9-10 (đầu T11)</td><td>PVT là ứng viên nếu team muốn mở rộng thêm theo hướng dầu khí; còn lại để giai đoạn sau.</td></tr>
+            <tr><td><b>Dược</b></td><td><span class="tagrow"><span class="tag vn100">DHG·VN100</span><span class="tag vn100">IMP·VN100</span><span class="tag vn100">DBD·VN100</span></span></td><td>Tuần 10-11 (giữa T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Hóa chất</b></td><td><span class="tagrow"><span class="tag vn100">DGC·VN100</span><span class="tag vn100">DPM·VN100</span><span class="tag vn100">DCM·VN100</span></span></td><td>Tuần 10-11 (giữa T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Nông nghiệp</b></td><td><span class="tagrow"><span class="tag vn100">PAN·VN100</span><span class="tag vn100">HAG·VN100</span><span class="tag vn100">BAF·VN100</span></span></td><td>Tuần 11-12 (cuối T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Công nghệ</b></td><td><span class="tagrow"><span class="tag vn30">FPT·VN30</span><span class="tag vn100">CMG·VN100</span></span></td><td>Tuần 11-12 (cuối T11)</td><td>FPT đáng cân nhắc nếu team muốn có một mã tăng trưởng phi hàng hóa trong nhóm pilot.</td></tr>
+          </tbody>
+        </table>
+        <div class="note" style="margin-top:12px">Tổng rổ VN30 có 30 mã, VN100 có 100 mã. Trong 3 tháng này, dự kiến chỉ khoảng 6 mã có dashboard riêng (GAS, HPG, và 2-4 mã chọn thêm từ MWG/PVS/POW/REE/FPT). Gần 90% VN30 và phần lớn VN100 vẫn nằm ở "giai đoạn sau" — nguyên tắc chọn tiếp là ưu tiên ngành đã có dashboard xong, vốn hóa/thanh khoản cao, và analyst đã nộp shortnote input đủ tốt.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Nguồn lực cần huy động theo tháng</h2>
+          <p>Chưa có con số ngân sách/headcount chính thức — bảng dưới là khung để PM và sếp điền số thật vào trước khi trình BoD. Mức độ ưu tiên tính theo tỷ lệ thời gian analyst cần dành ra, không phải số tiền.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Tháng</th><th>Khối lượng build</th><th>Nhân sự cần huy động</th><th>Mức ưu tiên thời gian analyst</th><th>Cần BoD duyệt gì</th></tr></thead>
+          <tbody>
+            <tr><td><b>T9/2026</b></td><td>2 ngành (dầu khí, ngân hàng) + khóa input doanh nghiệp cho 8-12 mã</td><td>PM full-time; 2 analyst ngành; 8-12 analyst điền shortnote bán thời gian</td><td>Cao với 2 analyst ngành phụ trách dầu khí/ngân hàng</td><td>Chưa cần — vẫn trong ngân sách vận hành hiện có</td></tr>
+            <tr><td><b>T10/2026</b></td><td>3 ngành (hàng hóa, năng lượng, tiêu dùng) + GAS/HPG v1 + 2-4 mã mở rộng</td><td>PM full-time; 3 analyst ngành; analyst sở hữu từng mã pilot; QA chéo kiêm nhiệm</td><td>Trung bình-cao, dàn trải hơn tháng 9</td><td>Quyết định có mua quyền Wi API hay không (ảnh hưởng chi phí từ tháng 11 trở đi)</td></tr>
+            <tr><td><b>T11/2026</b></td><td>7 ngành còn lại (thực phẩm, hàng không, vận tải, dược, hóa chất, nông nghiệp, công nghệ) + QA chéo toàn bộ</td><td>PM full-time; 7 analyst ngành song song; toàn bộ analyst tham gia QA chéo</td><td>Cao, nhiều ngành chạy song song nhất trong 3 tháng</td><td>Duyệt nguồn lực/ngân sách cho giai đoạn phủ tiếp VN30/VN100 sau tháng 11</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="success">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Tiêu chí thành công</h2>
+          <p>QA ở tab RACI kiểm tra từng dashboard có đạt chuẩn hay không. Phần này đo cả dự án 3 tháng có đạt mục tiêu hay không — kể cả khi từng dashboard riêng lẻ đều pass QA.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Đo được đến cuối tháng 11</h3>
+          <table>
+            <thead><tr><th>Tiêu chí</th><th>Mục tiêu cuối T11/2026</th></tr></thead>
+            <tbody>
+              <tr><td><b>Độ phủ ngành</b></td><td>12/12 ngành trọng yếu có dashboard v1.</td></tr>
+              <tr><td><b>Độ phủ cổ phiếu</b></td><td>Khoảng 6 mã VN30/VN100 có dashboard riêng; phần còn lại có roadmap rõ ràng, không phải "chưa biết bao giờ làm".</td></tr>
+              <tr><td><b>Nguồn dữ liệu</b></td><td>100% điểm dữ liệu trọng yếu trong phần lõi bắt buộc có nguồn và ngày cập nhật.</td></tr>
+              <tr><td><b>Analyst chấp nhận</b></td><td>Analyst sở hữu từng ngành/mã xác nhận dashboard phản ánh đúng luận điểm của họ, không phải bản dựng cho có.</td></tr>
+              <tr><td><b>Dùng thật</b></td><td>Có ít nhất một lần dashboard được trích dẫn hoặc dùng để thảo luận trong họp với sếp/BoD, không chỉ demo một lần rồi thôi.</td></tr>
+              <tr><td><b>Duy trì được</b></td><td>Dashboard v1 đầu tiên (dầu khí) vẫn còn cập nhật đúng lịch đã chốt vào cuối tháng 11, không bị bỏ quên sau khi ra bản mới.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Không tính là xong</h3>
+          <ul class="list">
+            <li>Giao diện đẹp nhưng số liệu trọng yếu chưa xác nhận nguồn — vẫn coi là chưa đạt, không phải "gần đạt".</li>
+            <li>Build được nhiều ngành/mã nhưng chất lượng không đều — vài cái tốt không bù được vài cái ẩu.</li>
+            <li>Ra mắt đúng hạn nhưng sau tuần đầu không ai mở lại — nghĩa là chưa trả lời đúng câu hỏi đầu tư người đọc cần.</li>
+            <li>Analyst phải tự sửa lại gần hết vì bản AI dựng không đúng luận điểm — coi như task đó phải làm lại, không phải "đã xong 80%".</li>
+            <li>Dữ liệu đẹp nhưng không ai cập nhật sau tuần đầu tiên vì chưa có người phụ trách rõ ràng.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="decision">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Checkpoint quyết định</h2>
+          <p>Các checkpoint này là nơi chốt hướng đi, không chỉ cập nhật tiến độ. Mỗi checkpoint cần có bằng chứng từ bảng điều khiển đã dựng thật.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Thời điểm</th><th>Quyết định cần chốt</th><th>Bằng chứng cần mang vào họp</th><th>Người tham gia</th></tr></thead>
+          <tbody>
+            <tr><td><b>09-11/09</b></td><td>Dầu khí v1 có đủ tốt để làm thử nghiệm mẫu ngành không?</td><td>Bảng điều khiển dầu khí v1, nhật ký lỗi, phần thiếu dữ liệu, phần cần sửa thiết kế.</td><td>PM, analyst dầu khí.</td></tr>
+            <tr><td><b>16-22/09</b></td><td>Sau dầu khí + ngân hàng, mẫu ngành cần sửa gì trước khi mở rộng?</td><td>So sánh 2 ngành, danh sách điểm giống/khác, chart nào giữ, chart nào tùy chỉnh.</td><td>PM, analyst dầu khí, analyst ngân hàng, team research.</td></tr>
+            <tr><td><b>Cuối 09</b></td><td>Chốt hướng đi cho bảng điều khiển doanh nghiệp sau khi test GAS/HPG.</td><td>GAS v1, HPG v1, phản hồi của analyst, phần lõi bắt buộc, phần được tùy chỉnh, dữ liệu cần tự động.</td><td>PM, analyst liên quan, sếp nếu cần.</td></tr>
+            <tr><td><b>Tuần 2 tháng 10</b></td><td>Chọn phương án dữ liệu chính cho giai đoạn mở rộng.</td><td>Ma trận Wi API/Excel/AI/nhập tay, chi phí, rủi ro, dữ liệu cần cập nhật thường xuyên.</td><td>PM, team research, BoD, IT nếu có.</td></tr>
+            <tr><td><b>Cuối tháng 10</b></td><td>Chốt danh sách ngành/mã mở rộng tháng 11 và nguyên tắc lấy nguồn dữ liệu.</td><td>Danh sách ngành/mã có đầu vào sẵn, độ khó dữ liệu, độ quan trọng với quyết định đầu tư, phương án Wi/Excel/AI/nhập tay.</td><td>PM, trưởng nhóm nghiên cứu, analyst owners.</td></tr>
+            <tr><td><b>Cuối tháng 11</b></td><td>Giai đoạn sau 3 tháng cần đi tiếp với IT/cơ sở dữ liệu như thế nào, và phủ tiếp phần VN30/VN100 còn lại ra sao?</td><td>Bộ bảng điều khiển đã có, phản hồi sử dụng, lỗi còn tồn, yêu cầu kỹ thuật dài hạn, cùng ma trận ngành-mã còn thiếu và nguồn lực ước tính từ tab VN30/VN100 & nguồn lực.</td><td>PM, sếp/BoD, team research, IT.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="ops">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>RACI & QA</h2>
+          <p>Phần này để sếp và team nhìn ra ngay ai là người chốt, ai trực tiếp làm, ai góp ý trước khi chốt, và ai chỉ cần nắm thông tin.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Ma trận trách nhiệm</h3>
+          <table class="raci">
+            <thead><tr><th>Hoạt động</th><th>PM</th><th>Analyst owner</th><th>Dữ liệu/QA</th><th>Sếp/BoD</th><th>IT</th></tr></thead>
+            <tbody>
+              <tr><td>Chốt mục tiêu, thứ tự ưu tiên</td><td class="r">R</td><td class="c">C</td><td class="i">I</td><td class="a">A</td><td class="i">I</td></tr>
+              <tr><td>Điền đầu vào ngành</td><td class="a">A</td><td class="r">R</td><td class="c">C</td><td class="i">I</td><td class="i">I</td></tr>
+              <tr><td>Dựng bảng điều khiển bằng AI</td><td class="a">A/R</td><td class="c">C</td><td class="c">C</td><td class="i">I</td><td class="i">I</td></tr>
+              <tr><td>Kiểm tra nguồn và số liệu</td><td class="a">A</td><td class="r">R</td><td class="r">R</td><td class="i">I</td><td class="i">I</td></tr>
+              <tr><td>Chốt phương án dữ liệu</td><td class="r">R</td><td class="c">C</td><td class="c">C</td><td class="a">A</td><td class="c">C</td></tr>
+              <tr><td>Thiết kế database dài hạn</td><td class="c">C</td><td class="c">C</td><td class="c">C</td><td class="a">A</td><td class="r">R</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Checklist QA trước khi xem là đạt</h3>
+          <ul class="list">
+            <li>Các điểm dữ liệu trọng yếu có nguồn, ngày cập nhật và người xác nhận.</li>
+            <li>Biểu đồ phục vụ thesis, không chỉ đưa vào vì có dữ liệu.</li>
+            <li>Dữ liệu khác tần suất được tách rõ: hằng ngày, hằng tuần, hằng tháng, hằng quý, theo sự kiện.</li>
+            <li>Thông tin mới nhất được cập nhật hoặc có nhãn rõ là chưa cập nhật.</li>
+            <li>Phần nào tự động, tải Excel, AI tìm nguồn, nhập tay phải được ghi rõ.</li>
+            <li>Analyst owner đã xác nhận logic ngành/doanh nghiệp.</li>
+            <li>PM đã ghi log lỗi và quyết định sửa/không sửa.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="grid three">
+        <div class="card"><h3>Rủi ro dữ liệu</h3><ul class="list"><li>Wi có dữ liệu nhưng chưa deal xong quyền/API.</li><li>Nguồn free thiếu ổn định hoặc thiếu lịch sử.</li><li>Excel của từng analyst không cùng cấu trúc.</li></ul></div>
+        <div class="card"><h3>Rủi ro kỹ thuật</h3><ul class="list"><li>Bảng điều khiển tĩnh dễ thử nhanh nhưng khó cập nhật hàng loạt.</li><li>Nối mô hình Excel có thể phức tạp hơn dự kiến.</li><li>Dữ liệu hằng ngày nhiều nguồn làm bảng điều khiển chậm hoặc khó bảo trì.</li></ul></div>
+        <div class="card"><h3>Rủi ro phân tích</h3><ul class="list"><li>Bảng điều khiển đẹp nhưng không phản ánh luận điểm đầu tư.</li><li>Mỗi analyst tùy chỉnh quá khác nhau làm mất tính nhất quán.</li><li>AI viết tự tin nhưng số liệu/nguồn chưa được kiểm chứng.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Bản kế hoạch 3 tháng cho dashboard ngành và dashboard cổ phiếu VN30/VN100. Giai đoạn này ưu tiên thống nhất nội dung, thiết kế, phương pháp dữ liệu và quy trình QA trước khi mở rộng độ phủ và đầu tư nền tảng dữ liệu dài hạn.</div>
+</main>
+
+<script>
+const weeks = [
+  '01-07/09','08-14/09','15-21/09','22-30/09',
+  '01-07/10','08-14/10','15-21/10','22-31/10',
+  '01-07/11','08-14/11','15-21/11','22-30/11'
+];
+
+const weeklyRows = [
+  ['1','01-07/09','Khóa đầu vào dầu khí','Gửi hạn chót cho analyst dầu khí; khóa file đầu vào; kiểm tra có đủ cung-cầu, giá, chính sách, doanh nghiệp đại diện, nguồn và ngày cập nhật chưa.','Thiếu nguồn; số liệu nhiều định nghĩa; analyst viết diễn giải nhưng chưa chuyển thành biểu đồ/dữ liệu.','Bộ đầu vào dầu khí đủ để dựng v1 trước 08/09.'],
+  ['2','08-14/09','Dầu khí v1 + PM rà soát','Dựng bảng điều khiển dầu khí v1 ngày 08/09; PM rà soát trong 3 ngày; ghi lỗi nội dung, biểu đồ, nguồn, giao diện, phần cần tự động.','Dựng nhanh dễ bỏ qua nhật ký học được gì; rà soát dễ cảm tính nếu chưa có checklist.','Bảng điều khiển dầu khí v1 + biên bản rà soát 09-11/09.'],
+  ['2','08-14/09','Ngân hàng chạy song song','Analyst ngân hàng điền đầu vào; xác định tab đặc thù: tín dụng, NIM, CASA, NPL, trích lập, vốn, tăng trưởng huy động.','Ngân hàng khác ngành hàng hóa nên có thể làm lộ điểm yếu của mẫu chung.','Đầu vào ngân hàng + khung bảng điều khiển để hoàn thành trước 15/09.'],
+  ['3','15-21/09','Ngân hàng v1 + kiểm tra ngược','Hoàn thành bảng điều khiển ngân hàng ngày 15/09; kiểm tra ngược dầu khí và ngân hàng trong 1 tuần; so sánh điểm giống/khác và sửa mẫu tổng.','Dễ sửa theo từng ngành riêng lẻ mà quên giữ tính nhất quán.','Mẫu ngành chỉnh lần 1 + nhật ký lỗi chung.'],
+  ['3','15-21/09','Giao việc sớm cho analyst khác','Mỗi analyst chọn 1-2 mã/ngành chính và điền trước: luận điểm, biểu đồ cần có, dữ liệu cần cập nhật, nguồn, tần suất, liên kết mô hình Excel.','Vì chưa dựng ngay nên analyst có thể điền quá chung; cần form ngắn và ví dụ cụ thể như CTD backlog.','Danh mục đầu vào doanh nghiệp cho 8-12 mã ưu tiên.'],
+  ['4','22-30/09','Dựng GAS & HPG v1','Dựng 2 bảng điều khiển doanh nghiệp đầu tiên; kiểm tra kết nối ngành, dữ liệu tài chính/phi tài chính, yếu tố hỗ trợ mới nhất, định giá và mô hình Excel.','Bảng điều khiển doanh nghiệp cần tùy chỉnh sâu hơn ngành; dữ liệu mới nhất và dữ liệu định kỳ có tần suất khác nhau.','GAS v1, HPG v1, danh sách phần bắt buộc/tùy chọn.'],
+  ['5','01-07/10','Rà soát doanh nghiệp','PM + analyst rà soát GAS/HPG; chốt hướng đi cho bảng điều khiển doanh nghiệp: phần lõi, phần tùy chỉnh, phần dữ liệu tự động/Excel/nhập tay.','Nếu không chốt ranh giới, mỗi mã sẽ thành một kiểu riêng và khó mở rộng.','Khung bảng điều khiển doanh nghiệp v1.'],
+  ['6','08-14/10','Thảo luận dữ liệu','Thảo luận với team/BoD về Wi API, tải Excel, AI tìm nguồn, nhập tay và cơ sở dữ liệu IT dài hạn theo 5 tiêu chí: tin cậy, chi phí, cập nhật, kỹ thuật, bám luận điểm.','Wi cần deal; AI có rủi ro nguồn; tự động hóa quá sớm có thể tốn công hơn lợi ích.','Ma trận quyết định dữ liệu + quyết định thử nghiệm tiếp.'],
+  ['7','15-21/10','Dựng ngành hàng hóa, năng lượng, tiêu dùng','Ưu tiên hàng hóa vì liên quan HPG; năng lượng vì liên quan POW/REE; tiêu dùng/bán lẻ vì liên quan MWG. Mỗi ngành dựng v1 theo mẫu đã chỉnh sau dầu khí/ngân hàng.','Ba ngành có bộ KPI rất khác nhau, dễ làm lộ điểm mẫu chưa đủ linh hoạt.','3 bảng điều khiển ngành v1: hàng hóa, năng lượng, tiêu dùng/bán lẻ.'],
+  ['8','22-31/10','Chuẩn hóa analyst shortnote input','Từ bài GAS/HPG, gửi mẫu shortnote input chính thức cho analyst: phương pháp đầu tư, biểu đồ chính, nguồn, tần suất, liên kết mô hình, yếu tố hỗ trợ.','Form quá dài thì analyst không điền; quá ngắn thì AI thiếu bối cảnh.','Mẫu analyst shortnote input v1 + danh sách mã thử nghiệm tiếp.'],
+  ['9','01-07/11','Dựng ngành thực phẩm, hàng không, vận tải','Thực phẩm đi cùng nhóm tiêu dùng; hàng không và vận tải đi chung vì đều cần chỉ số vận hành, công suất, chi phí nhiên liệu, nhu cầu hành khách/hàng hóa.','Dữ liệu vận hành có thể không đồng nhất giữa nguồn công ty, cơ quan quản lý và ước tính analyst.','3 bảng điều khiển ngành v1: thực phẩm, hàng không, vận tải.'],
+  ['10','08-14/11','Dựng ngành dược, hóa chất, nông nghiệp, công nghệ','Dược cần chính sách/đấu thầu; hóa chất và nông nghiệp cần giá đầu vào-đầu ra; công nghệ cần KPI phi tài chính và tăng trưởng dài hạn.','Một số ngành thiếu dữ liệu tự động nên phải chấp nhận Excel/nhập tay có kiểm soát.','4 bảng điều khiển ngành v1: dược, hóa chất, nông nghiệp, công nghệ.'],
+  ['5-12','01/10-30/11','Thử nghiệm các mã khác sau khi đã có template','Sau khi chốt khung GAS/HPG, chọn các mã có shortnote input tốt nhất như MWG, PVS, POW, REE hoặc mã team ưu tiên; dựng dần từ đầu tháng 10 đến hết tháng 11.','Các mã khác nhau về phương pháp định giá và KPI, cần giữ phần lõi nhưng cho phép tùy chỉnh.','2-4 bảng điều khiển doanh nghiệp v1 ngoài GAS/HPG.'],
+  ['11','15-21/11','QA chéo','Analyst không phụ trách ngành/mã đó kiểm tra lại nguồn, logic, biểu đồ, luận điểm, dữ liệu mới nhất; PM gom lỗi ưu tiên.','Người viết tự kiểm tra dễ bỏ sót; QA quá nặng có thể chậm tiến độ.','Danh sách lỗi ưu tiên sửa + bản gần phát hành.'],
+  ['12','22-30/11','Chốt phiên bản 3 tháng','Sửa mẫu, chuẩn hóa nguồn, chuẩn cập nhật, chuẩn Excel, chuẩn QA; chuẩn bị tóm tắt cho sếp/BoD về kết quả và việc cần làm tiếp.','Nếu chỉ báo cáo giao diện mà không nói rõ phương pháp dữ liệu và vận hành, khó xin nguồn lực tiếp.','Mẫu tổng v2 + đề xuất giai đoạn sau 3 tháng.']
+];
+
+const ganttItems = [
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:1, end:2, label:'Dầu khí', detail:'Thử nghiệm ngành đầu tiên: analyst khóa đầu vào, AI dựng v1 trước 08/09, PM rà soát 3 ngày sau đó.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:2, end:3, label:'Bank', detail:'Ngân hàng chạy song song, hạn chót 15/09, dùng để kiểm tra mẫu với nhóm KPI rất khác dầu khí.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'qa', start:3, end:4, label:'Kiểm tra', detail:'Kiểm tra ngược dầu khí + ngân hàng trong 1 tuần để sửa mẫu, checklist, bản đồ dữ liệu và quy trình rà soát.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:7, end:8, label:'Hàng hóa', detail:'Tháng 10 dựng ngành hàng hóa trước vì liên quan trực tiếp tới HPG: giá hàng hóa, cung-cầu, tồn kho, spread đầu vào-đầu ra và chu kỳ lợi nhuận.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:7, end:8, label:'Năng lượng', detail:'Tháng 10 dựng ngành năng lượng vì liên quan POW/REE: sản lượng, huy động nhà máy, giá nhiên liệu, thủy văn, dự án mới và chính sách điện.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:8, end:8, label:'Tiêu dùng', detail:'Cuối tháng 10 dựng ngành tiêu dùng/bán lẻ vì liên quan MWG: sức mua, kênh phân phối, doanh thu/cửa hàng, biên lợi nhuận và quá trình tái cấu trúc.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:9, end:10, label:'Thực phẩm', detail:'Đầu tháng 11 dựng ngành thực phẩm vì đi cùng nhóm tiêu dùng nhưng có thêm yếu tố giá nguyên liệu, sản lượng, kênh phân phối và thương hiệu.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:9, end:10, label:'Hàng không', detail:'Đầu tháng 11 dựng ngành hàng không: sản lượng khách, tải cung ứng, giá nhiên liệu, tỷ giá, cạnh tranh tuyến bay và chu kỳ du lịch.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:9, end:10, label:'Vận tải', detail:'Đầu tháng 11 dựng ngành vận tải: sản lượng hàng hóa/hành khách, công suất, cước vận tải, giá nhiên liệu, thương mại và đầu tư hạ tầng.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:10, end:11, label:'Dược', detail:'Giữa tháng 11 dựng ngành dược: kênh bệnh viện/nhà thuốc, đấu thầu, chính sách, danh mục thuốc, tăng trưởng doanh thu và biên lợi nhuận.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:10, end:11, label:'Hóa chất', detail:'Giữa tháng 11 dựng ngành hóa chất: giá đầu vào-đầu ra, spread, công suất, xuất khẩu, nhu cầu hạ nguồn và chu kỳ hàng hóa.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:11, end:12, label:'Nông nghiệp', detail:'Cuối tháng 11 dựng ngành nông nghiệp: mùa vụ, giá nông sản, xuất khẩu, thời tiết, chi phí đầu vào và chính sách thương mại.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:11, end:12, label:'Công nghệ', detail:'Cuối tháng 11 dựng ngành công nghệ: doanh thu dịch vụ/sản phẩm, backlog, khách hàng, biên lợi nhuận, năng lực nhân sự, chuyển đổi số và KPI phi tài chính.'},
+  {lane:'Doanh nghiệp', sub:'Đầu vào và thử mã', kind:'method', start:3, end:6, label:'Shortnote DN', detail:'Analyst shortnote input để build dashboard doanh nghiệp: mỗi analyst chuẩn bị luận điểm, biểu đồ chính, nguồn, tần suất, liên kết mô hình Excel và phần muốn tùy chỉnh.'},
+  {lane:'Doanh nghiệp', sub:'Đầu vào và thử mã', kind:'stock', start:4, end:4, label:'Test GAS/HPG', detail:'Test trước với GAS/HPG trong cuối tháng 9 để xem bảng điều khiển doanh nghiệp cần chuẩn hóa phần nào và cho analyst tùy chỉnh phần nào.'},
+  {lane:'Doanh nghiệp', sub:'Đầu vào và thử mã', kind:'stock', start:5, end:12, label:'Mã khác sau template', detail:'Thử nghiệm các mã khác sau khi đã có template từ GAS/HPG, kéo dài từ đầu tháng 10 tới hết tháng 11. Mã ưu tiên có thể là MWG, PVS, POW, REE hoặc mã team chọn theo mức sẵn sàng shortnote.'},
+  {lane:'Dữ liệu', sub:'Wi, Excel, AI, nhập tay', kind:'data', start:2, end:6, label:'DB dữ liệu & nguồn', detail:'Build database dữ liệu & nguồn: lập bảng dữ liệu cần lấy, nguồn chính/phụ, tần suất cập nhật, người phụ trách, cách lấy bằng Wi/API, Excel, AI hay nhập tay.'},
+  {lane:'Dữ liệu', sub:'Wi, Excel, AI, nhập tay', kind:'decision', start:6, end:6, label:'Thảo luận', detail:'Thảo luận với team/BoD: chọn phương án dữ liệu chính cho giai đoạn mở rộng.'},
+  {lane:'Dữ liệu', sub:'Wi, Excel, AI, nhập tay', kind:'data', start:7, end:12, label:'Plan source DL', detail:'Chuẩn hóa quy trình và chốt plan source dữ liệu: dữ liệu nào dùng Wi/API, dữ liệu nào tải Excel, dữ liệu nào AI tìm nguồn, dữ liệu nào nhập tay; ghi rõ lịch cập nhật và owner.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'qa', start:2, end:2, label:'PM rà soát', detail:'PM rà soát dầu khí trong 3 ngày sau hạn chót 08/09.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'decision', start:4, end:4, label:'Chốt hướng DN', detail:'Cuối tháng 9 chốt hướng đi bảng điều khiển doanh nghiệp sau khi đã có dầu khí, ngân hàng, GAS và HPG: phần lõi, phần tùy chỉnh, dữ liệu tự động và quy tắc rà soát.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'decision', start:8, end:8, label:'Chốt mở rộng T11', detail:'Cuối tháng 10 chốt danh sách ngành/mã làm trong tháng 11 và chốt phương án lấy nguồn dữ liệu tạm thời: Wi/API, Excel, AI tìm nguồn, nhập tay.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'ops', start:12, end:12, label:'Chốt 3T', detail:'Chốt phiên bản 3 tháng, bài học và đề xuất giai đoạn sau.'}
+];
+
+const workstreams = [
+  {title:'1. Đầu vào ngành', tag:'Analyst', text:'Analyst điền nội dung ngành theo mẫu chung, kèm nguồn và phần đặc thù.', detail:'Analyst gửi hạn chót, khóa file đầu vào, rồi kiểm tra đủ các mục chung — cung cầu, giá, chính sách, doanh nghiệp đại diện — trước khi thêm tab đặc thù riêng của ngành. Mỗi số liệu phải có nguồn và ngày cập nhật đi kèm. Cái khó thường không phải thiếu dữ liệu mà là thiếu nguồn đủ tin cậy, mỗi bên định nghĩa chỉ số một kiểu, và phần diễn giải của analyst chưa được chuyển thành biểu đồ cụ thể.'},
+  {title:'2. Dựng ngành bằng AI', tag:'PM + AI', text:'Dùng đầu vào analyst để dựng bảng điều khiển v1 thật nhanh, bắt đầu bằng dầu khí rồi ngân hàng.', detail:'Từ đầu vào của analyst, PM dùng AI chuyển thành cấu trúc dashboard, dựng biểu đồ và bảng, kiểm tra hiển thị, rồi ghi lại lỗi để sửa mẫu cho lần sau. Rủi ro lớn nhất là AI chọn biểu đồ nhìn đẹp nhưng không phản ánh đúng luận điểm, hoặc viết cứng quá nhiều chi tiết khiến sau này khó mở rộng sang ngành khác.'},
+  {title:'3. Kiểm tra ngược & PM rà soát', tag:'QA', text:'Rà soát không chỉ để sửa giao diện, mà để biết mẫu có nhân rộng được hay không.', detail:'PM rà soát dầu khí trong ba ngày sau hạn 08/09, rồi kiểm tra ngược cả dầu khí lẫn ngân hàng trong tuần kế tiếp để xem mẫu có đứng vững không. Cần một checklist đạt/không đạt rõ ràng — thiếu nó, việc rà soát dễ thành cảm tính, và sửa riêng cho từng ngành sẽ làm mẫu chung mất tính nhất quán.'},
+  {title:'4. Dữ liệu & phương pháp doanh nghiệp', tag:'Analyst', text:'Giao sớm cho analyst chuẩn bị đầu vào doanh nghiệp: luận điểm, biểu đồ, dữ liệu, nguồn, tần suất, liên kết mô hình.', detail:'Mỗi analyst chọn 1-2 mã chính rồi điền phương pháp đầu tư, biểu đồ/dữ liệu cần theo dõi, nguồn, tần suất, và phần nào lấy được từ mô hình Excel. Nếu đầu vào viết chung chung, dashboard doanh nghiệp ra sẽ giống nhau hết và mất phong cách phân tích riêng của từng người.'},
+  {title:'5. Thử GAS & HPG', tag:'Cổ phiếu', text:'Kiểm tra hai mã có logic khác nhau để chốt khung bảng điều khiển doanh nghiệp.', detail:'Hai mã này được chọn vì logic khác hẳn nhau — một mã năng lượng/hạ tầng, một mã hàng hóa/chu kỳ — đủ để kiểm tra khung dashboard doanh nghiệp có chịu được sự khác biệt hay không. Cần rà cả kết nối với ngành, dữ liệu tài chính và phi tài chính, catalyst mới nhất, định giá, và link tới mô hình Excel. Khó nhất là mỗi mã cần tùy biến sâu hơn cấp ngành, và tần suất cập nhật của từng loại dữ liệu không giống nhau.'},
+  {title:'6. Thử sai dữ liệu', tag:'Quyết định', text:'So sánh Wi API, tải Excel, AI tìm nguồn, nhập tay và cơ sở dữ liệu IT dài hạn.', detail:'So sánh Wi API, Excel, AI tìm nguồn, nhập tay và cơ sở dữ liệu IT dài hạn theo năm tiêu chí — tin cậy, chi phí, tốc độ cập nhật, độ khó kỹ thuật, mức bám sát luận điểm — rồi bàn với BoD về việc có nên mua quyền Wi API hay không. Tự động hóa quá sớm dễ tốn công vô ích, nhưng nhập tay quá nhiều thì dashboard nhanh lỗi thời.'},
+  {title:'7. Mở rộng ngành/mã cụ thể', tag:'Mở rộng', text:'Sau thử nghiệm mới chọn ngành/mã tiếp theo theo mức sẵn sàng đầu vào và độ quan trọng đầu tư.', detail:'Thứ tự mở rộng đi theo mức sẵn sàng đầu vào và tầm quan trọng với quyết định đầu tư: hàng hóa, năng lượng, tiêu dùng trong tháng 10; thực phẩm, hàng không, vận tải, dược, hóa chất, nông nghiệp, công nghệ trong tháng 11. Song song đó, chọn thêm vài mã như MWG, PVS, POW, REE để mở rộng phần cổ phiếu. Rủi ro là phạm vi phình to quá nhanh trong khi nguồn dữ liệu mỗi ngành một khác.'},
+  {title:'8. Vận hành cập nhật', tag:'Vận hành', text:'Chuẩn hóa người phụ trách, tần suất, nguồn và cách sửa lỗi trước khi chuyển sang nền tảng dài hạn.', detail:'Trước khi tính đến nền tảng dài hạn, mỗi dashboard cần có người phụ trách, lịch cập nhật, chuẩn đặt tên file/phiên bản, và nhật ký lỗi rõ ràng. Không có phần vận hành này, dashboard sẽ đẹp lúc demo rồi lỗi thời chỉ sau vài tuần.'}
+];
+
+const dataOptions = [
+  {name:'Wi API', desc:'Tốt cho dữ liệu có sẵn và cần cập nhật thường xuyên.', scores:[5,2,5,3,4], detail:'Ưu tiên cho giá cổ phiếu, tài chính, dữ liệu thị trường hoặc chỉ số có sẵn trong Wi. Cần deal quyền truy cập, chi phí, giới hạn API và phạm vi dữ liệu.'},
+  {name:'Tải Excel', desc:'Phù hợp giai đoạn đầu vì analyst quen Excel và dễ kiểm soát.', scores:[4,4,3,4,4], detail:'Dùng như cầu nối trước khi có cơ sở dữ liệu. Bắt buộc chuẩn tên sheet, cột, đơn vị, kỳ dữ liệu, nguồn và ngày cập nhật.'},
+  {name:'AI tìm nguồn', desc:'Nhanh cho nghiên cứu và trích xuất PDF, nhưng phải kiểm chứng.', scores:[2,5,2,5,3], detail:'Dùng cho tìm nguồn công khai, tóm tắt báo cáo, trích xuất PDF. Không dùng làm nguồn cuối cho số liệu trọng yếu nếu không có link/file gốc.'},
+  {name:'Nhập tay', desc:'Hợp lý với dữ liệu đặc thù, ít cập nhật hoặc nội bộ.', scores:[4,5,1,5,5], detail:'Dùng khi tự động hóa quá tốn công/token hoặc dữ liệu nằm trong báo cáo nội bộ. Cần ghi người nhập, nguồn và ngày cập nhật.'},
+  {name:'CSDL IT', desc:'Đích dài hạn nếu bảng điều khiển chứng minh được giá trị.', scores:[5,1,5,1,5], detail:'Chưa cần làm ngay. Làm bản tĩnh + Excel trước để chốt nội dung/thiết kế, sau đó mới chuyển yêu cầu rõ cho IT về bảng dữ liệu, API, phân quyền, lịch cập nhật.'}
+];
+
+function fillWeeklyTable(){
+  const table=document.getElementById('weeklyTable');
+  table.innerHTML='<thead><tr><th>Tuần</th><th>Thời gian</th><th>Trọng tâm</th><th>Việc nhỏ</th><th>Khó khăn</th><th>Đầu ra/Quyết định</th></tr></thead>';
+  const body=document.createElement('tbody');
+  weeklyRows.forEach(r=>{
+    const tr=document.createElement('tr');
+    r.forEach(c=>{
+      const td=document.createElement('td');
+      td.textContent=c;
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+  table.appendChild(body);
+}
+
+function initGantt(){
+  const header=document.getElementById('weeksHeader');
+  header.innerHTML='<div>Luồng việc</div>'+weeks.map((w,i)=>'<div>T'+(i+1)+'<br>'+w+'</div>').join('');
+  const root=document.getElementById('gantt');
+  const lanes = [];
+  ganttItems.forEach(item=>{
+    let laneGroup = lanes.find(x=>x.lane===item.lane && x.sub===item.sub);
+    if(!laneGroup){
+      laneGroup = {lane:item.lane, sub:item.sub, items:[]};
+      lanes.push(laneGroup);
+    }
+    laneGroup.items.push(item);
+  });
+  lanes.forEach(laneGroup=>{
+    const rowEnds=[];
+    laneGroup.items
+      .slice()
+      .sort((a,b)=>a.start-b.start || a.end-b.end)
+      .forEach(item=>{
+        let rowIndex=rowEnds.findIndex(end=>item.start>end);
+        if(rowIndex===-1){
+          rowIndex=rowEnds.length;
+          rowEnds.push(item.end);
+        }else{
+          rowEnds[rowIndex]=item.end;
+        }
+        item._row=rowIndex;
+      });
+    const lane=document.createElement('div');
+    lane.className='lane';
+    lane.style.minHeight=(46 + rowEnds.length*32)+'px';
+    lane.innerHTML='<div class="laneLabel"><b>'+laneGroup.lane+'</b><span>'+laneGroup.sub+'</span></div><div class="laneTrack"></div>';
+    const track=lane.querySelector('.laneTrack');
+    track.style.minHeight=(46 + rowEnds.length*32)+'px';
+    laneGroup.items.forEach(item=>{
+      const bar=document.createElement('button');
+      bar.type='button';
+      bar.className='bar';
+      bar.dataset.kind=item.kind;
+      bar.style.left=((item.start-1)/12*100)+'%';
+      bar.style.width=((item.end-item.start+1)/12*100)+'%';
+      bar.style.top=(12 + item._row*32)+'px';
+      bar.textContent=item.label;
+      bar.title=item.detail;
+      bar.addEventListener('click',()=>showTimeline(item.label,item.detail));
+      track.appendChild(bar);
+    });
+    root.appendChild(lane);
+  });
+}
+
+function showTimeline(title,detail){
+  document.getElementById('timelineDetail').innerHTML='<b>'+title+':</b> '+detail;
+}
+
+function initWorkstreams(){
+  const root=document.getElementById('workGrid');
+  workstreams.forEach((w,i)=>{
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='workCard'+(i===0?' active':'');
+    card.innerHTML='<h3>'+w.title+'<small>'+w.tag+'</small></h3><p>'+w.text+'</p>';
+    card.addEventListener('click',()=>{
+      document.querySelectorAll('.workCard').forEach(x=>x.classList.remove('active'));
+      card.classList.add('active');
+      document.getElementById('workDetail').innerHTML='<b>'+w.title+':</b> '+w.detail;
+    });
+    root.appendChild(card);
+  });
+  if(workstreams[0]) document.getElementById('workDetail').innerHTML='<b>'+workstreams[0].title+':</b> '+workstreams[0].detail;
+}
+
+function initOptions(){
+  const root=document.getElementById('optionGrid');
+  const labels=['Tin cậy','Chi phí','Update','Kỹ thuật','Thesis'];
+  dataOptions.forEach((o,i)=>{
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='option'+(i===0?' active':'');
+    const rows=o.scores.map((s,idx)=>'<div class="scoreRow"><span>'+labels[idx]+'</span><div class="rail"><span style="width:'+(s*20)+'%"></span></div><b>'+s+'</b></div>').join('');
+    card.innerHTML='<h3>'+o.name+'</h3><p>'+o.desc+'</p><div class="score">'+rows+'</div>';
+    card.addEventListener('click',()=>{
+      document.querySelectorAll('.option').forEach(x=>x.classList.remove('active'));
+      card.classList.add('active');
+      document.getElementById('optionDetail').innerHTML='<b>'+o.name+':</b> '+o.detail;
+    });
+    root.appendChild(card);
+  });
+  if(dataOptions[0]) document.getElementById('optionDetail').innerHTML='<b>'+dataOptions[0].name+':</b> '+dataOptions[0].detail;
+}
+
+document.querySelectorAll('.tabbtn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.pane').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+fillWeeklyTable();
+initGantt();
+initWorkstreams();
+initOptions();
+</script>
+</body>
+</html>
