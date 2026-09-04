@@ -1,3 +1,10 @@
 .cursor/
 .mcp.json
 .DS_Store
+*/.cursor/
+*/.mcp.json
+*/.DS_Store
+*/.claude/
+AI_WORKSPACE/
+exports/
+*.zip

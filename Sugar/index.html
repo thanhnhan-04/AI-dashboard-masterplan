@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ngành Đường Việt Nam · FinSuccess Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  /* ---- token lấy từ website công ty https://fisc.vn ---- */
+  --navy:#11255a; --navy2:#19316f; --navy3:#223567;
+  --accent:#27af95; --accent-bright:#2fd0b2; --accent-soft:#e6f5f1;
+  --tint:#dfe6f7; --tint-soft:#f5f7fc;
+  --bg:#ffffff; --page:#f5f7fc; --card:#ffffff;
+  --ink:#0d0d0d; --ink2:#3d4653; --muted:#6b7686;
+  --line:#dfe6f7; --hair:#eaeff9;
+  --brand:#11255a; --brand2:#19316f; --brand-deep:#11255a; --gold:#b8801f; --gold-soft:#fdf3e0;
+  --soft:#f5f7fc; --warn-bg:#fdf3e0; --danger-bg:#fbeae7;
+  --chart-surface:#ffffff; --grid:#e8edf7; --axis:#c6cfe0;
+  --s1:#1f4e9c; --s2:#d1583f; --s3:#27af95; --s4:#d99000; --s5:#a45bb8; --s6:#2f8f4e; --s7:#4b5bd4; --s8:#b8443a;
+  --good:#2f8f4e; --warning:#d99000; --serious:#dd7f4e; --critical:#c0392b;
+  --shadow:0 1px 2px rgba(17,37,90,.04), 0 8px 24px rgba(17,37,90,.05);
+  --radius:14px;
+}
+body{font-family:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,.hero h1,.intro h1{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+h1 em,h2 em,.accent{font-style:italic;color:var(--accent);font-weight:500}
+.hero h1 em{color:var(--accent-bright)}
+table,.kpi .value,.value,td,th{font-family:"Inter",ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+
+/* ---- thanh nhận diện công ty ---- */
+.fiscbar{background:linear-gradient(103deg,var(--navy) 0%,var(--navy3) 58%,#2c4a86 100%);color:#fff}
+.fiscbar-inner{max-width:1460px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.fiscbar img{height:34px;width:auto;display:block}
+.fiscbar .fiscbar-doc{font-size:12.5px;font-weight:600;color:#c9d6f0;letter-spacing:.2px}
+.fiscbar .fiscbar-doc b{color:#fff;font-weight:700}
+.fiscbar .fiscbar-nav{display:flex;gap:16px;flex-wrap:wrap}
+.fiscbar .fiscbar-nav a{color:#c9d6f0;text-decoration:none;font-size:12.5px;font-weight:600}
+.fiscbar .fiscbar-nav a:hover{color:var(--accent-bright)}
+
+/* ---- nguồn dạng link ---- */
+.source-note a,.conf-note a,.src-link{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(39,175,149,.35);font-weight:600}
+.source-note a:hover,.conf-note a:hover,.src-link:hover{color:var(--navy2);border-bottom-color:var(--navy2)}
+.source-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6}
+.srcrow{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px}
+.srcrow a{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:var(--tint-soft)}
+.srcrow a:after{content:"↗";font-size:9px;opacity:.7}
+.srcrow a:hover{border-color:var(--accent);background:var(--accent-soft)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important; scroll-behavior:auto!important} }
+body{margin:0;background:var(--page);color:var(--ink);font-family:ui-sans-serif,"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:proportional-nums}
+table{font-variant-numeric:tabular-nums}
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb, var(--bg) 90%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:1460px;margin:auto;padding:12px 22px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:.3px;font-size:13px;color:var(--ink)}
+.navlinks{display:flex;gap:14px;flex-wrap:wrap}
+.navlinks a{text-decoration:none;color:var(--muted);font-size:12.5px;font-weight:700}
+.navlinks a:hover{color:var(--brand)}
+.container{max-width:1460px;margin:auto;padding:22px}
+.hero{padding:26px 28px;border-radius:20px;background:linear-gradient(120deg,var(--brand-deep),var(--brand2));color:#fff;box-shadow:var(--shadow)}
+.hero h1{margin:0 0 8px;font-size:30px;line-height:1.15;text-wrap:balance}
+.hero p{margin:0;color:#dbeadb;max-width:920px;font-size:14.5px;line-height:1.55}
+.tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:11.5px;font-weight:700}
+.insight{margin-top:16px;padding:13px 15px;background:rgba(255,255,255,.1);border-left:4px solid var(--gold);border-radius:10px;font-size:13.5px;line-height:1.6}
+.insight b{color:#fff}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(6,minmax(150px,1fr));margin:16px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+.kpi .label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.kpi .value{font-size:23px;font-weight:800;margin:6px 0 2px}
+.kpi .delta{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:999px;margin-bottom:4px}
+.kpi .delta.d-good{color:var(--good);background:color-mix(in srgb, var(--good) 14%, transparent)}
+.kpi .delta.d-warn{color:#8a6a10;background:var(--warn-bg)}
+:root[data-theme="dark"] .kpi .delta.d-warn,@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .kpi .delta.d-warn{color:var(--warning)}}
+.kpi .delta.d-bad{color:var(--critical);background:color-mix(in srgb, var(--critical) 12%, transparent)}
+.kpi .sub{font-size:11px;color:var(--muted);line-height:1.4}
+.kpi .spark{margin-top:6px;display:block}
+.section{margin-top:26px}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:0 0 12px;flex-wrap:wrap}
+.sectionhead h2{margin:0;font-size:20px}
+.sectionhead p{margin:2px 0 0;color:var(--muted);font-size:12.5px;max-width:640px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:var(--shadow)}
+.two{grid-template-columns:1.5fr 1fr}
+.three{grid-template-columns:repeat(3,1fr)}
+.four{grid-template-columns:repeat(4,1fr)}
+.chart-title{font-size:13.5px;font-weight:750;margin:0 0 2px}
+.chart-sub{font-size:11.5px;color:var(--muted);margin:0 0 8px}
+.chartsvg{display:block;width:100%;height:auto;overflow:visible}
+.gridline{stroke:var(--grid);stroke-width:1}
+.axisline{stroke:var(--axis);stroke-width:1}
+.axislabel{font-size:9px;fill:var(--muted)}
+.catlabel{font-size:9px;fill:var(--muted)}
+.endlabel{font-size:10px;fill:var(--ink2);font-weight:700}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 4px;font-size:11.5px;color:var(--ink2)}
+.legend .li{display:inline-flex;align-items:center;gap:6px}
+.legend .sw{width:12px;height:3px;border-radius:2px;display:inline-block}
+.legend .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.source-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
+.conf-note{font-size:11px;color:var(--muted);margin-top:2px;font-style:italic}
+details.dtable{margin-top:8px}
+details.dtable summary{cursor:pointer;font-size:11.5px;font-weight:700;color:var(--brand);list-style:none;display:inline-flex;align-items:center;gap:4px}
+details.dtable summary::-webkit-details-marker{display:none}
+details.dtable summary:before{content:"▸";font-size:10px}
+details.dtable[open] summary:before{content:"▾"}
+.dtable table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:8px}
+.dtable th,.dtable td{padding:6px 7px;border-bottom:1px solid var(--hair);text-align:left}
+.dtable th{color:var(--muted);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px}
+.chtip{position:fixed;z-index:100;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:10px;padding:8px 10px;font-size:11.5px;box-shadow:0 8px 20px rgba(0,0,0,.25);display:none;max-width:240px}
+.chtip-title{font-weight:800;margin-bottom:4px}
+.chtip-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:1px 0}
+.chtip-key{display:flex;align-items:center;gap:5px;opacity:.85}
+.chtip-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.chtip-val{font-weight:800}
+.hitband{cursor:crosshair}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tabbtn{border:1px solid var(--line);background:var(--card);color:var(--brand);padding:7px 12px;border-radius:999px;font-weight:750;cursor:pointer;font-size:12.5px}
+.tabbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.tabpane{display:none} .tabpane.active{display:block}
+.tabpane p{font-size:13px;line-height:1.6;margin:0 0 6px}
+.timeline{position:relative;margin:8px 0 0;padding-left:24px}
+.timeline:before{content:"";position:absolute;left:7px;top:3px;bottom:3px;width:2px;background:var(--line)}
+.event{position:relative;margin:0 0 16px}
+.event:before{content:"";position:absolute;left:-21px;top:5px;width:10px;height:10px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 3px var(--gold-soft)}
+.event b{display:block;font-size:13.5px} .event small{color:var(--muted);font-weight:700}
+.event p{margin:3px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.5}
+.driver{padding:14px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
+.driver h3{margin:0 0 6px;font-size:14px} .driver p{margin:0;color:var(--ink2);font-size:12.5px;line-height:1.5}
+.scenario{border-radius:14px;padding:15px;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.scenario:hover{box-shadow:var(--shadow)}
+.scenario.active{outline:2px solid var(--brand)}
+.scenario .range{font-size:22px;font-weight:800;margin:5px 0}
+.badge{display:inline-flex;padding:4px 9px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:.2px}
+.base{background:var(--soft);color:var(--brand)} .bull{background:var(--warn-bg);color:#7a5b13} .bear{background:var(--danger-bg);color:#8a3d2e}
+.scenarioDetail{margin-top:14px;padding:14px 15px;border-radius:12px;background:var(--soft);border:1px dashed var(--line);color:var(--ink2);font-size:13px;line-height:1.6}
+.tablewrap{overflow:auto}
+table.plain{width:100%;border-collapse:collapse;font-size:12.5px}
+.plain th,.plain td{padding:9px 8px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
+.plain th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.note{font-size:11.5px;color:var(--muted);line-height:1.55}
+.flagbox{background:var(--warn-bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.6;color:var(--ink2);margin-top:10px}
+.flagbox b{color:var(--ink)}
+.footer{padding:26px 0 8px;color:var(--muted);font-size:11.5px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--soft);color:var(--brand)}
+a{color:var(--brand)}
+@media(max-width:1150px){.kpis{grid-template-columns:repeat(3,1fr)}.two,.three,.four{grid-template-columns:1fr}}
+@media(max-width:700px){.container{padding:14px}.hero h1{font-size:24px}.kpis{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}
+.majortabs{position:sticky;top:47px;z-index:25;background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.majortabrow{max-width:1460px;margin:auto;padding:10px 22px;display:flex;gap:8px;flex-wrap:wrap}
+.majortabbtn{border:1px solid var(--line);background:var(--card);color:var(--ink2);padding:8px 14px;border-radius:999px;font-weight:750;cursor:pointer;font-size:12.5px;white-space:nowrap}
+.majortabbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.majorpane{display:none}
+.majorpane.active{display:block}
+.subhead{font-size:15px;margin:22px 0 4px}
+.subhead:first-of-type{margin-top:4px}
+.subsub{font-size:12px;color:var(--muted);margin:0 0 12px;max-width:700px}
+.catriskgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.catbox,.riskbox{border-radius:14px;padding:14px 16px;border:1px solid var(--line)}
+.catbox{background:color-mix(in srgb, var(--good) 8%, var(--card))}
+.riskbox{background:color-mix(in srgb, var(--critical) 7%, var(--card))}
+.catbox h3,.riskbox h3{margin:0 0 8px;font-size:14px}
+.catbox ul,.riskbox ul{margin:0;padding-left:18px;font-size:12.5px;line-height:1.6;color:var(--ink2)}
+.catbox li,.riskbox li{margin-bottom:6px}
+.profilegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.profilecard{border-radius:14px;padding:14px 16px;border:1px solid var(--line);background:var(--card)}
+.profilecard h3{margin:0;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.profilecard .exch{font-size:10px;font-weight:800;color:var(--brand);background:var(--soft);padding:2px 8px;border-radius:999px}
+.profilecard p{margin:7px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.55}
+.profilecard .stats{display:flex;gap:16px;margin-top:9px;flex-wrap:wrap}
+.profilecard .stat{font-size:11px;color:var(--muted)}
+.profilecard .stat b{display:block;font-size:15px;color:var(--ink);font-weight:800}
+@media(max-width:1150px){.catriskgrid,.profilegrid{grid-template-columns:1fr}}
+@media(max-width:700px){.majortabrow{padding:8px 14px}}
+
+/* ---- ghi de theo nhan dien FiSC ---- */
+.majortabs{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);border-top:0}
+.majortabbtn{font-weight:650}
+.majortabbtn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.card{border-radius:var(--radius);border-color:var(--line)}
+.kpi{border-radius:var(--radius)}
+.hero{border-radius:18px;background:linear-gradient(103deg,var(--navy) 0%,var(--navy3) 58%,#2c4a86 100%)}
+.hero p{color:#d6e4ef}
+.insight{border-left-color:var(--accent-bright);background:rgba(255,255,255,.09)}
+.tag{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.22)}
+.sectionhead h2{font-size:21px}
+.subhead{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:600;font-size:17px;color:var(--navy2)}
+details.dtable summary{color:var(--accent)}
+.scenario.active{outline-color:var(--accent)}
+.note{background:var(--tint-soft);border-left:3px solid var(--accent);padding:10px 12px;border-radius:10px;font-size:12.5px;line-height:1.6;color:var(--ink2)}
+code{background:var(--tint-soft);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11px}
+.footer{border-top:1px solid var(--line);margin-top:26px}
+ul.list{margin:0;padding-left:18px;font-size:12.5px;line-height:1.65;color:var(--ink2)}
+ul.list li{margin-bottom:7px}
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+.scenario-detail{margin-top:14px;padding:14px 15px;border-radius:12px;background:var(--tint-soft);border:1px solid var(--line);color:var(--ink2);font-size:13px;line-height:1.65}
+.scenario-detail b{color:var(--ink)}
+@media(max-width:900px){.scenarios{grid-template-columns:1fr}}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}.fiscbar-inner{padding:12px 14px}}
+
+/* link tren nen navy */
+.hero a,.tag a,.insight a,.fiscbar a{color:var(--accent-bright);border-bottom-color:rgba(47,208,178,.45)}
+.hero a:hover,.tag a:hover,.insight a:hover{color:#fff;border-bottom-color:#fff}
+
+</style>
+</head>
+<body>
+<div class="fiscbar">
+  <div class="fiscbar-inner">
+    <img src="data:image/png;base64,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" alt="FinSuccess" />
+    <div class="fiscbar-doc">Dashboard ngành · <b>Đường Việt Nam</b> · cập nhật 17/08/2026</div>
+  </div>
+</div>
+<nav class="majortabs">
+  <div class="majortabrow">
+    <button class="majortabbtn active" onclick="showMajorTab('mt1',this)">1. Tổng quan ngành</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt2',this)">2. Cung – Cầu</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt3',this)">3. Giá – Chi phí – Margin</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt4',this)">4. Policy/Trade/Tax</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt5',this)">5. Catalyst/Risk</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt6',this)">6. Key players</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt7',this)">7. Mùa vụ &amp; Sản phẩm phụ</button>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero">
+    <h1>Bức tranh ngành đường <em>Việt Nam</em></h1>
+    <p>Cung–cầu, tồn kho, giá mía, giá đường, nhập khẩu và cạnh tranh chất tạo ngọt — dựng lại từ các chuỗi số liệu nhất quán theo niên vụ hoặc theo tháng thay vì các mốc rời rạc, để đọc được xu hướng ngắn hạn và dài hạn thay vì chỉ một điểm giá.</p>
+    <div class="tagrow">
+      <span class="tag">Cập nhật: 17/08/2026</span>
+      <span class="tag">Cung–cầu–tồn kho: <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA FAS PSD</a>, niên vụ 2010/11–2025/26, liên tục</span>
+      <span class="tag">Giá thế giới: <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank Pink Sheet</a>, theo tháng</span>
+      <span class="tag">Mọi khoảng trống dữ liệu được hiển thị là khoảng trống</span>
+    </div>
+    <div class="insight"><b>Đọc nhanh:</b> tồn kho cuối niên vụ 2025/26 ước khoảng <b>426 nghìn tấn</b> — mức cao nhất trong toàn bộ 16 niên vụ có số liệu USDA (2010/11–2025/26) — trong khi giá đường trắng trong nước tháng 7/2026 quanh <b>16,8 nghìn đ/kg</b>, thấp hơn cả Trung Quốc, Indonesia và Philippines trong khu vực. Giá thế giới cũng đang ở nhịp giảm sau đỉnh chu kỳ 2023 (0,52 USD/kg) về quanh 0,32–0,34 USD/kg. Ngắn hạn, cung đang vượt cầu tiêu thụ nội địa; dài hạn, PVTM vừa được gia hạn thêm 5 năm (đến 2031) giữ vai trò lá chắn trước hàng Thái Lan, nhưng chưa xử lý được áp lực từ đường lậu và HFCS nhập khẩu.</div>
+  </section>
+
+  <div class="majorpane active" data-tab="mt1">
+  <section class="grid kpis">
+    <div class="kpi">
+      <div class="label">Đường trắng T7/2026</div>
+      <div class="value">16,8k</div>
+      <div class="delta d-bad">▼ 10,9% so T6/2025</div>
+      <div class="sub">VND/kg · VSSA, bình quân tháng</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Tồn kho cuối vụ 25/26</div>
+      <div class="value">426k</div>
+      <div class="delta d-warn">▲ 2,2% so vụ trước</div>
+      <div class="sub">tấn · <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>, cao nhất 16 vụ</div>
+      <svg class="spark" id="spk-stock" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Sản lượng đường 25/26</div>
+      <div class="value">1,35tr</div>
+      <div class="delta d-good">▲ 8,0% so vụ trước</div>
+      <div class="sub">tấn · <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>, ước tính 05/2026</div>
+      <svg class="spark" id="spk-prod" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Nhập khẩu đường 25/26</div>
+      <div class="value">820k</div>
+      <div class="delta d-good">▼ 2,5% so vụ trước</div>
+      <div class="sub">tấn · <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>, ước tính</div>
+      <svg class="spark" id="spk-imp" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Giá đường thế giới T7/2026</div>
+      <div class="value">$0,34</div>
+      <div class="delta d-warn">▼ 8,1% so T7/2025</div>
+      <div class="sub">USD/kg · <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank Pink Sheet</a></div>
+      <svg class="spark" id="spk-world" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Giá mía 25/26*</div>
+      <div class="value">1,07tr</div>
+      <div class="delta d-bad">▼ 20,7% (1 nhà máy)</div>
+      <div class="sub">VND/tấn · KCP Đắk Lắk, không đại diện toàn ngành</div>
+      <svg class="spark" id="spk-cane" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sectionhead"><div><h2>1. Tổng quan ngành đường Việt Nam</h2><p>Vị trí ngành trong chu kỳ giá, cấu trúc chuỗi giá trị và danh sách doanh nghiệp niêm yết chính — điểm khởi đầu trước khi đi vào từng lớp dữ liệu ở các tab tiếp theo.</p></div></div>
+    <div class="grid two">
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">Chuỗi giá trị</h3>
+        <p style="font-size:12.5px;line-height:1.6;color:var(--ink2);margin:0">Nông dân trồng mía → nhà máy ép/tinh luyện (đường trắng RS, đường tinh luyện RE) → kênh phân phối bán lẻ và kênh công nghiệp (F&amp;B, nước giải khát, bánh kẹo, sữa) → người tiêu dùng cuối. Song song với nguồn cung nội địa, thị trường còn chịu tác động từ đường nhập khẩu chính ngạch (ATIGA, hạn ngạch thuế quan), đường nhập lậu (ước ~30% thị phần) và chất tạo ngọt thay thế (HFCS) — chi tiết ở tab <b>4. Policy/Trade/Tax</b>.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">Vị trí trong chu kỳ</h3>
+        <p style="font-size:12.5px;line-height:1.6;color:var(--ink2);margin:0">Giá thế giới đang ở nhịp giảm sau đỉnh chu kỳ 2023 (0,52 USD/kg), về quanh 0,32–0,34 USD/kg — gần vùng đáy 2015 (0,295) hơn vùng đỉnh. Trong nước, tồn kho cuối vụ 2025/26 (426 nghìn tấn) là mức cao nhất trong 16 niên vụ có số liệu USDA — dấu hiệu ngành đang ở pha dư cung, không phải thiếu hụt. Xem đầy đủ ở tab <b>2. Cung – Cầu</b> và <b>3. Giá – Chi phí – Margin</b>.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:13.5px">5 doanh nghiệp đường niêm yết theo dõi trong dashboard này</h3>
+      <p class="note" style="margin:0">SBT — TTC AgriS (HOSE) · QNS — Đường Quảng Ngãi (UPCOM) · LSS — Mía đường Lam Sơn (HOSE) · SLS — Mía đường Sơn La (HNX) · KTS — Đường Kon Tum (UPCOM). Hồ sơ và số liệu tài chính so sánh đầy đủ ở tab <b>6. Key players</b>.</p>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt3">
+  <section id="price" class="section">
+    <div class="sectionhead"><div><h2>3. Giá – Chi phí – Margin</h2><p>Giá thế giới là chuỗi tháng liên tục (World Bank). Giá trong nước chỉ hiển thị các mốc thực sự quan sát được — không có đường nối giữa các mốc cách xa nhau.</p></div></div>
+    <h3 class="subhead">Giá đường: chu kỳ thế giới và mặt bằng trong nước</h3>
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">Giá đường thế giới — 24 tháng gần nhất</div>
+        <div class="chart-sub">USD/kg, giá đường thô ISA · <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank Commodity Markets (Pink Sheet)</a></div>
+        <div id="chWorldRecent"></div>
+        <div class="source-note">Nguồn: <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank Pink Sheet</a>, file cập nhật 04/08/2026. Đỉnh gần nhất T10/2024 (0,46), đáy T2/2026 (0,31).</div>
+        <div class="srcrow"><a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank · Commodity Markets (Pink Sheet)</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu (24 tháng)</summary><div class="tablewrap"><table id="tbl-world-recent"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Giá đường thế giới — bình quân năm, 2010–2025</div>
+        <div class="chart-sub">USD/kg · chu kỳ dài: đỉnh 2011 (0,57) → đáy 2015 (0,295) → đỉnh 2023 (0,52) → đang giảm</div>
+        <div id="chWorldLong"></div>
+        <div class="source-note">Nguồn: <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank Pink Sheet</a>, bình quân 12 tháng mỗi năm.</div>
+        <div class="srcrow"><a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank · Commodity Markets (Pink Sheet)</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu (2010–2025)</summary><div class="tablewrap"><table id="tbl-world-long"></table></div></details>
+      </div>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Giá đường trong nước — các mốc quan sát thực tế, 2020–2026</div>
+        <div class="chart-sub">VND/kg · mỗi điểm là một khoảng giá được báo cáo tại một thời điểm cụ thể (không nội suy)</div>
+        <div id="chVnPrice"></div>
+        <div class="legend">
+          <span class="li"><span class="dot" style="background:var(--s1)"></span>Đường trắng (RS)</span>
+          <span class="li"><span class="dot" style="background:var(--s2)"></span>Đường tinh luyện (RE)</span>
+        </div>
+        <div class="conf-note">Vạch dọc = khoảng giá thấp–cao được báo cáo; chấm = điểm giữa. Không vẽ đường nối vì phần lớn khoảng cách giữa các mốc là 3–13 tháng.</div>
+        <div class="source-note">Nguồn: VSSA và báo chí trích VSSA (CafeF, VietnamBiz, Nông nghiệp & Môi trường, Dân trí, <a href="https://www.vienmiaduong.vn/" target="_blank" rel="noopener">Viện Nghiên cứu Mía Đường</a>). Mốc 07/2021 có độ tin cậy thấp hơn (không tự tải lại được bài gốc) nhưng vẫn giữ lại, gắn cờ rõ trong bảng dữ liệu (vòng tròn rỗng trên biểu đồ). Một số mốc khác từng xuất hiện trong nguồn thô (~05/2024, một bản trùng lặp gán nhãn 08/2024, và một mốc "07/2025" nghi nhầm năm với 07/2026) đã bị loại bỏ hoàn toàn vì không xác minh lại được nguồn gốc — không đưa vào dashboard dưới bất kỳ hình thức nào, kể cả gắn cờ.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu đầy đủ</summary><div class="tablewrap"><table id="tbl-vn-price"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">So sánh khu vực — giá đường trắng, T7/2026</div>
+        <div class="chart-sub">VND/kg quy đổi · Việt Nam đang thấp nhất khu vực</div>
+        <div id="chRegional"></div>
+        <div class="source-note">Nguồn: Nông nghiệp & Môi trường (trích VSSA), 16/08/2026.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-regional"></table></div></details>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt2">
+  <section id="supply" class="section">
+    <div class="sectionhead"><div><h2>2. Cung – cầu – tồn kho đường Việt Nam</h2><p>Toàn bộ 4 biểu đồ dưới đây dùng chung một bảng cân đối cung–cầu của <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA FAS PSD Online</a> (niên vụ tháng 10–tháng 9), liên tục không đứt quãng từ 2010/11 đến 2025/26.</p></div></div>
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">Cân đối cung – cầu: sản lượng vs tiêu thụ nội địa</div>
+        <div class="chart-sub">Nghìn tấn, quy đổi giá trị thô · niên vụ 2010/11–2025/26</div>
+        <div id="chSupplyDemand"></div>
+        <div class="legend">
+          <span class="li"><span class="sw" style="background:var(--s1)"></span>Sản lượng đường</span>
+          <span class="li"><span class="sw" style="background:var(--s2)"></span>Tiêu thụ nội địa</span>
+        </div>
+        <div class="source-note">Từ niên vụ 2019/20–2021/22, một phần sản lượng đến từ đường thô nhập khẩu tái chế (không chỉ từ mía trong nước) — xem ghi chú ở mục 2b.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-supdem"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Tồn kho cuối niên vụ</div>
+        <div class="chart-sub">Nghìn tấn · niên vụ 2010/11–2025/26 — thước đo áp lực cung–cầu trực tiếp nhất</div>
+        <div id="chStocks"></div>
+        <div class="source-note">Niên vụ 2025/26 là ước tính (báo cáo tháng 5/2026), chưa phải số liệu chốt vụ.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-stocks"></table></div></details>
+      </div>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Sản lượng mía ép tại nhà máy</div>
+        <div class="chart-sub">Triệu tấn · niên vụ 2017/18–2025/26</div>
+        <div id="chCaneCrush"></div>
+        <div class="source-note">Chuỗi bắt đầu từ 2017/18 vì các niên vụ trước đó chỉ có số liệu "sản lượng mía cả nước" (khác định nghĩa với "mía ép tại nhà máy"), không gộp chung để tránh sai lệch. * = số liệu công bố dạng "trên X triệu tấn", dùng làm giá trị sàn.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-canecrush"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Diện tích vùng mía</div>
+        <div class="chart-sub">Nghìn ha, diện tích thu hoạch/liên kết nhà máy · niên vụ 2018/19–2024/25</div>
+        <div id="chCaneArea"></div>
+        <div class="source-note">2025/26 không có số liệu toàn quốc công bố (chỉ có số liệu vùng, ví dụ Đắk Lắk), nên để trống thay vì suy diễn. * = giá trị sàn ("trên X nghìn ha").</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-canearea"></table></div></details>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt3">
+  <section id="cane" class="section">
+    <h3 class="subhead">Giá mía nguyên liệu &amp; giá thành ngành đường</h3>
+    <p class="subsub">Giá mía là chuỗi còn nhiều khoảng trống nhất trong dashboard này — được giữ nguyên trạng thái đó thay vì lấp đầy bằng suy diễn.</p>
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">Giá mía nguyên liệu bình quân theo niên vụ</div>
+        <div class="chart-sub">Nghìn đồng/tấn tại nhà máy · niên vụ 2018/19–2025/26</div>
+        <div id="chCanePrice"></div>
+        <div class="legend">
+          <span class="li"><span class="sw" style="background:var(--s3);height:10px;border-radius:3px"></span>Bình quân toàn quốc (nguồn VSSA/báo chí)</span>
+          <span class="li"><span class="sw" style="background:var(--s3);height:10px;border-radius:3px;opacity:.5"></span>1 nhà máy hoặc suy ra từ mức tăng công bố (cột mờ hơn = *)</span>
+        </div>
+        <div class="source-note">Không tìm thấy số liệu giá mía đáng tin cậy trước niên vụ 2018/19. 21/22*: suy ra từ phát biểu "+100–150 nghìn đ/tấn so với vụ trước", không phải số liệu công bố trực tiếp. 22/23*: chỉ có số liệu Lam Sơn. 25/26*: chỉ có số liệu KCP Đắk Lắk. Cả ba đều không đại diện bình quân toàn ngành.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-caneprice"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Biên lợi nhuận gộp SBT (TTC AgriS) theo niên độ</div>
+        <div class="chart-sub">%, niên độ tháng 7 – tháng 6 · doanh nghiệp đường niêm yết lớn nhất, ~46% thị phần nội địa</div>
+        <div id="chMargin"></div>
+        <div class="source-note">Số liệu kiểm toán đầy đủ chỉ có đến FY2022/23. FY2023/24: biên gộp quý 4 giảm còn 9,5% (từ 12,7% cùng kỳ). FY2024/25: biên gộp quý 1 là 12,3% (so với 10,9% quý 1 FY2023/24) — chưa có số liệu cả niên độ đã kiểm toán nên không vẽ thành cột.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-margin"></table></div></details>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt4">
+  <section id="trade" class="section">
+    <div class="sectionhead"><div><h2>4. Policy/Trade/Tax</h2><p>Nhập khẩu chính ngạch (niên vụ, <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>) được tách riêng khỏi ước tính đường nhập lậu (năm dương lịch, VSSA/<a href="https://vcbs.com.vn" target="_blank" rel="noopener">VCBS</a>) — hai chuỗi khác kỳ, không gộp vào một biểu đồ.</p></div></div>
+    <h3 class="subhead" style="margin-top:4px">Thương mại &amp; cạnh tranh chất tạo ngọt</h3>
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">Nhập khẩu đường chính ngạch</div>
+        <div class="chart-sub">Nghìn tấn · niên vụ 2010/11–2025/26 (<a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>)</div>
+        <div id="chImports"></div>
+        <div class="source-note">Đỉnh nhập khẩu 2019/20–2020/21 (~1,3 triệu tấn/vụ) trùng giai đoạn sản lượng mía trong nước thấp nhất; giảm mạnh sau khi thuế CBPG/CTC có hiệu lực giữa 2021.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-imports"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Ước tính đường nhập lậu</div>
+        <div class="chart-sub">Nghìn tấn · năm dương lịch, ước tính — KHÔNG phải số liệu hải quan chính thức</div>
+        <div id="chSmuggled"></div>
+        <div class="source-note">Nguồn: <a href="https://vcbs.com.vn" target="_blank" rel="noopener">VCBS</a> "Báo cáo ngành mía đường" 2024, VSSA. Ước tính giảm mạnh sau ATIGA (2020) và sau thuế CBPG/CTC (2021) rồi tăng trở lại; thị phần đường lậu được VSSA ước khoảng 30% thị trường nội địa giữa 2026.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-smuggled"></table></div></details>
+      </div>
+    </div>
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Nhập khẩu HFCS (siro ngô fructose cao)</div>
+        <div class="chart-sub">Nghìn tấn · năm dương lịch — chất tạo ngọt thay thế cạnh tranh trực tiếp với đường mía</div>
+        <div id="chHfcs"></div>
+        <div class="source-note">Nhập khẩu HFCS tăng hơn gấp đôi 2021→2024 (102,4 → 241,5 nghìn tấn). 2023* là số suy ra từ lũy kế 9 tháng, không phải số cả năm công bố trực tiếp; 2025 (7T)* là lũy kế 7 tháng, chưa phải cả năm — cả hai cột được hiển thị mờ hơn. Không xác nhận được mức chênh lệch giá "20–25%" từng công bố trước đây — các nguồn giá landed cho thấy khoảng chênh rộng hơn (35–55%), nhưng phương pháp so sánh không đồng nhất (HFCS ngọt hơn đường mía 25–60% theo trọng lượng) nên không đưa một con số duy nhất vào dashboard.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-hfcs"></table></div></details>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">Hạn ngạch thuế quan (TRQ) & cấu trúc cạnh tranh</h3>
+        <div class="tabs">
+          <button class="tabbtn active" onclick="showTab('trq',this)">Hạn ngạch</button>
+          <button class="tabbtn" onclick="showTab('share',this)">Thị phần</button>
+          <button class="tabbtn" onclick="showTab('tariff',this)">Thuế suất</button>
+        </div>
+        <div id="trq" class="tabpane active">
+          <p><b>2024:</b> hạn ngạch 126.000 tấn, đấu giá thành công 121.000 tấn (96,03%).</p>
+          <p><b>2025:</b> hạn ngạch 133.000 tấn, đấu giá được 100.000 tấn tính đến 09/2025 (75,18%).</p>
+          <p class="note">Đây là hạn ngạch thuế ưu đãi — chỉ là một phần nhỏ trong tổng nhập khẩu chính ngạch (xem biểu đồ <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>, quy mô lớn hơn nhiều).</p>
+        </div>
+        <div id="share" class="tabpane">
+          <p><b>SBT (TTC AgriS):</b> ~46% thị phần đường nội địa (FY2019/20 và FY2022/23).</p>
+          <p class="note">Phần còn lại phân mảnh giữa QNS, LSS, SLS, KTS và các nhà máy nhỏ khác — xem so sánh biên lợi nhuận ở mục 3.</p>
+        </div>
+        <div id="tariff" class="tabpane">
+          <p><b>Trong hạn ngạch (ATIGA, C/O Form D):</b> 5%.</p>
+          <p><b>Ngoài hạn ngạch (MFN):</b> 85% so với 40% trong hạn ngạch ưu đãi khác.</p>
+          <p><b>Đường Thái Lan / lẩn tránh qua ASEAN:</b> AD 42,99% + CVD 4,65% = 47,64% (xem timeline chính sách).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="policy" class="section">
+    <h3 class="subhead">Chính sách phòng vệ thương mại &amp; thuế nhập khẩu</h3>
+    <p class="subsub">Đã đối chiếu với số hiệu quyết định gốc (Cục Phòng vệ thương mại, Bộ Công Thương) thay vì chỉ dẫn lại mốc thời gian chung chung.</p>
+    <div class="card">
+      <div class="timeline">
+        <div class="event"><small>01/01/2020</small><b>ATIGA có hiệu lực với đường</b><p>Thông tư 23/2019/TT-BCT: bỏ hạn ngạch thuế quan nhập khẩu đường ASEAN, thuế về 5% (HS 1701) — mở đường cho làn sóng nhập khẩu 2020–2021.</p></div>
+        <div class="event"><small>16/02/2021</small><b>Thuế CBPG/CTC tạm thời — đường Thái Lan</b><p>Quyết định 477/QĐ-BCT (ký 09/02/2021): 44,23% (đường tinh luyện) và 29,23% (đường thô), vụ việc AD13-AS01.</p></div>
+        <div class="event"><small>16/06/2021</small><b>Thuế chính thức — Quyết định 1578/QĐ-BCT</b><p>AD 42,99% + CVD 4,65% = 47,64%, áp dụng 5 năm với đường có xuất xứ Thái Lan.</p></div>
+        <div class="event"><small>07/08/2022</small><b>Chống lẩn tránh — Quyết định 1514/QĐ-BCT</b><p>Mở rộng mức thuế 47,64% sang đường lẩn tránh qua Campuchia, Indonesia, Lào, Malaysia, Myanmar (trừ trường hợp chứng minh được nguồn gốc bản địa). Sau đó được điều chỉnh bởi Quyết định 2960/QĐ-BCT/2022.</p></div>
+        <div class="event"><small>16/06/2026</small><b>Gia hạn 5 năm — Quyết định 1309 & 1310/QĐ-BCT</b><p>Ký 02/06/2026, kết quả rà soát cuối kỳ: gia hạn cả hai biện pháp đến 15/06/2031. Nhập khẩu Thái Lan đã giảm từ 924.000 xuống 82.000 tấn trong giai đoạn áp thuế. Mức thuế cụ thể sau gia hạn chưa được xác nhận đầy đủ từ văn bản gốc — cần theo dõi thêm.</p></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt5">
+  <section class="section">
+    <div class="sectionhead"><div><h2>5. Catalyst/Risk</h2><p>Các biến dẫn dắt giá và lợi nhuận ngành, phân theo chiều tác động, hơn là chỉ nhìn một mức giá tại một thời điểm.</p></div></div>
+    <div class="catriskgrid">
+      <div class="catbox">
+        <h3>Catalyst — yếu tố hỗ trợ</h3>
+        <ul>
+          <li><b>PVTM vừa gia hạn đến 2031</b> (QĐ 1309 &amp; 1310/QĐ-BCT) — duy trì lá chắn AD/CVD 47,64% với đường Thái Lan, nhập khẩu Thái đã giảm từ 924.000 xuống 82.000 tấn trong giai đoạn áp thuế trước.</li>
+          <li><b>Sản lượng &amp; năng suất trong nước cải thiện</b> — sản lượng đường 2025/26 tăng gần gấp đôi từ đáy 2020/21 (750 nghìn tấn) lên 1,35 triệu tấn, chủ yếu nhờ năng suất chứ không phải mở rộng diện tích, giúp giảm phụ thuộc nhập khẩu về dài hạn.</li>
+          <li><b>Giá thế giới có thể đảo chiều từ vùng đáy</b> — 0,32–0,34 USD/kg hiện tại đã gần vùng đáy chu kỳ 2015 (0,295); một nhịp hồi phục thế giới sẽ truyền dẫn trực tiếp vào giá trong nước.</li>
+          <li><b>Dư địa kiểm soát đường lậu/HFCS tốt hơn</b> — nếu thực thi mạnh tay hơn, có thể thu hẹp phần cung "ngoài sổ sách" hiện ước ~30% thị phần (đường lậu) cộng với HFCS đang tăng nhanh.</li>
+        </ul>
+      </div>
+      <div class="riskbox">
+        <h3>Risk — rủi ro</h3>
+        <ul>
+          <li><b>Tồn kho kỷ lục chưa có dấu hiệu giảm</b> — 426 nghìn tấn cuối vụ 2025/26, cao nhất 16 niên vụ có số liệu USDA — leading indicator trực tiếp nhất của sức ép cung–cầu, hiện đang bất lợi cho giá.</li>
+          <li><b>Đường lậu &amp; HFCS nằm ngoài phạm vi PVTM</b> — đường lậu ước ~30% thị phần nội địa; nhập khẩu HFCS tăng hơn gấp đôi 2021–2024 — cả hai đều không bị chặn bởi thuế CBPG/CTC vì không đi qua kênh chính ngạch hoặc không phải cùng mã hàng.</li>
+          <li><b>Giá mía giảm ảnh hưởng động lực nông dân</b> — giá mía 2025/26 tại một số nhà máy giảm hai chữ số so với vụ trước; rủi ro trung hạn là nông dân thu hẹp vùng nguyên liệu (xem thêm tab 7).</li>
+          <li><b>Giá thế giới có thể giảm sâu hơn</b> — nếu xu hướng giảm từ đỉnh 2023 (0,52 USD/kg) tiếp diễn, mặt bằng giá trong nước khó tránh bị kéo xuống theo.</li>
+          <li><b>Mức thuế cụ thể sau gia hạn 06/2026 chưa xác nhận đầy đủ</b> từ văn bản gốc — cần theo dõi thêm để biết liệu mức bảo hộ có giữ nguyên 47,64% hay thay đổi.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="outlook" class="section">
+    <h3 class="subhead">Kịch bản 6–12 tháng</h3>
+    <p class="subsub">Kịch bản quản trị rủi ro dựa trên dữ liệu đã xác minh ở trên — không phải dự báo thống kê với xác suất cố định.</p>
+    <div class="grid three">
+      <div class="scenario active" onclick="selectScenario('base',this)"><span class="badge base">CƠ SỞ</span><div class="range">16 – 17k đ/kg</div><div class="note">Giá đi ngang vùng thấp cho đến khi tồn kho kỷ lục giảm rõ rệt.</div></div>
+      <div class="scenario" onclick="selectScenario('bull',this)"><span class="badge bull">TĂNG</span><div class="range">&gt; 18k đ/kg</div><div class="note">Thế giới hồi phục mạnh, kiểm soát đường lậu/HFCS hiệu quả hơn.</div></div>
+      <div class="scenario" onclick="selectScenario('bear',this)"><span class="badge bear">GIẢM</span><div class="range">&lt; 15k đ/kg</div><div class="note">Tồn kho tiếp tục phá đỉnh, giá thế giới giảm sâu hơn.</div></div>
+    </div>
+    <div class="scenarioDetail" id="scenarioDetail"><b>Kịch bản cơ sở:</b> tồn kho 426 nghìn tấn (cao nhất 16 niên vụ) khiến giá khó phục hồi cho đến khi tốc độ tiêu thụ vượt tốc độ đưa hàng mới + nhập khẩu ra thị trường. Trọng tâm theo dõi: tồn kho theo tháng, tiến độ ép vụ 2026/27, và diễn biến giá thế giới.</div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt6">
+  <section class="section">
+    <div class="sectionhead"><div><h2>6. Key players</h2><p>5 doanh nghiệp đường niêm yết theo dõi trong dashboard này — số liệu tài chính lấy từ bảng so sánh <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a> (FiinPro) đã dùng ở các tab trước; hồ sơ mô tả dưới đây tổng hợp từ thông tin công khai về từng doanh nghiệp.</p></div></div>
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">So sánh biên lợi nhuận gộp mảng đường, FY2022/23</div>
+        <div class="chart-sub">% · cùng kỳ báo cáo, 5 doanh nghiệp đường niêm yết</div>
+        <div id="chMarginCompare"></div>
+        <div class="source-note">Nguồn: <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a>, báo cáo SBT 09/01/2024, số liệu phân khúc do doanh nghiệp công bố.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-margincompare"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Sức khỏe tài chính nhóm đường niêm yết</div>
+        <div class="chart-sub">TTM tại 09/01/2024 · <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a> (FiinPro)</div>
+        <div class="tablewrap">
+          <table class="plain">
+            <thead><tr><th>Mã</th><th>Vốn hóa (tr.USD)</th><th>DT TTM (tr.USD)</th><th>LNST TTM (tr.USD)</th><th>LNST YoY</th><th>ROE</th><th>ROA</th><th>P/E</th></tr></thead>
+            <tbody>
+              <tr><td>SBT</td><td>411,9</td><td>1.076,9</td><td>21,4</td><td>-39,4%</td><td>4,9%</td><td>1,7%</td><td>20,0x</td></tr>
+              <tr><td>SLS</td><td>58,1</td><td>75,2</td><td>23,4</td><td>+117,2%</td><td>54,3%</td><td>42,9%</td><td>2,5x</td></tr>
+              <tr><td>LSS</td><td>34,0</td><td>82,3</td><td>1,6</td><td>-12,8%</td><td>12,5%</td><td>1,5%</td><td>21,7x</td></tr>
+              <tr><td>QNS*</td><td>673,7</td><td>404,0</td><td>81,7</td><td>+89,8%</td><td>25,6%</td><td>17,4%</td><td>8,3x</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="source-note">* QNS (Đường Quảng Ngãi) tham chiếu, không phải mục tiêu chính của dashboard — mảng đường chỉ là một phần doanh thu QNS. KTS (Đường Kon Tum) không có trong bảng gốc <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a> — vốn hóa nhỏ, thanh khoản thấp hơn nhóm còn lại.</div>
+      </div>
+    </div>
+
+    <h3 class="subhead">Hồ sơ từng doanh nghiệp</h3>
+    <p class="subsub">Sàn niêm yết và mô tả mô hình kinh doanh dưới đây tổng hợp từ thông tin công khai phổ biến, <b>chưa tra cứu lại từ danh sách niêm yết chính thức trong phiên dựng dashboard này</b> — xác minh lại trước khi dùng cho quyết định giao dịch. Số liệu biên lợi nhuận/tài chính đi kèm lấy từ hai bảng phía trên (đã có nguồn).</p>
+    <div class="profilegrid">
+      <div class="profilecard">
+        <h3>SBT · TTC AgriS <span class="exch">HOSE</span></h3>
+        <p>Doanh nghiệp đường niêm yết lớn nhất, ~46% thị phần đường nội địa (FY2019/20 và FY2022/23). Vùng nguyên liệu chính tại Tây Ninh; theo thông tin doanh nghiệp tự công bố, còn mở rộng vùng trồng sang Lào, Campuchia và Úc theo mô hình nông nghiệp đa quốc gia (chưa kiểm chứng lại trong dashboard này). Biên lợi nhuận gộp mảng đường thấp nhất nhóm so sánh dù thị phần lớn nhất — gợi ý cạnh tranh giá/chi phí đầu vào cao hơn phần còn lại của ngành.</p>
+        <div class="stats">
+          <div class="stat">Biên LN gộp mảng đường FY22/23<br><b>11,6%</b></div>
+          <div class="stat">Vốn hóa TTM 09/01/2024<br><b>411,9tr USD</b></div>
+          <div class="stat">ROE / ROA TTM<br><b>4,9% / 1,7%</b></div>
+        </div>
+      </div>
+      <div class="profilecard">
+        <h3>QNS · Đường Quảng Ngãi <span class="exch">UPCOM</span></h3>
+        <p>Doanh nghiệp đa ngành — mảng đường chỉ là một phần doanh thu, bên cạnh mảng sữa đậu nành Vinasoy (biên lợi nhuận cao, đóng góp lớn vào lợi nhuận hợp nhất). ROE/ROA và tăng trưởng LNST TTM cao nhất trong bảng tài chính, nhưng phản ánh toàn công ty chứ không riêng mảng đường — không nên đọc trực tiếp như hiệu quả ngành đường.</p>
+        <div class="stats">
+          <div class="stat">Biên LN gộp mảng đường FY22/23<br><b>24,4%</b></div>
+          <div class="stat">Vốn hóa TTM 09/01/2024<br><b>673,7tr USD</b></div>
+          <div class="stat">ROE / ROA TTM<br><b>25,6% / 17,4%</b></div>
+        </div>
+      </div>
+      <div class="profilecard">
+        <h3>SLS · Mía đường Sơn La <span class="exch">HNX</span></h3>
+        <p>Vùng nguyên liệu tại Sơn La (Tây Bắc) — địa hình miền núi có thể khiến ít cạnh tranh trực tiếp với đường nhập lậu/nhập khẩu qua các cửa khẩu phía Nam và Tây Nam hơn nhóm còn lại (giả thuyết khả dĩ, chưa kiểm chứng riêng trong dashboard này). Biên lợi nhuận gộp mảng đường và ROE/ROA cao nhất nhóm so sánh rõ rệt, dù vốn hóa nhỏ nhất — thanh khoản giao dịch có thể là yếu tố cần lưu ý thêm.</p>
+        <div class="stats">
+          <div class="stat">Biên LN gộp mảng đường FY22/23<br><b>34,7%</b></div>
+          <div class="stat">Vốn hóa TTM 09/01/2024<br><b>58,1tr USD</b></div>
+          <div class="stat">ROE / ROA TTM<br><b>54,3% / 42,9%</b></div>
+        </div>
+      </div>
+      <div class="profilecard">
+        <h3>LSS · Mía đường Lam Sơn <span class="exch">HOSE</span></h3>
+        <p>Vùng nguyên liệu tại Thanh Hóa. Biên lợi nhuận gộp mảng đường thấp nhất trong nhóm so sánh FY2022/23. Theo thông tin công khai phổ biến, doanh nghiệp có dây chuyền sản xuất cồn/ethanol từ mật rỉ đường bên cạnh mảng đường chính (xem thêm tab 7 — sản phẩm phụ), nhưng dashboard này chưa có số liệu tách bạch doanh thu theo mảng để định lượng đóng góp.</p>
+        <div class="stats">
+          <div class="stat">Biên LN gộp mảng đường FY22/23<br><b>10,0%</b></div>
+          <div class="stat">Vốn hóa TTM 09/01/2024<br><b>34,0tr USD</b></div>
+          <div class="stat">ROE / ROA TTM<br><b>12,5% / 1,5%</b></div>
+        </div>
+      </div>
+      <div class="profilecard" style="grid-column:1/-1">
+        <h3>KTS · Đường Kon Tum <span class="exch">UPCOM</span></h3>
+        <p>Vùng nguyên liệu tại Kon Tum (Tây Nguyên). Doanh nghiệp nhỏ nhất trong nhóm 5 mã theo dõi — chỉ xuất hiện trong bảng so sánh biên lợi nhuận gộp mảng đường, không có trong bảng sức khỏe tài chính gốc của <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a> (khả năng do vốn hóa/thanh khoản thấp hơn ngưỡng bảng so sánh). Biên lợi nhuận gộp mảng đường FY2022/23 xếp giữa nhóm 5 doanh nghiệp. Cần bổ sung số liệu vốn hóa, ROE/ROA, P/E riêng nếu muốn theo dõi sâu hơn.</p>
+        <div class="stats">
+          <div class="stat">Biên LN gộp mảng đường FY22/23<br><b>11,7%</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt7">
+  <section class="section">
+    <div class="sectionhead"><div><h2>7. Mùa vụ &amp; Sản phẩm phụ</h2><p>Ba đặc thù riêng của ngành đường ít khi xuất hiện trong các khung phân tích ngành chung — mô tả định tính, hedge rõ những chỗ dashboard chưa có số liệu để định lượng.</p></div></div>
+    <div class="grid three">
+      <div class="driver">
+        <h3>1) Tính thời vụ ép mía</h3>
+        <p>Niên vụ ép mía tại Việt Nam thường bắt đầu cuối năm dương lịch (khoảng tháng 11–12) và kéo dài đến tháng 3–4 năm sau, lệch pha nhẹ giữa các vùng (Bắc/Bắc Trung Bộ, Tây Nguyên, Tây Nam Bộ). Nguồn cung mới tập trung vào quý 4–quý 1, nên áp lực tồn kho/giá về lý thuyết thường dịu đi ngay sau thu hoạch rộ và tăng dần về cuối niên vụ khi tồn kho cạn — <b>đây là suy luận logic từ định nghĩa niên vụ, không phải một chuỗi giá theo tháng đã kiểm chứng trong dashboard này</b> (xem tab 3 để biết dashboard chỉ có các mốc giá trong nước rời rạc, không phải chuỗi tháng liên tục).</p>
+      </div>
+      <div class="driver">
+        <h3>2) Sản phẩm phụ — đa dạng hoá doanh thu nhà máy</h3>
+        <p>Ngoài đường, một nhà máy mía đường điển hình còn có ba dòng sản phẩm phụ: rỉ đường (mật rỉ) làm nguyên liệu cồn/ethanol, bã mía làm nhiên liệu phát điện sinh khối (đồng phát nhiệt–điện, có thể bán điện dư lên lưới), và bùn lọc làm phân hữu cơ. Theo thông tin công khai phổ biến, một số doanh nghiệp trong nhóm 5 mã (ví dụ Lam Sơn với mảng cồn, TTC AgriS với điện sinh khối) có các dòng sản phẩm phụ này — nhưng <b>dashboard chưa có số liệu tách bạch doanh thu/tỷ trọng theo từng mảng phụ</b> để định lượng mức độ đóng góp hay mức độ giảm phụ thuộc vào chu kỳ giá đường thô.</p>
+      </div>
+      <div class="driver">
+        <h3>3) Cạnh tranh đất trồng với cây khác</h3>
+        <p>Diện tích vùng mía biến động khá mạnh giai đoạn 2018/19–2024/25 (xem tab 2 — Cung–Cầu), một phần có thể do nông dân chuyển đổi sang cây trồng cạnh tranh (sắn, cao su, cây ăn trái…) khi thu nhập từ mía kém hấp dẫn hơn so với vụ trước — đây là rủi ro cấu trúc dài hạn với nguồn cung nội địa, khác với rủi ro giá ngắn hạn đã liệt kê ở tab 5 (Catalyst/Risk). Dashboard chưa có số liệu so sánh trực tiếp thu nhập/ha giữa mía và các cây trồng cạnh tranh.</p>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="card" style="margin-top:14px;border-left:4px solid var(--warning)"><h3 style="margin-top:0;font-size:13.5px">Nguồn chưa gắn được đường dẫn</h3><p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 8px">Theo chuẩn của bộ dashboard, mỗi số liệu phải có đường dẫn bấm được tới nguồn gốc. Ba nhóm dưới đây hiện <b>chưa có</b>, và cần analyst phụ trách bổ sung trước khi bản này được dùng để trích dẫn:</p><ul class="list"><li><b>Hiệp hội Mía đường Việt Nam (VSSA).</b> Không tra được website chính thức còn hoạt động. Các số liệu giá đường trong nước và ước tính thị phần đường lậu hiện dẫn qua báo chí trích lại — cần thay bằng link bài gốc của từng mốc.</li><li><b>Bài báo trích VSSA</b> trên CafeF, VietnamBiz, Nông nghiệp &amp; Môi trường, Dân trí — mỗi mốc giá cần một đường dẫn riêng, không dùng chung một nguồn cho cả chuỗi.</li><li><b>Báo cáo phân tích của công ty chứng khoán</b> (VCBS 2024, Vietcap 09/01/2024): link ở đây chỉ trỏ tới trang chủ, chưa trỏ tới đúng file báo cáo.</li></ul></div>
+  <div class="footer">Vietnam Sugar Market Intelligence Dashboard · Dựng lại từ nghiên cứu nguồn công khai có trích dẫn · Cập nhật 17/08/2026.</div>
+</div>
+
+<script>
+/* ---------- tiny SVG chart engine ---------- */
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs){
+  const e=document.createElementNS(NS,tag);
+  if(attrs){ for(const k in attrs){ e.setAttribute(k, attrs[k]); } }
+  return e;
+}
+function txt(tag,attrs,text){ const e=el(tag,attrs); if(text!==undefined) e.textContent=text; return e; }
+function niceMax(v){
+  if(v<=0) return 1;
+  const mag=Math.pow(10,Math.floor(Math.log10(v)));
+  const n=v/mag;
+  let step;
+  if(n<=1) step=1; else if(n<=2) step=2; else if(n<=2.5) step=2.5; else if(n<=5) step=5; else step=10;
+  return step*mag;
+}
+function fmt(v,d){
+  d = d===undefined?0:d;
+  return Number(v).toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});
+}
+let tipEl=null;
+function tipBox(){
+  if(!tipEl){ tipEl=document.createElement('div'); tipEl.className='chtip'; document.body.appendChild(tipEl); }
+  return tipEl;
+}
+function showTip(evt,title,rows){
+  const t=tipBox();
+  t.innerHTML='';
+  const h=document.createElement('div'); h.className='chtip-title'; h.textContent=title; t.appendChild(h);
+  rows.forEach(r=>{
+    const row=document.createElement('div'); row.className='chtip-row';
+    const key=document.createElement('span'); key.className='chtip-key';
+    if(r.color){ const dot=document.createElement('span'); dot.className='chtip-dot'; dot.style.background=r.color; key.appendChild(dot); }
+    const kt=document.createElement('span'); kt.textContent=r.label; key.appendChild(kt);
+    const val=document.createElement('span'); val.className='chtip-val'; val.textContent=r.value;
+    row.appendChild(key); row.appendChild(val);
+    t.appendChild(row);
+  });
+  t.style.display='block';
+  moveTip(evt);
+}
+function moveTip(evt){
+  const t=tipBox();
+  const pad=16;
+  let x=evt.clientX+pad, y=evt.clientY+pad;
+  const rect=t.getBoundingClientRect();
+  if(x+rect.width>window.innerWidth-8) x=evt.clientX-rect.width-pad;
+  if(y+rect.height>window.innerHeight-8) y=evt.clientY-rect.height-pad;
+  t.style.left=x+'px'; t.style.top=y+'px';
+}
+function hideTip(){ if(tipEl) tipEl.style.display='none'; }
+
+function baseSvg(W,H,label){
+  return el('svg',{viewBox:'0 0 '+W+' '+H, width:'100%', height:H, class:'chartsvg', role:'img', 'aria-label':label||''});
+}
+function floatRange(minV,maxV){
+  const span=(maxV-minV)||Math.abs(maxV)||1;
+  const step=niceMax(span/4);
+  const lo=Math.floor((minV-span*0.15)/step)*step;
+  const hi=Math.ceil((maxV+span*0.15)/step)*step;
+  return [Math.max(lo,0), hi];
+}
+function yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,digits,yMin){
+  const steps=4;
+  yMin=yMin||0;
+  const yToPx=(v)=> padT + plotH*(1-(v-yMin)/(yMax-yMin));
+  for(let i=0;i<=steps;i++){
+    const v=yMin+(yMax-yMin)*i/steps;
+    const y=yToPx(v);
+    svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:y,y2:y,class:'gridline'}));
+    svg.appendChild(txt('text',{x:padL-8,y:y+3,'text-anchor':'end',class:'axislabel'}, fmt(v,digits)));
+  }
+  return yToPx;
+}
+
+/* categorical bar / combo chart */
+function barLineChart(containerId, opts){
+  const host=document.getElementById(containerId);
+  if(!host) return;
+  const cats=opts.categories, n=cats.length;
+  const rotate = n>8;
+  const W=640, H=opts.height||250;
+  const padL=50,padR=14,padT=14,padB= rotate?56:30;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  let maxV=0;
+  opts.series.forEach(s=> s.values.forEach(v=>{ if(v!=null && v>maxV) maxV=v; }));
+  let yMin=0, yMax=niceMax(maxV*1.15);
+  if(opts.zeroBase===false && opts.series.every(s=>s.kind==='line')){
+    let mn=Infinity; opts.series.forEach(s=>s.values.forEach(v=>{ if(v!=null && v<mn) mn=v; }));
+    const r=floatRange(mn,maxV); yMin=r[0]; yMax=r[1];
+  }
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  const yToPx=yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,opts.digits,yMin);
+  svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+plotH,y2:padT+plotH,class:'axisline'}));
+  const band=plotW/n;
+  const barSeries=opts.series.filter(s=>s.kind!=='line');
+  const lineSeries=opts.series.filter(s=>s.kind==='line');
+  const barW=Math.min(24, band*0.62/(barSeries.length||1));
+  const linePts={};
+  lineSeries.forEach(s=>{ linePts[s.name]=[]; });
+
+  cats.forEach((cat,i)=>{
+    const bandX=padL+i*band;
+    const cx=bandX+band/2;
+    const rows=[];
+    barSeries.forEach((s,si)=>{
+      const v=s.values[i];
+      const gx = cx - (barSeries.length*barW)/2 + si*barW;
+      if(v!=null){
+        const y0=yToPx(0), y1=yToPx(v);
+        const r=el('rect',{x:gx+1,y:Math.min(y0,y1),width:Math.max(barW-2,2),height:Math.max(Math.abs(y0-y1),1),rx:3,ry:3,fill:s.color, opacity: s.confArr && s.confArr[i]===false ? 0.55 : 1});
+        r.appendChild(txt('title',{},cat+' — '+s.name+': '+fmt(v,opts.digits)+(opts.unit?(' '+opts.unit):'')));
+        svg.appendChild(r);
+        if(i===n-1){ svg.appendChild(txt('text',{x:gx+barW/2,y:Math.min(y0,y1)-6,'text-anchor':'middle',class:'endlabel',fill:s.color},fmt(v,opts.digits))); }
+        rows.push({label:s.name,value:fmt(v,opts.digits)+(opts.unit?(' '+opts.unit):''),color:s.color});
+      }
+    });
+    lineSeries.forEach(s=>{
+      const v=s.values[i];
+      if(v!=null){ linePts[s.name].push([cx, yToPx(v)]); rows.push({label:s.name,value:fmt(v,opts.digits)+(opts.unit?(' '+opts.unit):''),color:s.color}); }
+      else { linePts[s.name].push(null); }
+    });
+    const hit=el('rect',{x:bandX,y:padT,width:band,height:plotH,fill:'transparent',class:'hitband',tabindex:'0'});
+    hit.addEventListener('pointerenter',e=>showTip(e, cat, rows));
+    hit.addEventListener('pointermove',moveTip);
+    hit.addEventListener('pointerleave',hideTip);
+    hit.addEventListener('focus',e=>showTip({clientX:bandX+ (host.getBoundingClientRect ? host.getBoundingClientRect().left:0), clientY:80}, cat, rows));
+    hit.addEventListener('blur',hideTip);
+    svg.appendChild(hit);
+    const lx=cx, ly=padT+plotH+14;
+    const everyN = n>24 ? Math.ceil(n/18) : 1;
+    if(i%everyN===0 || i===n-1){
+      const label=txt('text',{x:lx,y:ly,'text-anchor': rotate?'end':'middle',class:'catlabel'}, cat);
+      if(rotate) label.setAttribute('transform','rotate(-40 '+lx+' '+ly+')');
+      svg.appendChild(label);
+    }
+  });
+
+  const endLabelY=[];
+  lineSeries.forEach(s=>{
+    const pts=linePts[s.name].filter(p=>p);
+    if(pts.length>1){
+      const d='M'+pts.map(p=>p[0]+','+p[1]).join(' L');
+      svg.appendChild(el('path',{d:d,fill:'none',stroke:s.color,'stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'}));
+    }
+    linePts[s.name].forEach((p,i)=>{
+      if(!p) return;
+      const c=el('circle',{cx:p[0],cy:p[1],r:3.5,fill:s.color,stroke:'var(--card)','stroke-width':1.5});
+      svg.appendChild(c);
+      if(i===n-1){
+        let ly=p[1]-12;
+        while(endLabelY.some(v=>Math.abs(v-ly)<13)) ly-=14;
+        endLabelY.push(ly);
+        svg.appendChild(txt('text',{x:p[0],y:ly,'text-anchor':'middle',class:'endlabel',fill:s.color}, fmt(s.values[i],opts.digits)));
+      }
+    });
+  });
+
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+/* single-series line chart, evenly spaced (for monthly world price) */
+function lineChart(containerId, opts){
+  const labels=opts.labels, n=labels.length;
+  const W=640,H=opts.height||220;
+  const padL=44,padR=14,padT=14,padB=30;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const maxV=Math.max.apply(null, opts.values);
+  const minV=Math.min.apply(null, opts.values);
+  let yMin=0, yMax=niceMax(maxV*1.1);
+  if(opts.zeroBase===false){ const r=floatRange(minV,maxV); yMin=r[0]; yMax=r[1]; }
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  const yToPx=yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,opts.digits,yMin);
+  svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+plotH,y2:padT+plotH,class:'axisline'}));
+  const step=plotW/(n-1);
+  const pts=opts.values.map((v,i)=>[padL+i*step, yToPx(v)]);
+  const areaD='M'+pts.map(p=>p[0]+','+p[1]).join(' L')+' L'+pts[pts.length-1][0]+','+(padT+plotH)+' L'+pts[0][0]+','+(padT+plotH)+' Z';
+  svg.appendChild(el('path',{d:areaD,fill:opts.color,opacity:0.1}));
+  const lineD='M'+pts.map(p=>p[0]+','+p[1]).join(' L');
+  svg.appendChild(el('path',{d:lineD,fill:'none',stroke:opts.color,'stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'}));
+  labels.forEach((lab,i)=>{
+    const showTick = (i%3===0)||i===n-1;
+    const hit=el('rect',{x:padL+i*step-step/2,y:padT,width:step,height:plotH,fill:'transparent',class:'hitband',tabindex:'0'});
+    hit.addEventListener('pointerenter',e=>showTip(e, lab, [{label:opts.seriesName||'Giá trị',value:fmt(opts.values[i],opts.digits)+(opts.unit?(' '+opts.unit):''),color:opts.color}]));
+    hit.addEventListener('pointermove',moveTip);
+    hit.addEventListener('pointerleave',hideTip);
+    svg.appendChild(hit);
+    const c=el('circle',{cx:pts[i][0],cy:pts[i][1],r:2.6,fill:opts.color,stroke:'var(--card)','stroke-width':1});
+    svg.appendChild(c);
+    if(showTick){
+      svg.appendChild(txt('text',{x:pts[i][0],y:padT+plotH+14,'text-anchor':'middle',class:'catlabel'}, lab));
+    }
+    if(i===n-1){ svg.appendChild(txt('text',{x:pts[i][0],y:pts[i][1]-10,'text-anchor':'end',class:'endlabel',fill:opts.color}, fmt(opts.values[i],opts.digits))); }
+  });
+  const host=document.getElementById(containerId);
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+/* multi-series real-date range/dot chart (VN price) */
+function rangeDotChart(containerId, opts){
+  const W=640,H=opts.height||260;
+  const padL=48,padR=14,padT=14,padB=28;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const domainStart=opts.domain[0].getTime(), domainEnd=opts.domain[1].getTime();
+  const xOf=(d)=> padL + plotW*( (d.getTime()-domainStart) / (domainEnd-domainStart) );
+  let maxV=0;
+  opts.series.forEach(s=> s.points.forEach(p=>{ if(p.high>maxV) maxV=p.high; }));
+  const yMax=niceMax(maxV*1.1);
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  const yToPx=yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,opts.digits);
+  svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+plotH,y2:padT+plotH,class:'axisline'}));
+  for(let y=opts.domain[0].getFullYear(); y<=opts.domain[1].getFullYear(); y++){
+    const d=new Date(y+'-01-01T00:00:00');
+    if(d<opts.domain[0]||d>opts.domain[1]) continue;
+    const x=xOf(d);
+    svg.appendChild(el('line',{x1:x,x2:x,y1:padT,y2:padT+plotH,class:'gridline'}));
+    svg.appendChild(txt('text',{x:x,y:padT+plotH+13,'text-anchor':'start',class:'catlabel'}, String(y)));
+  }
+  opts.series.forEach(s=>{
+    s.points.forEach(p=>{
+      const d=new Date(p.date+'T00:00:00');
+      const x=xOf(d);
+      const yLow=yToPx(p.low), yHigh=yToPx(p.high), yMid=yToPx(p.mid);
+      if(p.high>p.low){ svg.appendChild(el('line',{x1:x,x2:x,y1:yHigh,y2:yLow,stroke:s.color,'stroke-width':2,opacity:0.55})); }
+      const c=el('circle',{cx:x,cy:yMid,r: p.conf===false?4:4.5, fill: p.conf===false? 'var(--card)':s.color, stroke:s.color,'stroke-width':2});
+      const hit=el('circle',{cx:x,cy:yMid,r:13,fill:'transparent',class:'hitband',tabindex:'0'});
+      const label=p.label+(p.conf===false?' (độ tin cậy thấp)':'');
+      hit.addEventListener('pointerenter',e=>showTip(e, p.date.split('-').reverse().join('/'), [{label:label,value:fmt(p.low)+'–'+fmt(p.high)+' đ/kg',color:s.color}]));
+      hit.addEventListener('pointermove',moveTip);
+      hit.addEventListener('pointerleave',hideTip);
+      svg.appendChild(hit);
+      svg.appendChild(c);
+    });
+  });
+  const host=document.getElementById(containerId);
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+/* horizontal compare bars — single snapshot, N entities */
+function hbarCompare(containerId, opts){
+  const items=opts.items, n=items.length;
+  const W=640, rowH=38, padT=8, padB=8;
+  const H=padT+padB+rowH*n;
+  const padL=8, padR=64, labelW=112;
+  const plotW=W-padL-padR-labelW;
+  const maxV=niceMax(Math.max.apply(null, items.map(it=>it.value))*1.15);
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  items.forEach((it,i)=>{
+    const y=padT+i*rowH;
+    const barY=y+8, barH=rowH-16;
+    const bw=plotW*(it.value/maxV);
+    svg.appendChild(txt('text',{x:padL+labelW-8,y:y+rowH/2+4,'text-anchor':'end',class:'catlabel',style:'font-weight:700'}, it.label));
+    const r=el('rect',{x:padL+labelW,y:barY,width:Math.max(bw,2),height:barH,rx:4,ry:4,fill:it.color});
+    r.appendChild(txt('title',{},it.label+': '+fmt(it.value,opts.digits)+(opts.unit?(' '+opts.unit):'')));
+    const hit=el('rect',{x:padL+labelW,y:barY,width:Math.max(bw,2),height:barH,fill:'transparent',class:'hitband',tabindex:'0'});
+    hit.addEventListener('pointerenter',e=>showTip(e, it.label, [{label:opts.unit||'Giá trị', value:fmt(it.value,opts.digits)+(opts.unit?(' '+opts.unit):''), color:it.color}]));
+    hit.addEventListener('pointermove',moveTip);
+    hit.addEventListener('pointerleave',hideTip);
+    svg.appendChild(r);
+    svg.appendChild(txt('text',{x:padL+labelW+bw+8,y:y+rowH/2+4,class:'endlabel',fill:'var(--ink2)'}, fmt(it.value,opts.digits)+(opts.unit?(' '+opts.unit):'')));
+    svg.appendChild(hit);
+  });
+  const host=document.getElementById(containerId);
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+function sparkline(id, values, color){
+  const host=document.getElementById(id);
+  if(!host) return;
+  const W=100,H=26,pad=3;
+  const maxV=Math.max.apply(null, values), minV=Math.min.apply(null, values);
+  const range=(maxV-minV)||1;
+  const step=(W-pad*2)/(values.length-1);
+  const pts=values.map((v,i)=>[pad+i*step, H-pad-(H-pad*2)*((v-minV)/range)]);
+  const d='M'+pts.map(p=>p[0]+','+p[1]).join(' L');
+  host.appendChild(el('path',{d:d,fill:'none',stroke:color,'stroke-width':1.6,'stroke-linecap':'round','stroke-linejoin':'round',opacity:0.55}));
+  const last=pts[pts.length-1];
+  host.appendChild(el('circle',{cx:last[0],cy:last[1],r:2.4,fill:color}));
+}
+
+function fillTable(id, headers, rows){
+  const t=document.getElementById(id);
+  if(!t) return;
+  const thead=el('thead' ); // not svg NS, use html
+  t.innerHTML='';
+  const theadHtml=document.createElement('thead');
+  const trh=document.createElement('tr');
+  headers.forEach(h=>{ const th=document.createElement('th'); th.textContent=h; trh.appendChild(th); });
+  theadHtml.appendChild(trh); t.appendChild(theadHtml);
+  const tbody=document.createElement('tbody');
+  rows.forEach(r=>{
+    const tr=document.createElement('tr');
+    r.forEach(c=>{ const td=document.createElement('td'); td.textContent=c; tr.appendChild(td); });
+    tbody.appendChild(tr);
+  });
+  t.appendChild(tbody);
+}
+
+/* ---------- DATA ---------- */
+const MY = ['10/11','11/12','12/13','13/14','14/15','15/16','16/17','17/18','18/19','19/20','20/21','21/22','22/23','23/24','24/25','25/26'];
+const MY_FULL = ['2010/11','2011/12','2012/13','2013/14','2014/15','2015/16','2016/17','2017/18','2018/19','2019/20','2020/21','2021/22','2022/23','2023/24','2024/25','2025/26 (ước tính)'];
+const PSD = {
+  begStock:[81,140,150,200,214,300,355,370,350,320,415,412,384,392,408,417],
+  production:[1240,1400,1650,1725,1510,1330,1520,1540,1300,850,750,820,1015,1125,1250,1350],
+  imports:[336,395,208,180,288,502,402,240,303,1312,1307,1082,905,1027,841,820],
+  exports:[2,1,2,3,13,1,48,53,36,3,14,8,12,59,60,60],
+  consumption:[1515,1784,1806,1888,1699,1776,1859,1747,1597,2064,2046,1922,1900,2077,2022,2101],
+  endStock:[140,150,200,214,300,355,370,350,320,415,412,384,392,408,417,426]
+};
+
+/* 1a. world price recent 24 months */
+const worldRecentLabels=['T8/24','T9/24','T10/24','T11/24','T12/24','T1/25','T2/25','T3/25','T4/25','T5/25','T6/25','T7/25','T8/25','T9/25','T10/25','T11/25','T12/25','T1/26','T2/26','T3/26','T4/26','T5/26','T6/26','T7/26'];
+const worldRecentValues=[0.41,0.45,0.46,0.45,0.44,0.40,0.42,0.42,0.40,0.39,0.37,0.37,0.37,0.35,0.34,0.32,0.32,0.32,0.31,0.33,0.32,0.34,0.32,0.34];
+lineChart('chWorldRecent',{labels:worldRecentLabels, values:worldRecentValues, color:getComputedStyle(document.documentElement).getPropertyValue('--s1').trim(), unit:'USD/kg', digits:2, seriesName:'Giá đường thế giới'});
+fillTable('tbl-world-recent', ['Tháng','USD/kg'], worldRecentLabels.map((l,i)=>[l, fmt(worldRecentValues[i],2)]));
+
+/* 1b. world price yearly long */
+const worldYears=['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+const worldYearVals=[0.4692,0.5733,0.4750,0.3900,0.3742,0.2950,0.3983,0.3542,0.2758,0.2792,0.2833,0.3900,0.4075,0.5167,0.4500,0.3725];
+barLineChart('chWorldLong',{categories:worldYears, series:[{name:'Giá đường thế giới',color:getComputedStyle(document.documentElement).getPropertyValue('--s1').trim(),values:worldYearVals}], unit:'USD/kg', digits:2, height:250});
+fillTable('tbl-world-long', ['Năm','USD/kg'], worldYears.map((l,i)=>[l, fmt(worldYearVals[i],2)]));
+
+/* 1c. VN price range-dot */
+const S1=getComputedStyle(document.documentElement).getPropertyValue('--s1').trim();
+const S2=getComputedStyle(document.documentElement).getPropertyValue('--s2').trim();
+const S3=getComputedStyle(document.documentElement).getPropertyValue('--s3').trim();
+const S4=getComputedStyle(document.documentElement).getPropertyValue('--s4').trim();
+const S5=getComputedStyle(document.documentElement).getPropertyValue('--s5').trim();
+const rsPoints=[
+  {date:'2020-10-05',low:12500,high:12900,mid:12700,conf:true,label:'Đường trắng (RS)'},
+  {date:'2020-12-15',low:13500,high:13800,mid:13650,conf:true,label:'Đường trắng (RS)'},
+  {date:'2021-07-28',low:18000,high:18200,mid:18100,conf:false,label:'Đường trắng (RS)'},
+  {date:'2022-08-15',low:17600,high:19300,mid:18450,conf:true,label:'Đường trắng (RS)'},
+  {date:'2023-02-15',low:17800,high:18200,mid:18000,conf:true,label:'Đường trắng (RS)'},
+  {date:'2023-05-15',low:20000,high:20000,mid:20000,conf:true,label:'Đường trắng (RS)'},
+  {date:'2025-03-05',low:16200,high:17500,mid:16850,conf:true,label:'Đường trắng (RS)'},
+  {date:'2025-06-15',low:17800,high:20000,mid:18898,conf:true,label:'Bình quân chung (VSSA, chưa phân loại RS/RE)'},
+  {date:'2026-03-15',low:15800,high:16600,mid:16200,conf:true,label:'Đường trắng (RS)'},
+  {date:'2026-06-05',low:16300,high:16600,mid:16450,conf:true,label:'Đường trắng (RS)'},
+  {date:'2026-07-05',low:16000,high:16100,mid:16050,conf:true,label:'Đường trắng (RS)'},
+  {date:'2026-07-28',low:16500,high:17000,mid:16750,conf:true,label:'Đường trắng (RS)'},
+  {date:'2026-07-31',low:16800,high:16800,mid:16800,conf:true,label:'Đường trắng — bình quân tháng (VSSA)'}
+];
+const rePoints=[
+  {date:'2023-12-28',low:23000,high:23000,mid:23000,conf:true,label:'Đường tinh luyện (RE)'},
+  {date:'2024-08-28',low:21000,high:21000,mid:21000,conf:true,label:'Đường tinh luyện (RE)'},
+  {date:'2026-03-15',low:17000,high:17600,mid:17300,conf:true,label:'Đường tinh luyện (RE)'},
+  {date:'2026-06-05',low:17200,high:17600,mid:17400,conf:true,label:'Đường tinh luyện (RE)'},
+  {date:'2026-07-05',low:16900,high:17200,mid:17050,conf:true,label:'Đường tinh luyện (RE)'},
+  {date:'2026-07-28',low:17400,high:17800,mid:17600,conf:true,label:'Đường tinh luyện (RE)'}
+];
+rangeDotChart('chVnPrice',{domain:[new Date('2020-01-01'), new Date('2026-08-17')], series:[{name:'RS',color:S1,points:rsPoints},{name:'RE',color:S2,points:rePoints}], unit:'đ/kg', digits:0});
+fillTable('tbl-vn-price', ['Ngày','Loại','Thấp (đ/kg)','Cao (đ/kg)','Độ tin cậy'], rsPoints.concat(rePoints).sort((a,b)=>a.date<b.date?-1:1).map(p=>[p.date.split('-').reverse().join('/'), p.label, fmt(p.low), fmt(p.high), p.conf===false?'Thấp':'Trung bình–cao']));
+
+/* 1d. regional comparison */
+const regional=[{label:'Việt Nam',value:16800,color:S1},{label:'Trung Quốc',value:19504,color:S2},{label:'Indonesia',value:26706,color:S3},{label:'Philippines',value:27527,color:S4}];
+hbarCompare('chRegional',{items:regional, unit:'đ/kg', digits:0, height:170});
+fillTable('tbl-regional',['Thị trường','VND/kg'], regional.map(r=>[r.label, fmt(r.value)]));
+
+/* 2. supply-demand combo */
+barLineChart('chSupplyDemand',{categories:MY, series:[
+  {name:'Sản lượng đường',color:S1,values:PSD.production},
+  {name:'Tiêu thụ nội địa',color:S2,kind:'line',values:PSD.consumption}
+], unit:'nghìn tấn', digits:0, height:260});
+fillTable('tbl-supdem',['Niên vụ','Sản lượng (nghìn tấn)','Tiêu thụ (nghìn tấn)'], MY_FULL.map((l,i)=>[l, fmt(PSD.production[i]), fmt(PSD.consumption[i])]));
+
+/* 2b. ending stocks */
+barLineChart('chStocks',{categories:MY, series:[{name:'Tồn kho cuối vụ',color:S3,values:PSD.endStock}], unit:'nghìn tấn', digits:0, height:250});
+fillTable('tbl-stocks',['Niên vụ','Tồn kho cuối vụ (nghìn tấn)'], MY_FULL.map((l,i)=>[l, fmt(PSD.endStock[i])]));
+
+/* 2c. cane crush */
+const caneCrushLabels=['17/18','18/19','19/20','20/21','21/22*','22/23','23/24','24/25','25/26'];
+const caneCrushVals=[15.47,12.20,7.60,6.739,7.5,9.655,11.205,12.429,13.586];
+barLineChart('chCaneCrush',{categories:caneCrushLabels, series:[{name:'Mía ép',color:S3,values:caneCrushVals}], unit:'triệu tấn', digits:2, height:240});
+fillTable('tbl-canecrush',['Niên vụ','Mía ép (triệu tấn)'], caneCrushLabels.map((l,i)=>[l, fmt(caneCrushVals[i],2)]));
+
+/* 2d. cane area */
+const caneAreaLabels=['18/19','19/20','20/21*','21/22','22/23','23/24','24/25'];
+const caneAreaVals=[192.386,182.599,152,124.753,141.906,159.159,189.360];
+barLineChart('chCaneArea',{categories:caneAreaLabels, series:[{name:'Diện tích',color:S4,values:caneAreaVals}], unit:'nghìn ha', digits:1, height:240});
+fillTable('tbl-canearea',['Niên vụ','Diện tích (nghìn ha)'], caneAreaLabels.map((l,i)=>[l, fmt(caneAreaVals[i],1)]));
+
+/* 3a. giá mía */
+const canePriceLabels=['18/19','19/20','20/21','21/22*','22/23*','23/24','24/25','25/26*'];
+const canePriceVals=[775,850,1000,1125,1150,1200,1250,1070];
+const canePriceConf=[true,true,true,false,false,true,true,false];
+barLineChart('chCanePrice',{categories:canePriceLabels, series:[{name:'Giá mía',color:S3,values:canePriceVals, confArr:canePriceConf}], unit:'nghìn đ/tấn', digits:0, height:240});
+fillTable('tbl-caneprice',['Niên vụ','Giá mía (nghìn đ/tấn)','Độ tin cậy'], canePriceLabels.map((l,i)=>[l, fmt(canePriceVals[i]), canePriceConf[i]?'Bình quân toàn quốc':'1 nhà máy / suy ra']));
+
+/* 3b. SBT margin */
+const marginLabels=['19/20','20/21','21/22','22/23'];
+const marginVals=[11.3,14.8,12.6,11.0];
+barLineChart('chMargin',{categories:marginLabels, series:[{name:'Biên LN gộp',color:S3,values:marginVals}], unit:'%', digits:1, height:220});
+fillTable('tbl-margin',['Niên độ','Biên LN gộp (%)'], marginLabels.map((l,i)=>[l, fmt(marginVals[i],1)]));
+
+/* 3c. margin compare */
+const marginCompare=[{label:'SLS',value:34.7,color:S1},{label:'QNS',value:24.4,color:S2},{label:'KTS',value:11.7,color:S3},{label:'SBT',value:11.6,color:S4},{label:'LSS',value:10.0,color:S5}];
+hbarCompare('chMarginCompare',{items:marginCompare, unit:'%', digits:1, height:200});
+fillTable('tbl-margincompare',['Mã','Biên LN gộp mảng đường (%)'], marginCompare.map(r=>[r.label, fmt(r.value,1)]));
+
+/* 4a. imports (PSD) */
+barLineChart('chImports',{categories:MY, series:[{name:'Nhập khẩu',color:S1,values:PSD.imports}], unit:'nghìn tấn', digits:0, height:250});
+fillTable('tbl-imports',['Niên vụ','Nhập khẩu (nghìn tấn)'], MY_FULL.map((l,i)=>[l, fmt(PSD.imports[i])]));
+
+/* 4b. smuggled */
+const smuggledLabels=['2018','2019','2020','2021','2022','2023'];
+const smuggledVals=[890,830,205,380,812,600];
+barLineChart('chSmuggled',{categories:smuggledLabels, series:[{name:'Ước tính đường lậu',color:S2,confArr:[false,false,false,false,false,false],values:smuggledVals}], unit:'nghìn tấn', digits:0, height:230});
+fillTable('tbl-smuggled',['Năm','Ước tính (nghìn tấn)'], smuggledLabels.map((l,i)=>[l, fmt(smuggledVals[i])]));
+
+/* 4c. HFCS */
+const hfcsLabels=['2020','2021','2022','2023*','2024','2025 (7T)*'];
+const hfcsVals=[164.179,102.372,184.975,247.2,241.504,126.024];
+barLineChart('chHfcs',{categories:hfcsLabels, series:[{name:'Nhập khẩu HFCS',color:S4,confArr:[true,true,true,false,true,false],values:hfcsVals}], unit:'nghìn tấn', digits:1, height:230});
+fillTable('tbl-hfcs',['Năm','Nhập khẩu HFCS (nghìn tấn)'], hfcsLabels.map((l,i)=>[l, fmt(hfcsVals[i],1)]));
+
+/* sparklines for KPI strip */
+sparkline('spk-stock', PSD.endStock.slice(-8), S3);
+sparkline('spk-prod', PSD.production.slice(-8), S1);
+sparkline('spk-imp', PSD.imports.slice(-8), S2);
+sparkline('spk-world', worldRecentValues.slice(-8), S1);
+sparkline('spk-cane', canePriceVals.slice(-6), S3);
+
+/* ---------- major (top-level) tabs ---------- */
+function showMajorTab(key, btn){
+  document.querySelectorAll('.majorpane').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.majortabbtn').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.majorpane[data-tab="'+key+'"]').forEach(x=>x.classList.add('active'));
+  btn.classList.add('active');
+}
+
+/* ---------- tabs & scenario (legacy interactivity ported) ---------- */
+function showTab(id, btn){
+  const parent = btn.closest('.card');
+  parent.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('active'));
+  parent.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active'); btn.classList.add('active');
+}
+const scenarioText = {
+  base:"<b>Kịch bản cơ sở:</b> tồn kho 426 nghìn tấn (cao nhất 16 niên vụ) khiến giá khó phục hồi cho đến khi tốc độ tiêu thụ vượt tốc độ đưa hàng mới + nhập khẩu ra thị trường. Trọng tâm theo dõi: tồn kho theo tháng, tiến độ ép vụ 2026/27, và diễn biến giá thế giới.",
+  bull:"<b>Kịch bản tăng:</b> giá vượt 18 nghìn đ/kg nếu giá thế giới hồi phục mạnh từ vùng 0,32–0,34 USD/kg hiện tại, thời tiết bất lợi ảnh hưởng vụ 2026/27, hoặc kiểm soát đường lậu (hiện ước ~30% thị phần) và HFCS (tăng gấp đôi 2021–2024) hiệu quả hơn.",
+  bear:"<b>Kịch bản giảm:</b> giá thủng 15 nghìn đ/kg nếu tồn kho tiếp tục phá đỉnh, giá thế giới giảm sâu hơn theo xu hướng từ đỉnh 2023 (0,52 USD/kg), và HFCS/đường lậu tiếp tục thay thế đường mía nội địa."
+};
+function selectScenario(key, elx) {
+  document.querySelectorAll('.scenario').forEach(x=>x.classList.remove('active'));
+  elx.classList.add('active');
+  document.getElementById('scenarioDetail').innerHTML=scenarioText[key];
+}
+</script>
+</body>
+</html>

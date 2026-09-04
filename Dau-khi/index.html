@@ -1,0 +1,1520 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ngành Dầu khí Việt Nam · FinSuccess Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  /* ---- token lấy từ website công ty https://fisc.vn ---- */
+  --navy:#11255a; --navy2:#19316f; --navy3:#223567;
+  --accent:#27af95; --accent-bright:#2fd0b2; --accent-soft:#e6f5f1;
+  --tint:#dfe6f7; --tint-soft:#f5f7fc;
+  --bg:#ffffff; --page:#f5f7fc; --card:#ffffff;
+  --ink:#0d0d0d; --ink2:#3d4653; --muted:#6b7686;
+  --line:#dfe6f7; --hair:#eaeff9;
+  --brand:#11255a; --brand2:#19316f; --brand-deep:#11255a; --gold:#b8801f; --gold-soft:#fdf3e0;
+  --soft:#f5f7fc; --warn-bg:#fdf3e0; --danger-bg:#fbeae7;
+  --chart-surface:#ffffff; --grid:#e8edf7; --axis:#c6cfe0;
+  --s1:#1f4e9c; --s2:#d1583f; --s3:#27af95; --s4:#d99000; --s5:#a45bb8; --s6:#2f8f4e; --s7:#4b5bd4; --s8:#b8443a;
+  --good:#2f8f4e; --warning:#d99000; --serious:#dd7f4e; --critical:#c0392b;
+  --shadow:0 1px 2px rgba(17,37,90,.04), 0 6px 18px rgba(17,37,90,.05);
+  --radius:8px;
+}
+body{font-family:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,.hero h1,.intro h1{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+h1 em,h2 em,.accent{font-style:italic;color:var(--accent);font-weight:500}
+.hero h1 em{color:var(--accent-bright)}
+table,.kpi .value,.value,td,th{font-family:"Inter",ui-sans-serif,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+
+/* ---- thanh nhận diện công ty ---- */
+.fiscbar{background:linear-gradient(103deg,var(--navy) 0%,var(--navy3) 58%,#2c4a86 100%);color:#fff}
+.fiscbar-inner{max-width:1460px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.fiscbar img{height:34px;width:auto;display:block}
+.fiscbar .fiscbar-doc{font-size:12.5px;font-weight:600;color:#c9d6f0;letter-spacing:.2px}
+.fiscbar .fiscbar-doc b{color:#fff;font-weight:700}
+.fiscbar .fiscbar-nav{display:flex;gap:16px;flex-wrap:wrap}
+.fiscbar .fiscbar-nav a{color:#c9d6f0;text-decoration:none;font-size:12.5px;font-weight:600}
+.fiscbar .fiscbar-nav a:hover{color:var(--accent-bright)}
+
+/* ---- nguồn dạng link ---- */
+.source-note a,.conf-note a,.src-link{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(39,175,149,.35);font-weight:600}
+.source-note a:hover,.conf-note a:hover,.src-link:hover{color:var(--navy2);border-bottom-color:var(--navy2)}
+.source-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6}
+.srcrow{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px}
+.srcrow a{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:var(--tint-soft)}
+.srcrow a:after{content:"↗";font-size:9px;opacity:.7}
+.srcrow a:hover{border-color:var(--accent);background:var(--accent-soft)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important; scroll-behavior:auto!important} }
+body{margin:0;background:var(--page);color:var(--ink);font-family:ui-sans-serif,"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:proportional-nums}
+table{font-variant-numeric:tabular-nums}
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb, var(--bg) 90%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:1460px;margin:auto;padding:12px 22px;display:flex;gap:16px;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:.3px;font-size:13px;color:var(--ink)}
+.navlinks{display:flex;gap:14px;flex-wrap:wrap}
+.navlinks a{text-decoration:none;color:var(--muted);font-size:12.5px;font-weight:700}
+.navlinks a:hover{color:var(--brand)}
+.container{max-width:1460px;margin:auto;padding:22px}
+.hero{padding:26px 28px;border-radius:20px;background:linear-gradient(120deg,var(--brand-deep),var(--brand2));color:#fff;box-shadow:var(--shadow)}
+.hero h1{margin:0 0 8px;font-size:30px;line-height:1.15;text-wrap:balance}
+.hero p{margin:0;color:#dbeadb;max-width:920px;font-size:14.5px;line-height:1.55}
+.tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:11.5px;font-weight:700}
+.insight{margin-top:16px;padding:13px 15px;background:rgba(255,255,255,.1);border-left:4px solid var(--gold);border-radius:10px;font-size:13.5px;line-height:1.6}
+.insight b{color:#fff}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(6,minmax(150px,1fr));margin:16px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+.kpi .label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.kpi .value{font-size:23px;font-weight:800;margin:6px 0 2px}
+.kpi .delta{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:999px;margin-bottom:4px}
+.kpi .delta.d-good{color:var(--good);background:color-mix(in srgb, var(--good) 14%, transparent)}
+.kpi .delta.d-warn{color:#8a6a10;background:var(--warn-bg)}
+:root[data-theme="dark"] .kpi .delta.d-warn,@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .kpi .delta.d-warn{color:var(--warning)}}
+.kpi .delta.d-bad{color:var(--critical);background:color-mix(in srgb, var(--critical) 12%, transparent)}
+.kpi .sub{font-size:11px;color:var(--muted);line-height:1.4}
+.kpi .spark{margin-top:6px;display:block}
+.section{margin-top:26px}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:0 0 12px;flex-wrap:wrap}
+.sectionhead h2{margin:0;font-size:20px}
+.sectionhead p{margin:2px 0 0;color:var(--muted);font-size:12.5px;max-width:640px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:var(--shadow)}
+.two{grid-template-columns:1.5fr 1fr}
+.three{grid-template-columns:repeat(3,1fr)}
+.four{grid-template-columns:repeat(4,1fr)}
+.chart-title{font-size:13.5px;font-weight:750;margin:0 0 2px}
+.chart-sub{font-size:11.5px;color:var(--muted);margin:0 0 8px}
+.chartsvg{display:block;width:100%;height:auto;overflow:visible}
+.gridline{stroke:var(--grid);stroke-width:1}
+.axisline{stroke:var(--axis);stroke-width:1}
+.axislabel{font-size:9px;fill:var(--muted)}
+.catlabel{font-size:9px;fill:var(--muted)}
+.endlabel{font-size:10px;fill:var(--ink2);font-weight:700}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 4px;font-size:11.5px;color:var(--ink2)}
+.legend .li{display:inline-flex;align-items:center;gap:6px}
+.legend .sw{width:12px;height:3px;border-radius:2px;display:inline-block}
+.legend .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.source-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
+.conf-note{font-size:11px;color:var(--muted);margin-top:2px;font-style:italic}
+details.dtable{margin-top:8px}
+details.dtable summary{cursor:pointer;font-size:11.5px;font-weight:700;color:var(--brand);list-style:none;display:inline-flex;align-items:center;gap:4px}
+details.dtable summary::-webkit-details-marker{display:none}
+details.dtable summary:before{content:"▸";font-size:10px}
+details.dtable[open] summary:before{content:"▾"}
+.dtable table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:8px}
+.dtable th,.dtable td{padding:6px 7px;border-bottom:1px solid var(--hair);text-align:left}
+.dtable th{color:var(--muted);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px}
+.chtip{position:fixed;z-index:100;pointer-events:none;background:var(--ink);color:var(--bg);border-radius:10px;padding:8px 10px;font-size:11.5px;box-shadow:0 8px 20px rgba(0,0,0,.25);display:none;max-width:240px}
+.chtip-title{font-weight:800;margin-bottom:4px}
+.chtip-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:1px 0}
+.chtip-key{display:flex;align-items:center;gap:5px;opacity:.85}
+.chtip-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.chtip-val{font-weight:800}
+.hitband{cursor:crosshair}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tabbtn{border:1px solid var(--line);background:var(--card);color:var(--brand);padding:7px 12px;border-radius:999px;font-weight:750;cursor:pointer;font-size:12.5px}
+.tabbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.tabpane{display:none} .tabpane.active{display:block}
+.tabpane p{font-size:13px;line-height:1.6;margin:0 0 6px}
+.timeline{position:relative;margin:8px 0 0;padding-left:24px}
+.timeline:before{content:"";position:absolute;left:7px;top:3px;bottom:3px;width:2px;background:var(--line)}
+.event{position:relative;margin:0 0 16px}
+.event:before{content:"";position:absolute;left:-21px;top:5px;width:10px;height:10px;background:var(--gold);border-radius:50%;box-shadow:0 0 0 3px var(--gold-soft)}
+.event b{display:block;font-size:13.5px} .event small{color:var(--muted);font-weight:700}
+.event p{margin:3px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.5}
+.driver{padding:14px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
+.driver h3{margin:0 0 6px;font-size:14px} .driver p{margin:0;color:var(--ink2);font-size:12.5px;line-height:1.5}
+.scenario{border-radius:14px;padding:15px;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.scenario:hover{box-shadow:var(--shadow)}
+.scenario.active{outline:2px solid var(--brand)}
+.scenario .range{font-size:22px;font-weight:800;margin:5px 0}
+.badge{display:inline-flex;padding:4px 9px;border-radius:999px;font-size:10.5px;font-weight:800;letter-spacing:.2px}
+.base{background:var(--soft);color:var(--brand)} .bull{background:var(--warn-bg);color:#7a5b13} .bear{background:var(--danger-bg);color:#8a3d2e}
+.scenarioDetail{margin-top:14px;padding:14px 15px;border-radius:12px;background:var(--soft);border:1px dashed var(--line);color:var(--ink2);font-size:13px;line-height:1.6}
+.tablewrap{overflow:auto}
+table.plain{width:100%;border-collapse:collapse;font-size:12.5px}
+.plain th,.plain td{padding:9px 8px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
+.plain th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.note{font-size:11.5px;color:var(--muted);line-height:1.55}
+.flagbox{background:var(--warn-bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.6;color:var(--ink2);margin-top:10px}
+.flagbox b{color:var(--ink)}
+.footer{padding:26px 0 8px;color:var(--muted);font-size:11.5px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--soft);color:var(--brand)}
+a{color:var(--brand)}
+@media(max-width:1150px){.kpis{grid-template-columns:repeat(3,1fr)}.two,.three,.four{grid-template-columns:1fr}}
+@media(max-width:700px){.container{padding:14px}.hero h1{font-size:24px}.kpis{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}
+.majortabs{position:sticky;top:47px;z-index:25;background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.majortabrow{max-width:1460px;margin:auto;padding:10px 22px;display:flex;gap:8px;flex-wrap:wrap}
+.majortabbtn{border:1px solid var(--line);background:var(--card);color:var(--ink2);padding:8px 14px;border-radius:999px;font-weight:750;cursor:pointer;font-size:12.5px;white-space:nowrap}
+.majortabbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.majorpane{display:none}
+.majorpane.active{display:block}
+.subhead{font-size:15px;margin:22px 0 4px}
+.subhead:first-of-type{margin-top:4px}
+.subsub{font-size:12px;color:var(--muted);margin:0 0 12px;max-width:700px}
+.catriskgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.catbox,.riskbox{border-radius:14px;padding:14px 16px;border:1px solid var(--line)}
+.catbox{background:color-mix(in srgb, var(--good) 8%, var(--card))}
+.riskbox{background:color-mix(in srgb, var(--critical) 7%, var(--card))}
+.catbox h3,.riskbox h3{margin:0 0 8px;font-size:14px}
+.catbox ul,.riskbox ul{margin:0;padding-left:18px;font-size:12.5px;line-height:1.6;color:var(--ink2)}
+.catbox li,.riskbox li{margin-bottom:6px}
+.profilegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.profilecard{border-radius:14px;padding:14px 16px;border:1px solid var(--line);background:var(--card)}
+.profilecard h3{margin:0;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.profilecard .exch{font-size:10px;font-weight:800;color:var(--brand);background:var(--soft);padding:2px 8px;border-radius:999px}
+.profilecard p{margin:7px 0 0;font-size:12.5px;color:var(--ink2);line-height:1.55}
+.profilecard .stats{display:flex;gap:16px;margin-top:9px;flex-wrap:wrap}
+.profilecard .stat{font-size:11px;color:var(--muted)}
+.profilecard .stat b{display:block;font-size:15px;color:var(--ink);font-weight:800}
+@media(max-width:1150px){.catriskgrid,.profilegrid{grid-template-columns:1fr}}
+@media(max-width:700px){.majortabrow{padding:8px 14px}}
+
+/* ---- ghi de theo nhan dien FiSC ---- */
+.majortabs{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);border-top:0}
+.majortabbtn{font-weight:650}
+.majortabbtn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.card{border-radius:var(--radius);border-color:var(--line)}
+.kpi{border-radius:var(--radius)}
+.hero{border-radius:18px;background:linear-gradient(103deg,var(--navy) 0%,var(--navy3) 58%,#2c4a86 100%)}
+.hero p{color:#d6e4ef}
+.insight{border-left-color:var(--accent-bright);background:rgba(255,255,255,.09)}
+.tag{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.22)}
+.sectionhead h2{font-size:21px}
+.subhead{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:600;font-size:17px;color:var(--navy2)}
+details.dtable summary{color:var(--accent)}
+.scenario.active{outline-color:var(--accent)}
+.note{background:var(--tint-soft);border-left:3px solid var(--accent);padding:10px 12px;border-radius:10px;font-size:12.5px;line-height:1.6;color:var(--ink2)}
+code{background:var(--tint-soft);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11px}
+.footer{border-top:1px solid var(--line);margin-top:26px}
+ul.list{margin:0;padding-left:18px;font-size:12.5px;line-height:1.65;color:var(--ink2)}
+ul.list li{margin-bottom:7px}
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+.scenario-detail{margin-top:14px;padding:14px 15px;border-radius:12px;background:var(--tint-soft);border:1px solid var(--line);color:var(--ink2);font-size:13px;line-height:1.65}
+.scenario-detail b{color:var(--ink)}
+@media(max-width:900px){.scenarios{grid-template-columns:1fr}}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}.fiscbar-inner{padding:12px 14px}}
+
+.hero a,.tag a,.insight a,.fiscbar a{color:var(--accent-bright);border-bottom-color:rgba(47,208,178,.45)}
+.hero a:hover,.tag a:hover,.insight a:hover{color:#fff;border-bottom-color:#fff}
+
+/* ---- polish v1.1: research-dashboard readability ---- */
+body{font-size:14px;line-height:1.45}
+.container{padding-top:18px;padding-bottom:18px}
+.hero{border-radius:12px;padding:22px 24px}
+.hero h1{font-size:32px;line-height:1.08}
+.hero p{font-size:13.5px;max-width:980px}
+.insight{border-radius:8px;font-size:13px;line-height:1.55;max-width:1240px}
+.kpis{gap:10px;margin:14px 0}
+.kpi{padding:12px;min-height:128px}
+.kpi .label{font-size:10px;letter-spacing:.35px}
+.kpi .value{font-size:24px;line-height:1;margin:7px 0 4px}
+.kpi .sub{font-size:10.5px}
+.section{margin-top:22px}
+.sectionhead{align-items:flex-start;margin-bottom:10px}
+.sectionhead h2{font-size:22px;line-height:1.1}
+.sectionhead p{font-size:12.5px;max-width:880px;line-height:1.55}
+.card,.kpi,.driver,.scenario,.scenario-detail,.note,.flagbox,.profilecard,.catbox,.riskbox{border-radius:8px}
+.card{padding:14px}
+.chart-title{font-size:14px;line-height:1.3;color:var(--navy);font-weight:800}
+.chart-sub{font-size:11px;line-height:1.4;margin-bottom:6px}
+.card [id^="ch"]{min-height:230px}
+#chDistYear,#chUsProd,#chCushing,#chCurve,#chBsrMargin,#chPlx{min-height:220px}
+#chMoit,#chGasCustomer{min-height:180px}
+.chartsvg{margin-top:2px}
+.axislabel,.catlabel{font-size:9.5px}
+.endlabel{font-size:10.5px}
+.legend{font-size:11px;gap:10px 14px}
+.source-note,.conf-note{font-size:11px;line-height:1.45}
+.conf-note{padding-top:4px}
+.tablewrap{border:1px solid var(--hair);border-radius:8px;background:var(--card);overflow:auto}
+.tablewrap table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;line-height:1.45}
+.tablewrap th,.tablewrap td{padding:8px 9px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}
+.tablewrap th{position:sticky;top:0;z-index:1;background:var(--tint-soft);color:var(--navy2);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.25px}
+.tablewrap tbody tr:nth-child(even){background:color-mix(in srgb, var(--tint-soft) 42%, transparent)}
+.tablewrap tbody tr:hover{background:var(--accent-soft)}
+.tablewrap tbody tr:last-child td{border-bottom:0}
+.tablewrap td:first-child{font-weight:650;color:var(--ink)}
+.tablewrap td b{color:var(--navy)}
+.focus-card{border-left:4px solid var(--accent);box-shadow:0 1px 2px rgba(17,37,90,.05),0 10px 28px rgba(39,175,149,.08)}
+.focus-card .chart-title,.focus-card h3{color:var(--navy)}
+.confidence-table tbody tr:nth-child(1) td:nth-child(2){color:var(--good);font-weight:800}
+.confidence-table tbody tr:nth-child(2) td:nth-child(2),.confidence-table tbody tr:nth-child(3) td:nth-child(2),.confidence-table tbody tr:nth-child(4) td:nth-child(2){color:var(--warning);font-weight:800}
+.confidence-table tbody tr:nth-child(5) td:nth-child(2){color:var(--critical);font-weight:800}
+.global-balance-table td:nth-child(3),.watch-table td:nth-child(3){font-weight:600;color:var(--ink)}
+.global-balance-table td:nth-child(4),.watch-table td:nth-child(4){background:color-mix(in srgb, var(--accent-soft) 45%, transparent)}
+.viz-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;margin:12px 0 10px}
+.viz-block{min-width:0;border-top:1px solid var(--hair);padding-top:10px}
+.viz-block [id^="ch"]{min-height:220px}
+.signal-line{margin:9px 0 0;padding:10px 12px;border-left:3px solid var(--accent);border-radius:8px;background:var(--tint-soft);font-size:12.5px;line-height:1.55;color:var(--ink2)}
+.signal-line b{color:var(--navy)}
+.data-gap{margin-top:8px;padding:10px 12px;border-left:4px solid var(--critical);border-radius:8px;background:var(--danger-bg);color:#7c241b;font-size:12px;line-height:1.5}
+.data-gap b{color:#6d1d14}
+.gap-row td{background:var(--danger-bg)!important;color:#7c241b}
+.gap-row td b{color:#6d1d14}
+.mini-matrix{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.mini-cell{border:1px solid var(--hair);border-radius:8px;padding:10px;background:var(--tint-soft)}
+.mini-cell .k{font-size:10px;text-transform:uppercase;font-weight:800;color:var(--muted);letter-spacing:.25px}
+.mini-cell .v{font-size:18px;font-weight:850;color:var(--navy);margin-top:4px}
+.mini-cell .s{font-size:11px;color:var(--ink2);line-height:1.35;margin-top:4px}
+.catalyst-map{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.factor-card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--card)}
+.factor-card.good{border-left:4px solid var(--good)}
+.factor-card.bad{border-left:4px solid var(--critical)}
+.factor-card h3{margin:0 0 8px;font-size:13px;color:var(--navy)}
+.factor-card .metric{font-size:20px;font-weight:850;color:var(--ink);line-height:1}
+.factor-card .label2{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.factor-card .impact{margin-top:8px;font-size:12px;color:var(--ink2);line-height:1.45}
+.law-cta{display:block;margin:0 0 12px;padding:13px 14px;border:1px solid color-mix(in srgb, var(--accent) 55%, var(--line));border-left:5px solid var(--accent);border-radius:8px;background:linear-gradient(90deg, color-mix(in srgb, var(--accent-soft) 72%, #fff), #fff);text-decoration:none;color:var(--ink)}
+.law-cta .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.28px;font-weight:850;color:var(--accent)}
+.law-cta .title{margin-top:3px;font-size:17px;font-weight:850;color:var(--navy)}
+.law-cta .desc{margin-top:4px;font-size:12px;line-height:1.45;color:var(--ink2)}
+.srcrow{gap:5px 8px}
+.srcrow a{font-size:10.5px;border-radius:999px;padding:3px 8px}
+.subhead{margin-top:20px;margin-bottom:8px}
+.scenarios{gap:10px}
+.scenario{padding:13px}
+.scenario .range{font-size:20px;line-height:1.15}
+@media(max-width:700px){
+  .hero{padding:18px}
+  .hero h1{font-size:25px}
+  .insight{font-size:12.5px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .tablewrap th,.tablewrap td{padding:7px 8px}
+  .viz-grid{grid-template-columns:1fr}
+  .mini-matrix,.catalyst-map{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+<body>
+<div class="fiscbar">
+  <div class="fiscbar-inner">
+    <img src="data:image/png;base64,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" alt="FinSuccess" />
+    <div class="fiscbar-doc">Dashboard ngành · <b>Dầu khí Việt Nam</b> · bản v1, cập nhật 03/09/2026</div>
+    <div class="fiscbar-nav">
+      <a href="#mt1">Tổng quan</a><a href="#mt2">Cung – Cầu</a><a href="#mt3">Giá – Margin</a>
+      <a href="#mt4">Policy</a><a href="#mt5">Catalyst</a><a href="#mt6">Key players</a><a href="#mt7">Hormuz</a>
+    </div>
+  </div>
+</div>
+
+<nav class="majortabs">
+  <div class="majortabrow">
+    <button class="majortabbtn active" onclick="showMajorTab('mt1',this)">1. Tổng quan ngành</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt2',this)">2. Cung – Cầu</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt3',this)">3. Giá – Chi phí – Margin</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt4',this)">4. Policy / Trade / Tax</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt5',this)">5. Catalyst / Risk</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt6',this)">6. Key players</button>
+    <button class="majortabbtn" onclick="showMajorTab('mt7',this)">7. Hormuz &amp; dòng chảy</button>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero">
+    <h1>Bức tranh ngành dầu khí <em>Việt Nam</em></h1>
+    <p>Giá dầu, crack spread, tồn kho, sản lượng khai thác trong nước và chuỗi dự án khí — đọc theo khung cân bằng vật chất thay vì theo tiêu đề tin tức. Nguyên tắc xuyên suốt: không suy thẳng từ giá dầu sang lợi nhuận doanh nghiệp, mà đi qua biến trung gian riêng của từng mô hình kinh doanh.</p>
+    <div class="tagrow">
+      <span class="tag">Cập nhật: 03/09/2026</span>
+      <span class="tag">Giá &amp; tồn kho: EIA / FRED, tải ngày 03/09/2026</span>
+      <span class="tag">Số liệu doanh nghiệp: ưu tiên công bố public</span>
+      <span class="tag">Mọi khoảng trống dữ liệu được hiển thị là khoảng trống</span>
+    </div>
+    <div class="insight"><b>Đọc nhanh:</b> thị trường đang ở chế độ <b>sản phẩm dẫn dắt</b>, không phải dầu thô dẫn dắt. Brent ở <b>96,02 USD/thùng</b> (01/09/2026), cao hơn 41% so cùng kỳ nhưng vẫn dưới đỉnh bình quân tháng 4/2026 (117,29). Trong khi đó <b>crack diesel Bờ Vịnh Mỹ đạt 102,8 USD/thùng</b> — gấp hơn 4 lần mức bình quân 2025 (24,4) — và tồn kho distillate Mỹ còn <b>104,2 triệu thùng</b>, thấp nhất trong 6 năm cùng kỳ tháng 8. Tồn kho dầu thô Mỹ 424,5 triệu thùng và sản lượng dầu Mỹ 13,86 triệu thùng/ngày là nhóm chỉ báo tần suất cao hữu ích, nhưng cần đặt cạnh cân bằng cung-cầu toàn cầu để đánh giá regime giá. Ở tầng toàn cầu, IEA nhìn cung dầu 2026 giảm mạnh vì Middle East/Hormuz và Nga, trong khi OPEC vẫn nhìn nhu cầu tăng nhẹ — chính độ lệch giữa hai tổ chức này là tín hiệu phải theo dõi. Dư địa công suất OPEC theo EIA đã sụp từ 2,96 xuống 0,02 triệu thùng/ngày kể từ tháng 3/2026 trong khi gián đoạn ngoài kế hoạch còn 7,04 triệu thùng/ngày — hệ thống không còn bộ giảm xóc. Điều giữ cho đây chưa thành khủng hoảng cấu trúc là đường cong kỳ hạn: backwardation dốc 19,83 USD/thùng cho thấy thị trường tin tình trạng này là tạm thời, và vị thế đầu cơ ở mức giữa dải nên giá đang được dẫn bởi điều kiện vật chất chứ không phải dòng tiền. Với Việt Nam, chế độ này tách nhóm dầu khí làm hai nửa có dấu ngược nhau: doanh nghiệp bán crack đang ở điều kiện thuận lợi hiếm gặp, còn khâu phân phối chịu độ lệch pha giữa giá vốn nhập và chu kỳ điều hành giá bán lẻ trong nước.</div>
+  </section>
+
+  <div class="majorpane active" data-tab="mt1" id="pane-mt1">
+  <section class="grid kpis">
+    <div class="kpi">
+      <div class="label">Brent spot</div><div class="value">96,02</div>
+      <div class="delta d-warn">▲ 41,2% so T9/2025</div>
+      <div class="sub">USD/thùng · <a class="src-link" href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=RBRTE&amp;f=D" target="_blank" rel="noopener">EIA</a>, 01/09/2026</div>
+      <svg class="spark" id="spk-brent" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Crack diesel</div><div class="value">102,8</div>
+      <div class="delta d-bad">▲ 272% so T9/2025</div>
+      <div class="sub">USD/thùng · ULSD Bờ Vịnh trừ Brent, 01/09/2026</div>
+      <svg class="spark" id="spk-crack" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Tồn kho distillate Mỹ</div><div class="value">104,2</div>
+      <div class="delta d-bad">▼ thấp nhất 6 năm cùng kỳ</div>
+      <div class="sub">triệu thùng · <a class="src-link" href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WDISTUS1&amp;f=W" target="_blank" rel="noopener">EIA</a>, 28/08/2026</div>
+      <svg class="spark" id="spk-dist" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Tồn kho dầu thô Mỹ</div><div class="value">424,5</div>
+      <div class="delta d-good">▲ 4,3% so cuối T7/2026</div>
+      <div class="sub">triệu thùng · <a class="src-link" href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WCESTUS1&amp;f=W" target="_blank" rel="noopener">EIA</a>, 28/08/2026</div>
+      <svg class="spark" id="spk-crude" viewBox="0 0 100 26" width="100" height="26"></svg>
+    </div>
+    <div class="kpi">
+      <div class="label">Diesel bán lẻ trong nước</div><div class="value">27.740</div>
+      <div class="delta d-bad">cao hơn xăng RON 95</div>
+      <div class="sub">VND/lít · <a class="src-link" href="https://costflow.vn/du-lieu/gia-xang-dau-lap-du-toan" target="_blank" rel="noopener">kỳ điều hành 03/09/2026</a></div>
+    </div>
+    <div class="kpi">
+      <div class="label">Khai thác PVN 6T/2026</div><div class="value">8,7tr</div>
+      <div class="delta d-good">▲ 11,4% so cùng kỳ</div>
+      <div class="sub">tấn quy dầu · <a class="src-link" href="https://petrovietnam.petrotimes.vn/viet-tiep-chang-duong-khat-vong-moi-744936.html" target="_blank" rel="noopener">PVN</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sectionhead"><div><h2>1. Tổng quan ngành dầu khí Việt Nam</h2><p>Ngành này không phải một khối đồng nhất. Cùng một cú sốc giá dầu có thể tốt cho khâu này và xấu cho khâu kia — nên điểm khởi đầu phải là vị trí của từng doanh nghiệp trong chuỗi giá trị, không phải mức giá dầu.</p></div></div>
+    <div class="grid two">
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">Chuỗi giá trị và vị trí doanh nghiệp niêm yết</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 10px">Thượng nguồn (thăm dò – khai thác, do PVN/PVEP và các nhà thầu nước ngoài nắm) → dịch vụ kỹ thuật (<b>PVD</b> khoan, <b>PVS</b> cơ khí và EPCI, <b>PVB</b> bọc ống) → thu gom và vận chuyển khí (<b>GAS</b>) → lọc hóa dầu (<b>BSR</b> Dung Quất, Nghi Sơn chưa niêm yết) → phân phối (<b>PLX</b>, <b>PLC</b> dầu nhờn – nhựa đường) → vận tải (<b>PVT</b>, <b>PVP</b>).</p>
+        <p class="note" style="margin:0">Điểm quan trọng: doanh nghiệp niêm yết Việt Nam gần như không có ai trực tiếp bán dầu thô ra thị trường quốc tế. Vì vậy giá dầu tác động vào nhóm này chủ yếu qua <b>ba kênh gián tiếp</b> — crack spread (BSR), lãi/lỗ hàng tồn kho và cơ chế điều hành giá (PLX), và chu kỳ đầu tư thượng nguồn (PVD, PVS, PVB) với độ trễ nhiều quý.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">Vị trí trong chu kỳ</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 10px">Brent bình quân năm đang ở <b>90,41 USD/thùng</b> cho phần đã trôi qua của 2026, so với 69,14 của cả năm 2025 — mức tăng mạnh nhất kể từ 2021. Nhưng cấu trúc của đợt tăng này khác hẳn 2022: tồn kho dầu thô Mỹ vẫn dồi dào và sản lượng dầu Mỹ ở vùng cao kỷ lục, trong khi tồn kho sản phẩm chưng cất chạm đáy 6 năm.</p>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0">Nói cách khác, đây là <b>khủng hoảng khâu lọc và vận chuyển sản phẩm trên nền một hệ thống đã hết dư địa công suất</b> — không phải khủng hoảng cạn dầu thô, nhưng cũng không còn là thị trường có đệm. Phân biệt được hai chế độ này là điều kiện cần trước khi kết luận bất cứ điều gì về cổ phiếu — chi tiết ở tab <b>2</b> và <b>3</b>.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:13.5px">Sáu doanh nghiệp theo dõi trong dashboard này</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Mã</th><th>Sàn</th><th>Vị trí trong chuỗi</th><th>Biến trung gian thật sự quyết định lợi nhuận</th><th>Độ trễ so với giá dầu</th></tr></thead>
+        <tbody>
+          <tr><td><b>GAS</b></td><td>HOSE · VN30</td><td>Thu gom, vận chuyển và kinh doanh khí</td><td>Công thức giá bán neo vào giá dầu nhiên liệu; sản lượng khí; cơ cấu nguồn khí (mỏ giá rẻ cạn dần)</td><td>Khoảng 1 quý</td></tr>
+          <tr><td><b>BSR</b></td><td>HOSE</td><td>Lọc hóa dầu Dung Quất</td><td><b>Crack spread</b> + chênh giá dầu thô đầu vào + lãi/lỗ hàng tồn kho + lịch bảo dưỡng</td><td>Crack: tức thì. Tồn kho: theo quý</td></tr>
+          <tr><td><b>PLX</b></td><td>HOSE · VN30</td><td>Phân phối xăng dầu</td><td>Sản lượng bán + biên theo cơ chế điều hành + <b>lãi/lỗ hàng tồn kho</b></td><td>Trong quý</td></tr>
+          <tr><td><b>PVD</b></td><td>HOSE · VN100</td><td>Dịch vụ khoan</td><td><b>Giá thuê giàn</b> và hiệu suất sử dụng giàn</td><td>4–8 quý</td></tr>
+          <tr><td><b>PVS</b></td><td>HNX · VN100</td><td>Cơ khí, EPCI, kho nổi</td><td><b>Backlog hợp đồng</b> và tiến độ thực hiện dự án lớn</td><td>4–8 quý</td></tr>
+          <tr><td><b>PVT</b></td><td>HOSE · VN100</td><td>Vận tải dầu, khí, hóa chất</td><td><b>Cước vận tải</b> và cơ cấu spot so với hợp đồng dài hạn</td><td>Không xác định dấu theo giá dầu</td></tr>
+        </tbody>
+      </table></div>
+      <div class="source-note">Phân loại theo mô hình kinh doanh của từng doanh nghiệp; bảng biến trung gian dựa trên khung phân tích ngành và công bố doanh nghiệp. Hồ sơ đầy đủ và số liệu vận hành ở tab <b>6. Key players</b>.</div>
+    </div>
+    <div class="card focus-card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:13.5px">Độ tin cậy nguồn dữ liệu trong bản này</h3>
+      <div class="tablewrap"><table class="confidence-table">
+        <thead><tr><th>Nhóm dữ liệu</th><th>Mức tin cậy</th><th>Cách dùng đúng</th></tr></thead>
+        <tbody>
+          <tr><td><b>Giá dầu, crack, tồn kho Mỹ, CFTC</b></td><td>Cao</td><td>Đã đối chiếu với EIA/CFTC; dùng được cho nhận định market regime.</td></tr>
+          <tr><td><b>OPEC spare capacity, unplanned outage</b></td><td>Trung bình-cao</td><td>Nguồn EIA STEO; nên đọc như ước tính/dự báo, không phải số đo trực tiếp.</td></tr>
+          <tr><td><b>Global demand/supply outlook</b></td><td>Trung bình</td><td>IEA và OPEC đang lệch quan điểm; nên trình bày theo range và nêu rõ nguồn.</td></tr>
+          <tr><td><b>Hormuz traffic</b></td><td>Trung bình-cao</td><td>IMF PortWatch có API công khai; dùng để theo dõi xu hướng dòng chảy, đọc kèm IEA/OPEC để tránh suy diễn quá mức từ AIS.</td></tr>
+          <tr><td><b>Số liệu doanh nghiệp chưa có API công khai</b></td><td>Trung bình-thấp</td><td>Chỉ dùng khi đã đối chiếu BCTC/công bố gốc; nếu chưa có nguồn public thì đánh dấu đỏ hoặc bỏ khỏi bản chính.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="source-note">Bảng này được thêm sau rà soát chéo ngày 03/09/2026. Mục tiêu nguồn dữ liệu là public-source automation; file riêng chưa đối chiếu không phải nguồn đích của dashboard.</div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt2" id="pane-mt2">
+  <section class="section">
+    <div class="sectionhead"><div><h2>2. Cung – Cầu</h2><p>Dầu là hàng hóa toàn cầu, nên cân bằng cung cầu phải đọc theo hai tầng: cân bằng thế giới quyết định giá, rồi mới tới cân bằng trong nước quyết định sản lượng và nguồn cung nhiên liệu của Việt Nam. Đọc ngược thứ tự này là nguyên nhân phổ biến nhất khiến phân tích ngành dầu khí sai ngay từ đầu. Bốn cổng bắt buộc phải qua trước khi kết luận: tồn kho, dư địa công suất, cấu trúc đường cong kỳ hạn và vị thế đầu cơ — bản này đã có đủ cả bốn.</p></div></div>
+
+    <h3 class="subhead">Tầng 1 — Cân bằng thế giới</h3>
+    <div class="card focus-card" style="margin-bottom:14px">
+      <h3 style="margin-top:0;font-size:13.5px">Cân bằng cung-cầu toàn cầu và các biến giải thích chính</h3>
+      <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 10px">Dữ liệu Mỹ có lợi thế là cập nhật theo tuần, nhưng chỉ phản ánh một thị trường được che chắn bởi sản lượng nội địa cao và hạ tầng tồn kho sâu. Outlook cung-cầu thế giới phải được đọc thêm qua bốn lớp: <b>nguồn cung OPEC+</b>, <b>tăng trưởng ngoài OPEC</b>, <b>cầu theo vùng tiêu thụ</b>, và <b>nút thắt lọc dầu/sản phẩm</b>. Đây là lớp bổ sung quan trọng nhất cho bản dashboard này.</p>
+      <div class="viz-grid">
+        <div class="viz-block">
+          <div class="chart-title">Cung – cầu dầu và nhiên liệu lỏng toàn cầu — 2022–2027E</div>
+          <div class="chart-sub">triệu thùng/ngày, bình quân năm · production so với consumption</div>
+          <div id="chWorldSD"></div>
+          <div class="legend">
+            <span class="li"><span class="dot" style="background:var(--s3)"></span>Cung toàn cầu</span>
+            <span class="li"><span class="dot" style="background:var(--s2)"></span>Cầu toàn cầu</span>
+          </div>
+        </div>
+        <div class="viz-block">
+          <div class="chart-title">Balance: cung trừ cầu</div>
+          <div class="chart-sub">triệu thùng/ngày · dương = dư cung/tồn kho tăng, âm = thiếu cung/tồn kho rút</div>
+          <div id="chWorldBalance"></div>
+          <div class="signal-line"><b>Tín hiệu giá:</b> 2026E chuyển sang thiếu cung khoảng <b>1,87 mb/d</b>, thường là bias hỗ trợ giá. Nhưng 2027E trong STEO lại bật sang dư cung lớn khi nguồn cung phục hồi — nghĩa là giá cao hiện tại phụ thuộc rất nhiều vào việc gián đoạn có kéo dài hơn dự báo hay không.</div>
+        </div>
+      </div>
+      <details class="dtable"><summary>Xem bảng dữ liệu cung-cầu toàn cầu</summary><div class="tablewrap"><table id="tbl-worldbalance"></table></div></details>
+      <div class="source-note"><b>Nguồn chart cung-cầu:</b> lấy trực tiếp từ file công khai EIA STEO archive tháng 8/2026 <code>aug26_base.xlsx</code>, sheet <code>3atab</code>. Cung toàn cầu dùng dòng <code>papr_world</code> (World total production), cầu toàn cầu dùng dòng <code>patc_world</code> (World total consumption). Dashboard tự tính bình quân 12 tháng từng năm và tự tính <code>balance = cung - cầu</code>; không tổng hợp từ nhiều report khác nhau.</div>
+      <div class="tablewrap"><table class="global-balance-table">
+        <thead><tr><th>Lớp phân tích</th><th>Biến cần theo dõi</th><th>Tín hiệu hiện tại</th><th>Hàm ý cho Việt Nam</th></tr></thead>
+        <tbody>
+          <tr><td><b>OPEC / OPEC+</b></td><td>Saudi, Iraq, UAE, Kuwait, Iran, Russia; quota, compliance, spare capacity</td><td>IEA ước tính OPEC+ tháng 7/2026 vẫn thấp hơn target khoảng 6,0 mb/d; EIA cho thấy spare capacity OPEC gần như bằng không từ tháng 3/2026</td><td>Giá và nguồn nguyên liệu của Nghi Sơn nhạy hơn với từng thay đổi của Hormuz/Kuwait</td></tr>
+          <tr><td><b>Non-OPEC supply</b></td><td>Mỹ, Brazil, Canada, Guyana, Argentina, Norway</td><td>IEA nhìn tăng trưởng từ châu Mỹ chỉ bù được một phần thiệt hại Middle East/Russia; OPEC vẫn xem Mỹ, Brazil, Canada, Argentina là driver tăng cung chính</td><td>Không đủ để kết luận dầu thô toàn cầu dư dả nếu route và product trade bị tắc</td></tr>
+          <tr><td><b>Disrupted supply</b></td><td>Middle East/Hormuz, Nga, Caspian, Libya/Nigeria</td><td>IEA tháng 8/2026 nêu Gulf output còn thấp hơn pre-war 8,3 mb/d và global supply 2026 dự kiến giảm 4,3 mb/d</td><td>Rủi ro không chỉ nằm ở giá Brent, mà nằm ở khả năng mua được crude/product đúng chuẩn</td></tr>
+          <tr><td><b>Demand by bloc</b></td><td>OECD, China, India, Other Asia, Europe, Middle East, Africa</td><td>IEA dự báo nhu cầu dầu thế giới 2026 giảm 1,6 mb/d; OPEC vẫn dự báo tăng nhưng đã hạ còn khoảng 580 kb/d</td><td>Cần trình bày range/độ lệch quan điểm, không dùng một forecast duy nhất</td></tr>
+          <tr><td><b>Product balance</b></td><td>Refinery runs, diesel/jet/gasoline cracks, product exports, oil-on-water</td><td>IEA ghi nhận refinery throughput tháng 7/2026 vẫn thấp hơn gần 5 mb/d YoY và seaborne product trade giảm mạnh</td><td>BSR/PLX chịu tác động trực tiếp hơn từ crack và nguồn hàng sản phẩm so với từ Brent</td></tr>
+        </tbody>
+      </table></div>
+      <div class="conf-note"><b>Cách đọc:</b> phần Mỹ bên dưới là nhóm chỉ báo tần suất cao để kiểm tra stress thị trường theo tuần. Kết luận về giá dầu cần đặt trong cân bằng toàn cầu ở chart trên và trong các biến giải thích như spare capacity, gián đoạn nguồn cung, product trade và demand revision.</div>
+      <div class="srcrow"><a href="https://www.iea.org/reports/oil-market-report-august-2026" target="_blank" rel="noopener">IEA · Oil Market Report Aug 2026</a><a href="https://www.eia.gov/outlooks/steo/report/" target="_blank" rel="noopener">EIA · STEO Aug 2026</a><a href="https://www.opec.org/pr-detail/611-2-august-2026.html" target="_blank" rel="noopener">OPEC+ · quyết định sản lượng 02/08/2026</a><a href="https://publications.opec.org/momr/" target="_blank" rel="noopener">OPEC · Monthly Oil Market Report</a></div>
+    </div>
+
+    <h3 class="subhead">Tín hiệu tần suất cao — Mỹ</h3>
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">Tồn kho dầu thô thương mại Mỹ — 36 tháng</div>
+        <div class="chart-sub">triệu thùng, số cuối tháng · chỉ báo thay thế cho tồn kho toàn cầu</div>
+        <div id="chCrudeStock"></div>
+        <div class="source-note">Số mới nhất ngày 28/08/2026. Đây là tồn kho Mỹ, không phải toàn cầu — dùng thay thế vì tồn kho OECD công bố chậm hơn và không miễn phí theo tuần.</div>
+        <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WCESTUS1&amp;f=W" target="_blank" rel="noopener">EIA · chuỗi WCESTUS1</a><a href="https://www.eia.gov/petroleum/supply/weekly/" target="_blank" rel="noopener">EIA Weekly Petroleum Status Report</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-crudestock"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Tồn kho sản phẩm Mỹ — xăng và distillate, 36 tháng</div>
+        <div class="chart-sub">triệu thùng, số cuối tháng · lớp dữ liệu tách biệt hẳn với tồn kho dầu thô</div>
+        <div id="chProdStock"></div>
+        <div class="legend">
+          <span class="li"><span class="dot" style="background:var(--s4)"></span>Xăng</span>
+          <span class="li"><span class="dot" style="background:var(--s2)"></span>Distillate (diesel, dầu sưởi)</span>
+        </div>
+        <div class="conf-note">Tồn kho dầu thô và tồn kho sản phẩm có thể đi ngược chiều nhau — và khi điều đó xảy ra, chính nó là tín hiệu giá trị nhất. Đây đúng là tình huống hiện tại.</div>
+        <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WGTSTUS1&amp;f=W" target="_blank" rel="noopener">EIA · tồn kho xăng WGTSTUS1</a><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WDISTUS1&amp;f=W" target="_blank" rel="noopener">EIA · tồn kho distillate WDISTUS1</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-prodstock"></table></div></details>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Tồn kho distillate Mỹ tháng 8 — so sánh 6 năm</div>
+        <div class="chart-sub">triệu thùng, bình quân các tuần trong tháng 8 mỗi năm · loại bỏ yếu tố mùa vụ</div>
+        <div id="chDistYear"></div>
+        <div class="source-note">Tự tính bình quân các tuần tháng 8 từng năm từ chuỗi tuần của EIA, tải ngày 03/09/2026.</div>
+        <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WDISTUS1&amp;f=W" target="_blank" rel="noopener">EIA · chuỗi WDISTUS1</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-distyear"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Sản lượng dầu thô Mỹ — 36 tháng</div>
+        <div class="chart-sub">triệu thùng/ngày, bình quân tháng · nguồn cung ngoài OPEC lớn nhất thế giới</div>
+        <div id="chUsProd"></div>
+        <div class="source-note">Số mới nhất 28/08/2026. Sản lượng ở vùng cao là bằng chứng quan trọng cho kết luận "không thiếu dầu thô".</div>
+        <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=WCRFPUS2&amp;f=W" target="_blank" rel="noopener">EIA · chuỗi WCRFPUS2</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-usprod"></table></div></details>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Tồn kho tại Cushing — 36 tháng</div>
+        <div class="chart-sub">triệu thùng · điểm giao nhận hợp đồng WTI, mức thấp ở đây khuếch đại biến động giá</div>
+        <div id="chCushing"></div>
+        <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=W_EPC0_SAX_YCUOK_MBBL&amp;f=W" target="_blank" rel="noopener">EIA · tồn kho Cushing</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-cushing"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Đường cong giá kỳ hạn WTI — hôm nay</div>
+        <div class="chart-sub">USD/thùng, giá hợp đồng theo tháng đáo hạn · độ dốc cho biết thị trường đang định giá tình trạng hiện tại là tạm thời hay lâu dài</div>
+        <div id="chCurve"></div>
+        <div class="conf-note"><b>Backwardation rất dốc:</b> hợp đồng gần nhất 90,55 USD/thùng, hợp đồng tháng 12/2027 chỉ 70,72 — chênh <b>19,83 USD/thùng</b>. Thị trường đang trả giá cao cho hàng giao ngay và tin rằng tình trạng căng thẳng sẽ dịu đi. Đây là bằng chứng cho luận điểm <b>phần bù gián đoạn, không phải thiếu hụt cấu trúc</b>. Backwardation dốc cũng làm việc trữ hàng nổi trên tàu không còn hiệu quả kinh tế.</div>
+        <div class="source-note">Giá hợp đồng WTI trên sàn NYMEX, lấy lúc 07:55 UTC ngày 03/09/2026 qua nguồn dữ liệu công khai của Yahoo Finance. <b>Đây là nguồn không chính thức</b> — dùng tạm để lấp cổng phân tích, nên thay bằng dữ liệu vendor khi mua quyền truy cập. Chuỗi hợp đồng kỳ hạn miễn phí trước đây của EIA đã dừng cập nhật từ tháng 4/2024 nên không dùng được.</div>
+        <div class="srcrow"><a href="https://finance.yahoo.com/quote/CL%3DF/futures" target="_blank" rel="noopener">Yahoo Finance · chuỗi hợp đồng WTI theo tháng đáo hạn</a><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=RCLC1&amp;f=D" target="_blank" rel="noopener">EIA · chuỗi kỳ hạn (đã dừng 04/2024)</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-curve"></table></div></details>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="chart-title">Dư địa công suất OPEC và gián đoạn nguồn cung ngoài kế hoạch — 2024 đến tháng 7/2026</div>
+      <div class="chart-sub">triệu thùng/ngày · dư địa công suất là bộ giảm xóc của cả hệ thống; gián đoạn ngoài kế hoạch là phần sản lượng không ra được thị trường</div>
+      <div id="chSpare"></div>
+      <div class="legend">
+        <span class="li"><span class="dot" style="background:var(--s3)"></span>Dư địa công suất OPEC</span>
+        <span class="li"><span class="dot" style="background:var(--s2)"></span>Gián đoạn ngoài kế hoạch</span>
+      </div>
+      <div class="conf-note"><b>Đây là mảnh dữ liệu quan trọng nhất của cả tab này.</b> Dư địa công suất sụp từ 2,96 triệu thùng/ngày (tháng 1/2026) xuống 2,21 (tháng 2) rồi <b>0,07 từ tháng 3/2026</b>, và giữ ở mức gần bằng không tới nay. Cùng lúc, gián đoạn ngoài kế hoạch nhảy từ 0,94 lên <b>8,56 triệu thùng/ngày trong tháng 3</b>, đỉnh 11,68 vào tháng 5, còn 7,04 vào tháng 7. Hai đường này gặp nhau đúng thời điểm lưu lượng tàu qua eo Hormuz về không (tab 7).</div>
+      <div class="conf-note">Cần đọc kèm cảnh báo: đây là <b>ước tính của cơ quan năng lượng Mỹ, không phải số đo trực tiếp</b> — công suất dự phòng không ai quan sát được, chỉ ước lượng. Số từ tháng 8/2026 trở đi trong nguồn gốc là dự báo nên không đưa vào biểu đồ; theo dự báo đó, dư địa vẫn ở mức 0,02–0,03 suốt tới đầu 2027.</div>
+      <div class="source-note">Bảng 3d, báo cáo Triển vọng Năng lượng Ngắn hạn phát hành ngày 11/08/2026, forecast completed 06/08/2026. Lấy từ file archive <code>aug26_base.xlsx</code>, sheet <code>3dtab</code>, dòng <code>cops_opec</code> (dư địa công suất) và <code>padi_OPEC</code> (gián đoạn ngoài kế hoạch) — link đầu tiên bên dưới tải thẳng file đó.</div>
+      <div class="srcrow"><a href="https://www.eia.gov/outlooks/steo/archives/aug26_base.xlsx" target="_blank" rel="noopener">EIA STEO · archive Aug 2026 (.xlsx, sheet 3dtab)</a><a href="https://www.eia.gov/outlooks/steo/tables/pdf/3dtab.pdf" target="_blank" rel="noopener">EIA STEO · Bảng 3d bản PDF</a><a href="https://www.eia.gov/outlooks/steo/data/browser/" target="_blank" rel="noopener">EIA STEO · trình duyệt dữ liệu</a><a href="https://www.eia.gov/todayinenergy/detail.php?id=66904" target="_blank" rel="noopener">EIA · phương pháp ước tính</a></div>
+      <details class="dtable"><summary>Xem bảng dữ liệu (31 tháng)</summary><div class="tablewrap"><table id="tbl-spare"></table></div></details>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Vị thế ròng của quỹ đầu cơ trên hợp đồng WTI — theo tuần</div>
+        <div class="chart-sub">nghìn hợp đồng, vị thế mua trừ vị thế bán của nhóm quỹ quản lý tiền · đo mức độ đông đúc, không đo hướng</div>
+        <div id="chCot"></div>
+        <div class="conf-note">Vị thế ròng hiện ở <b>84,0 nghìn hợp đồng</b> (25/08/2026), nằm giữa dải 2025–2026 (thấp nhất −38,2; cao nhất 253,9). Nói cách khác thị trường <b>chưa đông đúc</b> — đợt tăng giá hiện nay không phải do dòng tiền đầu cơ dồn vào, mà do điều kiện vật chất. Điều này làm giảm rủi ro một đợt bán tháo kỹ thuật, nhưng cũng có nghĩa nếu nguồn cung thắt thêm thì vẫn còn dư địa để vị thế đầu cơ đẩy giá lên cao hơn.</div>
+        <div class="source-note">Báo cáo Cam kết của các nhà giao dịch, bản phân tách theo nhóm, hợp đồng <code>WTI-PHYSICAL</code> trên sàn NYMEX (mã CFTC 067651). Công bố hằng tuần, độ trễ khoảng 3 ngày. Link đầu tiên bên dưới mở đúng báo cáo tuần mới nhất — tìm dòng WTI-PHYSICAL, cột Managed Money.</div>
+        <div class="srcrow"><a href="https://www.cftc.gov/dea/futures/petroleum_sf.htm" target="_blank" rel="noopener">CFTC · báo cáo phân tách nhóm dầu khí, tuần mới nhất</a><a href="https://www.cftc.gov/files/dea/history/fut_disagg_txt_2026.zip" target="_blank" rel="noopener">CFTC · dữ liệu lịch sử 2026 (.zip)</a><a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank" rel="noopener">CFTC · trang gốc bộ báo cáo</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu (86 tuần)</summary><div class="tablewrap"><table id="tbl-cot"></table></div></details>
+      </div>
+      <div class="card" style="border-left:4px solid var(--accent)">
+        <h3 style="margin-top:0;font-size:13.5px">Đọc chế độ thị trường — bốn cổng đã có đủ số</h3>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Cổng</th><th>Số hiện tại</th><th>Nói lên điều gì</th></tr></thead>
+          <tbody>
+            <tr><td><b>Tồn kho</b></td><td>Dầu thô Mỹ 424,5 triệu thùng, đang tăng lại; distillate 104,2 — đáy 6 năm</td><td>Dầu thô còn tương đối dồi dào, nhưng lớp sản phẩm thì cạn</td></tr>
+            <tr><td><b>Dư địa công suất</b></td><td><b>0,02</b> triệu thùng/ngày (T7/2026), từ 2,96 hồi tháng 1</td><td>Hệ thống <b>không còn bộ giảm xóc</b> — cú sốc mới nào cũng đi thẳng vào giá</td></tr>
+            <tr><td><b>Cấu trúc đường cong</b></td><td>Backwardation dốc, chênh 19,83 USD/thùng giữa hợp đồng gần nhất và tháng 12/2027</td><td>Thị trường định giá đây là tình trạng <b>tạm thời</b>, không phải thiếu hụt lâu dài</td></tr>
+            <tr><td><b>Vị thế đầu cơ</b></td><td>84,0 nghìn hợp đồng ròng, giữa dải hai năm</td><td>Chưa đông đúc — giá đang được dẫn bởi vật chất chứ không phải dòng tiền</td></tr>
+          </tbody>
+        </table></div>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:10px 0 0">Bốn cổng gộp lại cho một kết luận khác hẳn cách đọc chỉ nhìn tồn kho Mỹ: <b>không phải "dầu thô dư dả"</b>, mà là <b>một hệ thống đã hết đệm, đang bị gián đoạn nặng, nhưng thị trường tin rằng gián đoạn sẽ được gỡ.</b> Rủi ro lớn nhất của luận điểm này nằm ở chữ "tin rằng" — nếu gián đoạn kéo dài quá kỳ vọng, đường cong sẽ phải định giá lại.</p>
+        <div class="conf-note">Còn thiếu để hoàn chỉnh: đường cong của dầu Brent (bản này dùng WTI làm đại diện, hai loại có thể lệch nhau khi arbitrage tắc) và vị thế đầu cơ trên hợp đồng Brent của sàn ICE.</div>
+      </div>
+    </div>
+
+    <h3 class="subhead">Tầng 2 — Cân bằng Việt Nam</h3>
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">Sản lượng khai thác dầu thô và khí tự nhiên — 2020–2026 YTD</div>
+        <div class="chart-sub">dầu thô: triệu tấn · khí: tỷ m³ · 2026 là lũy kế 6 tháng, không annualize</div>
+        <div id="chVnUpstream"></div>
+        <div class="legend">
+          <span class="li"><span class="dot" style="background:var(--s2)"></span>Khai thác dầu thô (triệu tấn)</span>
+          <span class="li"><span class="dot" style="background:var(--s1)"></span>Khai thác khí tự nhiên (tỷ m³)</span>
+        </div>
+        <div class="conf-note">Không nên dừng ở 2024. Petrovietnam công bố 2025 là năm đầu tiên sau 11 năm sản lượng dầu thô đảo chiều tăng <b>0,8%</b>; 6 tháng đầu 2026 dầu thô đạt <b>5,5 triệu tấn</b> (+14,2%) và khí đạt <b>3,19 tỷ m³</b> (+6,8%). Vì vậy chart tách rõ dữ liệu năm và dữ liệu lũy kế 6 tháng để không đọc nhầm trend.</div>
+        <div class="source-note"><b>Nguồn công khai:</b> <a href="https://www.nso.gov.vn/so-lieu-thong-ke/" target="_blank" rel="noopener">Cục Thống kê</a> công bố sản lượng khai thác dầu thô và khí theo tháng/quý; <a href="https://petrovietnam.petrotimes.vn/giu-vung-nen-tang-nang-luong-tao-da-tang-truong-743208.html" target="_blank" rel="noopener">Petrovietnam · 6T/2026</a> công bố dầu thô 5,5 triệu tấn và khí 3,19 tỷ m³; <a href="https://petrovietnam.petrotimes.vn/thuong-mai-dau-tho-mat-xich-quan-trong-trong-chuoi-gia-tri-petrovietnam-736864.html" target="_blank" rel="noopener">Petrovietnam · 2025</a> công bố dầu thô tăng 0,8%.</div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-vnup"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Sản lượng khí vào bờ và LNG nhập khẩu — 2021–2026</div>
+        <div class="chart-sub">triệu m³ · cột 2026 là kế hoạch doanh nghiệp, không phải số thực hiện</div>
+        <div id="chGasVol"></div>
+        <div class="legend">
+          <span class="li"><span class="dot" style="background:var(--s1)"></span>Khí ẩm nội địa</span>
+          <span class="li"><span class="dot" style="background:var(--s3)"></span>LNG nhập khẩu</span>
+        </div>
+        <div class="conf-note">Cột 2026 vẽ mờ vì là kế hoạch, không phải kết quả thực hiện.</div>
+        <div class="source-note">Khí ẩm nội địa giảm từ 7.994 triệu m³ (2022) xuống 5.861 (2025); phần hụt được bù bằng LNG nhập khẩu tăng từ 85 lên 539 triệu m³ cùng giai đoạn. <b>Nguồn công khai:</b> <a href="https://www.pvgas.com.vn/" target="_blank" rel="noopener">PV GAS</a> công bố sản lượng và tài liệu đại hội cổ đông; <a href="https://finance.vietstock.vn/GAS/tai-chinh.htm" target="_blank" rel="noopener">Vietstock · BCTC GAS</a> dùng để đối chiếu tài chính.</div>
+        <div class="srcrow"><a href="https://www.pvgas.com.vn/" target="_blank" rel="noopener">PV GAS · trang công bố thông tin</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-gasvol"></table></div></details>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Vị trí của PV GAS trong nền kinh tế — số liệu công bố</div>
+        <div class="chart-sub">% · bốn tỷ trọng do doanh nghiệp và Petrovietnam công bố, thay cho bảng cơ cấu hộ tiêu thụ trước đây</div>
+        <div id="chGasCustomer"></div>
+        <div class="conf-note"><b>Đã thay số theo nguyên tắc chỉ dùng nguồn công khai.</b> Bản trước hiển thị cơ cấu hộ tiêu thụ khí 2025 (điện 3.954 / đạm 1.205 / công nghiệp 1.041 triệu m³), nhưng chưa có nguồn public công bố đúng ba con số đó trong repo, nên đã gỡ bỏ. Thay vào đó là bốn tỷ trọng doanh nghiệp có công bố, phản ánh cùng một ý: nhu cầu khí phụ thuộc áp đảo vào điện và đạm.</div>
+        <div class="source-note">Thị phần khí khô và LPG bán buôn theo bài về ngành công nghiệp khí trên Tạp chí Năng lượng Việt Nam. Tỷ trọng đóng góp sản lượng điện quốc gia (6,3%) và sản lượng đạm cả nước (70%) theo công bố tại đại hội cổ đông thường niên 2026 của PV GAS. Bổ sung: 7 tháng đầu 2026 PV GAS cấp 325 triệu Sm³ khí cho sản xuất đạm khu vực Đông Nam Bộ, kế hoạch cả năm 590 triệu Sm³.</div>
+        <div class="srcrow"><a href="https://nangluongvietnam.vn/dai-hoi-dong-co-dong-thuong-nien-cua-pv-gas-nam-2026-36090.html" target="_blank" rel="noopener">PV GAS · đại hội cổ đông 2026</a><a href="https://nangluongvietnam.vn/pv-gas-doanh-nghiep-chu-luc-dan-dat-nganh-cong-nghiep-khi-viet-nam-29437.html" target="_blank" rel="noopener">Năng lượng Việt Nam · thị phần PV GAS</a><a href="https://petrovietnam.petrotimes.vn/petrovietnam-chu-dong-nguon-khi-cho-dien-dam-khu-vuc-dong-nam-bo-745039.html" target="_blank" rel="noopener">Petrovietnam · cấp khí cho điện và đạm</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-gascust"></table></div></details>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">Cân đối xăng dầu: hai nhà máy đáp ứng khoảng 70% nhu cầu</h3>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Nhà máy</th><th>Công suất thiết kế</th><th>Ghi chú vận hành 2026</th></tr></thead>
+          <tbody>
+            <tr><td><b>Dung Quất</b> (BSR)</td><td>~6,5 triệu tấn dầu thô/năm</td><td>Vận hành ở mức khoảng 118% công suất; nguồn dầu thô cơ bản không bị ảnh hưởng trực tiếp bởi gián đoạn Trung Đông</td></tr>
+            <tr><td><b>Nghi Sơn</b> (chưa niêm yết)</td><td>~10 triệu tấn dầu thô/năm</td><td><b>Phụ thuộc nguồn dầu Kuwait</b> — điểm chịu rủi ro trực tiếp nhất của cả hệ thống khi eo Hormuz gián đoạn</td></tr>
+          </tbody>
+        </table></div>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:10px 0 0">Tổng công suất khoảng <b>16,5 triệu tấn/năm</b>, đáp ứng khoảng <b>70%</b> nhu cầu tiêu thụ trong nước; khoảng <b>30%</b> còn lại phải nhập khẩu. Trong khi đó sản lượng dầu thô nội địa giai đoạn 2026–2030 được dự báo chỉ còn <b>5,8–8 triệu tấn/năm</b>, thấp hơn mức bình quân 8,6 triệu tấn của 5 năm gần nhất — nghĩa là ngay cả phần nguyên liệu đầu vào cũng ngày càng phụ thuộc nhập khẩu.</p>
+        <div class="source-note">Các con số công suất và tỷ lệ đáp ứng là số tròn được dẫn lại từ báo chí trong nước, chưa phải số liệu vận hành theo tháng.</div>
+        <div class="srcrow"><a href="https://vietnambiz.vn/vi-sao-viet-nam-van-phai-nhap-khau-xang-dau-du-da-co-hai-nha-may-loc-dau-lon-2026391598846.htm" target="_blank" rel="noopener">VietnamBiz · vì sao vẫn phải nhập khẩu xăng dầu</a><a href="https://tuoitre.vn/bo-cong-thuong-thong-tin-moi-nhat-ve-nguon-cung-xang-dau-chi-dao-dau-moi-tim-nguon-nhap-khau-20260309113839283.htm" target="_blank" rel="noopener">Tuổi Trẻ · Bộ Công Thương về nguồn cung xăng dầu</a></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:13.5px">Chuỗi dự án khí — nguồn cung tương lai và thời điểm dòng khí đầu tiên</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Dự án</th><th>Lô / bể</th><th>Trữ lượng khí (tỷ m³)</th><th>Sản lượng/năm (tỷ m³)</th><th>Dòng khí đầu tiên</th><th>Mức đầu tư (triệu USD)</th></tr></thead>
+        <tbody>
+          <tr><td><b>Lô B</b></td><td>48/95 &amp; 52/97 (Malay – Thổ Chu)</td><td>107</td><td>5,06</td><td>Mục tiêu quý 3/2027</td><td>12.000</td></tr>
+          <tr><td><b>Sư Tử Trắng</b> giai đoạn 2B</td><td>15-1 (Cửu Long)</td><td>17,05</td><td>1,29</td><td>29/06/2026 (dòng khí sớm)</td><td>1.300</td></tr>
+          <tr><td><b>Thiên Nga – Hải Âu</b></td><td>12/11 (Nam Côn Sơn)</td><td>7,43</td><td>0,62</td><td>Kế hoạch quý 4/2026</td><td>348</td></tr>
+          <tr><td><b>Lạc Đà Vàng</b> GĐ 1A</td><td>15/1-05 (Cửu Long)</td><td>—</td><td>—</td><td>Quý 4/2026</td><td>693</td></tr>
+          <tr><td><b>Khánh Mỹ – Đầm Dơi</b></td><td>46/13 (Malay – Thổ Chu)</td><td>4,03</td><td>0,20</td><td>Quý 4/2027</td><td>—</td></tr>
+          <tr><td><b>Nam Du – U Minh</b></td><td>46/07 &amp; 51 (Malay – Thổ Chu)</td><td>4,44</td><td>0,70</td><td>Cuối 2028</td><td>750</td></tr>
+          <tr><td><b>Cá Voi Xanh</b></td><td>117–119 (Sông Hồng)</td><td>150</td><td>8,00</td><td>2030–2031, giữ ở diện theo dõi</td><td>4.600</td></tr>
+          <tr><td><b>Kèn Bầu</b></td><td>114 (Sông Hồng)</td><td>225 (giá trị giữa dải ước tính)</td><td>—</td><td>Chưa có kế hoạch phát triển mỏ</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <div class="conf-note">Hai dự án lớn nhất về trữ lượng — Cá Voi Xanh và Kèn Bầu — đều <b>chưa có mốc thời gian chắc chắn</b>. Không nên đưa chúng vào dự phóng sản lượng như các dự án đã có quyết định đầu tư.</div>
+      <div class="source-note"><b>Nguồn công khai:</b> <a href="https://petrovietnam.petrotimes.vn/" target="_blank" rel="noopener">Petrovietnam</a>, công bố của từng chủ đầu tư và báo cáo thường niên/ĐHĐCĐ của doanh nghiệp liên quan. Các mốc thời gian là kế hoạch tại thời điểm cập nhật gần nhất và thường xuyên bị lùi — cần kiểm tra lại từng quý.</div>
+      <div class="data-gap"><b>Data limitation:</b> trữ lượng, capex và sản lượng/năm của từng dự án thường nằm rải rác trong PDF/bài công bố, không có API công khai ổn định. Giữ bảng này vì rất quan trọng cho outlook khí, nhưng pipeline tự động cần bước bóc tách tài liệu hoặc vendor dữ liệu dự án.</div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt3" id="pane-mt3">
+  <section class="section">
+    <div class="sectionhead"><div><h2>3. Giá – Chi phí – Margin</h2><p>Với ngành dầu khí, thứ tự đọc phải đảo so với thông thường: <b>crack spread trước, giá bán sau</b>. Nhà máy lọc dầu không bán dầu thô — họ bán chênh lệch giữa giá sản phẩm và giá dầu thô. Chênh lệch đó mới là biến quyết định biên lợi nhuận, không phải mức giá dầu.</p></div></div>
+
+    <div class="card">
+      <div class="chart-title">Crack spread — 24 tháng gần nhất</div>
+      <div class="chart-sub">USD/thùng, bình quân tháng · tự tính từ giá giao ngay Bờ Vịnh Mỹ trừ giá Brent</div>
+      <div id="chCrack"></div>
+      <div class="legend">
+        <span class="li"><span class="dot" style="background:var(--s2)"></span>Crack diesel (ULSD)</span>
+        <span class="li"><span class="dot" style="background:var(--s4)"></span>Crack xăng (RBOB)</span>
+        <span class="li"><span class="dot" style="background:var(--s1)"></span>Crack tổng hợp 3-2-1</span>
+      </div>
+      <div class="conf-note">Chart này <b>không lấy một chuỗi crack spread có sẵn</b>. Nguồn gốc là ba chuỗi giá công khai của EIA: Brent spot, giá xăng Bờ Vịnh Mỹ và giá ULSD Bờ Vịnh Mỹ. Dashboard tự tính crack theo công thức: <b>crack sản phẩm = giá sản phẩm (USD/gallon x 42) - Brent</b>. Crack 3-2-1 = (2 phần xăng + 1 phần diesel) / 3 - Brent. Đây là chỉ báo quốc tế; biên thực tế của nhà máy Việt Nam phụ thuộc cấu hình sản phẩm và loại dầu thô riêng. Điểm T9/26 chỉ gồm phiên 01/09/2026.</div>
+      <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=RBRTE&amp;f=D" target="_blank" rel="noopener">EIA · Brent spot</a><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=EER_EPMRU_PF4_RGC_DPG&amp;f=D" target="_blank" rel="noopener">EIA · xăng Bờ Vịnh</a><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=EER_EPD2DXL0_PF4_RGC_DPG&amp;f=D" target="_blank" rel="noopener">EIA · diesel ULSD Bờ Vịnh</a></div>
+      <details class="dtable"><summary>Xem bảng dữ liệu (24 tháng)</summary><div class="tablewrap"><table id="tbl-crack"></table></div></details>
+    </div>
+
+    <div class="signal-line"><b>Crack spread là phần chênh giữa giá sản phẩm lọc dầu và giá dầu thô.</b> Dashboard tự tính từ giá công khai của EIA: diesel/gasoline quy đổi USD/gallon sang USD/thùng bằng cách nhân 42, rồi trừ Brent. Công thức đúng về mặt đơn vị, nhưng đây là proxy USGC; biên của BSR/Nghi Sơn còn phụ thuộc cấu hình nhà máy, yield sản phẩm, loại dầu thô và chi phí vận hành.</div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Giá sản phẩm quốc tế proxy — 24 tháng</div>
+        <div class="chart-sub">USD/thùng, bình quân tháng · Brent so với xăng và diesel quy đổi từ EIA USGC</div>
+        <div id="chMoit"></div>
+        <div class="conf-note">Đây là time-series thay cho snapshot một kỳ. Diesel product price proxy tăng từ 95,6 USD/thùng tháng 9/2025 lên 198,8 USD/thùng tại điểm T9/2026, trong khi Brent tăng từ 68,0 lên 96,0. Phần tăng vượt trội nằm ở sản phẩm sau lọc, không chỉ ở dầu thô.</div>
+        <div class="source-note">Nguồn chart là EIA Brent spot, EIA USGC gasoline và EIA USGC ULSD. Số này không phải bảng giá thành phẩm trong công thức điều hành của Bộ Công Thương; văn bản MOIT/PDF từng kỳ cần được bóc tách riêng nếu muốn đúng tuyệt đối theo rổ Việt Nam.</div>
+        <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=RBRTE&amp;f=D" target="_blank" rel="noopener">EIA · Brent spot</a><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=EER_EPMRU_PF4_RGC_DPG&amp;f=D" target="_blank" rel="noopener">EIA · xăng USGC</a><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=EER_EPD2DXL0_PF4_RGC_DPG&amp;f=D" target="_blank" rel="noopener">EIA · diesel ULSD USGC</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-moit"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Giá bán lẻ trong nước — 10 kỳ điều hành gần nhất</div>
+        <div class="chart-sub">đồng/lít, Vùng 1 · Petrolimex/CostFlow, cập nhật tới 03/09/2026</div>
+        <div id="chRetailFuelMini"></div>
+        <div class="legend">
+          <span class="li"><span class="dot" style="background:var(--s4)"></span>E5 RON 92-II</span>
+          <span class="li"><span class="dot" style="background:var(--s3)"></span>E10 RON 95-III</span>
+          <span class="li"><span class="dot" style="background:var(--s2)"></span>DO 0,05S-II</span>
+        </div>
+        <div class="conf-note">Diesel đã hạ từ đỉnh 28.540 đồng/lít ngày 20/08 xuống 27.740 ngày 03/09, trong khi xăng E5 và RON 95 tăng lên đỉnh 10 kỳ. Đây là lý do cần nhìn xu hướng theo kỳ điều hành, không nhìn một snapshot đơn lẻ.</div>
+        <div class="srcrow"><a href="https://costflow.vn/du-lieu/gia-xang-dau-lap-du-toan" target="_blank" rel="noopener">CostFlow · chuỗi Petrolimex từ 2016</a><a href="https://moit.gov.vn/van-ban-phap-luat/van-ban-phap-quy/thong-bao-dieu-hanh-gia-ban-xang-dau.html" target="_blank" rel="noopener">Bộ Công Thương · kỳ 03/09/2026</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-retailmini"></table></div></details>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Brent — 24 tháng gần nhất</div>
+        <div class="chart-sub">USD/thùng, bình quân tháng · EIA Europe Brent Spot FOB</div>
+        <div id="chBrent24"></div>
+        <div class="conf-note">Điểm cuối T9/26 chỉ gồm một phiên (01/09/2026), không phải bình quân tháng đầy đủ.</div>
+        <div class="source-note">Đáy gần nhất T12/2025 (62,54), đỉnh T4/2026 (117,29) — trùng với giai đoạn lưu lượng tàu qua eo Hormuz sụp về gần bằng không (tab 7).</div>
+        <div class="srcrow"><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=RBRTE&amp;f=D" target="_blank" rel="noopener">EIA · Brent spot theo ngày</a><a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank" rel="noopener">FRED · DCOILBRENTEU</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu (24 tháng)</summary><div class="tablewrap"><table id="tbl-brent24"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">Brent — bình quân năm, 2010–2026</div>
+        <div class="chart-sub">USD/thùng · đỉnh 2012 (111,57) → đáy 2020 (41,96) → đỉnh 2022 (100,93) → vùng thấp 2025 (69,14) → đang tăng lại</div>
+        <div id="chBrentYear"></div>
+        <div class="conf-note">Cột 2026 là bình quân phần năm đã trôi qua (01/01–01/09/2026), không so sánh trực tiếp được với các năm đủ 12 tháng.</div>
+        <div class="srcrow"><a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank" rel="noopener">FRED · DCOILBRENTEU</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-brentyear"></table></div></details>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <div class="chart-title">Brent so với WTI — 24 tháng</div>
+        <div class="chart-sub">USD/thùng, bình quân tháng · độ rộng chênh lệch cho biết arbitrage xuất khẩu dầu Mỹ đang mở hay đóng</div>
+        <div id="chBrentWti"></div>
+        <div class="legend">
+          <span class="li"><span class="dot" style="background:var(--s1)"></span>Brent</span>
+          <span class="li"><span class="dot" style="background:var(--s2)"></span>WTI</span>
+        </div>
+        <div class="srcrow"><a href="https://fred.stlouisfed.org/series/DCOILBRENTEU" target="_blank" rel="noopener">FRED · Brent</a><a href="https://fred.stlouisfed.org/series/DCOILWTICO" target="_blank" rel="noopener">FRED · WTI</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-bw"></table></div></details>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">Vì sao biên của khâu phân phối không đi theo giá thế giới</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 10px">Giá bán lẻ trong nước được điều hành theo chu kỳ, có công cụ bình ổn. Hệ quả là khi giá thế giới biến động nhanh, <b>giá vốn nhập khẩu đi trước giá bán lẻ được phép áp dụng</b>. Độ lệch pha đó tạo ra lãi hoặc lỗ tạm thời cho doanh nghiệp phân phối — hoàn toàn độc lập với năng lực vận hành của họ.</p>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 10px">Vì vậy doanh nghiệp phân phối là <b>cổ phiếu của xu hướng giá, không phải của mức giá</b>: giá dầu tăng đều đặn trong quý thì có lợi (hàng tồn kho mua rẻ bán đắt), còn giá dầu ở mức cao nhưng đang giảm thì bất lợi. Đây là chỗ nhiều báo cáo đọc ngược.</p>
+        <p class="note" style="margin:0">Bằng chứng bằng số cho luận điểm này nằm ở tab <b>6. Key players</b>, phần theo dõi tồn kho theo quý của PLX — nơi doanh nghiệp lỗ ngay trong quý giá dầu tăng mạnh nhất.</p>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt4" id="pane-mt4">
+  <section class="section">
+    <div class="sectionhead"><div><h2>4. Policy / Trade / Tax</h2><p>Hai lớp chính sách có độ dài tác động rất khác nhau: cơ chế điều hành giá tác động ngay trong quý, còn khung pháp lý thượng nguồn tác động qua nhiều năm. Không nên trộn hai lớp này vào cùng một luận điểm.</p></div></div>
+
+    <div class="card">
+      <h3 style="margin-top:0;font-size:13.5px">Cơ chế điều hành giá xăng dầu — tác động trong quý</h3>
+      <div class="viz-grid">
+        <div class="viz-block">
+          <div class="chart-title">Giá bán lẻ cuối năm / hiện tại — 2016–2026</div>
+          <div class="chart-sub">đồng/lít, Vùng 1 · mốc cuối năm hoặc mốc mới nhất trong năm</div>
+          <div id="chRetailYear"></div>
+        </div>
+        <div class="viz-block">
+          <div class="chart-title">10 kỳ điều hành gần nhất — cập nhật nhanh</div>
+          <div class="chart-sub">đồng/lít, Vùng 1 · 02/07–03/09/2026</div>
+          <div id="chRetailFuel"></div>
+        </div>
+      </div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Cấu phần</th><th>Cách vận hành</th><th>Ảnh hưởng tới doanh nghiệp</th></tr></thead>
+        <tbody>
+          <tr><td><b>Chu kỳ điều hành</b></td><td>Liên Bộ Công Thương – Tài chính công bố giá trần bán lẻ theo kỳ, dựa trên bình quân giá thành phẩm thế giới giữa hai kỳ</td><td>Tạo độ trễ giữa giá vốn nhập và giá bán được phép áp dụng — nguồn gốc của lãi/lỗ hàng tồn kho</td></tr>
+          <tr><td><b>Quỹ bình ổn giá</b></td><td>Kỳ 03/09/2026 cần đọc trong PDF/văn bản điều hành gốc; kỳ 27/08/2026 trước đó không chi quỹ và trích lập diesel 200 đồng/lít</td><td>Trích lập làm giảm phần giá được chuyển vào giá bán, ảnh hưởng trực tiếp biên khâu phân phối</td></tr>
+          <tr><td><b>Giá thành phẩm tham chiếu</b></td><td>Văn bản Bộ Công Thương có PDF từng kỳ; HTML chỉ expose metadata nên pipeline cần OCR/PDF parser</td><td>Đây là đầu vào sát nhất cho PLX/nhà phân phối, nhưng chưa có API public sạch</td></tr>
+        </tbody>
+      </table></div>
+      <div class="source-note">Chart dài dùng chuỗi CostFlow tổng hợp từ thông cáo Petrolimex, có dữ liệu từ 04/01/2016 đến 03/09/2026. Chart 10 kỳ gần nhất dùng cùng nguồn để theo dõi nhanh trong quý. Văn bản điều hành gốc của Bộ Công Thương dùng để đối chiếu pháp lý từng kỳ.</div>
+      <div class="data-gap"><b>Data limitation:</b> giá thành phẩm thế giới trong công thức điều hành nằm trong PDF Bộ Công Thương từng kỳ; file PDF tải được nhưng không extract text sạch bằng <code>pdftotext</code>. Pipeline tự động cần OCR/PDF parser hoặc nguồn vendor.</div>
+      <div class="srcrow"><a href="https://costflow.vn/du-lieu/gia-xang-dau-lap-du-toan" target="_blank" rel="noopener">CostFlow · chuỗi Petrolimex 2016–2026</a><a href="https://moit.gov.vn/van-ban-phap-luat/van-ban-phap-quy/thong-bao-dieu-hanh-gia-ban-xang-dau.html" target="_blank" rel="noopener">Bộ Công Thương · văn bản 03/09/2026</a><a href="https://dms.gov.vn/" target="_blank" rel="noopener">Cục Quản lý &amp; Phát triển thị trường trong nước</a></div>
+      <details class="dtable"><summary>Xem bảng dữ liệu theo năm</summary><div class="tablewrap"><table id="tbl-retailyear"></table></div></details>
+      <details class="dtable"><summary>Xem bảng dữ liệu 10 kỳ gần nhất</summary><div class="tablewrap"><table id="tbl-retailfuel"></table></div></details>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:13.5px">Luật Dầu khí 2026 — tác động ở đầu nguồn chu kỳ đầu tư</h3>
+      <a class="law-cta" href="https://thanhnhan-04.github.io/Luat-Dau-Khi-2026/" target="_blank" rel="noopener">
+        <div class="eyebrow">Dashboard chuyên đề cần đọc kèm</div>
+        <div class="title">Luật Dầu khí 2026</div>
+        <div class="desc">Trang này chỉ tóm tắt kênh truyền dẫn tới ngành; phần điều khoản, timeline và tác động pháp lý chi tiết nằm ở dashboard luật riêng.</div>
+      </a>
+      <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 12px">Luật không tạo doanh thu trực tiếp. Tác động đi qua nhiều bước: cải thiện hiệu quả dự án → tăng xác suất ra quyết định đầu tư → phát sinh hợp đồng dịch vụ → hình thành sản lượng và dòng tiền. Vì vậy nhóm dịch vụ hưởng lợi trước, sản lượng và hạ tầng hưởng lợi sau.</p>
+      <div class="grid two">
+        <div class="driver"><h3>Rút ngắn tầng phê duyệt</h3><p>Petrovietnam được giao thêm thẩm quyền với nhiều nội dung chuyên môn, lựa chọn nhà thầu và quản lý hợp đồng. Với ngành có vốn đầu tư lớn và thời gian chuẩn bị nhiều năm, mỗi năm chậm làm tăng chi phí vốn và rủi ro trượt giá thiết bị — nên rút ngắn thời gian phê duyệt cải thiện hiệu quả dự án ngay cả khi giá dầu không đổi.</p></div>
+        <div class="driver"><h3>Cơ chế cho mỏ cận biên và gia tăng thu hồi dầu</h3><p>Dự án mỏ cận biên hoặc áp dụng giải pháp gia tăng thu hồi dầu có thể được đề xuất tăng mức thu hồi chi phí tối đa thêm không quá 10% so với mức đang áp dụng. Thu hồi chi phí là phần doanh thu nhà thầu được dùng để bù chi phí trước khi chia lợi nhuận — tăng trần này giúp dòng tiền về sớm hơn.</p></div>
+        <div class="driver"><h3>Linh hoạt trong quản lý hợp đồng</h3><p>Hoàn thiện cơ chế gia hạn hợp đồng, gia hạn giai đoạn thăm dò, giữ lại diện tích có phát hiện khí. Với khí, một phát hiện chưa chắc phát triển được ngay vì còn phải chờ đường ống và hộ tiêu thụ — cơ chế linh hoạt hơn giúp tránh mất cơ hội thương mại hóa vì hết thời hạn.</p></div>
+        <div class="driver"><h3>Mở rộng sang năng lượng ngoài khơi và lưu trữ CO₂</h3><p>Khung pháp lý mở rộng cho công trình năng lượng ngoài khơi và cơ chế thu giữ – lưu trữ CO₂, gồm cả cách xử lý chi phí này trong cơ chế thu hồi chi phí dầu khí. Về dài hạn có thể tạo nhu cầu mới cho khảo sát, khoan giếng bơm ép, đường ống và cải hoán giàn.</p></div>
+      </div>
+      <div class="conf-note">Luật chỉ có hiệu lực từ 01/03/2027. Tác động trong 2026 chủ yếu nằm ở kỳ vọng; tốc độ thực thi còn phụ thuộc nghị định và thông tư hướng dẫn.</div>
+      <div class="source-note"><b>Nguồn công khai:</b> văn bản luật gốc tra tại <a href="https://vanban.chinhphu.vn/" target="_blank" rel="noopener">Cơ sở dữ liệu văn bản quy phạm pháp luật của Chính phủ</a> và <a href="https://quochoi.vn/" target="_blank" rel="noopener">Quốc hội</a>; tác động tới từng doanh nghiệp dẫn theo công bố của chính doanh nghiệp. Dashboard này chỉ tóm tắt tác động đầu tư; phân tích luật chi tiết nên đọc ở trang chuyên đề riêng.</div>
+      <div class="srcrow"><a href="https://thanhnhan-04.github.io/Luat-Dau-Khi-2026/" target="_blank" rel="noopener">Dashboard chuyên đề · Luật Dầu khí 2026</a><a href="https://www.pvgas.com.vn/" target="_blank" rel="noopener">PV GAS</a><a href="https://www.bsr.com.vn/" target="_blank" rel="noopener">BSR</a><a href="https://www.pvtrans.vn/" target="_blank" rel="noopener">PVTrans</a></div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt5" id="pane-mt5">
+  <section class="section">
+    <div class="sectionhead"><div><h2>5. Catalyst / Risk</h2><p>Mỗi kịch bản đi kèm giả định định lượng và một ngưỡng làm nó sai. Không có ngưỡng invalidation thì đó là dự đoán, không phải phân tích.</p></div></div>
+
+    <div class="catalyst-map">
+      <div class="factor-card good">
+        <h3>Crack sản phẩm cao</h3>
+        <div class="metric">102,8</div>
+        <div class="label2">USD/thùng · diesel crack USGC, 01/09/2026</div>
+        <div class="impact"><b>Hỗ trợ:</b> BSR nếu vẫn có nguyên liệu chạy máy. <b>Ngưỡng đảo chiều:</b> diesel crack xuống dưới 60 USD/thùng trong một tháng.</div>
+      </div>
+      <div class="factor-card bad">
+        <h3>Global balance 2026E thiếu cung</h3>
+        <div class="metric">-1,87</div>
+        <div class="label2">mb/d · EIA STEO, cung trừ cầu</div>
+        <div class="impact"><b>Rủi ro:</b> giá dầu được hỗ trợ nhưng dễ bóp cầu. <b>Ngưỡng đảo chiều:</b> forecast 2027E dư cung xảy ra sớm.</div>
+      </div>
+      <div class="factor-card bad">
+        <h3>Hormuz chưa bình thường hóa</h3>
+        <div class="metric">1,9</div>
+        <div class="label2">tàu chở dầu/ngày · bình quân tháng 8/2026</div>
+        <div class="impact"><b>Rủi ro:</b> Nghi Sơn, nhập khẩu sản phẩm, crack. <b>Follow nhanh:</b> IMF PortWatch API. <b>Ngưỡng đảo chiều:</b> phục hồi trên 30 lượt/ngày.</div>
+      </div>
+      <div class="factor-card good">
+        <h3>Luật Dầu khí 2026</h3>
+        <div class="metric">01/03/27</div>
+        <div class="label2">ngày hiệu lực</div>
+        <div class="impact"><b>Hỗ trợ:</b> xác suất FID và hợp đồng dịch vụ. <b>Độ trễ:</b> nhiều quý tới nhiều năm, không tạo doanh thu ngay.</div>
+      </div>
+      <div class="factor-card good">
+        <h3>Khai thác PVN 6T/2026</h3>
+        <div class="metric">+11,4%</div>
+        <div class="label2">so cùng kỳ · 8,7 triệu tấn quy dầu</div>
+        <div class="impact"><b>Hỗ trợ:</b> tín hiệu ngược trend suy giảm dài hạn. <b>Cần kiểm tra:</b> có duy trì sang 9T/2026 hay không.</div>
+      </div>
+      <div class="factor-card bad">
+        <h3>Demand outlook phân kỳ</h3>
+        <div class="metric">IEA < 0</div>
+        <div class="label2">IEA dự báo cầu giảm; OPEC vẫn tăng nhưng đã hạ outlook</div>
+        <div class="impact"><b>Rủi ro:</b> giá cao tự phá cầu. <b>Cần theo dõi:</b> China, India, Other Asia và OECD demand revision.</div>
+      </div>
+    </div>
+    <div class="srcrow"><a href="https://www.iea.org/reports/oil-market-report-august-2026" target="_blank" rel="noopener">IEA · Oil Market Report Aug 2026</a><a href="https://publications.opec.org/momr/" target="_blank" rel="noopener">OPEC · Monthly Oil Market Report</a><a href="https://petrovietnam.petrotimes.vn/viet-tiep-chang-duong-khat-vong-moi-744936.html" target="_blank" rel="noopener">PVN · kết quả 6 tháng 2026</a><a href="https://thanhnhan-04.github.io/Luat-Dau-Khi-2026/" target="_blank" rel="noopener">Dashboard Luật Dầu khí 2026</a></div>
+
+    <div class="card focus-card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:13.5px">Watch KPIs — follow ở đâu để cập nhật thesis nhanh nhất</h3>
+      <div class="tablewrap"><table class="watch-table">
+        <thead><tr><th>Tần suất</th><th>KPI</th><th>Follow nhanh nhất</th><th>Ngưỡng cần chú ý</th><th>Tác động chính</th></tr></thead>
+        <tbody>
+          <tr><td>Ngày</td><td>Brent, gasoline/ULSD proxy, crack USGC</td><td><a href="https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm" target="_blank" rel="noopener">EIA spot prices</a></td><td>Crack diesel giữ trên 60 USD/thùng dù Brent giảm</td><td>Xác nhận product bottleneck còn hay đã gỡ</td></tr>
+          <tr><td>Tuần</td><td>US distillate stocks, gasoline stocks, crude stocks, refinery runs</td><td><a href="https://www.eia.gov/petroleum/supply/weekly/" target="_blank" rel="noopener">EIA Weekly Petroleum Status Report</a></td><td>Distillate thủng 100 triệu thùng hoặc hồi phục lên trên 115–120 triệu thùng</td><td>Crack diesel, BSR, PLX</td></tr>
+          <tr><td>Tuần</td><td>Hormuz tanker traffic</td><td><a href="https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=portid%3D%27chokepoint6%27&amp;outFields=date,n_tanker,n_total&amp;orderByFields=date%20DESC&amp;resultRecordCount=30&amp;f=json" target="_blank" rel="noopener">IMF PortWatch API</a></td><td>Phục hồi trên 30 lượt tàu chở dầu/ngày hoặc tiếp tục dưới 10</td><td>Nghi Sơn, nhập khẩu sản phẩm, crack</td></tr>
+          <tr><td>Kỳ điều hành</td><td>Giá bán lẻ xăng dầu trong nước</td><td><a href="https://costflow.vn/du-lieu/gia-xang-dau-lap-du-toan" target="_blank" rel="noopener">CostFlow/Petrolimex</a> + <a href="https://moit.gov.vn/van-ban-phap-luat/van-ban-phap-quy/thong-bao-dieu-hanh-gia-ban-xang-dau.html" target="_blank" rel="noopener">MOIT</a></td><td>Diesel còn cao hơn RON95 hoặc quỹ bình ổn thay đổi trạng thái</td><td>PLX, phân phối, inventory margin</td></tr>
+          <tr><td>Tháng</td><td>IEA/OPEC/EIA global supply-demand revisions</td><td><a href="https://www.iea.org/reports/oil-market-report-august-2026" target="_blank" rel="noopener">IEA OMR</a> / <a href="https://publications.opec.org/momr/" target="_blank" rel="noopener">OPEC MOMR</a> / <a href="https://www.eia.gov/outlooks/steo/" target="_blank" rel="noopener">EIA STEO</a></td><td>IEA và OPEC cùng hạ demand hoặc cùng nâng supply recovery</td><td>Thay đổi regime giá dầu và margin</td></tr>
+          <tr><td>Quý</td><td>PVD utilization/dayrate; PVS backlog/new awards; GAS gas/LNG volume; PLX inventory/provision</td><td>BCTC, BCTN, tài liệu ĐHĐCĐ và công bố doanh nghiệp</td><td>Đảo chiều backlog, dayrate hoặc dự phòng tồn kho tăng bất thường</td><td>Earnings từng mã, không suy từ Brent</td></tr>
+        </tbody>
+      </table></div>
+      <div class="source-note">Các KPI này biến dashboard từ bảng tình huống thành bảng theo dõi thesis. Khi một ngưỡng bị phá, cần cập nhật lại kịch bản bên dưới thay vì chỉ thay số trên chart.</div>
+    </div>
+
+    <div class="section" style="margin-top:8px">
+      <h3 class="subhead">Ba kịch bản 6–12 tháng</h3>
+      <div class="scenarios">
+        <div class="scenario active" onclick="selectScenario('base',this)"><span class="badge base">CƠ SỞ</span><div class="range">Brent 85 – 100 USD/thùng</div><div class="note">Gián đoạn kéo dài nhưng không leo thang; crack hạ nhiệt dần từ vùng cực đoan.</div></div>
+        <div class="scenario" onclick="selectScenario('bull',this)"><span class="badge bull">TĂNG</span><div class="range">Brent &gt; 110 USD/thùng</div><div class="note">Leo thang làm mất thêm dòng chảy vật chất, không chỉ là phần bù rủi ro.</div></div>
+        <div class="scenario" onclick="selectScenario('bear',this)"><span class="badge bear">GIẢM</span><div class="range">Brent &lt; 75 USD/thùng</div><div class="note">Dòng chảy bình thường hóa, demand yếu theo IEA và OPEC tiếp tục hạ outlook.</div></div>
+      </div>
+      <div class="scenario-detail" id="scenarioDetail"></div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt6" id="pane-mt6">
+  <section class="section">
+    <div class="sectionhead"><div><h2>6. Key players</h2><p>Mỗi doanh nghiệp được đọc qua biến trung gian của riêng nó, không qua giá dầu. Đây là điểm phân biệt quan trọng nhất của tab này so với cách trình bày ngành thông thường.</p></div></div>
+
+    <div class="grid two">
+      <div class="card">
+        <div class="chart-title">BSR — biên lợi nhuận gộp theo năm, 2015–2024</div>
+        <div class="chart-sub">% · biên gộp của nhà máy lọc dầu dao động theo crack, không theo giá dầu</div>
+        <div id="chBsrMargin"></div>
+        <div class="conf-note">Năm 2020 âm 3,8% nên không vẽ được trên trục bắt đầu từ 0 — để trống trên biểu đồ và ghi số đầy đủ trong bảng dữ liệu. Tự tính bằng (doanh thu − giá vốn) ÷ doanh thu, <b>chưa đối chiếu với báo cáo tài chính đã kiểm toán</b>; dùng để nhìn hình dạng chu kỳ, không dùng làm số trích dẫn.</div>
+        <div class="source-note"><b>Nguồn công khai để tự động hóa:</b> <a href="https://finance.vietstock.vn/BSR/tai-chinh.htm" target="_blank" rel="noopener">Vietstock · BCTC BSR</a> hoặc báo cáo tài chính công bố bởi BSR. Biên gộp = (doanh thu - giá vốn) / doanh thu; dashboard tự tính từ các dòng BCTC, không lấy từ một chuỗi crack hay model có sẵn.</div>
+        <div class="data-gap"><b>Data limitation:</b> chuỗi biên gộp BSR là dữ liệu quan trọng nhưng chưa có API public miễn phí ổn định trong repo. Khi publish, cần nối nguồn BCTC public hoặc vendor và đối chiếu với báo cáo kiểm toán.</div>
+        <div class="srcrow"><a href="https://www.bsr.com.vn/" target="_blank" rel="noopener">BSR · công bố thông tin</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-bsr"></table></div></details>
+      </div>
+      <div class="card">
+        <div class="chart-title">PLX — hàng tồn kho cuối quý</div>
+        <div class="chart-sub">tỷ đồng · đọc kèm giá Brent cuối quý, lợi nhuận và dự phòng trong bảng dữ liệu bên dưới</div>
+        <div id="chPlx"></div>
+        <div class="conf-note"><b>Đã đối chiếu với công bố công khai — số liệu khớp.</b> Báo cáo tài chính quý 1/2026 của Petrolimex: doanh thu thuần gần <b>98.700 tỷ đồng</b> (+45%, cao nhất 13 năm), <b>lỗ 662 tỷ đồng</b> so với lãi 211 tỷ cùng kỳ, hàng tồn kho cuối quý gần <b>29.800 tỷ đồng</b> trong đó đã trích lập <b>hơn 6.500 tỷ</b> dự phòng giảm giá. Ba con số này trùng với chuỗi đang vẽ.</div>
+        <div class="conf-note"><b>Nguyên nhân theo giải trình của doanh nghiệp</b>, khác với suy đoán trong bản trước: không đơn thuần là độ lệch pha điều hành giá, mà doanh nghiệp <b>chấp nhận mua nguồn cung tức thời ở giá cao gấp ba lần</b> và <b>trữ tồn kho gấp 1,3 lần mức tối thiểu theo quy định</b> để giữ nguồn cung, sau đó giá diesel trên sàn Platts Singapore <b>giảm khoảng 40% từ cuối tháng 3</b>. Mảng xăng dầu cốt lõi lỗ khoảng 1.000 tỷ đồng. Đây là minh chứng cho luận điểm ở tab 3: khâu phân phối là cổ phiếu của <b>xu hướng</b> giá, không phải mức giá.</div>
+        <div class="source-note">Nguồn công khai: báo cáo tài chính quý 1/2026 và văn bản giải trình của Petrolimex, được các đầu báo tài chính dẫn lại. Chuỗi Brent cuối quý tự tính từ chuỗi ngày của EIA.</div>
+        <div class="srcrow"><a href="https://vietstock.vn/2026/05/petrolimex-lo-bao-nhieu-trong-quy-1-737-1437802.htm" target="_blank" rel="noopener">Vietstock · PLX lỗ quý 1/2026</a><a href="https://cafef.vn/petrolimex-chinh-thuc-cong-bo-so-lo-quy-1-2026-188260504215537198.chn" target="_blank" rel="noopener">CafeF · công bố số lỗ</a><a href="https://www.dnse.com.vn/senses/tin-tuc/petrolimex-ton-kho-ky-luc-gan-30000-ty-ong-bat-ngo-gia-tri-hang-mua-ang-i-uong-35223668" target="_blank" rel="noopener">DNSE · tồn kho kỷ lục</a><a href="https://finance.vietstock.vn/PLX/tai-chinh.htm" target="_blank" rel="noopener">Vietstock · BCTC PLX</a></div>
+        <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-plx"></table></div></details>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">PVD — đội giàn khoan, biến trung gian là hiệu suất sử dụng</h3>
+        <div class="mini-matrix">
+          <div class="mini-cell"><div class="k">Driver</div><div class="v">Dayrate</div><div class="s">giá thuê giàn</div></div>
+          <div class="mini-cell"><div class="k">Driver</div><div class="v">Util.</div><div class="s">tỷ lệ giàn có việc</div></div>
+          <div class="mini-cell"><div class="k">Lag</div><div class="v">4-8Q</div><div class="s">so với giá dầu</div></div>
+          <div class="mini-cell"><div class="k">Source</div><div class="v">PDF</div><div class="s">BCTN/ĐHĐCĐ</div></div>
+          <div class="mini-cell"><div class="k">Auto</div><div class="v">Khó</div><div class="s">cần bóc tách</div></div>
+        </div>
+        <div class="data-gap"><b>Data limitation:</b> chưa hiển thị bảng từng giàn/dayrate vì chưa có chuỗi public dạng máy đọc được trong repo. Dữ liệu này quan trọng cho PVD, nhưng nên lấy từ báo cáo thường niên, tài liệu ĐHĐCĐ, công bố hợp đồng hoặc vendor dữ liệu giàn khoan trước khi đưa số cụ thể vào dashboard.</div>
+        <div class="source-note"><b>Nguồn công khai cần nối:</b> <a href="https://www.pvdrilling.com.vn/" target="_blank" rel="noopener">PV Drilling</a> cho báo cáo thường niên/tài liệu nhà đầu tư; <a href="https://finance.vietstock.vn/PVD/tai-chinh.htm" target="_blank" rel="noopener">Vietstock · BCTC PVD</a> để đối chiếu tài chính.</div>
+        <div class="srcrow"><a href="https://www.pvdrilling.com.vn/" target="_blank" rel="noopener">PV Drilling · quan hệ cổ đông</a></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">PVS — backlog theo dự án, biến trung gian là khối lượng công việc đã ký</h3>
+        <div class="mini-matrix">
+          <div class="mini-cell"><div class="k">Driver</div><div class="v">Backlog</div><div class="s">hợp đồng đã ký</div></div>
+          <div class="mini-cell"><div class="k">Driver</div><div class="v">Award</div><div class="s">dự án mới</div></div>
+          <div class="mini-cell"><div class="k">Lag</div><div class="v">4-8Q</div><div class="s">ghi nhận doanh thu</div></div>
+          <div class="mini-cell"><div class="k">Source</div><div class="v">PDF</div><div class="s">CBTT/BCTN</div></div>
+          <div class="mini-cell"><div class="k">Auto</div><div class="v">Khó</div><div class="s">cần bóc tách</div></div>
+        </div>
+        <div class="data-gap"><b>Data limitation:</b> đã gỡ bảng backlog chi tiết vì các giá trị dự án chưa được đối chiếu lại từ nguồn public trong repo. Đây là dữ liệu quan trọng, nên khi có pipeline cần lấy từ công bố hợp đồng, báo cáo thường niên, tài liệu ĐHĐCĐ hoặc vendor; không nên hiển thị số dự án nếu chỉ đến từ file tổng hợp chưa đối chiếu.</div>
+        <div class="source-note"><b>Nguồn công khai cần nối:</b> <a href="https://www.ptsc.com.vn/" target="_blank" rel="noopener">PTSC/PVS</a> cho công bố hợp đồng và tiến độ dự án; <a href="https://finance.vietstock.vn/PVS/tai-chinh.htm" target="_blank" rel="noopener">Vietstock · BCTC PVS</a> để đối chiếu tài chính.</div>
+        <div class="srcrow"><a href="https://www.ptsc.com.vn/" target="_blank" rel="noopener">PTSC / PVS · công bố thông tin</a></div>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">GAS — công thức giá và cơ cấu nguồn</h3>
+        <div class="mini-matrix">
+          <div class="mini-cell"><div class="k">Driver</div><div class="v">Mix</div><div class="s">khí nội địa/LNG</div></div>
+          <div class="mini-cell"><div class="k">Driver</div><div class="v">LNG</div><div class="s">giá nhập khẩu</div></div>
+          <div class="mini-cell"><div class="k">Driver</div><div class="v">Volume</div><div class="s">khí khô/LNG</div></div>
+          <div class="mini-cell"><div class="k">Demand</div><div class="v">Power</div><div class="s">điện/đạm/CNG</div></div>
+          <div class="mini-cell"><div class="k">Auto</div><div class="v">Khó</div><div class="s">PDF/BCTC</div></div>
+        </div>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:10px 0 0">Điều cần đọc ở đây không phải mức giá, mà <b>cơ cấu nguồn</b>: khí ẩm nội địa giá rẻ đang cạn dần, phần hụt được bù bằng LNG nhập khẩu có giá cao hơn. Ngay cả khi sản lượng bán tăng, biên lợi nhuận vẫn có thể bị bào mòn nếu tỷ trọng nguồn đắt tăng nhanh hơn.</p>
+        <div class="data-gap"><b>Data limitation:</b> đã gỡ bảng giá mua LNG/phí vận chuyển/giá bán vì chưa có chuỗi public dạng máy đọc được để đối chiếu từng con số. Đây vẫn là dữ liệu quan trọng cho GAS, nhưng cần nối từ tài liệu PV GAS, BCTC, thuyết minh sản lượng hoặc vendor trước khi hiển thị số cụ thể.</div>
+        <div class="source-note"><b>Nguồn công khai cần nối:</b> <a href="https://www.pvgas.com.vn/" target="_blank" rel="noopener">PV GAS</a> cho tài liệu nhà đầu tư, báo cáo thường niên và công bố sản lượng; <a href="https://finance.vietstock.vn/GAS/tai-chinh.htm" target="_blank" rel="noopener">Vietstock · BCTC GAS</a> để đối chiếu doanh thu, biên và cơ cấu tài chính.</div>
+        <div class="srcrow"><a href="https://www.pvgas.com.vn/" target="_blank" rel="noopener">PV GAS · công bố thông tin</a></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;font-size:13.5px">PVT — vì sao không được suy từ giá dầu</h3>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 10px">Biến quyết định của doanh nghiệp vận tải là <b>cước vận tải</b>, và cước có quan hệ với giá dầu <b>không xác định dấu</b>:</p>
+        <ul class="list">
+          <li>Giá dầu giảm vì nguồn cung được bơm thêm → quãng đường vận chuyển tăng → cước tăng → có lợi cho vận tải, dù giá dầu giảm.</li>
+          <li>Giá dầu tăng vì mất nguồn cung → mất lô hàng → có thể bất lợi cho vận tải, dù giá dầu tăng.</li>
+          <li>Giá dầu tăng còn đẩy chi phí nhiên liệu chạy tàu lên, bào mòn biên ở phần đội tàu chạy theo chuyến.</li>
+        </ul>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:10px 0 0">Hai câu hỏi bắt buộc trước khi kết luận: <b>cơ cấu spot so với hợp đồng dài hạn</b> của đội tàu là bao nhiêu, và phần vận tải nội địa phục vụ nhà máy lọc dầu trong nước chiếm tỷ trọng nào — phần này chạy theo hợp đồng nên gần như miễn nhiễm với sóng cước quốc tế.</p>
+        <div class="conf-note">Dashboard này <b>chưa có</b> chuỗi số cước vận tải và cơ cấu hợp đồng đội tàu. Phần vận tải cần được đọc bằng khung phân tích cước riêng, không nối trực tiếp vào giá dầu ở tab 2.</div>
+        <div class="srcrow"><a href="https://www.pvtrans.vn/" target="_blank" rel="noopener">PVTrans · quan hệ cổ đông</a></div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="majorpane" data-tab="mt7" id="pane-mt7">
+  <section class="section">
+    <div class="sectionhead"><div><h2>7. Hormuz &amp; dòng chảy <em>— tab riêng của ngành</em></h2><p>Đây là tab customize ngoài khung chuẩn, dựng riêng cho đợt gián đoạn đang diễn ra. Lý do tách riêng: đây là một cú sốc dòng chảy vật chất có thể kết thúc, khác hẳn các yếu tố cấu trúc dài hạn ở sáu tab trước — trộn chung sẽ làm người đọc tưởng nó là đặc điểm thường trực của ngành.</p></div></div>
+
+    <div class="card">
+      <div class="chart-title">Tàu chở dầu qua eo Hormuz — bình quân mỗi ngày theo tháng</div>
+      <div class="chart-sub">lượt tàu/ngày · chart chính dùng dữ liệu tháng để thấy rõ xu hướng trước/sau gián đoạn</div>
+      <div id="chHormuz"></div>
+      <div class="legend">
+        <span class="li"><span class="dot" style="background:var(--s2)"></span>Tàu chở dầu, bình quân ngày</span>
+      </div>
+      <div class="conf-note"><b>Đã thay chuỗi dữ liệu cũ bị đứt bằng nguồn công khai có API, và kết luận thay đổi.</b> Bản trước nói không xác định được lưu lượng đã phục hồi hay chưa vì dữ liệu dừng ở 17/03. Dữ liệu công khai của IMF PortWatch chạy tới <b>30/08/2026</b> cho thấy câu trả lời rõ ràng: <b>chưa phục hồi</b>. Tàu chở dầu qua eo giảm từ bình quân 43,5 lượt/ngày (tháng 2/2026) xuống <b>0,9 trong tháng 3</b> và vẫn chỉ ở <b>1,9 lượt/ngày trong tháng 8/2026</b> — tức gián đoạn đã kéo dài sáu tháng liên tục, không phải một cú sốc ngắn.</div>
+      <div class="conf-note">Điều này tạo ra một mâu thuẫn cần theo dõi: đường cong kỳ hạn ở tab 2 đang định giá tình trạng này là <b>tạm thời</b> (backwardation dốc 19,83 USD/thùng), trong khi dòng chảy vật chất <b>không cho thấy dấu hiệu bình thường hóa nào</b> sau nửa năm. Một trong hai vế sẽ phải điều chỉnh: hoặc dòng chảy hồi phục, hoặc đường cong phải định giá lại.</div>
+      <div class="source-note">IMF PortWatch — nền tảng công khai của Quỹ Tiền tệ Quốc tế và Đại học Oxford, dùng dữ liệu vệ tinh AIS, cập nhật hằng tuần. Eo Hormuz có mã <code>chokepoint6</code>. Số liệu lấy qua API ngày 03/09/2026, bản ghi mới nhất 30/08/2026. <b>Đây là nguồn có thể tự động cập nhật</b> — xem bảng nguồn ở cuối tab.</div>
+      <div class="srcrow"><a href="https://portwatch.imf.org/pages/chokepoint6" target="_blank" rel="noopener">IMF PortWatch · eo Hormuz</a><a href="https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=portid%3D%27chokepoint6%27&amp;outFields=date,n_tanker,n_total&amp;orderByFields=date%20DESC&amp;resultRecordCount=30&amp;f=json" target="_blank" rel="noopener">API dữ liệu ngày (JSON)</a><a href="https://portwatch.imf.org/pages/data-and-methodology" target="_blank" rel="noopener">PortWatch · phương pháp</a><a href="https://www.iea.org/reports/oil-market-report-august-2026" target="_blank" rel="noopener">IEA · Hormuz vẫn là nút thắt</a></div>
+      <details class="dtable"><summary>Xem bảng dữ liệu theo tháng</summary><div class="tablewrap"><table id="tbl-hormuzm"></table></div></details>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="chart-title">Dữ liệu ngày — chỉ dùng để kiểm tra cú sốc</div>
+      <div class="chart-sub">lượt tàu/ngày · chỉ vẽ tàu chở dầu để tránh nhiễu; tổng số tàu nằm trong bảng dữ liệu</div>
+      <div id="chHormuzM"></div>
+      <div class="conf-note">Mức nền trước gián đoạn là 30–50 lượt tàu chở dầu mỗi ngày. Sáu tháng gần nhất dao động trong khoảng 0,9–5,4 — <b>chưa tháng nào quay lại quá 11% mức nền</b>. Đây là ngưỡng đo được để kiểm tra kịch bản ở tab 5: kịch bản tăng bị bác bỏ nếu lưu lượng phục hồi về vùng 30 lượt/ngày trở lên.</div>
+      <div class="srcrow"><a href="https://portwatch.imf.org/pages/chokepoint6" target="_blank" rel="noopener">IMF PortWatch · eo Hormuz</a></div>
+      <details class="dtable"><summary>Xem bảng dữ liệu theo ngày (242 ngày)</summary><div class="tablewrap"><table id="tbl-hormuz"></table></div></details>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;font-size:13.5px">Năm kênh truyền dẫn tới doanh nghiệp Việt Nam</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Kênh</th><th>Cơ chế</th><th>Ai chịu tác động</th><th>Chiều tác động</th></tr></thead>
+        <tbody>
+          <tr><td><b>Nguyên liệu đầu vào</b></td><td>Nghi Sơn phụ thuộc nguồn dầu thô Kuwait — đi qua đúng tuyến bị gián đoạn</td><td>Nguồn cung xăng dầu nội địa nói chung</td><td>Tiêu cực, và là rủi ro cụ thể nhất</td></tr>
+          <tr><td><b>Crack spread</b></td><td>Vùng Vịnh là trung tâm xuất khẩu diesel và nhiên liệu bay; mất dòng chảy làm crack sản phẩm giãn mạnh</td><td>Doanh nghiệp lọc dầu còn đủ nguyên liệu để chạy</td><td>Tích cực, mức độ hiếm gặp</td></tr>
+          <tr><td><b>Giá bán lẻ trong nước</b></td><td>Giá vốn nhập tăng nhanh hơn chu kỳ điều hành cho phép điều chỉnh</td><td>Khâu phân phối</td><td>Phụ thuộc hướng đi của giá trong quý, không phụ thuộc mức giá</td></tr>
+          <tr><td><b>Cước vận tải</b></td><td>Tuyến chạy dài hơn khi phải vòng tránh; đồng thời chi phí nhiên liệu chạy tàu tăng</td><td>Vận tải biển dầu khí</td><td>Không xác định dấu — cần xem cơ cấu spot và hợp đồng</td></tr>
+          <tr><td><b>Nhu cầu toàn cầu</b></td><td>IEA dự báo nhu cầu 2026 giảm, OPEC vẫn dự báo tăng nhưng đã hạ outlook — dấu hiệu demand đang chịu áp lực từ giá nhiên liệu và gián đoạn logistics</td><td>Toàn ngành, độ trễ dài</td><td>Tiêu cực về dài hạn</td></tr>
+        </tbody>
+      </table></div>
+      <div class="srcrow"><a href="https://www.iea.org/reports/oil-market-report-august-2026" target="_blank" rel="noopener">IEA · Oil Market Report Aug 2026</a><a href="https://publications.opec.org/momr/" target="_blank" rel="noopener">OPEC · Monthly Oil Market Report</a><a href="https://tuoitre.vn/bo-cong-thuong-thong-tin-moi-nhat-ve-nguon-cung-xang-dau-chi-dao-dau-moi-tim-nguon-nhap-khau-20260309113839283.htm" target="_blank" rel="noopener">Tuổi Trẻ · chỉ đạo tìm nguồn nhập khẩu</a><a href="https://www.eia.gov/outlooks/steo/report/global_oil.php" target="_blank" rel="noopener">EIA STEO · tác động tới tồn kho toàn cầu</a></div>
+    </div>
+  
+    <div class="card" style="margin-top:14px;border-left:4px solid var(--accent)">
+      <h3 style="margin-top:0;font-size:13.5px">Nguồn dữ liệu và khả năng tự động cập nhật</h3>
+      <p style="font-size:12.5px;line-height:1.65;color:var(--ink2);margin:0 0 10px">Mục tiêu là mọi số trên dashboard đều đến từ nguồn công khai, để sau này chạy tự động. Bảng dưới liệt kê từng khối dữ liệu, nguồn công khai tương ứng, và mức độ tự động hóa được ngay hôm nay.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Khối dữ liệu</th><th>Nguồn công khai</th><th>Dạng truy cập</th><th>Tần suất</th><th>Tự động hóa</th></tr></thead>
+        <tbody>
+          <tr><td>Giá Brent, WTI, xăng và diesel Bờ Vịnh</td><td><a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&amp;s=RBRTE&amp;f=D" target="_blank" rel="noopener">EIA</a></td><td>File .xls theo đường dẫn cố định</td><td>Ngày</td><td><b>Được ngay</b></td></tr>
+          <tr><td>Tồn kho dầu thô, xăng, distillate, Cushing; sản lượng dầu Mỹ</td><td><a href="https://www.eia.gov/petroleum/supply/weekly/" target="_blank" rel="noopener">EIA Weekly Petroleum Status Report</a></td><td>File .xls theo đường dẫn cố định</td><td>Tuần</td><td><b>Được ngay</b></td></tr>
+          <tr><td>Cung-cầu dầu và nhiên liệu lỏng toàn cầu</td><td><a href="https://www.eia.gov/outlooks/steo/archives/aug26_base.xlsx" target="_blank" rel="noopener">EIA STEO archive</a></td><td>File .xlsx, sheet <code>3atab</code></td><td>Tháng</td><td><b>Được ngay</b></td></tr>
+          <tr><td>Dư địa công suất OPEC, gián đoạn ngoài kế hoạch</td><td><a href="https://www.eia.gov/outlooks/steo/archives/aug26_base.xlsx" target="_blank" rel="noopener">EIA STEO archive</a></td><td>File .xlsx, sheet <code>3dtab</code></td><td>Tháng</td><td><b>Được ngay</b></td></tr>
+          <tr><td>Vị thế đầu cơ trên hợp đồng WTI</td><td><a href="https://www.cftc.gov/files/dea/history/fut_disagg_txt_2026.zip" target="_blank" rel="noopener">CFTC</a></td><td>File .zip theo năm</td><td>Tuần</td><td><b>Được ngay</b></td></tr>
+          <tr><td>Lưu lượng tàu qua eo Hormuz</td><td><a href="https://portwatch.imf.org/pages/chokepoint6" target="_blank" rel="noopener">IMF PortWatch</a></td><td><b>API JSON</b> (<code>chokepoint6</code>)</td><td>Tuần, số liệu theo ngày</td><td><b>Được ngay</b></td></tr>
+          <tr class="gap-row"><td>Đường cong giá kỳ hạn WTI</td><td><a href="https://finance.yahoo.com/quote/CL%3DF/futures" target="_blank" rel="noopener">Yahoo Finance</a></td><td>JSON, <b>nguồn không chính thức</b></td><td>Ngày</td><td>Tạm được — nên thay bằng dữ liệu vendor</td></tr>
+          <tr><td>Giá bán lẻ trong nước</td><td><a href="https://costflow.vn/du-lieu/gia-xang-dau-lap-du-toan" target="_blank" rel="noopener">CostFlow/Petrolimex</a> · <a href="https://moit.gov.vn/" target="_blank" rel="noopener">Bộ Công Thương</a></td><td>HTML có chuỗi lịch sử; văn bản MOIT để đối chiếu</td><td>Mỗi kỳ điều hành</td><td>Tạm được — cần kiểm soát đối chiếu</td></tr>
+          <tr class="gap-row"><td>Giá thành phẩm thế giới trong công thức điều hành</td><td><a href="https://moit.gov.vn/" target="_blank" rel="noopener">Bộ Công Thương</a></td><td>PDF từng kỳ, chưa extract text sạch</td><td>Mỗi kỳ điều hành</td><td>Cần OCR/PDF parser hoặc vendor</td></tr>
+          <tr><td>Sản lượng khai thác dầu thô và khí của Việt Nam</td><td><a href="https://www.nso.gov.vn/so-lieu-thong-ke/" target="_blank" rel="noopener">Cục Thống kê</a> · <a href="https://petrovietnam.petrotimes.vn/" target="_blank" rel="noopener">Petrovietnam</a></td><td>Trang tin và tệp PDF</td><td>Tháng, quý</td><td>Cần bóc tách</td></tr>
+          <tr class="gap-row"><td>Báo cáo tài chính doanh nghiệp (GAS, BSR, PLX, PVD, PVS)</td><td>Công bố của doanh nghiệp · <a href="https://finance.vietstock.vn/GAS/tai-chinh.htm" target="_blank" rel="noopener">Vietstock</a></td><td>Trang web, không có API miễn phí</td><td>Quý</td><td><b>Cần mua dữ liệu vendor</b></td></tr>
+          <tr class="gap-row"><td>Đội giàn PVD, backlog PVS, chuỗi dự án khí</td><td>Báo cáo thường niên và tài liệu đại hội cổ đông</td><td>Tệp PDF</td><td>Năm hoặc theo sự kiện</td><td>Nhập tay có kiểm soát</td></tr>
+        </tbody>
+      </table></div>
+      <div class="conf-note"><b>Tổng kết:</b> 6 trên 12 khối dữ liệu đã có nguồn công khai với đường dẫn/API ổn định và có thể tự động cập nhật ngay — phần thị trường dầu thế giới, CFTC và lưu lượng qua eo Hormuz. Hai khối cần bóc tách HTML/PDF hoặc đối chiếu định kỳ. Bốn khối màu đỏ là dữ liệu quan trọng nhưng <b>chưa có nguồn public/free/machine-readable đủ ổn định</b>, nên cần vendor hoặc quy trình nhập tay có kiểm soát.</div>
+      <div class="data-gap"><b>Cách đọc dòng đỏ:</b> đây là dữ liệu quan trọng cho thesis nhưng chưa có đường public/free/machine-readable ổn định trong repo. Không bỏ khỏi dashboard nếu nó quyết định nhận định ngành, nhưng không dùng số cụ thể nếu chưa đối chiếu được nguồn công khai hoặc vendor.</div>
+    </div>
+</section>
+  </div>
+
+  <div class="footer">Dashboard ngành Dầu khí Việt Nam · FinSuccess Research · Dựng theo mẫu chung của bộ dashboard ngành: Tổng quan → Cung–Cầu → Giá–Chi phí–Margin → Policy/Trade/Tax → Catalyst/Risk → Key players, cộng một tab riêng cho đặc thù ngành · Số liệu thị trường ưu tiên nguồn công khai cập nhật ngày 03/09/2026; dữ liệu doanh nghiệp chưa có pipeline public được gắn nhãn data limitation · Bản v1.1 bổ sung global balance, watch KPIs và source-confidence.</div>
+</div>
+
+<script>
+/* ---------- tiny SVG chart engine ---------- */
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs){
+  const e=document.createElementNS(NS,tag);
+  if(attrs){ for(const k in attrs){ e.setAttribute(k, attrs[k]); } }
+  return e;
+}
+function txt(tag,attrs,text){ const e=el(tag,attrs); if(text!==undefined) e.textContent=text; return e; }
+function niceMax(v){
+  if(v<=0) return 1;
+  const mag=Math.pow(10,Math.floor(Math.log10(v)));
+  const n=v/mag;
+  let step;
+  if(n<=1) step=1; else if(n<=2) step=2; else if(n<=2.5) step=2.5; else if(n<=5) step=5; else step=10;
+  return step*mag;
+}
+function fmt(v,d){
+  d = d===undefined?0:d;
+  return Number(v).toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});
+}
+let tipEl=null;
+function tipBox(){
+  if(!tipEl){ tipEl=document.createElement('div'); tipEl.className='chtip'; document.body.appendChild(tipEl); }
+  return tipEl;
+}
+function showTip(evt,title,rows){
+  const t=tipBox();
+  t.innerHTML='';
+  const h=document.createElement('div'); h.className='chtip-title'; h.textContent=title; t.appendChild(h);
+  rows.forEach(r=>{
+    const row=document.createElement('div'); row.className='chtip-row';
+    const key=document.createElement('span'); key.className='chtip-key';
+    if(r.color){ const dot=document.createElement('span'); dot.className='chtip-dot'; dot.style.background=r.color; key.appendChild(dot); }
+    const kt=document.createElement('span'); kt.textContent=r.label; key.appendChild(kt);
+    const val=document.createElement('span'); val.className='chtip-val'; val.textContent=r.value;
+    row.appendChild(key); row.appendChild(val);
+    t.appendChild(row);
+  });
+  t.style.display='block';
+  moveTip(evt);
+}
+function moveTip(evt){
+  const t=tipBox();
+  const pad=16;
+  let x=evt.clientX+pad, y=evt.clientY+pad;
+  const rect=t.getBoundingClientRect();
+  if(x+rect.width>window.innerWidth-8) x=evt.clientX-rect.width-pad;
+  if(y+rect.height>window.innerHeight-8) y=evt.clientY-rect.height-pad;
+  t.style.left=x+'px'; t.style.top=y+'px';
+}
+function hideTip(){ if(tipEl) tipEl.style.display='none'; }
+
+function baseSvg(W,H,label){
+  return el('svg',{viewBox:'0 0 '+W+' '+H, width:'100%', height:H, class:'chartsvg', role:'img', 'aria-label':label||''});
+}
+function floatRange(minV,maxV){
+  const span=(maxV-minV)||Math.abs(maxV)||1;
+  const step=niceMax(span/4);
+  const lo=Math.floor((minV-span*0.15)/step)*step;
+  const hi=Math.ceil((maxV+span*0.15)/step)*step;
+  return [Math.max(lo,0), hi];
+}
+function yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,digits,yMin){
+  const steps=4;
+  yMin=yMin||0;
+  const yToPx=(v)=> padT + plotH*(1-(v-yMin)/(yMax-yMin));
+  for(let i=0;i<=steps;i++){
+    const v=yMin+(yMax-yMin)*i/steps;
+    const y=yToPx(v);
+    svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:y,y2:y,class:'gridline'}));
+    svg.appendChild(txt('text',{x:padL-8,y:y+3,'text-anchor':'end',class:'axislabel'}, fmt(v,digits)));
+  }
+  return yToPx;
+}
+
+/* categorical bar / combo chart */
+function barLineChart(containerId, opts){
+  const host=document.getElementById(containerId);
+  if(!host) return;
+  const cats=opts.categories, n=cats.length;
+  const rotate = n>8;
+  const W=640, H=opts.height||250;
+  const padL=50,padR=14,padT=14,padB= rotate?56:30;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  let maxV=0;
+  opts.series.forEach(s=> s.values.forEach(v=>{ if(v!=null && v>maxV) maxV=v; }));
+  let yMin=0, yMax=niceMax(maxV*1.15);
+  if(opts.zeroBase===false && opts.series.every(s=>s.kind==='line')){
+    let mn=Infinity; opts.series.forEach(s=>s.values.forEach(v=>{ if(v!=null && v<mn) mn=v; }));
+    const r=floatRange(mn,maxV); yMin=r[0]; yMax=r[1];
+  }
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  const yToPx=yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,opts.digits,yMin);
+  svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+plotH,y2:padT+plotH,class:'axisline'}));
+  const band=plotW/n;
+  const barSeries=opts.series.filter(s=>s.kind!=='line');
+  const lineSeries=opts.series.filter(s=>s.kind==='line');
+  const barW=Math.min(24, band*0.62/(barSeries.length||1));
+  const linePts={};
+  lineSeries.forEach(s=>{ linePts[s.name]=[]; });
+
+  cats.forEach((cat,i)=>{
+    const bandX=padL+i*band;
+    const cx=bandX+band/2;
+    const rows=[];
+    barSeries.forEach((s,si)=>{
+      const v=s.values[i];
+      const gx = cx - (barSeries.length*barW)/2 + si*barW;
+      if(v!=null){
+        const y0=yToPx(0), y1=yToPx(v);
+        const r=el('rect',{x:gx+1,y:Math.min(y0,y1),width:Math.max(barW-2,2),height:Math.max(Math.abs(y0-y1),1),rx:3,ry:3,fill:s.color, opacity: s.confArr && s.confArr[i]===false ? 0.55 : 1});
+        r.appendChild(txt('title',{},cat+' — '+s.name+': '+fmt(v,opts.digits)+(opts.unit?(' '+opts.unit):'')));
+        svg.appendChild(r);
+        if(i===n-1){ svg.appendChild(txt('text',{x:gx+barW/2,y:Math.min(y0,y1)-6,'text-anchor':'middle',class:'endlabel',fill:s.color},fmt(v,opts.digits))); }
+        rows.push({label:s.name,value:fmt(v,opts.digits)+(opts.unit?(' '+opts.unit):''),color:s.color});
+      }
+    });
+    lineSeries.forEach(s=>{
+      const v=s.values[i];
+      if(v!=null){ linePts[s.name].push([cx, yToPx(v)]); rows.push({label:s.name,value:fmt(v,opts.digits)+(opts.unit?(' '+opts.unit):''),color:s.color}); }
+      else { linePts[s.name].push(null); }
+    });
+    const hit=el('rect',{x:bandX,y:padT,width:band,height:plotH,fill:'transparent',class:'hitband',tabindex:'0'});
+    hit.addEventListener('pointerenter',e=>showTip(e, cat, rows));
+    hit.addEventListener('pointermove',moveTip);
+    hit.addEventListener('pointerleave',hideTip);
+    hit.addEventListener('focus',e=>showTip({clientX:bandX+ (host.getBoundingClientRect ? host.getBoundingClientRect().left:0), clientY:80}, cat, rows));
+    hit.addEventListener('blur',hideTip);
+    svg.appendChild(hit);
+    const lx=cx, ly=padT+plotH+14;
+    const everyN = n>24 ? Math.ceil(n/18) : 1;
+    if(i%everyN===0 || i===n-1){
+      const label=txt('text',{x:lx,y:ly,'text-anchor': rotate?'end':'middle',class:'catlabel'}, cat);
+      if(rotate) label.setAttribute('transform','rotate(-40 '+lx+' '+ly+')');
+      svg.appendChild(label);
+    }
+  });
+
+  const endLabelY=[];
+  lineSeries.forEach(s=>{
+    const pts=linePts[s.name].filter(p=>p);
+    if(pts.length>1){
+      const d='M'+pts.map(p=>p[0]+','+p[1]).join(' L');
+      svg.appendChild(el('path',{d:d,fill:'none',stroke:s.color,'stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'}));
+    }
+    linePts[s.name].forEach((p,i)=>{
+      if(!p) return;
+      const c=el('circle',{cx:p[0],cy:p[1],r:3.5,fill:s.color,stroke:'var(--card)','stroke-width':1.5});
+      svg.appendChild(c);
+      if(i===n-1){
+        let ly=p[1]-12;
+        while(endLabelY.some(v=>Math.abs(v-ly)<13)) ly-=14;
+        endLabelY.push(ly);
+        svg.appendChild(txt('text',{x:p[0],y:ly,'text-anchor':'middle',class:'endlabel',fill:s.color}, fmt(s.values[i],opts.digits)));
+      }
+    });
+  });
+
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+/* single-series line chart, evenly spaced (for monthly world price) */
+function lineChart(containerId, opts){
+  const labels=opts.labels, n=labels.length;
+  const W=640,H=opts.height||220;
+  const padL=44,padR=14,padT=14,padB=30;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const maxV=Math.max.apply(null, opts.values);
+  const minV=Math.min.apply(null, opts.values);
+  let yMin=0, yMax=niceMax(maxV*1.1);
+  if(opts.zeroBase===false){ const r=floatRange(minV,maxV); yMin=r[0]; yMax=r[1]; }
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  const yToPx=yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,opts.digits,yMin);
+  svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+plotH,y2:padT+plotH,class:'axisline'}));
+  const step=plotW/(n-1);
+  const pts=opts.values.map((v,i)=>[padL+i*step, yToPx(v)]);
+  const areaD='M'+pts.map(p=>p[0]+','+p[1]).join(' L')+' L'+pts[pts.length-1][0]+','+(padT+plotH)+' L'+pts[0][0]+','+(padT+plotH)+' Z';
+  svg.appendChild(el('path',{d:areaD,fill:opts.color,opacity:0.1}));
+  const lineD='M'+pts.map(p=>p[0]+','+p[1]).join(' L');
+  svg.appendChild(el('path',{d:lineD,fill:'none',stroke:opts.color,'stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'}));
+  labels.forEach((lab,i)=>{
+    const showTick = (i%Math.max(1,Math.ceil(n/10))===0)||i===n-1;
+    const hit=el('rect',{x:padL+i*step-step/2,y:padT,width:step,height:plotH,fill:'transparent',class:'hitband',tabindex:'0'});
+    hit.addEventListener('pointerenter',e=>showTip(e, lab, [{label:opts.seriesName||'Giá trị',value:fmt(opts.values[i],opts.digits)+(opts.unit?(' '+opts.unit):''),color:opts.color}]));
+    hit.addEventListener('pointermove',moveTip);
+    hit.addEventListener('pointerleave',hideTip);
+    svg.appendChild(hit);
+    const c=el('circle',{cx:pts[i][0],cy:pts[i][1],r:2.6,fill:opts.color,stroke:'var(--card)','stroke-width':1});
+    svg.appendChild(c);
+    if(showTick){
+      svg.appendChild(txt('text',{x:pts[i][0],y:padT+plotH+14,'text-anchor':'middle',class:'catlabel'}, lab));
+    }
+    if(i===n-1){ svg.appendChild(txt('text',{x:pts[i][0],y:pts[i][1]-10,'text-anchor':'end',class:'endlabel',fill:opts.color}, fmt(opts.values[i],opts.digits))); }
+  });
+  const host=document.getElementById(containerId);
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+/* multi-series real-date range/dot chart (VN price) */
+function rangeDotChart(containerId, opts){
+  const W=640,H=opts.height||260;
+  const padL=48,padR=14,padT=14,padB=28;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const domainStart=opts.domain[0].getTime(), domainEnd=opts.domain[1].getTime();
+  const xOf=(d)=> padL + plotW*( (d.getTime()-domainStart) / (domainEnd-domainStart) );
+  let maxV=0;
+  opts.series.forEach(s=> s.points.forEach(p=>{ if(p.high>maxV) maxV=p.high; }));
+  const yMax=niceMax(maxV*1.1);
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  const yToPx=yGrid(svg,padL,padR,padT,plotW,plotH,yMax,W,opts.digits);
+  svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:padT+plotH,y2:padT+plotH,class:'axisline'}));
+  for(let y=opts.domain[0].getFullYear(); y<=opts.domain[1].getFullYear(); y++){
+    const d=new Date(y+'-01-01T00:00:00');
+    if(d<opts.domain[0]||d>opts.domain[1]) continue;
+    const x=xOf(d);
+    svg.appendChild(el('line',{x1:x,x2:x,y1:padT,y2:padT+plotH,class:'gridline'}));
+    svg.appendChild(txt('text',{x:x,y:padT+plotH+13,'text-anchor':'start',class:'catlabel'}, String(y)));
+  }
+  opts.series.forEach(s=>{
+    s.points.forEach(p=>{
+      const d=new Date(p.date+'T00:00:00');
+      const x=xOf(d);
+      const yLow=yToPx(p.low), yHigh=yToPx(p.high), yMid=yToPx(p.mid);
+      if(p.high>p.low){ svg.appendChild(el('line',{x1:x,x2:x,y1:yHigh,y2:yLow,stroke:s.color,'stroke-width':2,opacity:0.55})); }
+      const c=el('circle',{cx:x,cy:yMid,r: p.conf===false?4:4.5, fill: p.conf===false? 'var(--card)':s.color, stroke:s.color,'stroke-width':2});
+      const hit=el('circle',{cx:x,cy:yMid,r:13,fill:'transparent',class:'hitband',tabindex:'0'});
+      const label=p.label+(p.conf===false?' (độ tin cậy thấp)':'');
+      hit.addEventListener('pointerenter',e=>showTip(e, p.date.split('-').reverse().join('/'), [{label:label,value:fmt(p.low)+'–'+fmt(p.high)+' đ/kg',color:s.color}]));
+      hit.addEventListener('pointermove',moveTip);
+      hit.addEventListener('pointerleave',hideTip);
+      svg.appendChild(hit);
+      svg.appendChild(c);
+    });
+  });
+  const host=document.getElementById(containerId);
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+/* horizontal compare bars — single snapshot, N entities */
+function hbarCompare(containerId, opts){
+  const items=opts.items, n=items.length;
+  const W=640, rowH=38, padT=8, padB=8;
+  const H=padT+padB+rowH*n;
+  const padL=8, padR=64, labelW=112;
+  const plotW=W-padL-padR-labelW;
+  const maxV=niceMax(Math.max.apply(null, items.map(it=>it.value))*1.15);
+  const svg=baseSvg(W,H,opts.ariaLabel);
+  items.forEach((it,i)=>{
+    const y=padT+i*rowH;
+    const barY=y+8, barH=rowH-16;
+    const bw=plotW*(it.value/maxV);
+    svg.appendChild(txt('text',{x:padL+labelW-8,y:y+rowH/2+4,'text-anchor':'end',class:'catlabel',style:'font-weight:700'}, it.label));
+    const r=el('rect',{x:padL+labelW,y:barY,width:Math.max(bw,2),height:barH,rx:4,ry:4,fill:it.color});
+    r.appendChild(txt('title',{},it.label+': '+fmt(it.value,opts.digits)+(opts.unit?(' '+opts.unit):'')));
+    const hit=el('rect',{x:padL+labelW,y:barY,width:Math.max(bw,2),height:barH,fill:'transparent',class:'hitband',tabindex:'0'});
+    hit.addEventListener('pointerenter',e=>showTip(e, it.label, [{label:opts.unit||'Giá trị', value:fmt(it.value,opts.digits)+(opts.unit?(' '+opts.unit):''), color:it.color}]));
+    hit.addEventListener('pointermove',moveTip);
+    hit.addEventListener('pointerleave',hideTip);
+    svg.appendChild(r);
+    svg.appendChild(txt('text',{x:padL+labelW+bw+8,y:y+rowH/2+4,class:'endlabel',fill:'var(--ink2)'}, fmt(it.value,opts.digits)+(opts.unit?(' '+opts.unit):'')));
+    svg.appendChild(hit);
+  });
+  const host=document.getElementById(containerId);
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+function balanceBarChart(containerId, opts){
+  const labels=opts.labels, values=opts.values;
+  const W=640,H=opts.height||230,padL=52,padR=20,padT=16,padB=38;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const maxAbs=Math.max(1, Math.max.apply(null, values.map(v=>Math.abs(v))))*1.2;
+  const zeroY=padT+plotH/2;
+  const svg=baseSvg(W,H,opts.ariaLabel||containerId);
+  [-1,0,1].forEach(t=>{
+    const y=zeroY-(plotH/2)*t;
+    svg.appendChild(el('line',{x1:padL,y1:y,x2:W-padR,y2:y,class:t===0?'axisline':'gridline'}));
+    svg.appendChild(txt('text',{x:padL-8,y:y+3,'text-anchor':'end',class:'axislabel'},fmt(t*maxAbs,1)));
+  });
+  const band=plotW/labels.length, barW=Math.min(46, band*0.55);
+  values.forEach((v,i)=>{
+    const x=padL+i*band+(band-barW)/2;
+    const yVal=zeroY-(plotH/2)*(v/maxAbs);
+    const y=Math.min(zeroY,yVal);
+    const h=Math.max(2,Math.abs(zeroY-yVal));
+    const color=v>=0?S3:S2;
+    const r=el('rect',{x:x,y:y,width:barW,height:h,rx:4,ry:4,fill:color,opacity:.9});
+    const hit=el('rect',{x:x-4,y:padT,width:barW+8,height:plotH,fill:'transparent',class:'hitband',tabindex:'0'});
+    hit.addEventListener('pointerenter',e=>showTip(e, labels[i], [{label:'Cung - cầu', value:fmt(v,2)+' '+(opts.unit||''), color:color}]));
+    hit.addEventListener('pointermove',moveTip);
+    hit.addEventListener('pointerleave',hideTip);
+    svg.appendChild(r);
+    svg.appendChild(txt('text',{x:x+barW/2,y:v>=0?y-5:y+h+12,'text-anchor':'middle',class:'endlabel',fill:'var(--ink2)'},fmt(v,1)));
+    svg.appendChild(txt('text',{x:x+barW/2,y:H-14,'text-anchor':'middle',class:'catlabel'},labels[i]));
+    svg.appendChild(hit);
+  });
+  svg.appendChild(txt('text',{x:padL,y:H-4,class:'axislabel'},opts.unit||''));
+  const host=document.getElementById(containerId);
+  host.innerHTML=''; host.appendChild(svg);
+}
+
+function sparkline(id, values, color){
+  const host=document.getElementById(id);
+  if(!host) return;
+  const W=100,H=26,pad=3;
+  const maxV=Math.max.apply(null, values), minV=Math.min.apply(null, values);
+  const range=(maxV-minV)||1;
+  const step=(W-pad*2)/(values.length-1);
+  const pts=values.map((v,i)=>[pad+i*step, H-pad-(H-pad*2)*((v-minV)/range)]);
+  const d='M'+pts.map(p=>p[0]+','+p[1]).join(' L');
+  host.appendChild(el('path',{d:d,fill:'none',stroke:color,'stroke-width':1.6,'stroke-linecap':'round','stroke-linejoin':'round',opacity:0.55}));
+  const last=pts[pts.length-1];
+  host.appendChild(el('circle',{cx:last[0],cy:last[1],r:2.4,fill:color}));
+}
+
+function fillTable(id, headers, rows){
+  const t=document.getElementById(id);
+  if(!t) return;
+  const thead=el('thead' ); // not svg NS, use html
+  t.innerHTML='';
+  const theadHtml=document.createElement('thead');
+  const trh=document.createElement('tr');
+  headers.forEach(h=>{ const th=document.createElement('th'); th.textContent=h; trh.appendChild(th); });
+  theadHtml.appendChild(trh); t.appendChild(theadHtml);
+  const tbody=document.createElement('tbody');
+  rows.forEach(r=>{
+    const tr=document.createElement('tr');
+    r.forEach(c=>{ const td=document.createElement('td'); td.textContent=c; tr.appendChild(td); });
+    tbody.appendChild(tr);
+  });
+  t.appendChild(tbody);
+}
+
+
+/* ---------- DỮ LIỆU ---------- */
+const CS=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const S1=CS('--s1'),S2=CS('--s2'),S3=CS('--s3'),S4=CS('--s4'),S5=CS('--s5'),S7=CS('--s7'),S8=CS('--s8');
+const worldYears=["2022","2023","2024","2025","2026E","2027E"];
+const worldSupply=[100.41,102.45,103.07,106.10,100.87,109.73];
+const worldDemand=[99.77,101.45,102.80,103.98,102.74,104.96];
+const worldBalance=worldSupply.map((v,i)=>+(v-worldDemand[i]).toFixed(2));
+const lb24=["T10/24","T11/24","T12/24","T1/25","T2/25","T3/25","T4/25","T5/25","T6/25","T7/25","T8/25","T9/25","T10/25","T11/25","T12/25","T1/26","T2/26","T3/26","T4/26","T5/26","T6/26","T7/26","T8/26","T9/26"];
+const brent24=[75.63,74.35,73.86,79.27,75.44,72.73,68.13,64.45,71.44,71.04,67.87,67.99,64.54,63.8,62.54,66.6,70.89,103.13,117.29,107.14,85.4,83.76,91.08,96.02];
+const wti24=[71.98,69.95,70.12,75.74,71.53,68.24,63.54,62.17,68.17,68.39,64.86,63.96,60.89,60.06,57.97,60.04,64.51,91.38,100.32,102.13,84.81,80.46,83.9,91.48];
+const spread24=[3.65,4.4,3.74,3.53,3.9,4.49,4.6,2.29,3.28,2.65,3.01,4.03,3.65,3.73,4.57,6.57,6.38,11.75,16.97,5.01,0.59,3.3,7.18,4.54];
+const yrB=["2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
+const brentY=[79.61,111.26,111.57,108.56,98.97,52.32,43.64,54.12,71.33,64.3,41.96,70.86,100.93,82.49,80.52,69.14,90.41];
+const lb36=["T9/23","T10/23","T11/23","T12/23","T1/24","T2/24","T3/24","T4/24","T5/24","T6/24","T7/24","T8/24","T9/24","T10/24","T11/24","T12/24","T1/25","T2/25","T3/25","T4/25","T5/25","T6/25","T7/25","T8/25","T9/25","T10/25","T11/25","T12/25","T1/26","T2/26","T3/26","T4/26","T5/26","T6/26","T7/26","T8/26"];
+const crudeSt=[414.1,421.9,449.7,431.1,421.9,447.2,451.4,460.9,455.9,448.5,433.0,418.3,416.9,425.5,423.4,415.6,423.8,433.8,439.8,440.4,436.1,419.0,426.7,420.7,416.5,421.2,427.5,422.9,420.3,439.3,461.6,459.5,433.7,408.4,407.0,424.5];
+const gasoSt=[227.0,223.5,218.2,237.0,254.1,244.2,227.8,227.1,230.9,231.7,223.8,219.2,221.2,210.9,214.6,231.4,251.1,246.8,237.6,225.5,228.3,232.1,228.4,218.5,220.7,206.0,214.4,234.3,257.9,253.1,240.9,222.3,215.0,214.0,209.7,205.7];
+const distSt=[118.8,111.3,110.8,125.9,130.8,121.1,116.1,115.8,122.5,119.7,126.8,122.7,121.6,112.9,118.1,122.9,118.5,119.2,114.6,107.8,107.6,103.6,113.5,115.9,123.6,111.5,114.3,123.7,127.4,120.8,117.8,103.6,102.3,108.6,107.2,104.2];
+const cushSt=[22.1,21.5,27.7,34.7,28.1,31.0,33.2,33.5,35.4,34.2,29.8,26.4,23.7,25.4,24.2,22.5,20.9,25.7,25.1,25.7,24.1,20.7,22.6,24.2,23.5,22.9,21.3,22.1,24.0,26.5,31.5,29.8,22.4,19.7,21.0,22.5];
+const usProd=[12.88,13.2,13.2,13.2,12.95,13.3,13.12,13.1,13.1,13.2,13.3,13.34,13.25,13.48,13.42,13.6,13.45,13.5,13.58,13.46,13.39,13.43,13.34,13.37,13.5,13.64,13.83,13.84,13.64,13.71,13.66,13.59,13.68,13.81,13.82,13.86];
+const dyY=["2021","2022","2023","2024","2025","2026"];
+const dyV=[138.4,111.8,116.5,124.5,114.6,105.1];
+const ckD=[15.3,16.2,16.1,21.6,23.6,18.7,18.8,20.2,21.3,28.0,24.5,27.6,28.2,35.6,24.5,22.1,25.8,57.8,47.1,55.1,55.6,78.9,85.7,102.8];
+const ckG=[9.3,7.6,7.5,8.2,11.7,13.5,15.7,20.8,15.7,17.3,19.9,19.8,16.3,17.7,11.3,19.5,12.0,17.4,18.8,39.5,41.1,53.9,48.5,48.6];
+const ck321=[11.3,10.4,10.3,12.6,15.6,15.2,16.7,20.6,17.6,20.9,21.4,22.4,20.3,23.7,15.7,20.3,16.6,30.8,28.3,44.7,45.9,62.2,60.9,66.7];
+const prodGas24=brent24.map((v,i)=>+(v+ckG[i]).toFixed(2));
+const prodDiesel24=brent24.map((v,i)=>+(v+ckD[i]).toFixed(2));
+const retailDates=["07/02","07/09","07/16","07/23","07/30","08/06","08/13","08/20","08/27","09/03"];
+const retailE5=[19730,19190,19820,20880,22380,21720,21230,21830,21760,22480];
+const retailRon95=[20410,20000,20550,21430,22850,22320,22110,22660,22600,23270];
+const retailDiesel=[21170,21740,23320,25760,27620,27540,27230,28540,28080,27740];
+const retailYears=["2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
+const retailE5Y=[17320,18240,16780,19880,15510,22550,19970,21180,19810,18430,22480];
+const retailRon95Y=[null,19280,18140,20990,16470,23290,20700,22140,20540,18800,23270];
+const retailDieselY=[null,null,16000,16590,12370,17570,21600,19780,18630,17250,27740];
+const hzLab=["01/01","02/01","03/01","04/01","05/01","06/01","07/01","08/01","09/01","10/01","11/01","12/01","13/01","14/01","15/01","16/01","17/01","18/01","19/01","20/01","21/01","22/01","23/01","24/01","25/01","26/01","27/01","28/01","29/01","30/01","31/01","01/02","02/02","03/02","04/02","05/02","06/02","07/02","08/02","09/02","10/02","11/02","12/02","13/02","14/02","15/02","16/02","17/02","18/02","19/02","20/02","21/02","22/02","23/02","24/02","25/02","26/02","27/02","28/02","01/03","02/03","03/03","04/03","05/03","06/03","07/03","08/03","09/03","10/03","11/03","12/03","13/03","14/03","15/03","16/03","17/03","18/03","19/03","20/03","21/03","22/03","23/03","24/03","25/03","26/03","27/03","28/03","29/03","30/03","31/03","01/04","02/04","03/04","04/04","05/04","06/04","07/04","08/04","09/04","10/04","11/04","12/04","13/04","14/04","15/04","16/04","17/04","18/04","19/04","20/04","21/04","22/04","23/04","24/04","25/04","26/04","27/04","28/04","29/04","30/04","01/05","02/05","03/05","04/05","05/05","06/05","07/05","08/05","09/05","10/05","11/05","12/05","13/05","14/05","15/05","16/05","17/05","18/05","19/05","20/05","21/05","22/05","23/05","24/05","25/05","26/05","27/05","28/05","29/05","30/05","31/05","01/06","02/06","03/06","04/06","05/06","06/06","07/06","08/06","09/06","10/06","11/06","12/06","13/06","14/06","15/06","16/06","17/06","18/06","19/06","20/06","21/06","22/06","23/06","24/06","25/06","26/06","27/06","28/06","29/06","30/06","01/07","02/07","03/07","04/07","05/07","06/07","07/07","08/07","09/07","10/07","11/07","12/07","13/07","14/07","15/07","16/07","17/07","18/07","19/07","20/07","21/07","22/07","23/07","24/07","25/07","26/07","27/07","28/07","29/07","30/07","31/07","01/08","02/08","03/08","04/08","05/08","06/08","07/08","08/08","09/08","10/08","11/08","12/08","13/08","14/08","15/08","16/08","17/08","18/08","19/08","20/08","21/08","22/08","23/08","24/08","25/08","26/08","27/08","28/08","29/08","30/08"];
+const hzTanker=[29,23,34,26,30,31,37,37,40,34,31,34,26,34,35,29,23,20,29,33,29,38,24,21,41,19,30,28,41,39,40,19,41,33,20,36,34,40,32,33,39,49,32,54,53,42,35,40,54,63,55,53,69,65,49,59,45,37,36,5,1,1,0,1,0,1,0,1,1,0,0,0,0,2,0,1,0,0,2,0,0,2,1,2,0,0,1,2,3,2,1,0,2,3,4,0,2,0,5,0,3,3,4,3,4,1,3,12,1,2,3,2,0,2,2,1,2,3,23,4,2,4,1,0,0,0,0,0,1,2,4,1,2,3,2,1,1,1,3,4,2,0,1,2,0,2,1,0,0,0,0,1,3,3,1,0,0,0,1,2,0,2,1,0,0,2,3,0,10,3,12,1,12,12,20,21,17,9,7,13,6,18,15,17,8,16,16,10,8,3,4,3,1,2,5,3,1,1,2,2,2,1,1,0,0,0,2,0,1,3,1,2,3,0,3,4,0,0,4,2,0,2,2,1,2,2,1,1,3,4,4,2,2,1,1,2,4,2,2,0,1,2];
+const hzTotal=[64,51,59,49,61,61,66,62,74,63,64,52,53,61,62,53,38,54,58,58,56,64,48,46,64,43,61,54,72,71,70,49,67,66,43,71,60,60,58,53,65,81,68,103,91,74,54,75,109,115,94,86,127,104,93,116,89,64,57,20,4,4,0,3,2,3,2,2,2,2,1,0,1,7,4,1,0,0,3,0,2,4,2,2,4,2,6,5,6,5,7,1,3,11,4,5,3,3,8,3,7,12,7,5,7,3,8,20,2,3,4,5,3,6,4,3,7,10,39,11,7,6,6,2,0,0,0,0,1,7,7,3,4,10,4,7,3,4,4,8,5,2,6,5,4,4,1,2,1,4,5,2,11,9,3,2,2,2,7,4,3,2,1,0,0,7,10,8,20,9,25,6,16,29,51,46,30,25,16,26,16,29,28,24,17,22,25,26,20,10,7,6,4,10,8,9,6,1,6,4,5,6,6,0,3,2,3,5,5,7,4,8,5,3,6,7,5,2,6,10,3,4,9,3,6,7,1,1,4,6,6,5,4,7,3,3,4,5,2,7,3,6];
+const hzMLab=["T9/25","T10/25","T11/25","T12/25","T1/26","T2/26","T3/26","T4/26","T5/26","T6/26","T7/26","T8/26"];
+const hzMVal=[49.8,49.5,38.4,30.4,31.1,43.5,0.9,3.2,1.3,5.4,4.8,1.9];
+
+barLineChart("chWorldSD",{categories:worldYears,series:[{name:"Cung toàn cầu",color:S3,kind:"line",values:worldSupply},{name:"Cầu toàn cầu",color:S2,kind:"line",values:worldDemand}],unit:"mb/d",digits:2,height:250,zeroBase:false});
+balanceBarChart("chWorldBalance",{labels:worldYears,values:worldBalance,unit:"mb/d",height:230});
+fillTable("tbl-worldbalance",["Năm","Cung toàn cầu (mb/d)","Cầu toàn cầu (mb/d)","Balance: cung - cầu (mb/d)","Đọc nhanh"],worldYears.map((l,i)=>[l,fmt(worldSupply[i],2),fmt(worldDemand[i],2),fmt(worldBalance[i],2),worldBalance[i]>=0?"Dư cung / tồn kho tăng":"Thiếu cung / tồn kho rút"]));
+
+lineChart("chBrent24",{labels:lb24,values:brent24,color:S1,unit:"USD/thùng",digits:2,zeroBase:false,seriesName:"Brent"});
+fillTable("tbl-brent24",["Tháng","USD/thùng"],lb24.map((l,i)=>[l,fmt(brent24[i],2)]));
+
+const confY=yrB.map(y=>y!=="2026");
+barLineChart("chBrentYear",{categories:yrB,series:[{name:"Brent bình quân năm",color:S1,values:brentY,confArr:confY}],unit:"USD/thùng",digits:2,height:250});
+fillTable("tbl-brentyear",["Năm","USD/thùng"],yrB.map((l,i)=>[l,fmt(brentY[i],2)]));
+
+barLineChart("chBrentWti",{categories:lb24,series:[{name:"Brent",color:S1,kind:"line",values:brent24},{name:"WTI",color:S2,kind:"line",values:wti24}],unit:"USD/thùng",digits:2,height:250,zeroBase:false});
+fillTable("tbl-bw",["Tháng","Brent","WTI","Chênh lệch"],lb24.map((l,i)=>[l,fmt(brent24[i],2),fmt(wti24[i],2),fmt(spread24[i],2)]));
+
+lineChart("chCrudeStock",{labels:lb36,values:crudeSt,color:S7,unit:"triệu thùng",digits:1,zeroBase:false,seriesName:"Tồn kho dầu thô Mỹ"});
+fillTable("tbl-crudestock",["Tháng","Triệu thùng"],lb36.map((l,i)=>[l,fmt(crudeSt[i],1)]));
+
+barLineChart("chProdStock",{categories:lb36,series:[{name:"Tồn kho xăng",color:S4,kind:"line",values:gasoSt},{name:"Tồn kho distillate",color:S2,kind:"line",values:distSt}],unit:"triệu thùng",digits:1,height:250,zeroBase:false});
+fillTable("tbl-prodstock",["Tháng","Xăng","Distillate"],lb36.map((l,i)=>[l,fmt(gasoSt[i],1),fmt(distSt[i],1)]));
+
+lineChart("chCushing",{labels:lb36,values:cushSt,color:S5,unit:"triệu thùng",digits:1,zeroBase:false,seriesName:"Tồn kho Cushing"});
+fillTable("tbl-cushing",["Tháng","Triệu thùng"],lb36.map((l,i)=>[l,fmt(cushSt[i],1)]));
+
+lineChart("chUsProd",{labels:lb36,values:usProd,color:S3,unit:"triệu thùng/ngày",digits:2,zeroBase:false,seriesName:"Sản lượng dầu Mỹ"});
+fillTable("tbl-usprod",["Tháng","Triệu thùng/ngày"],lb36.map((l,i)=>[l,fmt(usProd[i],2)]));
+
+barLineChart("chDistYear",{categories:dyY,series:[{name:"Tồn kho distillate bình quân tháng 8",color:S2,values:dyV}],unit:"triệu thùng",digits:1,height:240});
+fillTable("tbl-distyear",["Năm","Triệu thùng (bình quân tháng 8)"],dyY.map((l,i)=>[l,fmt(dyV[i],1)]));
+
+barLineChart("chCrack",{categories:lb24,series:[{name:"Crack diesel",color:S2,kind:"line",values:ckD},{name:"Crack xăng",color:S4,kind:"line",values:ckG},{name:"Crack 3-2-1",color:S1,kind:"line",values:ck321}],unit:"USD/thùng",digits:1,height:280});
+fillTable("tbl-crack",["Tháng","Crack diesel","Crack xăng","Crack 3-2-1"],lb24.map((l,i)=>[l,fmt(ckD[i],1),fmt(ckG[i],1),fmt(ck321[i],1)]));
+
+/* Giá sản phẩm quốc tế proxy, thay cho snapshot một kỳ */
+barLineChart("chMoit",{categories:lb24,series:[{name:"Brent",color:S7,kind:"line",values:brent24},{name:"Xăng USGC proxy",color:S4,kind:"line",values:prodGas24},{name:"Diesel USGC proxy",color:S2,kind:"line",values:prodDiesel24}],unit:"USD/thùng",digits:1,height:250,zeroBase:false});
+fillTable("tbl-moit",["Tháng","Brent","Xăng proxy","Diesel proxy","Diesel - Brent"],lb24.map((l,i)=>[l,fmt(brent24[i],2),fmt(prodGas24[i],2),fmt(prodDiesel24[i],2),fmt(ckD[i],1)]));
+barLineChart("chRetailFuelMini",{categories:retailDates,series:[{name:"E5 RON 92-II",color:S4,kind:"line",values:retailE5},{name:"E10 RON 95-III",color:S3,kind:"line",values:retailRon95},{name:"DO 0,05S-II",color:S2,kind:"line",values:retailDiesel}],unit:"đ/lít",digits:0,height:250,zeroBase:false});
+fillTable("tbl-retailmini",["Mốc giá","E5 RON 92-II","E10 RON 95-III","DO 0,05S-II"],retailDates.map((l,i)=>[l,fmt(retailE5[i],0),fmt(retailRon95[i],0),fmt(retailDiesel[i],0)]));
+barLineChart("chRetailYear",{categories:retailYears,series:[{name:"E5 RON 92-II",color:S4,kind:"line",values:retailE5Y},{name:"RON95/E10 RON95-III",color:S3,kind:"line",values:retailRon95Y},{name:"DO 0,05S-II",color:S2,kind:"line",values:retailDieselY}],unit:"đ/lít",digits:0,height:250,zeroBase:false});
+barLineChart("chRetailFuel",{categories:retailDates,series:[{name:"E5 RON 92-II",color:S4,kind:"line",values:retailE5},{name:"E10 RON 95-III",color:S3,kind:"line",values:retailRon95},{name:"DO 0,05S-II",color:S2,kind:"line",values:retailDiesel}],unit:"đ/lít",digits:0,height:250,zeroBase:false});
+fillTable("tbl-retailyear",["Năm","E5 RON 92-II","RON95/E10 RON95-III","DO 0,05S-II","Mốc"],retailYears.map((l,i)=>[l,retailE5Y[i]==null?"—":fmt(retailE5Y[i],0),retailRon95Y[i]==null?"—":fmt(retailRon95Y[i],0),retailDieselY[i]==null?"—":fmt(retailDieselY[i],0),l==="2026"?"03/09/2026":"mốc cuối năm"]));
+fillTable("tbl-retailfuel",["Mốc giá","E5 RON 92-II","E10 RON 95-III","DO 0,05S-II"],retailDates.map((l,i)=>[l,fmt(retailE5[i],0),fmt(retailRon95[i],0),fmt(retailDiesel[i],0)]));
+
+/* Khai thác dầu thô và khí Việt Nam */
+const vnYears=["2020","2021","2022","2023","2024","2025E","6T/26"];
+const vnOil=[11.47,10.97,10.84,10.41,9.87,9.95,5.50];
+const vnGas=[9.16,7.46,8.08,7.47,9.87,null,3.19];
+const vnConf=[true,true,true,true,true,false,false];
+barLineChart("chVnUpstream",{categories:vnYears,series:[{name:"Khai thác dầu thô (triệu tấn)",color:S2,values:vnOil,confArr:vnConf},{name:"Khai thác khí (tỷ m³)",color:S1,values:vnGas,confArr:vnConf}],digits:2,height:250});
+fillTable("tbl-vnup",["Kỳ","Dầu thô (triệu tấn)","Khí (tỷ m³)","Ghi chú"],vnYears.map((l,i)=>[l,vnOil[i]==null?"—":fmt(vnOil[i],2),vnGas[i]==null?"—":fmt(vnGas[i],2),l==="2025E"?"ước từ tăng trưởng dầu thô +0,8%":l==="6T/26"?"lũy kế 6 tháng, không annualize":"số năm"]));
+
+/* Sản lượng khí vào bờ và LNG */
+const gasYears=["2021","2022","2023","2024","2025","2026 KH"];
+const gasDom=[7386,7994,7473,6400,5861,6535];
+const gasLng=[null,null,85,400,539,900];
+const gasConf=[true,true,true,true,true,false];
+barLineChart("chGasVol",{categories:gasYears,series:[{name:"Khí ẩm nội địa",color:S1,values:gasDom,confArr:gasConf},{name:"LNG nhập khẩu",color:S3,values:gasLng,confArr:gasConf}],unit:"triệu m³",digits:0,height:250});
+fillTable("tbl-gasvol",["Năm","Khí ẩm nội địa (triệu m³)","LNG nhập khẩu (triệu m³)"],gasYears.map((l,i)=>[l,fmt(gasDom[i],0),gasLng[i]==null?"không có số liệu":fmt(gasLng[i],0)]));
+
+/* Cơ cấu hộ tiêu thụ khí 2025 */
+const gasCust=[{label:"Thị phần khí khô",value:100,color:S1},{label:"Thị phần LPG bán buôn",value:70,color:S3},{label:"Sản lượng đạm cả nước",value:70,color:S4},{label:"Sản lượng điện quốc gia",value:6.3,color:S7}];
+hbarCompare("chGasCustomer",{items:gasCust,unit:"%",digits:1});
+fillTable("tbl-gascust",["Chỉ tiêu","Tỷ trọng (%)","Nguồn công bố"],[["Thị phần khí khô trong nước","100,0","Năng lượng Việt Nam"],["Thị phần LPG bán buôn","70,0","Năng lượng Việt Nam"],["Đóng góp sản lượng đạm cả nước","70,0","ĐHĐCĐ PV GAS 2026"],["Đóng góp sản lượng điện quốc gia","6,3","ĐHĐCĐ PV GAS 2026"]]);
+
+/* BSR biên lợi nhuận gộp */
+const bsrYears=["2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"];
+const bsrMarginRaw=[10.32,8.59,11.18,1.69,2.79,-3.84,7.62,9.63,6.62,0.40];
+const bsrMargin=bsrMarginRaw.map(v=>v<0?null:v);
+barLineChart("chBsrMargin",{categories:bsrYears,series:[{name:"Biên lợi nhuận gộp",color:S8,values:bsrMargin}],unit:"%",digits:2,height:250});
+fillTable("tbl-bsr",["Năm","Biên lợi nhuận gộp (%)"],bsrYears.map((l,i)=>[l,fmt(bsrMarginRaw[i],2)]));
+
+/* PLX tồn kho cuối quý */
+const plxQ=["Q2/25","Q3/25","Q4/25","Q1/26"];
+const plxStock=[17005.2,16852.5,14032.3,29753.9];
+const plxBrentEnd=[68,72,75,104];
+const plxNpat=[1424.4,706,685.6,-662];
+const plxProv=[-215.8,-235.2,-170.5,-6512.3];
+barLineChart("chPlx",{categories:plxQ,series:[{name:"Hàng tồn kho cuối quý",color:S3,values:plxStock}],unit:"tỷ đồng",digits:0,height:250});
+fillTable("tbl-plx",["Quý","Tồn kho cuối quý (tỷ đ)","Brent cuối quý (USD/thùng)","Lợi nhuận sau thuế (tỷ đ)","Dự phòng giảm giá tồn kho (tỷ đ)"],plxQ.map((l,i)=>[l,fmt(plxStock[i],0),fmt(plxBrentEnd[i],0),fmt(plxNpat[i],1),fmt(plxProv[i],1)]));
+
+/* Lưu lượng tàu qua eo Hormuz */
+barLineChart("chHormuz",{categories:hzMLab,series:[{name:"Tàu chở dầu, bình quân ngày",color:S2,values:hzMVal}],unit:"lượt tàu/ngày",digits:1,height:260});
+barLineChart("chHormuzM",{categories:hzLab,series:[{name:"Tàu chở dầu",color:S2,kind:"line",values:hzTanker}],unit:"lượt tàu/ngày",digits:0,height:220});
+fillTable("tbl-hormuzm",["Tháng","Tàu chở dầu bình quân mỗi ngày","Số ngày có dữ liệu"],hzMLab.map((l,i)=>[l,fmt(hzMVal[i],1),"~30"]));
+fillTable("tbl-hormuz",["Ngày (2026)","Tàu chở dầu","Tổng số tàu"],hzLab.map((l,i)=>[l,fmt(hzTanker[i],0),fmt(hzTotal[i],0)]));
+
+/* ---- Cong cua che do: du dia cong suat, gian doan, duong cong, vi the ---- */
+const spLab=["T1/24","T2/24","T3/24","T4/24","T5/24","T6/24","T7/24","T8/24","T9/24","T10/24","T11/24","T12/24","T1/25","T2/25","T3/25","T4/25","T5/25","T6/25","T7/25","T8/25","T9/25","T10/25","T11/25","T12/25","T1/26","T2/26","T3/26","T4/26","T5/26","T6/26","T7/26"];
+const spVal=[3.44,3.29,3.13,3.15,3.44,3.86,3.52,3.48,3.85,3.78,3.88,3.96,4.02,4.03,3.69,3.94,3.75,3.05,3.48,3.56,2.57,3.0,3.08,3.0,2.96,2.21,0.07,0.11,0.03,0.02,0.02];
+const ouVal=[1.56,1.41,1.27,1.37,1.28,1.3,1.22,1.38,1.8,1.39,1.2,1.02,1.07,0.93,1.07,0.97,0.9,1.13,1.05,1.02,0.92,0.87,0.93,0.89,1.02,0.94,8.56,11.0,11.68,8.98,7.04];
+barLineChart("chSpare",{categories:spLab,series:[{name:"Dư địa công suất OPEC",color:S3,kind:"line",values:spVal},{name:"Gián đoạn ngoài kế hoạch",color:S2,kind:"line",values:ouVal}],unit:"triệu thùng/ngày",digits:2,height:280});
+fillTable("tbl-spare",["Tháng","Dư địa công suất (triệu thùng/ngày)","Gián đoạn ngoài kế hoạch"],spLab.map((l,i)=>[l,fmt(spVal[i],2),ouVal[i]==null?"—":fmt(ouVal[i],2)]));
+
+const cvLab=["T10/26","T11/26","T12/26","T1/27","T2/27","T3/27","T4/27","T6/27","T9/27","T12/27"];
+const cvPx=[90.55,87.73,84.66,81.89,79.47,77.56,76.03,73.86,71.89,70.72];
+lineChart("chCurve",{labels:cvLab,values:cvPx,color:S1,unit:"USD/thùng",digits:2,zeroBase:false,seriesName:"Giá hợp đồng kỳ hạn WTI"});
+fillTable("tbl-curve",["Tháng đáo hạn","USD/thùng","Chênh so tháng gần nhất"],cvLab.map((l,i)=>[l,fmt(cvPx[i],2),i===0?"—":fmt(cvPx[i]-cvPx[0],2)]));
+
+const cotLab=["07/01","14/01","21/01","28/01","04/02","11/02","18/02","25/02","04/03","11/03","18/03","25/03","01/04","08/04","15/04","22/04","29/04","06/05","13/05","20/05","27/05","03/06","10/06","17/06","24/06","01/07","08/07","15/07","22/07","29/07","05/08","12/08","19/08","26/08","02/09","09/09","16/09","23/09","30/09","07/10","14/10","21/10","28/10","04/11","10/11","18/11","25/11","02/12","09/12","16/12","23/12","30/12","06/01","13/01","20/01","27/01","03/02","10/02","17/02","24/02","03/03","10/03","17/03","24/03","31/03","07/04","14/04","21/04","28/04","05/05","12/05","19/05","26/05","02/06","09/06","16/06","23/06","30/06","07/07","14/07","21/07","28/07","04/08","11/08","18/08","25/08"];
+const cotNet=[253.9,236.2,247.4,191.5,144.1,130.3,105.9,68.8,98.6,107.7,92.3,93.2,101.4,48.5,79.9,131.7,140.0,128.6,118.1,111.9,103.9,144.6,161.6,170.6,161.5,174.6,145.7,91.8,98.2,97.4,81.3,48.9,27.4,24.6,27.3,10.0,36.8,26.5,14.1,-17.5,-18.8,-38.2,-8.6,7.7,-11.6,-12.7,-37.0,-34.8,6.9,0.1,11.4,15.7,24.5,47.6,47.5,59.0,76.8,79.1,63.8,67.7,68.4,92.1,96.4,94.3,73.3,78.7,98.4,99.9,80.3,70.8,72.8,98.2,79.9,90.8,94.7,96.2,82.9,81.3,64.0,62.0,64.0,92.9,87.0,79.9,87.5,84.0];
+lineChart("chCot",{labels:cotLab,values:cotNet,color:S7,unit:"nghìn hợp đồng",digits:1,zeroBase:false,seriesName:"Vị thế ròng của quỹ đầu cơ"});
+fillTable("tbl-cot",["Tuần (ngày/tháng)","Vị thế ròng (nghìn hợp đồng)"],cotLab.map((l,i)=>[l,fmt(cotNet[i],1)]));
+
+sparkline("spk-brent",brent24.slice(-8),S1);
+sparkline("spk-crack",ckD.slice(-8),S2);
+sparkline("spk-dist",distSt.slice(-8),S2);
+sparkline("spk-crude",crudeSt.slice(-8),S7);
+
+/* ---------- tab và kịch bản ---------- */
+function showMajorTab(key, btn){
+  document.querySelectorAll(".majorpane").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".majortabbtn").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll('.majorpane[data-tab="'+key+'"]').forEach(x=>x.classList.add("active"));
+  const activeBtn = btn || Array.from(document.querySelectorAll(".majortabbtn")).find(x => (x.getAttribute("onclick") || "").indexOf("'"+key+"'") >= 0);
+  if(activeBtn) activeBtn.classList.add("active");
+  if(location.hash !== "#"+key) history.replaceState(null, "", "#"+key);
+}
+const scenarioText = {
+  base:"<b>Kịch bản cơ sở — Brent 85 đến 100 USD/thùng.</b> Giả định: gián đoạn kéo dài nhưng không leo thang thêm; tồn kho distillate Mỹ phục hồi chậm về vùng 110–120 triệu thùng; crack diesel hạ dần từ vùng 100 xuống 50–70 USD/thùng trong 2–3 quý. Hàm ý: biên lọc dầu vẫn tốt hơn trung bình nhiều năm nhưng không còn ở mức cực đoan; nhóm dịch vụ thượng nguồn tiếp tục chạy theo tiến độ dự án đã ký chứ không theo giá dầu giao ngay. <b>Ngưỡng làm kịch bản này sai:</b> tồn kho distillate Mỹ thủng 100 triệu thùng, hoặc crack diesel vượt 120 USD/thùng trong hai tuần liên tiếp.",
+  bull:"<b>Kịch bản tăng — Brent vượt 110 USD/thùng.</b> Giả định: leo thang làm mất thêm dòng chảy vật chất chứ không chỉ là phần bù rủi ro; tồn kho distillate tiếp tục rút xuống dưới 100 triệu thùng; nguồn dầu thô cho nhà máy Nghi Sơn bị gián đoạn thật sự. Hàm ý hai chiều: crack càng giãn, nhưng <b>rủi ro thiếu nguyên liệu đầu vào lấn át</b> — nhà máy có crack cao mà không có dầu để chạy thì crack không có ý nghĩa. <b>Ngưỡng làm kịch bản này sai:</b> lưu lượng tàu qua eo Hormuz phục hồi về vùng 50 lượt/ngày như tháng 2/2026, hoặc tồn kho dầu thô Mỹ tăng liên tiếp trên 4 tuần trong khi crack thu hẹp.",
+  bear:"<b>Kịch bản giảm — Brent dưới 75 USD/thùng.</b> Giả định: dòng chảy bình thường hóa nhanh hơn dự kiến; nhu cầu yếu theo hướng IEA đang dự báo và OPEC tiếp tục hạ outlook; tồn kho sản phẩm hồi phục về vùng trung bình 5 năm. Hàm ý: biên lọc dầu về mặt bằng bình thường; khâu phân phối chịu áp lực lỗ hàng tồn kho nếu giá giảm nhanh trong quý. <b>Ngưỡng làm kịch bản này sai:</b> crack diesel giữ trên 60 USD/thùng qua một tháng dù giá dầu thô giảm — dấu hiệu nút thắt lọc dầu chưa được gỡ."
+};
+function selectScenario(key, elx){
+  document.querySelectorAll(".scenario").forEach(x=>x.classList.remove("active"));
+  elx.classList.add("active");
+  document.getElementById("scenarioDetail").innerHTML=scenarioText[key];
+}
+selectScenario("base", document.querySelector(".scenario"));
+const initialTab = (location.hash || "").replace("#", "");
+if(document.querySelector('.majorpane[data-tab="'+initialTab+'"]')) showMajorTab(initialTab);
+window.addEventListener("hashchange", () => {
+  const nextTab = (location.hash || "").replace("#", "");
+  if(document.querySelector('.majorpane[data-tab="'+nextTab+'"]')) showMajorTab(nextTab);
+});
+
+</script>
+</body>
+</html>

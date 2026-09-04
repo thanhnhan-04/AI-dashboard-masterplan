@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Master Plan Dashboard Ngành &amp; Cổ Phiếu · FinSuccess Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  /* token lay tu website cong ty https://fisc.vn */
+  --navy:#11255a; --navy2:#19316f; --navy3:#223567;
+  --accent:#27af95; --accent-bright:#2fd0b2;
+  --page:#f5f7fc;
+  --surface:#ffffff;
+  --soft:#f0f4fc;
+  --soft2:#fbfcfe;
+  --ink:#0d0d0d;
+  --ink2:#3d4653;
+  --muted:#6b7686;
+  --line:#dfe6f7;
+  --hair:#eaeff9;
+  --teal:#27af95;
+  --blue:#1f4e9c;
+  --green:#2f8f4e;
+  --amber:#d99000;
+  --red:#b8443a;
+  --violet:#6b5bd2;
+  --slate:#4a5568;
+  --shadow:0 1px 2px rgba(17,37,90,.04), 0 8px 24px rgba(17,37,90,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-variant-numeric:tabular-nums}
+button,input,select{font:inherit}
+button{appearance:none}
+header{position:sticky;top:0;z-index:30;background:rgba(245,246,248,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1480px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:14px;font-weight:900;letter-spacing:.45px;text-transform:uppercase}
+.navright{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 10px;color:var(--ink2);font-size:11.5px;font-weight:750}
+.container{max-width:1480px;margin:auto;padding:20px 20px 36px}
+.intro{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:16px}
+.intro h1{font-size:30px;line-height:1.12;margin:0 0 7px;letter-spacing:0;text-transform:uppercase}
+.intro p{margin:0;color:var(--ink2);font-size:13.5px;line-height:1.55;max-width:920px}
+.introMeta{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.tabs{position:sticky;top:47px;z-index:25;background:rgba(245,246,248,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -20px;padding:10px 20px;display:flex;gap:8px;overflow:auto}
+.tabbtn{white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--ink2);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:850;cursor:pointer}
+.tabbtn.active{background:var(--teal);border-color:var(--teal);color:#fff}
+.pane{display:none}
+.pane.active{display:block}
+.section{margin-top:18px}
+.sectionhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:12px;flex-wrap:wrap}
+.sectionhead h2{font-size:19px;margin:0}
+.sectionhead p{margin:4px 0 0;color:var(--muted);font-size:12.5px;line-height:1.45;max-width:980px}
+.grid{display:grid;gap:12px}
+.two{grid-template-columns:1.05fr .95fr}
+.three{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:var(--shadow);overflow:auto}
+.card h3{margin:0 0 8px;font-size:14px}
+.note{border-left:4px solid var(--teal);background:var(--soft);border-radius:8px;padding:12px 13px;color:var(--ink2);font-size:12.5px;line-height:1.55}
+.list{margin:0;padding-left:18px;color:var(--ink2);font-size:12px;line-height:1.55}
+.list li{margin:4px 0}
+.tagrow{display:flex;gap:7px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 8px;font-size:10.5px;font-weight:850;background:var(--soft);color:var(--teal);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{border-bottom:1px solid var(--hair);padding:9px 8px;text-align:left;vertical-align:top}
+th{font-size:10.5px;text-transform:uppercase;letter-spacing:.35px;color:var(--muted)}
+td b{color:var(--ink)}
+.status{display:inline-flex;border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:850;white-space:nowrap}
+.s-now{background:#e6f2f2;color:var(--teal)}
+.s-next{background:#e8effc;color:var(--blue)}
+.s-discuss{background:#fff1dc;color:#8a5d13}
+.s-risk{background:#fae7e5;color:var(--red)}
+.s-later{background:#edf0f3;color:var(--slate)}
+.timelineWrap{overflow:auto;padding-bottom:6px}
+.gantt{min-width:1120px}
+.weeks{display:grid;grid-template-columns:150px repeat(12,1fr);border-bottom:1px solid var(--line)}
+.weeks div{padding:7px 4px;font-size:10px;font-weight:850;color:var(--muted);text-align:center;border-left:1px solid var(--hair);min-width:0}
+.weeks div:first-child{text-align:left;border-left:0}
+.lane{display:grid;grid-template-columns:150px 1fr;min-height:52px;border-bottom:1px solid var(--hair)}
+.laneLabel{padding:11px 9px;border-right:1px solid var(--line)}
+.laneLabel b{display:block;font-size:12px}
+.laneLabel span{display:block;font-size:10.5px;color:var(--muted);line-height:1.35;margin-top:3px}
+.laneTrack{position:relative;background:repeating-linear-gradient(to right,transparent 0,transparent calc(100% / 12 - 1px),var(--hair) calc(100% / 12 - 1px),var(--hair) calc(100% / 12))}
+.bar{position:absolute;top:12px;height:28px;border:0;border-radius:6px;color:#fff;font-size:10.6px;font-weight:900;display:flex;align-items:center;justify-content:center;padding:0 5px;cursor:pointer;box-shadow:0 4px 12px rgba(20,35,45,.13);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0}
+.bar[data-kind="method"]{background:var(--teal)}
+.bar[data-kind="data"]{background:var(--blue)}
+.bar[data-kind="build"]{background:var(--green)}
+.bar[data-kind="qa"]{background:var(--amber)}
+.bar[data-kind="stock"]{background:var(--violet)}
+.bar[data-kind="decision"]{background:var(--red)}
+.bar[data-kind="ops"]{background:var(--slate)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:11px;padding-top:11px;border-top:1px solid var(--hair)}
+.legend .legItem{display:inline-flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--ink2);line-height:1.4;max-width:230px}
+.legend i{width:10px;height:10px;border-radius:3px;flex:0 0 auto;margin-top:3px}
+.legend b{color:var(--ink);font-weight:850}
+.legend .lg-method{background:var(--teal)} .legend .lg-data{background:var(--blue)} .legend .lg-build{background:var(--green)}
+.legend .lg-qa{background:var(--amber)} .legend .lg-stock{background:var(--violet)} .legend .lg-decision{background:var(--red)} .legend .lg-ops{background:var(--slate)}
+.detailBox{background:var(--soft);border:1px dashed var(--line);border-radius:8px;padding:13px;margin-top:12px;color:var(--ink2);font-size:12.5px;line-height:1.55;min-height:70px}
+.detailBox b{color:var(--ink)}
+.workGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.workCard,.option{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:13px;cursor:pointer;text-align:left}
+.workCard{min-height:168px}
+.workCard.active,.option.active{outline:2px solid var(--teal)}
+.workCard h3{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.workCard small{font-size:10px;color:var(--muted);font-weight:850;text-transform:uppercase;text-align:right;max-width:92px}
+.workCard p,.option p{font-size:12px;color:var(--ink2);line-height:1.48;margin:0}
+.optionGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.option h3{margin:0 0 5px;font-size:13px}
+.score{display:grid;gap:5px;margin-top:8px}
+.scoreRow{display:grid;grid-template-columns:74px 1fr 22px;gap:6px;align-items:center;font-size:10.5px;color:var(--muted)}
+.rail{height:6px;border-radius:999px;background:var(--hair);overflow:hidden}
+.rail span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--blue))}
+.raci td:not(:first-child){text-align:center;font-weight:850}
+.raci .a{color:var(--red)} .raci .r{color:var(--blue)} .raci .c{color:var(--amber)} .raci .i{color:var(--muted)}
+.tag.vn30{background:#e6f2f2;color:var(--teal)}
+.tag.vn100{background:#e8effc;color:var(--blue)}
+.tag.later{background:#edf0f3;color:var(--slate)}
+.footer{margin-top:22px;color:var(--muted);font-size:11.5px}
+@media(max-width:1180px){.intro{display:block}.introMeta{justify-content:flex-start;margin-top:12px}.two,.three,.workGrid,.optionGrid{grid-template-columns:1fr}}
+@media(max-width:680px){.container{padding:14px}.nav{padding:10px 14px;align-items:flex-start}.tabs{margin-left:-14px;margin-right:-14px;padding-left:14px}.intro h1{font-size:24px}.chip{font-size:10.5px}}
+body{font-family:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3.serif{font-family:"Newsreader","Iowan Old Style",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+.intro h1{text-transform:none;font-size:32px;line-height:1.14}
+.intro h1 em{font-style:italic;color:var(--teal);font-weight:500}
+table,td,th,.value{font-variant-numeric:tabular-nums}
+.fiscbar{background:linear-gradient(103deg,var(--navy) 0%,var(--navy3) 58%,#2c4a86 100%);color:#fff}
+.fiscbar-inner{max-width:1480px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.fiscbar img{height:34px;width:auto;display:block}
+.fiscbar .fiscbar-doc{font-size:12.5px;font-weight:600;color:#c9d6f0}
+.fiscbar .fiscbar-doc b{color:#fff;font-weight:700}
+.tabbtn{font-weight:650}
+.tabbtn.active{background:var(--navy);border-color:var(--navy)}
+.card,.workCard,.option{border-radius:14px}
+.note{border-left-color:var(--teal);background:var(--soft)}
+.detailBox{background:var(--soft2);border:1px solid var(--line);border-radius:12px}
+.chip{font-weight:600}
+a{color:var(--teal)}
+.legend .legItem b{color:var(--ink)}
+
+</style>
+</head>
+<body>
+<div class="fiscbar">
+  <div class="fiscbar-inner">
+    <img src="data:image/png;base64,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" alt="FinSuccess" />
+    <div class="fiscbar-doc">Master Plan · <b>Dashboard Ngành &amp; Cổ phiếu VN30/VN100</b> · Tháng 9 – Tháng 11/2026</div>
+    <div class="fiscbar-doc">Đọc chính: BoD &amp; team research · theo dõi theo tuần</div>
+  </div>
+</div>
+
+<main class="container">
+  <section class="intro">
+    <div>
+      <h1>Master Plan — Dashboard Ngành & Cổ Phiếu VN30/VN100</h1>
+      <p>Ba tháng tới, mục tiêu là hai việc song song: dựng dashboard ngành đọc theo chuẩn nghiên cứu chuyên sâu và bao quát các ngành trọng yếu của thị trường Việt Nam, đồng thời dựng dashboard cổ phiếu cho các mã trong rổ VN30 và VN100. Đây là giai đoạn chuẩn hóa cách làm, không phải chạy hết danh mục ngay: bắt đầu bằng một mẫu chung, thử ở dầu khí và ngân hàng vì hai ngành này đủ khác nhau để lộ ra chỗ mẫu còn cứng, kiểm tra ngược, rồi test tiếp ở cấp cổ phiếu với GAS và HPG trước khi mở rộng dần theo mức sẵn sàng dữ liệu. Phần ngành đặt mục tiêu phủ hết trong 3 tháng; phần cổ phiếu chỉ chọn một nhóm nhỏ để làm chuẩn trước, còn lại VN30/VN100 đi tiếp ở giai đoạn sau — chi tiết ở tab "VN30/VN100 & nguồn lực". Người đọc trong giai đoạn này là team research dùng cho công việc theo dõi hằng ngày; khi nội dung và nguồn dữ liệu đã đủ chặt thì mới tính tới việc mở cho khách hàng.</p>
+    </div>
+    <div class="introMeta">
+      <span class="chip">Mẫu tổng: đã có</span>
+      <span class="chip">Thử nghiệm ngành: dầu khí + ngân hàng</span>
+      <span class="chip">Thử nghiệm doanh nghiệp: GAS + HPG</span>
+      <span class="chip">Mục tiêu dài hạn: phủ dần VN30/VN100</span>
+    </div>
+  </section>
+
+  <nav class="tabs" aria-label="Các phần của bảng điều khiển kế hoạch">
+    <button class="tabbtn active" data-tab="timeline">Lịch 3 tháng</button>
+    <button class="tabbtn" data-tab="tasks">Task chi tiết</button>
+    <button class="tabbtn" data-tab="company">Dữ liệu & phương pháp doanh nghiệp</button>
+    <button class="tabbtn" data-tab="data">Phương án dữ liệu</button>
+    <button class="tabbtn" data-tab="matrix">VN30/VN100 & nguồn lực</button>
+    <button class="tabbtn" data-tab="success">Tiêu chí thành công</button>
+    <button class="tabbtn" data-tab="decision">Checkpoint quyết định</button>
+    <button class="tabbtn" data-tab="ops">RACI & QA</button>
+  </nav>
+
+  <section class="pane active" id="timeline">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Lịch triển khai 3 tháng</h2>
+          <p><b>Cách đọc biểu đồ này.</b> Mười hai cột dọc là 12 tuần từ 01/09 đến 30/11/2026. Bốn hàng ngang là bốn nhóm việc chạy song song: <b>Ngành</b> - dựng bảng điều khiển cho từng ngành; <b>Doanh nghiệp</b> - dựng bảng điều khiển cho từng mã cổ phiếu; <b>Dữ liệu</b> - quyết định lấy số liệu từ đâu và ai cập nhật; <b>Rà soát</b> - các mốc kiểm tra chất lượng và các mốc cần quyết định. Mỗi thanh màu là một đầu việc, độ dài thanh là khoảng thời gian làm, màu thanh là loại việc theo chú thích bên dưới. Nhãn trên thanh cố ý viết ngắn để không bị cắt chữ - <b>bấm vào từng thanh sẽ hiện phần chú thích đầy đủ</b> ở khung bên dưới biểu đồ, gồm làm gì, ai chịu trách nhiệm, đầu ra phải có và điều cần lưu ý. Bảng việc theo tuần ở ngay dưới là cùng nội dung nhưng xếp theo thứ tự thời gian.<br><br><b>Sản phẩm giao ra là gì.</b> Mỗi dashboard là một trang web đọc được trên máy tính và điện thoại, tập hợp lại thành một website nội bộ cho team research dùng trước; giai đoạn sau, khi nội dung và nguồn dữ liệu đã đủ chặt, mới tính tới việc mở cho khách hàng. Ba tháng này chạy bản tĩnh - nghĩa là số liệu được nạp vào theo lịch cập nhật thủ công hoặc bán tự động, chưa nối cơ sở dữ liệu - vì giai đoạn này nội dung còn thay đổi sau mỗi lần rà soát, làm bản tĩnh thì sửa nhanh và gần như không tốn chi phí. Kế hoạch bắt đầu chạy từ 03/09/2026.</p>
+        </div>
+      </div>
+      <div class="grid two" style="margin-bottom:12px">
+        <div class="card">
+          <h3>Ba tháng này trả lời hai câu hỏi</h3>
+          <p style="margin:0 0 8px;color:var(--ink2);font-size:12px;line-height:1.5">Toàn bộ lịch bên dưới tồn tại để trả lời đúng hai câu này. Đủ 12 ngành mà không trả lời được thì vẫn chưa coi là đạt.</p>
+          <table>
+            <thead><tr><th>Câu hỏi</th><th>Được kiểm ở đâu trong 3 tháng</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b>1. Dashboard do team research dựng có đúng tư duy đầu tư không?</b> Tức là nó phản ánh đúng cách một người làm đầu tư nhìn ngành và doanh nghiệp - luận điểm, động lực giá trị, rủi ro - hay chỉ là một tập biểu đồ nhìn đẹp nhưng không dẫn tới quyết định nào.</td>
+                <td>Mốc rà soát dầu khí 09-11/09; mốc soi ngược hai ngành dầu khí và ngân hàng giữa tháng 9; và điều kiện bắt buộc là analyst sở hữu ngành hoặc mã phải xác nhận dashboard phản ánh đúng luận điểm của họ, không phải bản dựng cho có.</td>
+              </tr>
+              <tr>
+                <td><b>2. Nó có thật sự được dùng hằng ngày không?</b> Tức là dùng để theo dõi tin tức, cập nhật diễn biến doanh nghiệp và tìm cơ hội đầu tư - chứ không phải mở một lần lúc demo rồi bỏ.</td>
+                <td>Thanh xanh dương Plan source DL từ giữa tháng 10 trở đi, chỗ chốt ai cập nhật gì theo tần suất nào; và hai tiêu chí nghiệm thu cuối tháng 11: dashboard dầu khí dựng đầu tiên vẫn còn được cập nhật đúng lịch, và đã có ít nhất một lần dashboard được trích dẫn trong họp đầu tư.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Ai là ai trong bản kế hoạch này</h3>
+          <table>
+            <thead><tr><th>Vai trò</th><th>Làm gì</th></tr></thead>
+            <tbody>
+              <tr><td><b>PM</b><br><span style="color:var(--muted)">Portfolio Manager</span></td><td>Người rà soát và chốt chất lượng cuối cùng của mọi dashboard, cả logic đầu tư lẫn số liệu. Chưa có xác nhận của PM thì dashboard chưa được xem là đạt.</td></tr>
+              <tr><td><b>Analyst owner</b></td><td>Người sở hữu nội dung của một ngành hoặc một mã: viết luận điểm đầu tư, chọn biểu đồ bắt buộc phải có, khai báo nguồn cho từng số liệu, và nghiệm thu bản dựng ra có đúng cách mình nhìn cổ phiếu đó không.</td></tr>
+              <tr><td><b>Team research + AI</b></td><td>Dựng bản v1 từ đầu vào của analyst. AI làm phần dựng giao diện và biểu đồ để đi nhanh, nhưng người vẫn là khâu kiểm chứng số liệu cuối cùng - AI không được dùng làm nguồn cho số liệu trọng yếu.</td></tr>
+              <tr><td><b>BoD</b></td><td>Chốt hướng ở ba mốc đỏ trên biểu đồ và duyệt phần chi phí dữ liệu nếu quyết định mua API.</td></tr>
+              <tr><td><b>IT</b></td><td>Chưa tham gia trong 3 tháng này. Chỉ vào cuộc từ giai đoạn sau, nếu BoD duyệt xây cơ sở dữ liệu thật.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="timelineWrap">
+          <div class="gantt" id="gantt">
+            <div class="weeks" id="weeksHeader"></div>
+          </div>
+        </div>
+        <div class="legend">
+          <span class="legItem"><i class="lg-build"></i><span><b>Xanh lá - Dựng dashboard ngành:</b> mỗi thanh là một ngành được dựng phiên bản đầu tiên.</span></span>
+          <span class="legItem"><i class="lg-stock"></i><span><b>Tím - Dựng dashboard cổ phiếu:</b> phần làm ở cấp từng mã, không phải cấp ngành.</span></span>
+          <span class="legItem"><i class="lg-method"></i><span><b>Xanh đậm - Chuẩn bị đầu vào:</b> analyst viết brief để AI có căn cứ dựng, chưa dựng gì cả.</span></span>
+          <span class="legItem"><i class="lg-data"></i><span><b>Xanh dương - Việc dữ liệu:</b> xác định nguồn, tần suất cập nhật và người phụ trách.</span></span>
+          <span class="legItem"><i class="lg-qa"></i><span><b>Vàng - Kiểm tra chất lượng:</b> rà soát và soi ngược để sửa mẫu chung.</span></span>
+          <span class="legItem"><i class="lg-decision"></i><span><b>Đỏ - Mốc cần quyết định:</b> chỗ cần BoD chốt hướng, không tự đi tiếp được.</span></span>
+          <span class="legItem"><i class="lg-ops"></i><span><b>Xám - Chốt giai đoạn:</b> tổng kết 3 tháng và đề xuất bước tiếp theo.</span></span>
+        </div>
+        <div class="detailBox" id="timelineDetail"><b>Bấm vào một thanh bất kỳ trên biểu đồ</b> để đọc chú thích đầy đủ của đầu việc đó tại đây: làm gì, ai chịu trách nhiệm, đầu ra phải có và điều cần lưu ý. Ba mốc đỏ là ba lần cần BoD quyết: cuối tháng 9 chốt khung dashboard doanh nghiệp, giữa tháng 10 chốt phương án dữ liệu và chi phí, cuối tháng 10 chốt phạm vi tháng 11.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Bảng việc theo tuần</h2>
+          <p>Mỗi tuần có một đầu ra rõ ràng để đưa vào họp weekly với analyst và update cho BoD.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table id="weeklyTable"></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="tasks">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Luồng việc lớn và task nhỏ</h2>
+          <p>Chia theo cách này để không lẫn giữa việc nghiên cứu, việc chuẩn bị dữ liệu, việc dùng AI dựng giao diện, việc rà soát, và việc cần BoD quyết.</p>
+        </div>
+      </div>
+      <div class="workGrid" id="workGrid"></div>
+      <div class="detailBox" id="workDetail"><b>Cách dùng:</b> chọn một luồng việc để xem task nhỏ, khó khăn và đầu ra cần chốt.</div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h3>Các task quan trọng dễ bị bỏ sót</h3>
+        <table>
+          <thead><tr><th>Task</th><th>Vì sao quan trọng</th><th>Khi nào làm</th><th>Output cần có</th></tr></thead>
+          <tbody>
+            <tr><td><b>Nhật ký lỗi sau mỗi bảng điều khiển</b></td><td>Nếu không ghi lỗi, mỗi ngành/mã sau sẽ lặp lại cùng vấn đề.</td><td>Sau dầu khí, ngân hàng, GAS, HPG.</td><td>Danh sách lỗi theo nhóm: dữ liệu, nguồn, biểu đồ, giao diện, luận điểm.</td></tr>
+            <tr><td><b>Tiêu chí PM rà soát</b></td><td>Tránh rà soát cảm tính kiểu đẹp/xấu nhưng không biết bảng điều khiển có dùng được không.</td><td>Trước rà soát dầu khí ngày 09-11/09.</td><td>Checklist 10-15 điểm cho ngành và doanh nghiệp.</td></tr>
+            <tr><td><b>Danh mục nguồn dữ liệu</b></td><td>Giúp biết dữ liệu nào lấy qua API của WiChart hoặc Findicator, dữ liệu nào tải Excel, dữ liệu nào nhập tay.</td><td>Tuần 2-4 tháng 9.</td><td>Bảng mapping dữ liệu, nguồn, tần suất, owner, độ tin cậy.</td></tr>
+            <tr><td><b>Chuẩn file Excel đầu vào</b></td><td>AI chỉ đọc ổn định nếu chuyên viên phân tích nhập cùng cấu trúc: tên sheet, kỳ dữ liệu, đơn vị, nguồn.</td><td>Trước khi mở rộng doanh nghiệp trong tháng 10.</td><td>Mẫu Excel đầu vào cho ngành và doanh nghiệp.</td></tr>
+            <tr><td><b>Nhật ký quyết định</b></td><td>Các quyết định về API WiChart/Findicator, Excel, AI, nhập tay, IT cần có lý do để sau này không tranh luận lại từ đầu.</td><td>Từ cuối tháng 9 trở đi.</td><td>Log: quyết định, lý do, người duyệt, ngày xem lại.</td></tr>
+            <tr><td><b>Danh sách dữ liệu cần cập nhật mới nhất</b></td><td>Bảng điều khiển cổ phiếu phải sống được, không chỉ là ảnh chụp tại một thời điểm.</td><td>Trong lúc thử GAS & HPG.</td><td>Bảng dữ liệu hằng ngày/hằng tuần/hằng tháng/hằng quý/theo sự kiện.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="company">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Chuẩn bị dữ liệu & phương pháp để dựng bảng điều khiển doanh nghiệp</h2>
+          <p>Việc này cần giao sớm cho từng chuyên viên phân tích ngay trong tháng 9, kể cả với những mã chưa đến lượt dựng. Có đầu vào cụ thể ngay từ đầu thì AI mới không phải tự đoán cấu trúc phân tích của từng cổ phiếu — và đoán sai thì công sửa lại còn tốn hơn công viết brief.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Mỗi analyst cần điền gì cho từng mã</h3>
+          <table>
+            <thead><tr><th>Nhóm đầu vào</th><th>Nội dung cần điền</th><th>Đầu ra mong muốn</th></tr></thead>
+            <tbody>
+              <tr><td><b>Phương pháp đầu tư</b></td><td>Luận điểm đầu tư chính, 3-5 động lực giá trị, các tranh luận chính, điều kiện làm thay đổi quan điểm, yếu tố hỗ trợ 3-12 tháng.</td><td>1 trang mô tả cách chuyên viên phân tích nhìn cổ phiếu.</td></tr>
+              <tr><td><b>Biểu đồ/dữ liệu chính</b></td><td>Biểu đồ bắt buộc phải có, chỉ số vận hành cần theo dõi, chỉ số tài chính cần nối từ mô hình, dữ liệu phi tài chính.</td><td>Danh sách biểu đồ/dữ liệu có ưu tiên cao, trung bình, thấp.</td></tr>
+              <tr><td><b>Nguồn & cập nhật</b></td><td>Nguồn chính/phụ, có link hoặc file gốc, tần suất cập nhật, cách lấy dữ liệu: API WiChart/Findicator, Excel, AI tìm nguồn, nhập tay.</td><td>Bản đồ dữ liệu cho từng chỉ số.</td></tr>
+              <tr><td><b>Cấu trúc bảng điều khiển</b></td><td>Tab bắt buộc, tab đặc thù, phần đọc nhanh, phần luận điểm, phần định giá, phần yếu tố hỗ trợ, phần rủi ro.</td><td>Khung nội dung cho từng mã.</td></tr>
+              <tr><td><b>Liên kết Excel/mô hình</b></td><td>Sheet nào có thể nối, chỉ tiêu nào lấy từ mô hình, giả định nào cần hiển thị, định giá dùng multiples/DCF/SOTP/NAV.</td><td>Danh sách trường dữ liệu cần lấy từ mô hình Excel.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Form giao việc ngắn cho analyst</h3>
+          <ul class="list">
+            <li>Mã cổ phiếu này cần bảng điều khiển để trả lời câu hỏi đầu tư nào?</li>
+            <li>Người đọc cần nhìn thấy 3 thông điệp gì trong 3 phút đầu?</li>
+            <li>5-10 chỉ số hoặc sự kiện nào phải cập nhật liên tục?</li>
+            <li>Mỗi chỉ số lấy từ đâu, cập nhật theo ngày/tuần/tháng/quý hay theo sự kiện?</li>
+            <li>Biểu đồ nào là bắt buộc vì nó phản ánh mô hình kinh doanh?</li>
+            <li>Phần nào lấy từ mô hình Excel định giá, phần nào lấy từ nguồn ngoài?</li>
+            <li>Thông tin nào nếu thiếu thì bảng điều khiển không đáng tin?</li>
+            <li>Phần nào analyst muốn tự tùy chỉnh để giữ phong cách phân tích riêng?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h3>Ví dụ đầu vào cho một số mã chính</h3>
+        <table>
+          <thead><tr><th>Mã</th><th>Data/chart nên chuẩn bị</th><th>Nguồn gợi ý</th><th>Challenge chính</th></tr></thead>
+          <tbody>
+            <tr><td><b>GAS</b></td><td>Sản lượng khí, giá dầu/LPG, LNG/dự án, hợp đồng/giá cước, cổ tức, capex, yếu tố hỗ trợ chính sách.</td><td>WiChart, BCTC, báo cáo thường niên, PVN, nguồn giá dầu/hàng hóa.</td><td>Phải tách dữ liệu hằng ngày như giá dầu khỏi dữ liệu theo quý như BCTC.</td></tr>
+            <tr><td><b>HPG</b></td><td>Sản lượng thép, giá HRC, quặng/coke/spread, tồn kho, Dung Quất 2, xuất khẩu, nhu cầu bất động sản/đầu tư công.</td><td>WiChart, dữ liệu công ty, nguồn hàng hóa, báo cáo ngành thép, dữ liệu nội bộ.</td><td>Dữ liệu hàng hóa nhiều nguồn, cần thống nhất đơn vị và kỳ.</td></tr>
+            <tr><td><b>CTD</b></td><td>Backlog, giá trị ký mới, gross margin dự án, tiến độ thu tiền, rủi ro công nợ, danh sách dự án lớn.</td><td>BCTC, công bố công ty, ĐHCĐ, báo cáo analyst, dữ liệu nội bộ.</td><td>Backlog không phải lúc nào cũng có dữ liệu cập nhật đều, dễ phải nhập tay có nguồn.</td></tr>
+            <tr><td><b>MWG</b></td><td>Doanh thu/cửa hàng, số cửa hàng, BHX, biên gộp, chi phí vận hành, sức mua tiêu dùng, catalyst tái cấu trúc.</td><td>Báo cáo tháng/quý công ty, WiChart, BCTC, dữ liệu ngành bán lẻ.</td><td>Dữ liệu vận hành cập nhật nhanh, cần phân biệt số liệu công ty công bố và ước tính analyst.</td></tr>
+            <tr><td><b>PVS</b></td><td>Backlog M&C, Lô B, FSO/FPSO, hợp đồng mới, tiến độ dự án, biên lợi nhuận theo mảng.</td><td>Công bố công ty, BCTC, tài liệu ĐHCĐ, báo cáo ngành dầu khí.</td><td>Catalyst theo sự kiện quan trọng hơn dữ liệu định kỳ.</td></tr>
+            <tr><td><b>POW/REE</b></td><td>Sản lượng điện, thủy văn, giá khí/than, huy động nhà máy, dự án mới, NAV/SOTP nếu phù hợp.</td><td>EVN, công ty, WiChart, BCTC, dữ liệu thời tiết/thủy văn, báo cáo ngành điện.</td><td>Cần kết hợp dữ liệu vận hành, tài chính và định giá theo tài sản.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="data">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Phương án dữ liệu và trial & error</h2>
+          <p>Không nên ép tất cả dữ liệu vào một cách lấy. Mỗi loại dữ liệu cần được chọn theo độ tin cậy, chi phí, khả năng update, công engineering và khả năng bám sát investment thesis.</p>
+        </div>
+      </div>
+      <div class="optionGrid" id="optionGrid"></div>
+      <div class="detailBox" id="optionDetail"><b>Nguyên tắc:</b> dữ liệu cập nhật thường xuyên thì ưu tiên tự động hóa; dữ liệu khó tự động nhưng quan trọng cho thesis thì cho phép Excel hoặc nhập tay có nguồn.</div>
+    </div>
+
+    <div class="section">
+      <div class="grid two">
+        <div class="card">
+          <h3>Cây quyết định chọn nguồn dữ liệu</h3>
+          <table>
+            <thead><tr><th>Câu hỏi</th><th>Nếu câu trả lời là có</th><th>Nếu câu trả lời là không</th></tr></thead>
+            <tbody>
+              <tr><td>Dữ liệu có cần cập nhật hằng ngày/hằng tuần không?</td><td>Ưu tiên API của WiChart hoặc Findicator, hoặc nguồn tự động đáng tin khác.</td><td>Dùng tải Excel hoặc nhập tay có nguồn.</td></tr>
+              <tr><td>Dữ liệu có ảnh hưởng trực tiếp đến thesis/valuation không?</td><td>Bắt buộc có nguồn, ngày cập nhật, kiểm tra chéo.</td><td>Có thể để ở mức tham khảo hoặc đưa xuống phụ lục.</td></tr>
+              <tr><td>WiChart hoặc Findicator đã có sẵn dữ liệu/API cho chỉ số này chưa?</td><td>Test kết nối và tính chi phí/quyền truy cập.</td><td>Tìm nguồn public, báo cáo ngành, dữ liệu nội bộ hoặc nhập tay.</td></tr>
+              <tr><td>AI lấy dữ liệu có đáng tin không?</td><td>Chỉ dùng nếu có link/file gốc và analyst xác nhận.</td><td>Không dùng AI làm nguồn cuối cùng cho số liệu trọng yếu.</td></tr>
+              <tr><td>Dữ liệu có nên chuyển cho IT dựng cơ sở dữ liệu sau này không?</td><td>Ghi rõ cấu trúc bảng, khóa dữ liệu, tần suất, người phụ trách.</td><td>Giữ ở bảng điều khiển tĩnh/Excel cho tới khi có nhu cầu lặp lại đủ lớn.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Chủ đề cần discussion với team & BoD</h3>
+          <ul class="list">
+            <li>Chốt có mua quyền API của WiChart hoặc Findicator hay không, và phạm vi dữ liệu nào đáng mua - chỉ mua phần thật sự cần cập nhật thường xuyên.</li>
+            <li>Chuẩn Excel đầu vào để analyst upload thay vì tự động hóa ngay từ đầu.</li>
+            <li>Danh sách dữ liệu bắt buộc tự động: giá cổ phiếu, giá commodity, dữ liệu tài chính, tin tức/catalyst mới.</li>
+            <li>Quy định nguồn: số liệu trọng yếu bắt buộc có nguồn gốc, ngày cập nhật và người xác nhận.</li>
+            <li>Ranh giới AI: AI hỗ trợ nghiên cứu, trích xuất PDF, viết nội dung, dựng bảng điều khiển; chuyên viên phân tích vẫn là người kiểm chứng cuối.</li>
+            <li>Khi nào chuyển từ HTML tĩnh + Excel sang cơ sở dữ liệu/ứng dụng do IT dựng.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h3>Lộ trình nền tảng kỹ thuật</h3>
+        <p style="margin:0 0 10px;color:var(--muted);font-size:12.5px;line-height:1.5">Không nhảy thẳng lên cơ sở dữ liệu ngay. Ba tháng này ưu tiên chốt xong nội dung và thiết kế bằng cách làm rẻ, sửa nhanh; đầu tư kỹ thuật chỉ đến sau khi đã chứng minh được giá trị.</p>
+        <table>
+          <thead><tr><th>Giai đoạn</th><th>Cách làm</th><th>Vì sao chọn lúc này</th></tr></thead>
+          <tbody>
+            <tr><td><b>1 — Hiện tại (T9-T11/2026)</b></td><td>HTML tĩnh + Excel đầu vào chuẩn hóa, team research dùng AI dựng thủ công từng bảng điều khiển; xuất bản thành website nội bộ cho team research. Cần chọn nơi host kiểm soát được ai xem, vì nội dung là quan điểm đầu tư chưa công bố: GitHub Pages đi nhanh nhất nhưng bản miễn phí để trang công khai với bất kỳ ai có đường dẫn, muốn giới hạn người xem phải dùng gói trả phí; hai phương án thay thế là dịch vụ host tĩnh có đặt mật khẩu như Netlify hoặc Cloudflare Pages, hoặc đặt thẳng trên máy chủ nội bộ công ty.</td><td>Rẻ, sửa nhanh, phù hợp lúc nội dung và thiết kế còn đang thay đổi liên tục sau mỗi lần rà soát.</td></tr>
+            <tr><td><b>2 — Sau T11/2026, nếu BoD duyệt</b></td><td>Bán tự động: script đọc Excel chuẩn hóa + API WiChart/Findicator cho phần dữ liệu cập nhật thường xuyên, vẫn xuất ra dashboard tĩnh nhưng giảm hẳn công nhập tay.</td><td>Lúc này đã biết rõ dữ liệu nào thật sự cần cập nhật đều, tránh tự động hóa nhầm chỗ không cần.</td></tr>
+            <tr><td><b>3 — Dài hạn</b></td><td>Cơ sở dữ liệu thật + ứng dụng web do IT dựng, có phân quyền, lịch cập nhật tự động, thêm mã/ngành mới không phải dựng lại từ đầu.</td><td>Chỉ đáng đầu tư khi số lượng dashboard đủ lớn để việc dựng tay trở thành điểm nghẽn thật sự.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="matrix">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Ma trận ngành × mã đại diện VN30/VN100</h2>
+          <p>12 ngành trọng yếu trong plan này gắn với mã đại diện nào trong rổ VN30/VN100, ngành nào build v1 tháng nào, và mã nào thực sự được dựng dashboard riêng trong 3 tháng này so với mã để lại cho giai đoạn sau. Danh sách mã VN30 do HOSE xét lại hai lần một năm (tháng 1 và tháng 7) — trước khi chốt mã build thật, kiểm tra lại rổ mới nhất chứ đừng lấy nguyên bảng này.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Ngành</th><th>Mã đại diện (VN30/VN100)</th><th>Ngành build v1 lúc nào</th><th>Mã cổ phiếu trong 3 tháng này</th></tr></thead>
+          <tbody>
+            <tr><td><b>Dầu khí</b></td><td><span class="tagrow"><span class="tag vn30">GAS·VN30</span><span class="tag vn30">PLX·VN30</span><span class="tag vn100">PVS·VN100</span><span class="tag vn100">PVD·VN100</span><span class="tag vn100">BSR·VN100</span></span></td><td>Tuần 1-2 (đầu T9)</td><td>GAS là mã pilot bắt buộc, dựng trước cả khi ngành xong để test khung doanh nghiệp. PVS là ứng viên thêm nếu input sẵn sàng; PLX/PVD/BSR để giai đoạn sau.</td></tr>
+            <tr><td><b>Ngân hàng</b></td><td><span class="tagrow"><span class="tag vn30">VCB·VN30</span><span class="tag vn30">BID·VN30</span><span class="tag vn30">CTG·VN30</span><span class="tag vn30">TCB·VN30</span><span class="tag vn30">ACB·VN30</span><span class="tag vn30">MBB·VN30</span><span class="tag vn100">HDB·VN100</span><span class="tag vn100">VIB·VN100</span></span></td><td>Tuần 3 (giữa T9)</td><td>Chưa chọn mã cụ thể để build riêng trong 3 tháng — nếu còn dư nguồn lực sau GAS/HPG, cân nhắc thêm một mã lớn (VCB hoặc TCB); nếu không, để hẳn giai đoạn sau.</td></tr>
+            <tr><td><b>Hàng hóa / Thép</b></td><td><span class="tagrow"><span class="tag vn30">HPG·VN30</span><span class="tag vn100">HSG·VN100</span><span class="tag vn100">NKG·VN100</span></span></td><td>Tuần 7-8 (đầu T10)</td><td>HPG là mã pilot bắt buộc, dựng cuối T9 — lệch pha có chủ đích, đi trước cả ngành để test khung doanh nghiệp sớm. HSG/NKG để giai đoạn sau.</td></tr>
+            <tr><td><b>Năng lượng điện</b></td><td><span class="tagrow"><span class="tag vn30">POW·VN30</span><span class="tag vn30">REE·VN30</span><span class="tag vn100">PC1·VN100</span><span class="tag vn100">GEG·VN100</span></span></td><td>Tuần 7-8 (đầu T10)</td><td>POW hoặc REE là ứng viên cho nhóm 2-4 mã mở rộng thêm (tuần 5-12), chọn một chứ không làm cả hai.</td></tr>
+            <tr><td><b>Tiêu dùng - bán lẻ</b></td><td><span class="tagrow"><span class="tag vn30">MWG·VN30</span><span class="tag vn100">PNJ·VN100</span><span class="tag vn100">DGW·VN100</span><span class="tag vn100">FRT·VN100</span></span></td><td>Tuần 8 (cuối T10)</td><td>MWG là ứng viên ưu tiên trong nhóm mã mở rộng, vì đã có sẵn ví dụ input ở tab doanh nghiệp.</td></tr>
+            <tr><td><b>Thực phẩm</b></td><td><span class="tagrow"><span class="tag vn30">VNM·VN30</span><span class="tag vn30">SAB·VN30</span><span class="tag vn30">MSN·VN30</span><span class="tag vn100">KDC·VN100</span></span></td><td>Tuần 9-10 (đầu T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Hàng không</b></td><td><span class="tagrow"><span class="tag vn30">VJC·VN30</span><span class="tag vn100">HVN·VN100</span><span class="tag vn100">ACV·VN100</span></span></td><td>Tuần 9-10 (đầu T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Vận tải</b></td><td><span class="tagrow"><span class="tag vn100">GMD·VN100</span><span class="tag vn100">PVT·VN100</span><span class="tag vn100">HAH·VN100</span><span class="tag vn100">VSC·VN100</span></span></td><td>Tuần 9-10 (đầu T11)</td><td>PVT là ứng viên nếu team muốn mở rộng thêm theo hướng dầu khí; còn lại để giai đoạn sau.</td></tr>
+            <tr><td><b>Dược</b></td><td><span class="tagrow"><span class="tag vn100">DHG·VN100</span><span class="tag vn100">IMP·VN100</span><span class="tag vn100">DBD·VN100</span></span></td><td>Tuần 10-11 (giữa T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Hóa chất</b></td><td><span class="tagrow"><span class="tag vn100">DGC·VN100</span><span class="tag vn100">DPM·VN100</span><span class="tag vn100">DCM·VN100</span></span></td><td>Tuần 10-11 (giữa T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Nông nghiệp</b></td><td><span class="tagrow"><span class="tag vn100">PAN·VN100</span><span class="tag vn100">HAG·VN100</span><span class="tag vn100">BAF·VN100</span></span></td><td>Tuần 11-12 (cuối T11)</td><td><span class="tag later">Để giai đoạn sau</span></td></tr>
+            <tr><td><b>Công nghệ</b></td><td><span class="tagrow"><span class="tag vn30">FPT·VN30</span><span class="tag vn100">CMG·VN100</span></span></td><td>Tuần 11-12 (cuối T11)</td><td>FPT đáng cân nhắc nếu team muốn có một mã tăng trưởng phi hàng hóa trong nhóm pilot.</td></tr>
+          </tbody>
+        </table>
+        <div class="note" style="margin-top:12px">Tổng rổ VN30 có 30 mã, VN100 có 100 mã. Trong 3 tháng này, dự kiến chỉ khoảng 6 mã có dashboard riêng (GAS, HPG, và 2-4 mã chọn thêm từ MWG/PVS/POW/REE/FPT). Gần 90% VN30 và phần lớn VN100 vẫn nằm ở "giai đoạn sau" — nguyên tắc chọn tiếp là ưu tiên ngành đã có dashboard xong, vốn hóa/thanh khoản cao, và analyst đã nộp shortnote input đủ tốt.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Nguồn lực cần huy động theo tháng</h2>
+          <p>Chưa có con số ngân sách/headcount chính thức — bảng dưới là khung để PM và team research điền số thật vào trước khi trình BoD. Mức độ ưu tiên tính theo tỷ lệ thời gian analyst cần dành ra, không phải số tiền.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Tháng</th><th>Khối lượng build</th><th>Nhân sự cần huy động</th><th>Mức ưu tiên thời gian analyst</th><th>Cần BoD duyệt gì</th></tr></thead>
+          <tbody>
+            <tr><td><b>T9/2026</b></td><td>2 ngành (dầu khí, ngân hàng) + khóa input doanh nghiệp cho 8-12 mã</td><td>PM full-time; 2 analyst ngành; 8-12 analyst điền shortnote bán thời gian</td><td>Cao với 2 analyst ngành phụ trách dầu khí/ngân hàng</td><td>Chưa cần — vẫn trong ngân sách vận hành hiện có</td></tr>
+            <tr><td><b>T10/2026</b></td><td>3 ngành (hàng hóa, năng lượng, tiêu dùng) + GAS/HPG v1 + 2-4 mã mở rộng</td><td>PM full-time; 3 analyst ngành; analyst sở hữu từng mã pilot; QA chéo kiêm nhiệm</td><td>Trung bình-cao, dàn trải hơn tháng 9</td><td>Quyết định có mua quyền API của WiChart hoặc Findicator hay không (ảnh hưởng chi phí từ tháng 11 trở đi)</td></tr>
+            <tr><td><b>T11/2026</b></td><td>7 ngành còn lại (thực phẩm, hàng không, vận tải, dược, hóa chất, nông nghiệp, công nghệ) + QA chéo toàn bộ</td><td>PM full-time; 7 analyst ngành song song; toàn bộ analyst tham gia QA chéo</td><td>Cao, nhiều ngành chạy song song nhất trong 3 tháng</td><td>Duyệt nguồn lực/ngân sách cho giai đoạn phủ tiếp VN30/VN100 sau tháng 11</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="success">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Tiêu chí thành công</h2>
+          <p>QA ở tab RACI kiểm tra từng dashboard có đạt chuẩn hay không. Phần này đo cả dự án 3 tháng có đạt mục tiêu hay không — kể cả khi từng dashboard riêng lẻ đều pass QA.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Đo được đến cuối tháng 11</h3>
+          <table>
+            <thead><tr><th>Tiêu chí</th><th>Mục tiêu cuối T11/2026</th></tr></thead>
+            <tbody>
+              <tr><td><b>Độ phủ ngành</b></td><td>12/12 ngành trọng yếu có dashboard v1.</td></tr>
+              <tr><td><b>Độ phủ cổ phiếu</b></td><td>Khoảng 6 mã VN30/VN100 có dashboard riêng; phần còn lại có roadmap rõ ràng, không phải "chưa biết bao giờ làm".</td></tr>
+              <tr><td><b>Nguồn dữ liệu</b></td><td>100% điểm dữ liệu trọng yếu trong phần lõi bắt buộc có nguồn và ngày cập nhật.</td></tr>
+              <tr><td><b>Đúng tư duy đầu tư</b></td><td>Analyst sở hữu từng ngành/mã xác nhận dashboard phản ánh đúng luận điểm của họ, không phải bản dựng cho có; PM xác nhận cấu trúc dashboard dẫn được tới một quyết định đầu tư chứ không dừng ở mô tả.</td></tr>
+              <tr><td><b>Dùng thật hằng ngày</b></td><td>Analyst dùng dashboard trong công việc theo dõi thường ngày - cập nhật tin tức, theo diễn biến doanh nghiệp, rà cơ hội đầu tư - chứ không mở riêng lúc họp. Đo bằng: có ít nhất một lần dashboard được trích dẫn trong họp đầu tư với BoD, và mỗi dashboard đã dựng đều có dấu vết cập nhật trong tháng gần nhất.</td></tr>
+              <tr><td><b>Duy trì được</b></td><td>Dashboard v1 đầu tiên (dầu khí) vẫn còn cập nhật đúng lịch đã chốt vào cuối tháng 11, không bị bỏ quên sau khi ra bản mới.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Không tính là xong</h3>
+          <ul class="list">
+            <li>Giao diện đẹp nhưng số liệu trọng yếu chưa xác nhận nguồn — vẫn coi là chưa đạt, không phải "gần đạt".</li>
+            <li>Build được nhiều ngành/mã nhưng chất lượng không đều — vài cái tốt không bù được vài cái ẩu.</li>
+            <li>Ra mắt đúng hạn nhưng sau tuần đầu không ai mở lại — nghĩa là chưa trả lời đúng câu hỏi đầu tư người đọc cần.</li>
+            <li>Analyst phải tự sửa lại gần hết vì bản AI dựng không đúng luận điểm — coi như task đó phải làm lại, không phải "đã xong 80%".</li>
+            <li>Dữ liệu đẹp nhưng không ai cập nhật sau tuần đầu tiên vì chưa có người phụ trách rõ ràng.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="decision">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>Checkpoint quyết định</h2>
+          <p>Các checkpoint này là nơi chốt hướng đi, không chỉ cập nhật tiến độ. Mỗi checkpoint cần có bằng chứng từ bảng điều khiển đã dựng thật.</p>
+        </div>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Thời điểm</th><th>Quyết định cần chốt</th><th>Bằng chứng cần mang vào họp</th><th>Người tham gia</th></tr></thead>
+          <tbody>
+            <tr><td><b>09-11/09</b></td><td>Dầu khí v1 có đủ tốt để làm thử nghiệm mẫu ngành không?</td><td>Bảng điều khiển dầu khí v1, nhật ký lỗi, phần thiếu dữ liệu, phần cần sửa thiết kế.</td><td>PM, analyst dầu khí.</td></tr>
+            <tr><td><b>16-22/09</b></td><td>Sau dầu khí + ngân hàng, mẫu ngành cần sửa gì trước khi mở rộng?</td><td>So sánh 2 ngành, danh sách điểm giống/khác, chart nào giữ, chart nào tùy chỉnh.</td><td>PM, analyst dầu khí, analyst ngân hàng, team research.</td></tr>
+            <tr><td><b>Cuối 09</b></td><td>Chốt hướng đi cho bảng điều khiển doanh nghiệp sau khi test GAS/HPG.</td><td>GAS v1, HPG v1, phản hồi của analyst, phần lõi bắt buộc, phần được tùy chỉnh, dữ liệu cần tự động.</td><td>PM, analyst liên quan, BoD nếu cần.</td></tr>
+            <tr><td><b>Tuần 2 tháng 10</b></td><td>Chọn phương án dữ liệu chính cho giai đoạn mở rộng.</td><td>Ma trận API WiChart hoặc Findicator/Excel/AI/nhập tay, chi phí, rủi ro, dữ liệu cần cập nhật thường xuyên.</td><td>PM, team research, BoD, IT nếu có.</td></tr>
+            <tr><td><b>Cuối tháng 10</b></td><td>Chốt danh sách ngành/mã mở rộng tháng 11 và nguyên tắc lấy nguồn dữ liệu.</td><td>Danh sách ngành/mã có đầu vào sẵn, độ khó dữ liệu, độ quan trọng với quyết định đầu tư, phương án API WiChart hoặc Findicator/Excel/AI/nhập tay.</td><td>PM, trưởng nhóm nghiên cứu, analyst owners.</td></tr>
+            <tr><td><b>Cuối tháng 11</b></td><td>Giai đoạn sau 3 tháng cần đi tiếp với IT/cơ sở dữ liệu như thế nào, và phủ tiếp phần VN30/VN100 còn lại ra sao?</td><td>Bộ bảng điều khiển đã có, phản hồi sử dụng, lỗi còn tồn, yêu cầu kỹ thuật dài hạn, cùng ma trận ngành-mã còn thiếu và nguồn lực ước tính từ tab VN30/VN100 & nguồn lực.</td><td>PM, BoD, team research, IT.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="ops">
+    <div class="section">
+      <div class="sectionhead">
+        <div>
+          <h2>RACI & QA</h2>
+          <p>Phần này để BoD và team nhìn ra ngay ai là người chốt, ai trực tiếp làm, ai góp ý trước khi chốt, và ai chỉ cần nắm thông tin.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Ma trận trách nhiệm</h3>
+          <table class="raci">
+            <thead><tr><th>Hoạt động</th><th>PM</th><th>Analyst owner</th><th>Team research (dựng, dữ liệu, QA)</th><th>BoD</th><th>IT</th></tr></thead>
+            <tbody>
+              <tr><td>Chốt mục tiêu, thứ tự ưu tiên</td><td class="r">R</td><td class="c">C</td><td class="i">I</td><td class="a">A</td><td class="i">I</td></tr>
+              <tr><td>Điền đầu vào ngành</td><td class="a">A</td><td class="r">R</td><td class="c">C</td><td class="i">I</td><td class="i">I</td></tr>
+              <tr><td>Dựng bảng điều khiển bằng AI</td><td class="a">A</td><td class="c">C</td><td class="r">R</td><td class="i">I</td><td class="i">I</td></tr>
+              <tr><td>Kiểm tra nguồn và số liệu</td><td class="a">A</td><td class="r">R</td><td class="r">R</td><td class="i">I</td><td class="i">I</td></tr>
+              <tr><td>Chốt phương án dữ liệu</td><td class="r">R</td><td class="c">C</td><td class="c">C</td><td class="a">A</td><td class="c">C</td></tr>
+              <tr><td>Thiết kế database dài hạn</td><td class="c">C</td><td class="c">C</td><td class="c">C</td><td class="a">A</td><td class="r">R</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Checklist QA trước khi xem là đạt</h3>
+          <ul class="list">
+            <li>Các điểm dữ liệu trọng yếu có nguồn, ngày cập nhật và người xác nhận.</li>
+            <li>Biểu đồ phục vụ thesis, không chỉ đưa vào vì có dữ liệu.</li>
+            <li>Dữ liệu khác tần suất được tách rõ: hằng ngày, hằng tuần, hằng tháng, hằng quý, theo sự kiện.</li>
+            <li>Thông tin mới nhất được cập nhật hoặc có nhãn rõ là chưa cập nhật.</li>
+            <li>Phần nào tự động, tải Excel, AI tìm nguồn, nhập tay phải được ghi rõ.</li>
+            <li>Analyst owner đã xác nhận logic ngành/doanh nghiệp.</li>
+            <li>PM đã ghi log lỗi và quyết định sửa/không sửa.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="grid three">
+        <div class="card"><h3>Rủi ro dữ liệu</h3><ul class="list"><li>WiChart hoặc Findicator có dữ liệu nhưng chưa chốt được quyền truy cập/API, nên giai đoạn đầu vẫn phải tải Excel thủ công.</li><li>Nguồn free thiếu ổn định hoặc thiếu lịch sử.</li><li>Excel của từng analyst không cùng cấu trúc.</li></ul></div>
+        <div class="card"><h3>Rủi ro kỹ thuật</h3><ul class="list"><li>Bảng điều khiển tĩnh dễ thử nhanh nhưng khó cập nhật hàng loạt.</li><li>Nối mô hình Excel có thể phức tạp hơn dự kiến.</li><li>Dữ liệu hằng ngày nhiều nguồn làm bảng điều khiển chậm hoặc khó bảo trì.</li></ul></div>
+        <div class="card"><h3>Rủi ro phân tích</h3><ul class="list"><li>Bảng điều khiển đẹp nhưng không phản ánh luận điểm đầu tư.</li><li>Mỗi analyst tùy chỉnh quá khác nhau làm mất tính nhất quán.</li><li>AI viết tự tin nhưng số liệu/nguồn chưa được kiểm chứng.</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Bản kế hoạch 3 tháng cho dashboard ngành và dashboard cổ phiếu VN30/VN100. Giai đoạn này ưu tiên thống nhất nội dung, thiết kế, phương pháp dữ liệu và quy trình QA trước khi mở rộng độ phủ và đầu tư nền tảng dữ liệu dài hạn.</div>
+</main>
+
+<script>
+const weeks = [
+  '01-07/09','08-14/09','15-21/09','22-30/09',
+  '01-07/10','08-14/10','15-21/10','22-31/10',
+  '01-07/11','08-14/11','15-21/11','22-30/11'
+];
+
+const weeklyRows = [
+  ['1','01-07/09','Khóa đầu vào dầu khí','Gửi hạn chót cho analyst dầu khí; khóa file đầu vào; kiểm tra có đủ cung-cầu, giá, chính sách, doanh nghiệp đại diện, nguồn và ngày cập nhật chưa.','Thiếu nguồn; số liệu nhiều định nghĩa; analyst viết diễn giải nhưng chưa chuyển thành biểu đồ/dữ liệu.','Bộ đầu vào dầu khí đủ để dựng v1 trước 08/09.'],
+  ['2','08-14/09','Dầu khí v1 + PM rà soát','Dựng bảng điều khiển dầu khí v1 ngày 08/09; PM rà soát trong 3 ngày; ghi lỗi nội dung, biểu đồ, nguồn, giao diện, phần cần tự động.','Dựng nhanh dễ bỏ qua nhật ký học được gì; rà soát dễ cảm tính nếu chưa có checklist.','Bảng điều khiển dầu khí v1 + biên bản rà soát 09-11/09.'],
+  ['2','08-14/09','Ngân hàng chạy song song','Analyst ngân hàng điền đầu vào; xác định tab đặc thù: tín dụng, NIM, CASA, NPL, trích lập, vốn, tăng trưởng huy động.','Ngân hàng khác ngành hàng hóa nên có thể làm lộ điểm yếu của mẫu chung.','Đầu vào ngân hàng + khung bảng điều khiển để hoàn thành trước 15/09.'],
+  ['3','15-21/09','Ngân hàng v1 + kiểm tra ngược','Hoàn thành bảng điều khiển ngân hàng ngày 15/09; kiểm tra ngược dầu khí và ngân hàng trong 1 tuần; so sánh điểm giống/khác và sửa mẫu tổng.','Dễ sửa theo từng ngành riêng lẻ mà quên giữ tính nhất quán.','Mẫu ngành chỉnh lần 1 + nhật ký lỗi chung.'],
+  ['3','15-21/09','Giao việc sớm cho analyst khác','Mỗi analyst chọn 1-2 mã/ngành chính và điền trước: luận điểm, biểu đồ cần có, dữ liệu cần cập nhật, nguồn, tần suất, liên kết mô hình Excel.','Vì chưa dựng ngay nên analyst có thể điền quá chung; cần form ngắn và ví dụ cụ thể như CTD backlog.','Danh mục đầu vào doanh nghiệp cho 8-12 mã ưu tiên.'],
+  ['4','22-30/09','Dựng GAS & HPG v1','Dựng 2 bảng điều khiển doanh nghiệp đầu tiên; kiểm tra kết nối ngành, dữ liệu tài chính/phi tài chính, yếu tố hỗ trợ mới nhất, định giá và mô hình Excel.','Bảng điều khiển doanh nghiệp cần tùy chỉnh sâu hơn ngành; dữ liệu mới nhất và dữ liệu định kỳ có tần suất khác nhau.','GAS v1, HPG v1, danh sách phần bắt buộc/tùy chọn.'],
+  ['5','01-07/10','Rà soát doanh nghiệp','PM + analyst rà soát GAS/HPG; chốt hướng đi cho bảng điều khiển doanh nghiệp: phần lõi, phần tùy chỉnh, phần dữ liệu tự động/Excel/nhập tay.','Nếu không chốt ranh giới, mỗi mã sẽ thành một kiểu riêng và khó mở rộng.','Khung bảng điều khiển doanh nghiệp v1.'],
+  ['6','08-14/10','Thảo luận dữ liệu','Thảo luận với team/BoD về API WiChart/Findicator, tải Excel, AI tìm nguồn, nhập tay và cơ sở dữ liệu IT dài hạn theo 5 tiêu chí: tin cậy, chi phí, cập nhật, kỹ thuật, bám luận điểm.','Mua API cần thời gian đàm phán và phát sinh chi phí; AI có rủi ro nguồn; tự động hóa quá sớm có thể tốn công hơn lợi ích.','Ma trận quyết định dữ liệu + quyết định thử nghiệm tiếp.'],
+  ['7','15-21/10','Dựng ngành hàng hóa, năng lượng, tiêu dùng','Ưu tiên hàng hóa vì liên quan HPG; năng lượng vì liên quan POW/REE; tiêu dùng/bán lẻ vì liên quan MWG. Mỗi ngành dựng v1 theo mẫu đã chỉnh sau dầu khí/ngân hàng.','Ba ngành có bộ KPI rất khác nhau, dễ làm lộ điểm mẫu chưa đủ linh hoạt.','3 bảng điều khiển ngành v1: hàng hóa, năng lượng, tiêu dùng/bán lẻ.'],
+  ['8','22-31/10','Chuẩn hóa analyst shortnote input','Từ bài GAS/HPG, gửi mẫu shortnote input chính thức cho analyst: phương pháp đầu tư, biểu đồ chính, nguồn, tần suất, liên kết mô hình, yếu tố hỗ trợ.','Form quá dài thì analyst không điền; quá ngắn thì AI thiếu bối cảnh.','Mẫu analyst shortnote input v1 + danh sách mã thử nghiệm tiếp.'],
+  ['9','01-07/11','Dựng ngành thực phẩm, hàng không, vận tải','Thực phẩm đi cùng nhóm tiêu dùng; hàng không và vận tải đi chung vì đều cần chỉ số vận hành, công suất, chi phí nhiên liệu, nhu cầu hành khách/hàng hóa.','Dữ liệu vận hành có thể không đồng nhất giữa nguồn công ty, cơ quan quản lý và ước tính analyst.','3 bảng điều khiển ngành v1: thực phẩm, hàng không, vận tải.'],
+  ['10','08-14/11','Dựng ngành dược, hóa chất, nông nghiệp, công nghệ','Dược cần chính sách/đấu thầu; hóa chất và nông nghiệp cần giá đầu vào-đầu ra; công nghệ cần KPI phi tài chính và tăng trưởng dài hạn.','Một số ngành thiếu dữ liệu tự động nên phải chấp nhận Excel/nhập tay có kiểm soát.','4 bảng điều khiển ngành v1: dược, hóa chất, nông nghiệp, công nghệ.'],
+  ['5-12','01/10-30/11','Thử nghiệm các mã khác sau khi đã có template','Sau khi chốt khung GAS/HPG, chọn các mã có shortnote input tốt nhất như MWG, PVS, POW, REE hoặc mã team ưu tiên; dựng dần từ đầu tháng 10 đến hết tháng 11.','Các mã khác nhau về phương pháp định giá và KPI, cần giữ phần lõi nhưng cho phép tùy chỉnh.','2-4 bảng điều khiển doanh nghiệp v1 ngoài GAS/HPG.'],
+  ['11','15-21/11','QA chéo','Analyst không phụ trách ngành/mã đó kiểm tra lại nguồn, logic, biểu đồ, luận điểm, dữ liệu mới nhất; PM gom lỗi ưu tiên.','Người viết tự kiểm tra dễ bỏ sót; QA quá nặng có thể chậm tiến độ.','Danh sách lỗi ưu tiên sửa + bản gần phát hành.'],
+  ['12','22-30/11','Chốt phiên bản 3 tháng','Sửa mẫu, chuẩn hóa nguồn, chuẩn cập nhật, chuẩn Excel, chuẩn QA; chuẩn bị tóm tắt cho BoD về kết quả và việc cần làm tiếp.','Nếu chỉ báo cáo giao diện mà không nói rõ phương pháp dữ liệu và vận hành, khó xin nguồn lực tiếp.','Mẫu tổng v2 + đề xuất giai đoạn sau 3 tháng.']
+];
+
+const ganttItems = [
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:1, end:2, label:'Dầu khí', detail:'<b>Làm gì:</b> Analyst dầu khí nộp và khóa bộ đầu vào trước 07/09 gồm cung-cầu, giá dầu và khí, chính sách, doanh nghiệp đại diện, kèm nguồn và ngày cập nhật cho từng số liệu. Team research dùng AI chuyển bộ đầu vào đó thành bảng điều khiển ngành dầu khí phiên bản 1, hoàn thành trước 08/09.<br><b>Ai làm:</b> Analyst dầu khí chịu trách nhiệm nội dung; team research dựng bản v1 bằng AI; PM rà soát và chốt.<br><b>Đầu ra phải có:</b> Dashboard ngành dầu khí v1 cùng nhật ký lỗi đầu tiên, dùng làm bản tham chiếu cho 11 ngành còn lại.<br><b>Điều cần lưu ý:</b> Đây là phép thử mẫu, không phải sản phẩm hoàn thiện. Giá trị lớn nhất của bước này là danh sách lỗi rút ra, không phải bản dashboard đẹp.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:2, end:3, label:'Bank', detail:'<b>Làm gì:</b> Analyst ngân hàng điền đầu vào song song ngay trong lúc dầu khí đang được rà soát, và xác định các tab đặc thù của ngành: tăng trưởng tín dụng, biên lãi ròng NIM, tỷ lệ tiền gửi không kỳ hạn CASA, nợ xấu NPL, trích lập dự phòng, vốn và tăng trưởng huy động. Hạn hoàn thành bảng điều khiển ngân hàng v1 là 15/09.<br><b>Ai làm:</b> Analyst ngân hàng chịu trách nhiệm nội dung; team research dựng bằng AI; PM rà soát và chốt.<br><b>Đầu ra phải có:</b> Đầu vào ngân hàng đầy đủ và dashboard ngành ngân hàng v1 trước 15/09.<br><b>Điều cần lưu ý:</b> Nếu mẫu chung chỉ chạy được với dầu khí mà không chạy được với ngân hàng thì phải sửa mẫu ngay trong tháng 9, trước khi nhân ra 10 ngành còn lại.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'qa', start:3, end:4, label:'Kiểm tra', detail:'<b>Làm gì:</b> Đặt hai dashboard dầu khí và ngân hàng cạnh nhau trong một tuần để soi ngược: phần nào hai ngành dùng chung được, phần nào bắt buộc phải tùy chỉnh riêng, biểu đồ nào giữ lại làm chuẩn, biểu đồ nào bỏ. Kết quả được dùng để sửa mẫu tổng, viết checklist rà soát 10-15 điểm và dựng bản đồ dữ liệu.<br><b>Ai làm:</b> PM chủ trì việc soi ngược và chốt mẫu; hai analyst dầu khí và ngân hàng giải trình phần nội dung của mình.<br><b>Đầu ra phải có:</b> Mẫu ngành đã chỉnh lần 1, checklist rà soát đạt hoặc không đạt, và nhật ký lỗi chung.<br><b>Điều cần lưu ý:</b> Đây là checkpoint kỹ thuật quan trọng nhất của tháng 9. Bỏ qua bước này thì mỗi ngành sau sẽ đi một kiểu và cuối cùng không có bộ dashboard đồng nhất.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:7, end:8, label:'Hàng hóa', detail:'<b>Làm gì:</b> Dựng dashboard ngành hàng hóa và thép theo mẫu đã chỉnh sau đợt kiểm tra tháng 9: giá thép và giá nguyên liệu đầu vào, cung-cầu, tồn kho, spread giữa giá bán và giá đầu vào, chu kỳ lợi nhuận.<br><b>Ai làm:</b> Analyst sở hữu ngành thép và hàng hóa; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành hàng hóa và thép v1, cùng phần liên kết sang HPG.<br><b>Điều cần lưu ý:</b> Các mã cùng ngành như HSG và NKG chưa dựng riêng trong 3 tháng này, để lại giai đoạn sau.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:7, end:8, label:'Năng lượng', detail:'<b>Làm gì:</b> Dựng dashboard ngành năng lượng và điện: sản lượng điện, mức huy động của từng nhóm nhà máy, giá khí và than đầu vào, tình hình thủy văn, dự án mới và chính sách giá điện.<br><b>Ai làm:</b> Analyst sở hữu ngành điện; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành năng lượng v1 với phần dữ liệu vận hành tách riêng khỏi dữ liệu tài chính theo quý.<br><b>Điều cần lưu ý:</b> Dữ liệu thủy văn và huy động nhà máy phần lớn phải lấy từ EVN hoặc công bố của doanh nghiệp, khó tự động hóa trong giai đoạn này nên chấp nhận nhập tay có ghi nguồn.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:8, end:8, label:'Tiêu dùng', detail:'<b>Làm gì:</b> Dựng dashboard ngành tiêu dùng và bán lẻ vào cuối tháng 10: sức mua, kênh phân phối, doanh thu trên mỗi cửa hàng, biên lợi nhuận và tiến trình tái cấu trúc của các chuỗi lớn.<br><b>Ai làm:</b> Analyst sở hữu ngành bán lẻ và tiêu dùng; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành tiêu dùng và bán lẻ v1.<br><b>Điều cần lưu ý:</b> Với ngành này phải phân biệt rõ số liệu doanh nghiệp công bố và số liệu do analyst ước tính, nếu không dashboard sẽ trộn hai loại độ tin cậy khác nhau.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:9, end:10, label:'Thực phẩm', detail:'<b>Làm gì:</b> Dựng dashboard ngành thực phẩm và đồ uống: giá nguyên liệu đầu vào, sản lượng, kênh phân phối, sức mạnh thương hiệu và biên lợi nhuận.<br><b>Ai làm:</b> Analyst sở hữu ngành thực phẩm; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành thực phẩm v1.<br><b>Điều cần lưu ý:</b> Tháng 11 là tháng chạy song song nhiều ngành nhất, nên các ngành có thể dùng chung khung được ưu tiên ghép cạnh nhau.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:9, end:10, label:'Hàng không', detail:'<b>Làm gì:</b> Dựng dashboard ngành hàng không: sản lượng hành khách, tải cung ứng, giá nhiên liệu bay, tỷ giá, cạnh tranh trên từng tuyến và chu kỳ du lịch.<br><b>Ai làm:</b> Analyst sở hữu ngành hàng không; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành hàng không v1.<br><b>Điều cần lưu ý:</b> Dữ liệu vận hành ngành này có thể lệch nhau giữa công bố của doanh nghiệp, số của cơ quan quản lý và ước tính của analyst, nên phải ghi rõ đang dùng nguồn nào.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:9, end:10, label:'Vận tải', detail:'<b>Làm gì:</b> Dựng dashboard ngành vận tải và cảng biển: sản lượng hàng hóa và hành khách, công suất, giá cước, giá nhiên liệu, kim ngạch thương mại và tiến độ đầu tư hạ tầng.<br><b>Ai làm:</b> Analyst sở hữu ngành vận tải; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành vận tải v1.<br><b>Điều cần lưu ý:</b> Phần giá cước quốc tế nhiều khả năng phải lấy từ nguồn trả phí hoặc nguồn công khai không đầy đủ, cần ghi rõ giới hạn dữ liệu.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:10, end:11, label:'Dược', detail:'<b>Làm gì:</b> Dựng dashboard ngành dược: cơ cấu doanh thu theo kênh bệnh viện và nhà thuốc, kết quả đấu thầu, chính sách quản lý, danh mục thuốc, tăng trưởng doanh thu và biên lợi nhuận.<br><b>Ai làm:</b> Analyst sở hữu ngành dược; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành dược v1.<br><b>Điều cần lưu ý:</b> Dữ liệu đấu thầu và chính sách không có tần suất đều, phải chấp nhận cập nhật theo sự kiện thay vì theo lịch.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:10, end:11, label:'Hóa chất', detail:'<b>Làm gì:</b> Dựng dashboard ngành hóa chất: giá đầu vào và đầu ra, spread, công suất, xuất khẩu, nhu cầu từ các ngành hạ nguồn và vị trí trong chu kỳ hàng hóa.<br><b>Ai làm:</b> Analyst sở hữu ngành hóa chất; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành hóa chất v1.<br><b>Điều cần lưu ý:</b> Đây là ví dụ cho thấy giá trị của việc chuẩn hóa mẫu: ngành thứ 10 tốn ít công hơn ngành thứ nhất rất nhiều.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:11, end:12, label:'Nông nghiệp', detail:'<b>Làm gì:</b> Dựng dashboard ngành nông nghiệp: mùa vụ, giá nông sản, kim ngạch xuất khẩu, thời tiết, chi phí đầu vào và chính sách thương mại của các nước nhập khẩu.<br><b>Ai làm:</b> Analyst sở hữu ngành nông nghiệp; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành nông nghiệp v1.<br><b>Điều cần lưu ý:</b> Đây là một trong hai ngành cuối, nếu tiến độ tháng 11 bị trễ thì đây là nhóm chịu rủi ro trượt hạn cao nhất.'},
+  {lane:'Ngành', sub:'Thử nghiệm và mở rộng', kind:'build', start:11, end:12, label:'Công nghệ', detail:'<b>Làm gì:</b> Dựng dashboard ngành công nghệ: doanh thu theo mảng dịch vụ và sản phẩm, giá trị hợp đồng chưa thực hiện, cơ cấu khách hàng, biên lợi nhuận, năng lực nhân sự và các chỉ số phi tài chính khác.<br><b>Ai làm:</b> Analyst sở hữu ngành công nghệ; team research dựng; PM rà soát.<br><b>Đầu ra phải có:</b> Dashboard ngành công nghệ v1, hoàn tất mục tiêu 12 trên 12 ngành.<br><b>Điều cần lưu ý:</b> Hoàn thành thanh này đồng nghĩa đạt tiêu chí độ phủ ngành của cả dự án 3 tháng.'},
+  {lane:'Doanh nghiệp', sub:'Đầu vào và thử mã', kind:'method', start:3, end:6, label:'Shortnote DN', detail:'<b>Làm gì:</b> Từ giữa tháng 9 đến giữa tháng 10, mỗi analyst nhận 1-2 mã chính và nộp một bản mô tả ngắn gọi là shortnote input, gồm luận điểm đầu tư, các biểu đồ bắt buộc phải có, dữ liệu cần theo dõi, nguồn của từng dữ liệu, tần suất cập nhật, phần nào nối được từ mô hình Excel định giá và phần nào analyst muốn tự tùy chỉnh.<br><b>Ai làm:</b> Toàn bộ analyst nghiên cứu, mỗi người phụ trách mã của mình; Team research ra mẫu form; PM kiểm tra chất lượng đầu vào trước khi cho dựng.<br><b>Đầu ra phải có:</b> Bộ đầu vào doanh nghiệp cho 8-12 mã ưu tiên, đủ chi tiết để dựng dashboard mà không cần hỏi lại.<br><b>Điều cần lưu ý:</b> Rủi ro lớn nhất là analyst điền cho có, chung chung. Khi đó dashboard các mã sẽ giống hệt nhau và mất phong cách phân tích riêng - đúng thứ khiến nó khác một trang dữ liệu thông thường.'},
+  {lane:'Doanh nghiệp', sub:'Đầu vào và thử mã', kind:'stock', start:4, end:4, label:'Test GAS/HPG', detail:'<b>Làm gì:</b> Cuối tháng 9 dựng hai dashboard cổ phiếu đầu tiên là GAS và HPG, kiểm tra đủ các phần: liên kết với dashboard ngành, dữ liệu tài chính, dữ liệu vận hành phi tài chính, yếu tố hỗ trợ mới nhất, phần định giá và đường nối tới mô hình Excel.<br><b>Ai làm:</b> Team research dựng; analyst phụ trách GAS và HPG xác nhận nội dung; PM rà soát và chốt khung.<br><b>Đầu ra phải có:</b> GAS v1, HPG v1 và danh sách phân định rõ phần nào là lõi bắt buộc, phần nào cho phép tùy chỉnh theo mã.<br><b>Điều cần lưu ý:</b> Đây là bước quyết định của phần cổ phiếu. Trước bước này chưa nên hứa với BoD về số lượng mã sẽ phủ được.'},
+  {lane:'Doanh nghiệp', sub:'Đầu vào và thử mã', kind:'stock', start:5, end:12, label:'Mã khác sau template', detail:'<b>Làm gì:</b> Từ đầu tháng 10 đến hết tháng 11, dựng thêm 2-4 dashboard cổ phiếu ngoài GAS và HPG, chọn từ những mã có shortnote input tốt nhất - dự kiến MWG, PVS, POW hoặc REE, hoặc mã khác do team ưu tiên.<br><b>Ai làm:</b> Team research dựng; analyst sở hữu từng mã chịu trách nhiệm nội dung và nghiệm thu; PM rà soát.<br><b>Đầu ra phải có:</b> Tổng cộng khoảng 6 dashboard cổ phiếu vào cuối tháng 11, tính cả GAS và HPG.<br><b>Điều cần lưu ý:</b> Cần nói rõ với BoD: 6 mã trên tổng số 30 mã VN30 và 100 mã VN100 là có chủ đích. Ba tháng này là để chuẩn hóa cách làm; phần phủ rộng thuộc giai đoạn sau và cần nguồn lực riêng.'},
+  {lane:'Dữ liệu', sub:'WiChart, Excel, AI, nhập tay', kind:'data', start:2, end:6, label:'DB dữ liệu & nguồn', detail:'<b>Làm gì:</b> Lập bảng tổng hợp toàn bộ dữ liệu mà các dashboard cần: mỗi chỉ số lấy từ nguồn chính nào, nguồn dự phòng nào, cập nhật theo tần suất gì, ai chịu trách nhiệm cập nhật, và lấy bằng cách nào trong bốn cách: kết nối API của nhà cung cấp dữ liệu như WiChart hoặc Findicator, tải file Excel, dùng AI tìm nguồn, hoặc nhập tay.<br><b>Ai làm:</b> Team research tổng hợp và duy trì bảng; analyst khai báo nguồn cho phần dữ liệu của mình; PM soát lại độ tin cậy.<br><b>Đầu ra phải có:</b> Bảng ánh xạ dữ liệu gồm chỉ số, nguồn, tần suất, người phụ trách và mức độ tin cậy.<br><b>Điều cần lưu ý:</b> Đây là tài liệu mà IT sẽ cần nếu sau này BoD duyệt xây cơ sở dữ liệu thật. Không có nó thì việc chuyển giao cho IT sẽ phải bắt đầu lại từ đầu.'},
+  {lane:'Dữ liệu', sub:'WiChart, Excel, AI, nhập tay', kind:'decision', start:6, end:6, label:'Thảo luận', detail:'<b>Làm gì:</b> Giữa tháng 10, họp với team và BoD để so sánh năm cách lấy dữ liệu - API của WiChart hoặc Findicator, tải Excel, AI tìm nguồn, nhập tay và cơ sở dữ liệu do IT dựng - theo năm tiêu chí: độ tin cậy, chi phí, tốc độ cập nhật, độ khó kỹ thuật và mức bám sát luận điểm đầu tư. Từ đó chọn phương án chính cho giai đoạn mở rộng.<br><b>Ai làm:</b> PM trình bày phương án; BoD quyết phần chi phí; team research chuẩn bị số liệu so sánh; IT tham gia nếu có.<br><b>Đầu ra phải có:</b> Ma trận quyết định dữ liệu, kèm quyết định rõ ràng về việc có mua quyền truy cập API của WiChart hoặc Findicator hay không.<br><b>Điều cần lưu ý:</b> Đây là checkpoint duy nhất trong 3 tháng có khả năng phát sinh chi phí, vì ảnh hưởng ngân sách từ tháng 11 trở đi. Cần BoD cho hướng trước khi đi tiếp.'},
+  {lane:'Dữ liệu', sub:'WiChart, Excel, AI, nhập tay', kind:'data', start:7, end:12, label:'Plan source DL', detail:'<b>Làm gì:</b> Từ giữa tháng 10 đến hết tháng 11, áp quyết định dữ liệu vào thực tế: chốt dữ liệu nào lấy qua API WiChart/Findicator, dữ liệu nào tải Excel theo mẫu chuẩn, dữ liệu nào để AI tìm nguồn rồi analyst xác nhận, dữ liệu nào nhập tay; mỗi loại đều ghi rõ lịch cập nhật và người chịu trách nhiệm.<br><b>Ai làm:</b> Team research chuẩn hóa quy trình; từng analyst nhận vai trò người cập nhật cho phần dữ liệu của mình; PM kiểm tra việc cập nhật có được làm đúng lịch không.<br><b>Đầu ra phải có:</b> Quy trình cập nhật đã chốt, có tên người phụ trách cho từng dashboard.<br><b>Điều cần lưu ý:</b> Đây là phần dễ bị bỏ qua nhất nhưng quyết định dashboard còn dùng được sau 3 tháng hay không. Một trong các tiêu chí thành công cuối tháng 11 là dashboard dầu khí dựng đầu tiên vẫn còn được cập nhật đúng lịch.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'qa', start:2, end:2, label:'PM rà soát', detail:'<b>Làm gì:</b> Trong ba ngày 09 đến 11 tháng 9, ngay sau khi dashboard dầu khí v1 xong, PM rà soát và ghi lỗi theo năm nhóm: nội dung, biểu đồ, nguồn dữ liệu, giao diện và phần cần tự động hóa.<br><b>Ai làm:</b> PM rà soát và cho ý kiến đạt hoặc không đạt; analyst dầu khí giải trình phần nội dung; team research sửa theo biên bản.<br><b>Đầu ra phải có:</b> Biên bản rà soát ngày 09-11/09 và checklist rà soát dùng cho các ngành sau.<br><b>Điều cần lưu ý:</b> Cần có checklist đạt hoặc không đạt trước khi rà soát, nếu không việc rà soát dễ trở thành nhận xét cảm tính kiểu đẹp hay xấu, không kết luận được dashboard có dùng được hay không.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'decision', start:4, end:4, label:'Chốt hướng DN', detail:'<b>Làm gì:</b> Cuối tháng 9, sau khi đã có đủ dầu khí, ngân hàng, GAS và HPG, chốt khung cho toàn bộ dashboard cổ phiếu: phần nào là lõi bắt buộc mọi mã đều phải có, phần nào cho analyst tùy chỉnh theo mã, dữ liệu nào phải tự động hóa và quy tắc rà soát áp dụng chung.<br><b>Ai làm:</b> PM chủ trì; các analyst liên quan tham gia; mời BoD nếu cần quyết.<br><b>Đầu ra phải có:</b> Khung dashboard doanh nghiệp v1 đã chốt bằng văn bản.<br><b>Điều cần lưu ý:</b> Đây là ranh giới giữa giai đoạn thử nghiệm và giai đoạn sản xuất. Sau mốc này việc quay lại sửa khung sẽ tốn gấp nhiều lần.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'decision', start:8, end:8, label:'Chốt mở rộng T11', detail:'<b>Làm gì:</b> Cuối tháng 10, chốt danh sách chính xác các ngành và mã sẽ làm trong tháng 11, đồng thời chốt cách lấy nguồn dữ liệu tạm thời cho từng nhóm: API WiChart/Findicator, Excel, AI tìm nguồn hay nhập tay.<br><b>Ai làm:</b> PM chủ trì; trưởng nhóm nghiên cứu và các analyst sở hữu ngành hoặc mã cùng quyết.<br><b>Đầu ra phải có:</b> Danh sách ngành và mã tháng 11 đã chốt, kèm nguyên tắc lấy nguồn dữ liệu cho từng nhóm.<br><b>Điều cần lưu ý:</b> Nếu tới thời điểm này tiến độ đang chậm, đây là chỗ để cắt bớt phạm vi một cách chủ động thay vì để trượt hạn vào cuối tháng 11.'},
+  {lane:'Rà soát', sub:'PM, analyst, BoD', kind:'ops', start:12, end:12, label:'Chốt 3T', detail:'<b>Làm gì:</b> Tuần cuối tháng 11, chốt phiên bản khép lại 3 tháng: hoàn thiện mẫu tổng phiên bản 2, chuẩn hóa nguồn dữ liệu, chuẩn cập nhật, chuẩn file Excel đầu vào, chuẩn quy trình QA; đồng thời chuẩn bị bản tóm tắt trình BoD về kết quả đạt được và việc cần làm tiếp.<br><b>Ai làm:</b> Team research chuẩn bị bản tổng kết; PM trình bày và bảo vệ; BoD quyết hướng đi giai đoạn sau; IT tham gia phần yêu cầu kỹ thuật.<br><b>Đầu ra phải có:</b> Mẫu tổng v2 và đề xuất giai đoạn sau 3 tháng, kèm ước tính nguồn lực.<br><b>Điều cần lưu ý:</b> Nếu chỉ báo cáo giao diện đẹp mà không trình bày được phương pháp dữ liệu và quy trình vận hành thì rất khó thuyết phục để được cấp nguồn lực đi tiếp.'}
+];
+
+const workstreams = [
+  {title:'1. Đầu vào ngành', tag:'Analyst', text:'Analyst điền nội dung ngành theo mẫu chung, kèm nguồn và phần đặc thù.', detail:'Analyst gửi hạn chót, khóa file đầu vào, rồi kiểm tra đủ các mục chung — cung cầu, giá, chính sách, doanh nghiệp đại diện — trước khi thêm tab đặc thù riêng của ngành. Mỗi số liệu phải có nguồn và ngày cập nhật đi kèm. Cái khó thường không phải thiếu dữ liệu mà là thiếu nguồn đủ tin cậy, mỗi bên định nghĩa chỉ số một kiểu, và phần diễn giải của analyst chưa được chuyển thành biểu đồ cụ thể.'},
+  {title:'2. Dựng ngành bằng AI', tag:'Research + AI', text:'Dùng đầu vào analyst để dựng bảng điều khiển v1 thật nhanh, bắt đầu bằng dầu khí rồi ngân hàng.', detail:'Từ đầu vào của analyst, team research dùng AI chuyển thành cấu trúc dashboard, dựng biểu đồ và bảng, kiểm tra hiển thị, rồi ghi lại lỗi để sửa mẫu cho lần sau; PM là người soát và chốt bản nào được xem là đạt. Rủi ro lớn nhất là AI chọn biểu đồ nhìn đẹp nhưng không phản ánh đúng luận điểm, hoặc viết cứng quá nhiều chi tiết khiến sau này khó mở rộng sang ngành khác.'},
+  {title:'3. Kiểm tra ngược & PM rà soát', tag:'QA', text:'Rà soát không chỉ để sửa giao diện, mà để biết mẫu có nhân rộng được hay không.', detail:'PM rà soát dầu khí trong ba ngày sau hạn 08/09, rồi kiểm tra ngược cả dầu khí lẫn ngân hàng trong tuần kế tiếp để xem mẫu có đứng vững không. Cần một checklist đạt/không đạt rõ ràng — thiếu nó, việc rà soát dễ thành cảm tính, và sửa riêng cho từng ngành sẽ làm mẫu chung mất tính nhất quán.'},
+  {title:'4. Dữ liệu & phương pháp doanh nghiệp', tag:'Analyst', text:'Giao sớm cho analyst chuẩn bị đầu vào doanh nghiệp: luận điểm, biểu đồ, dữ liệu, nguồn, tần suất, liên kết mô hình.', detail:'Mỗi analyst chọn 1-2 mã chính rồi điền phương pháp đầu tư, biểu đồ/dữ liệu cần theo dõi, nguồn, tần suất, và phần nào lấy được từ mô hình Excel. Nếu đầu vào viết chung chung, dashboard doanh nghiệp ra sẽ giống nhau hết và mất phong cách phân tích riêng của từng người.'},
+  {title:'5. Thử GAS & HPG', tag:'Cổ phiếu', text:'Kiểm tra hai mã có logic khác nhau để chốt khung bảng điều khiển doanh nghiệp.', detail:'Hai mã này được chọn vì logic khác hẳn nhau — một mã năng lượng/hạ tầng, một mã hàng hóa/chu kỳ — đủ để kiểm tra khung dashboard doanh nghiệp có chịu được sự khác biệt hay không. Cần rà cả kết nối với ngành, dữ liệu tài chính và phi tài chính, catalyst mới nhất, định giá, và link tới mô hình Excel. Khó nhất là mỗi mã cần tùy biến sâu hơn cấp ngành, và tần suất cập nhật của từng loại dữ liệu không giống nhau.'},
+  {title:'6. Thử sai dữ liệu', tag:'Quyết định', text:'So sánh API WiChart/Findicator, tải Excel, AI tìm nguồn, nhập tay và cơ sở dữ liệu IT dài hạn.', detail:'So sánh API WiChart/Findicator, Excel, AI tìm nguồn, nhập tay và cơ sở dữ liệu IT dài hạn theo năm tiêu chí — tin cậy, chi phí, tốc độ cập nhật, độ khó kỹ thuật, mức bám sát luận điểm — rồi bàn với BoD về việc có nên mua quyền API của WiChart hoặc Findicator hay không. Tự động hóa quá sớm dễ tốn công vô ích, nhưng nhập tay quá nhiều thì dashboard nhanh lỗi thời.'},
+  {title:'7. Mở rộng ngành/mã cụ thể', tag:'Mở rộng', text:'Sau thử nghiệm mới chọn ngành/mã tiếp theo theo mức sẵn sàng đầu vào và độ quan trọng đầu tư.', detail:'Thứ tự mở rộng đi theo mức sẵn sàng đầu vào và tầm quan trọng với quyết định đầu tư: hàng hóa, năng lượng, tiêu dùng trong tháng 10; thực phẩm, hàng không, vận tải, dược, hóa chất, nông nghiệp, công nghệ trong tháng 11. Song song đó, chọn thêm vài mã như MWG, PVS, POW, REE để mở rộng phần cổ phiếu. Rủi ro là phạm vi phình to quá nhanh trong khi nguồn dữ liệu mỗi ngành một khác.'},
+  {title:'8. Vận hành cập nhật', tag:'Vận hành', text:'Chuẩn hóa người phụ trách, tần suất, nguồn và cách sửa lỗi trước khi chuyển sang nền tảng dài hạn.', detail:'Trước khi tính đến nền tảng dài hạn, mỗi dashboard cần có người phụ trách, lịch cập nhật, chuẩn đặt tên file/phiên bản, và nhật ký lỗi rõ ràng. Không có phần vận hành này, dashboard sẽ đẹp lúc demo rồi lỗi thời chỉ sau vài tuần.'}
+];
+
+const dataOptions = [
+  {name:'API WiChart / Findicator', desc:'Tốt cho dữ liệu có sẵn ở nhà cung cấp và cần cập nhật thường xuyên.', scores:[5,2,5,3,4], detail:'Ưu tiên cho giá cổ phiếu, số liệu tài chính, dữ liệu thị trường và các chỉ số đã có sẵn ở WiChart hoặc Findicator. Đây là phương án duy nhất trong năm phương án có phát sinh chi phí mua quyền truy cập, nên cần chốt trước phạm vi dữ liệu thật sự cần mua, giới hạn số lần gọi API và mức giá, thay vì mua trọn gói.'},
+  {name:'Tải Excel', desc:'Phù hợp giai đoạn đầu vì analyst quen Excel và dễ kiểm soát.', scores:[4,4,3,4,4], detail:'Dùng như cầu nối trước khi có cơ sở dữ liệu. Bắt buộc chuẩn tên sheet, cột, đơn vị, kỳ dữ liệu, nguồn và ngày cập nhật.'},
+  {name:'AI tìm nguồn', desc:'Nhanh cho nghiên cứu và trích xuất PDF, nhưng phải kiểm chứng.', scores:[2,5,2,5,3], detail:'Dùng cho tìm nguồn công khai, tóm tắt báo cáo, trích xuất PDF. Không dùng làm nguồn cuối cho số liệu trọng yếu nếu không có link/file gốc.'},
+  {name:'Nhập tay', desc:'Hợp lý với dữ liệu đặc thù, ít cập nhật hoặc nội bộ.', scores:[4,5,1,5,5], detail:'Dùng khi tự động hóa quá tốn công/token hoặc dữ liệu nằm trong báo cáo nội bộ. Cần ghi người nhập, nguồn và ngày cập nhật.'},
+  {name:'CSDL IT', desc:'Đích dài hạn nếu bảng điều khiển chứng minh được giá trị.', scores:[5,1,5,1,5], detail:'Chưa cần làm ngay. Làm bản tĩnh + Excel trước để chốt nội dung/thiết kế, sau đó mới chuyển yêu cầu rõ cho IT về bảng dữ liệu, API, phân quyền, lịch cập nhật.'}
+];
+
+function fillWeeklyTable(){
+  const table=document.getElementById('weeklyTable');
+  table.innerHTML='<thead><tr><th>Tuần</th><th>Thời gian</th><th>Trọng tâm</th><th>Việc nhỏ</th><th>Khó khăn</th><th>Đầu ra/Quyết định</th></tr></thead>';
+  const body=document.createElement('tbody');
+  weeklyRows.forEach(r=>{
+    const tr=document.createElement('tr');
+    r.forEach(c=>{
+      const td=document.createElement('td');
+      td.textContent=c;
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+  table.appendChild(body);
+}
+
+function initGantt(){
+  const header=document.getElementById('weeksHeader');
+  header.innerHTML='<div>Luồng việc</div>'+weeks.map((w,i)=>'<div>T'+(i+1)+'<br>'+w+'</div>').join('');
+  const root=document.getElementById('gantt');
+  const lanes = [];
+  ganttItems.forEach(item=>{
+    let laneGroup = lanes.find(x=>x.lane===item.lane && x.sub===item.sub);
+    if(!laneGroup){
+      laneGroup = {lane:item.lane, sub:item.sub, items:[]};
+      lanes.push(laneGroup);
+    }
+    laneGroup.items.push(item);
+  });
+  lanes.forEach(laneGroup=>{
+    const rowEnds=[];
+    laneGroup.items
+      .slice()
+      .sort((a,b)=>a.start-b.start || a.end-b.end)
+      .forEach(item=>{
+        let rowIndex=rowEnds.findIndex(end=>item.start>end);
+        if(rowIndex===-1){
+          rowIndex=rowEnds.length;
+          rowEnds.push(item.end);
+        }else{
+          rowEnds[rowIndex]=item.end;
+        }
+        item._row=rowIndex;
+      });
+    const lane=document.createElement('div');
+    lane.className='lane';
+    lane.style.minHeight=(46 + rowEnds.length*32)+'px';
+    lane.innerHTML='<div class="laneLabel"><b>'+laneGroup.lane+'</b><span>'+laneGroup.sub+'</span></div><div class="laneTrack"></div>';
+    const track=lane.querySelector('.laneTrack');
+    track.style.minHeight=(46 + rowEnds.length*32)+'px';
+    laneGroup.items.forEach(item=>{
+      const bar=document.createElement('button');
+      bar.type='button';
+      bar.className='bar';
+      bar.dataset.kind=item.kind;
+      bar.style.left=((item.start-1)/12*100)+'%';
+      bar.style.width=((item.end-item.start+1)/12*100)+'%';
+      bar.style.top=(12 + item._row*32)+'px';
+      bar.textContent=item.label;
+      bar.title=item.detail.replace(/<br>/g,' | ').replace(/<[^>]+>/g,'');
+      bar.addEventListener('click',()=>showTimeline(item.label,item.detail));
+      track.appendChild(bar);
+    });
+    root.appendChild(lane);
+  });
+}
+
+function showTimeline(title,detail){
+  document.getElementById('timelineDetail').innerHTML='<b>'+title+':</b> '+detail;
+}
+
+function initWorkstreams(){
+  const root=document.getElementById('workGrid');
+  workstreams.forEach((w,i)=>{
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='workCard'+(i===0?' active':'');
+    card.innerHTML='<h3>'+w.title+'<small>'+w.tag+'</small></h3><p>'+w.text+'</p>';
+    card.addEventListener('click',()=>{
+      document.querySelectorAll('.workCard').forEach(x=>x.classList.remove('active'));
+      card.classList.add('active');
+      document.getElementById('workDetail').innerHTML='<b>'+w.title+':</b> '+w.detail;
+    });
+    root.appendChild(card);
+  });
+  if(workstreams[0]) document.getElementById('workDetail').innerHTML='<b>'+workstreams[0].title+':</b> '+workstreams[0].detail;
+}
+
+function initOptions(){
+  const root=document.getElementById('optionGrid');
+  const labels=['Tin cậy','Chi phí','Update','Kỹ thuật','Thesis'];
+  dataOptions.forEach((o,i)=>{
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='option'+(i===0?' active':'');
+    const rows=o.scores.map((s,idx)=>'<div class="scoreRow"><span>'+labels[idx]+'</span><div class="rail"><span style="width:'+(s*20)+'%"></span></div><b>'+s+'</b></div>').join('');
+    card.innerHTML='<h3>'+o.name+'</h3><p>'+o.desc+'</p><div class="score">'+rows+'</div>';
+    card.addEventListener('click',()=>{
+      document.querySelectorAll('.option').forEach(x=>x.classList.remove('active'));
+      card.classList.add('active');
+      document.getElementById('optionDetail').innerHTML='<b>'+o.name+':</b> '+o.detail;
+    });
+    root.appendChild(card);
+  });
+  if(dataOptions[0]) document.getElementById('optionDetail').innerHTML='<b>'+dataOptions[0].name+':</b> '+dataOptions[0].detail;
+}
+
+document.querySelectorAll('.tabbtn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.pane').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+fillWeeklyTable();
+initGantt();
+initWorkstreams();
+initOptions();
+</script>
+</body>
+</html>
