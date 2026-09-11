@@ -46,6 +46,7 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}th,td{pa
       <a href="./">Master database</a>
       <a href="Dau-khi/">Dầu khí</a>
       <a href="Sugar/">Đường</a>
+      <a href="Bank/">Ngân hàng</a>
       <a href="Masterplan/">Master plan</a>
     </nav>
   </div>
@@ -58,7 +59,7 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}th,td{pa
       <span class="pill">Root file: index.html</span>
       <span class="pill">Mỗi ngành một thư mục</span>
       <span class="pill">Public site: GitHub Pages</span>
-      <span class="pill">Last update: 04/09/2026</span>
+      <span class="pill">Last update: 11/09/2026</span>
     </div>
   </section>
   <section class="layout">
@@ -68,9 +69,9 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}th,td{pa
 </main>
 <script>
 const industries=[
-  {id:"dau-khi",name:"Dầu khí",status:"ready",folder:"Dau-khi/",headline:"Dashboard ngành Dầu khí Việt Nam",desc:"Đã có dashboard v1 với cung-cầu thế giới, giá dầu/crack spread, tồn kho, Hormuz, policy, catalyst/risk và key players.",metrics:[["7","tab phân tích"],["2022-2027E","global balance"],["03/09/2026","mốc cập nhật"],["Public-source","ưu tiên nguồn"]],watch:["Cung-cầu dầu và nhiên liệu lỏng toàn cầu","Crack diesel/gasoline và Brent","EIA tồn kho, IMF PortWatch Hormuz","Cơ chế điều hành giá xăng dầu trong nước"],sources:"EIA, IEA/OPEC links, IMF PortWatch, CostFlow/Petrolimex, Bộ Công Thương, Petrovietnam/PetroTimes."},
-  {id:"duong",name:"Đường",status:"ready",folder:"Sugar/",headline:"Dashboard ngành Đường",desc:"Đã có file dashboard riêng trong thư mục Sugar. Nên rà lại nguồn và chuẩn hóa theo cùng source-confidence framework như Dầu khí.",metrics:[["1","dashboard hiện có"],["Needs QA","nguồn dữ liệu"],["Static HTML","triển khai"],["Next","chuẩn hóa format"]],watch:["Giá đường thế giới và trong nước","Sản lượng mía/đường Việt Nam","Quota nhập khẩu, ATIGA, đường lậu","Biên lợi nhuận doanh nghiệp đường"],sources:"Cần rà lại trong lượt tiếp theo."},
-  {id:"ngan-hang",name:"Ngân hàng",status:"planned",headline:"Ngân hàng",desc:"Chưa dựng dashboard ngành.",watch:["NIM, CASA, credit growth","Nợ xấu, CIC/VAMC, provision","Bond/property exposure","Valuation và implied growth"]},
+  {id:"dau-khi",name:"Dầu khí",status:"ready",folder:"Dau-khi/",headline:"Dashboard ngành Dầu khí Việt Nam",desc:"Bản dashboard đã được cập nhật mới nhất, bao gồm cung-cầu, giá dầu/crack spread, tồn kho, Hormuz, policy, catalyst/risk và key players.",metrics:[["7","tab phân tích"],["2022-2027E","global balance"],["11/09/2026","bản cập nhật mới nhất"],["Public-source","ưu tiên nguồn"]],watch:["Cung-cầu dầu và nhiên liệu lỏng toàn cầu","Crack diesel/gasoline và Brent","EIA tồn kho, IMF PortWatch Hormuz","Cơ chế điều hành giá xăng dầu trong nước"],sources:"EIA, IEA/OPEC, IMF PortWatch, PVN/Petrotimes, Bộ Công Thương và các source public đã được cập nhật vào dashboard chính."},
+  {id:"duong",name:"Đường",status:"ready",folder:"Sugar/",headline:"Dashboard ngành Đường",desc:"Đã có dashboard Đường được cập nhật mới nhất trong project, với các section cung-cầu, giá chi phí margin, policy/trade/tax, catalyst/risk và key players.",metrics:[["1","dashboard chính thức"],["11/09/2026","bản cập nhật mới nhất"],["Static HTML","triển khai"],["Ready","đã tích hợp web tổng"]],watch:["Giá đường thế giới và trong nước","Sản lượng mía/đường Việt Nam","Quota nhập khẩu, ATIGA, đường lậu","Biên lợi nhuận doanh nghiệp đường"],sources:"USDA FAS PSD, World Bank Pink Sheet, VSSA, Viện Nghiên cứu Mía Đường và các nguồn công bố đã được tích hợp trong dashboard Đường."},
+  {id:"ngan-hang",name:"Ngân hàng",status:"ready",folder:"Bank/",headline:"Dashboard ngành Ngân hàng Việt Nam",desc:"Bảy tab theo flow cung vốn – tín dụng – biên lợi nhuận – chính sách – rủi ro, với dữ liệu Eximbank, IFC, pháp lý và Wi bundle session-only đã được tích hợp.",metrics:[["7","tab phân tích"],["20","Wi blocks đã nối"],["11/09/2026","Wi bundle checked"],["Ready","đã tích hợp web tổng"]],watch:["Huy động so với tín dụng","Giá vốn, NIM và CASA","Nợ nhóm 2, NPL và credit cost","OMO, tỷ giá, room và tỷ lệ an toàn"],sources:"Eximbank, IFC, Công báo, Tạp chí Ngân hàng và Wi bundle đã được tích hợp. Các khối còn thiếu/giới hạn vẫn được giữ rõ trên dashboard để không lẫn lộn dữ liệu và suy luận."},
   {id:"chung-khoan",name:"Chứng khoán",status:"planned",headline:"Chứng khoán",desc:"Chưa dựng dashboard ngành.",watch:["Thanh khoản thị trường","Margin lending","IPO/upgrading story","Broker market share"]},
   {id:"bds",name:"Bất động sản",status:"planned",headline:"Bất động sản dân cư",desc:"Chưa dựng dashboard ngành.",watch:["Presales, backlog, bàn giao","Pháp lý dự án","Lãi suất vay mua nhà","RNAV discount"]},
   {id:"kcn",name:"Khu công nghiệp",status:"planned",headline:"Khu công nghiệp",desc:"Chưa dựng dashboard ngành.",watch:["FDI đăng ký/giải ngân","Giá thuê đất KCN","Diện tích sẵn sàng cho thuê","Tiến độ pháp lý dự án mới"]},

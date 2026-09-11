@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-09-11T05:40:00+00:00",
+  "blocks": {
+    "funding": {
+      "status": "loaded",
+      "latest_observation": "2026-06-01",
+      "data_hash": "46a473084e6ec640bb1b9860ed93934485236ad5e6d381cd615291c1ab7d6833"
+    },
+    "credit": {
+      "status": "loaded",
+      "latest_observation": "2026-07-01",
+      "data_hash": "ec69ea92978741df9c462a8470ea9fd8b816accff4fc55c465680dc3745d2ca4"
+    },
+    "credit-sectors": {
+      "status": "loaded",
+      "latest_observation": "2026-07-01",
+      "data_hash": "fe6d7799fc30b88f40a334abbf49552bb86273dae8ae77f9ce24c61ca3b9ba43"
+    },
+    "bonds": {
+      "status": "loaded",
+      "latest_observation": "2026-09-03",
+      "data_hash": "7beb7735970808ec59a2f9a71c438fa15122dc5a888ff0c42393f0de0abfdfbe"
+    },
+    "other-funding": {
+      "status": "loaded",
+      "latest_observation": "2026Q2",
+      "data_hash": "41acb07f2414843ae607edc368b94717661c3392052244da2028f6bec743aae6"
+    },
+    "services-demand": {
+      "status": "loaded",
+      "latest_observation": "2026-09-11",
+      "data_hash": "08f0369b7bae1f32f616e5cccb1d2c32a2c7793afb1a7910bca29bacb7cc2258"
+    },
+    "deposit-rates": {
+      "status": "loaded",
+      "latest_observation": "2026-09-11",
+      "data_hash": "ed1ead77913a61d3fca74a5dcf0092f0a744dcf15da45543ae1f8c0d2d320479"
+    },
+    "money-market": {
+      "status": "loaded",
+      "latest_observation": "2026-09-10",
+      "data_hash": "5ee8b3f219f20b1dffc2f7d44e61c07d3d0fb320392c99f0f950f6f075e837e7"
+    },
+    "bank-ratios": {
+      "status": "loaded",
+      "latest_observation": "2026Q2",
+      "data_hash": "17064e8a942284c60684ac5a69cd4da277b446f5f67f5d9b00ab4dace32ff4c9"
+    },
+    "yield-funding": {
+      "status": "loaded",
+      "latest_observation": "2026Q2",
+      "data_hash": "44b0d2a97caa184b1dd75dda84d059f5380c29bc1436499051f2b95de50f9665"
+    },
+    "income": {
+      "status": "loaded",
+      "latest_observation": "2026Q2",
+      "data_hash": "e60b72cb09e4f45dc080fa9b39e99014a16b60c71361bfbfcbdd641e03b82710"
+    },
+    "asset-quality": {
+      "status": "loaded",
+      "latest_observation": "2026Q2",
+      "data_hash": "5a2c9f73042b55101c56c6ac2e6c39537ce79f1d1993dbc1d1602388fd566f44"
+    },
+    "repricing": {
+      "status": "loaded",
+      "latest_observation": "2026Q2",
+      "data_hash": "61ee66ba190041d876b6c6ba154f4af9d7324b6265e817594624df37548c6226"
+    },
+    "omo": {
+      "status": "loaded",
+      "latest_observation": "2026-09-10",
+      "data_hash": "21a0f3c18b56120aa66b5c9af116c6bc671085e3279ea7df3d8cd57d3b2937ca"
+    },
+    "fx": {
+      "status": "loaded",
+      "latest_observation": "2026-09-11",
+      "data_hash": "ee43b0c440631f3d8f22ea7a7aba8940ac24223a8b22cf88e4282103801434b3"
+    },
+    "bonds-macro": {
+      "status": "loaded",
+      "latest_observation": "2026-09-11",
+      "data_hash": "e138deeb84d92bd3b0be8ed5779dfbfe7e3f268145459b19ab2d6571c91d13db"
+    },
+    "macro": {
+      "status": "loaded",
+      "latest_observation": "2026-08-01",
+      "data_hash": "f0dd0468b43f2144765ea1a5bc46532c0d01e01b913c1812cdd76ce95ae3db31"
+    },
+    "forecast": {
+      "status": "loaded",
+      "latest_observation": "2026-08-17",
+      "data_hash": "ced91901895aa9c1bd89f6b0dceae2cc63b4f6ba0f058c395b32fa65be09e1d7"
+    },
+    "news": {
+      "status": "loaded",
+      "latest_observation": "2026-09-10",
+      "data_hash": "8682cbf4b6515c0f9603a8749b8a06c1e19451da59eed633e3e2c989d105cb56"
+    },
+    "valuation": {
+      "status": "loaded",
+      "latest_observation": "2026-09-10",
+      "data_hash": "8ac62a5c06606d73576230842edc49103ad36fa5f351813343fd3556de17ac9c"
+    }
+  }
+}

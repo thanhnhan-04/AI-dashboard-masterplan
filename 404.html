@@ -8,6 +8,9 @@
 const base = "/AI-dashboard-masterplan/";
 const path = location.pathname.toLowerCase();
 const routes = [
+  {match: base.toLowerCase() + "bank/", target: base + "Bank/"},
+  {match: base.toLowerCase() + "bank/index.html", target: base + "Bank/"},
+  {match: base.toLowerCase() + "ngan-hang/", target: base + "Bank/"},
   {match: base.toLowerCase() + "dau-khi/", target: base + "Dau-khi/"},
   {match: base.toLowerCase() + "dau-khi/index.html", target: base + "Dau-khi/"},
   {match: base.toLowerCase() + "sugar/", target: base + "Sugar/"},

@@ -1,0 +1,111 @@
+{
+  "run_at": "2026-09-10T08:21:04.952087+00:00",
+  "errors": 0,
+  "sources": {
+    "gasoline": {
+      "status": "ok",
+      "latest_observation": "2026-09-01",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "brent": {
+      "status": "ok",
+      "latest_observation": "2026-09-01",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "diesel": {
+      "status": "ok",
+      "latest_observation": "2026-09-01",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "wti": {
+      "status": "ok",
+      "latest_observation": "2026-09-01",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "crude_stock": {
+      "status": "ok",
+      "latest_observation": "2026-08-28",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "gasoline_stock": {
+      "status": "ok",
+      "latest_observation": "2026-08-28",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "cushing": {
+      "status": "ok",
+      "latest_observation": "2026-08-28",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "distillate_stock": {
+      "status": "ok",
+      "latest_observation": "2026-08-28",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "us_production": {
+      "status": "ok",
+      "latest_observation": "2026-08-28",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "hormuz": {
+      "status": "ok",
+      "latest_observation": "2026-09-06",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "wti_curve": {
+      "status": "ok",
+      "latest_observation": "2026-09-09",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "brent_futures": {
+      "status": "ok",
+      "latest_observation": "2026-09-09",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "sugar_futures": {
+      "status": "ok",
+      "latest_observation": "2026-09-09",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "sugar_monthly": {
+      "status": "ok",
+      "latest_observation": "2026-08-31",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    },
+    "sugar_producers": {
+      "status": "ok",
+      "latest_observation": "2026-01-01",
+      "last_success_at": "2026-09-10T08:21:04.952087+00:00",
+      "last_checked_at": "2026-09-10T08:21:04.952087+00:00",
+      "error": null
+    }
+  }
+}

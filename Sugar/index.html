@@ -208,12 +208,19 @@ ul.list li{margin-bottom:7px}
 .hero a:hover,.tag a:hover,.insight a:hover{color:#fff;border-bottom-color:#fff}
 
 </style>
+<link rel="stylesheet" href="../assets/dashboard-ui.css">
+<script src="../data/daily-data.js" defer></script>
+<script src="../assets/data-math.js" defer></script>
+<script src="../assets/sector-runtime.js" defer></script>
+<script src="../assets/sector-content.js" defer></script>
+<script src="../assets/sector-layout.js" defer></script>
+<script src="../assets/dashboard-ui.js" defer></script>
 </head>
 <body>
 <div class="fiscbar">
   <div class="fiscbar-inner">
     <img src="data:image/png;base64,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" alt="FinSuccess" />
-    <div class="fiscbar-doc">Dashboard ngành · <b>Đường Việt Nam</b> · cập nhật 17/08/2026</div>
+    <div class="fiscbar-doc">Dashboard ngành · <b>Đường Việt Nam</b> · bản nghiên cứu 17/08/2026</div>
   </div>
 </div>
 <nav class="majortabs">
@@ -233,12 +240,12 @@ ul.list li{margin-bottom:7px}
     <h1>Bức tranh ngành đường <em>Việt Nam</em></h1>
     <p>Cung–cầu, tồn kho, giá mía, giá đường, nhập khẩu và cạnh tranh chất tạo ngọt — dựng lại từ các chuỗi số liệu nhất quán theo niên vụ hoặc theo tháng thay vì các mốc rời rạc, để đọc được xu hướng ngắn hạn và dài hạn thay vì chỉ một điểm giá.</p>
     <div class="tagrow">
-      <span class="tag">Cập nhật: 17/08/2026</span>
+      <span class="tag">Bản nghiên cứu: 17/08/2026</span>
       <span class="tag">Cung–cầu–tồn kho: <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA FAS PSD</a>, niên vụ 2010/11–2025/26, liên tục</span>
       <span class="tag">Giá thế giới: <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank Pink Sheet</a>, theo tháng</span>
       <span class="tag">Mọi khoảng trống dữ liệu được hiển thị là khoảng trống</span>
     </div>
-    <div class="insight"><b>Đọc nhanh:</b> tồn kho cuối niên vụ 2025/26 ước khoảng <b>426 nghìn tấn</b> — mức cao nhất trong toàn bộ 16 niên vụ có số liệu USDA (2010/11–2025/26) — trong khi giá đường trắng trong nước tháng 7/2026 quanh <b>16,8 nghìn đ/kg</b>, thấp hơn cả Trung Quốc, Indonesia và Philippines trong khu vực. Giá thế giới cũng đang ở nhịp giảm sau đỉnh chu kỳ 2023 (0,52 USD/kg) về quanh 0,32–0,34 USD/kg. Ngắn hạn, cung đang vượt cầu tiêu thụ nội địa; dài hạn, PVTM vừa được gia hạn thêm 5 năm (đến 2031) giữ vai trò lá chắn trước hàng Thái Lan, nhưng chưa xử lý được áp lực từ đường lậu và HFCS nhập khẩu.</div>
+    <div class="insight" data-update-kind="ai" data-cadence="on-data-change" data-refresh-status="snapshot"><b>Đọc nhanh:</b> tồn kho cuối niên vụ 2025/26 ước khoảng <b>426 nghìn tấn</b> — mức cao nhất trong toàn bộ 16 niên vụ có số liệu USDA (2010/11–2025/26) — trong khi giá đường trắng trong nước tháng 7/2026 quanh <b>16,8 nghìn đ/kg</b>, thấp hơn cả Trung Quốc, Indonesia và Philippines trong khu vực. Giá thế giới cũng đang ở nhịp giảm sau đỉnh chu kỳ 2023 (0,52 USD/kg) về quanh 0,32–0,34 USD/kg. Ngắn hạn, cung đang vượt cầu tiêu thụ nội địa; dài hạn, PVTM vừa được gia hạn thêm 5 năm (đến 2031) giữ vai trò lá chắn trước hàng Thái Lan, nhưng chưa xử lý được áp lực từ đường lậu và HFCS nhập khẩu.</div>
   </section>
 
   <div class="majorpane active" data-tab="mt1">
@@ -289,16 +296,16 @@ ul.list li{margin-bottom:7px}
   <section class="section">
     <div class="sectionhead"><div><h2>1. Tổng quan ngành đường Việt Nam</h2><p>Vị trí ngành trong chu kỳ giá, cấu trúc chuỗi giá trị và danh sách doanh nghiệp niêm yết chính — điểm khởi đầu trước khi đi vào từng lớp dữ liệu ở các tab tiếp theo.</p></div></div>
     <div class="grid two">
-      <div class="card">
+      <div class="card" data-block-id="sugar-01" data-update-kind="static" data-cadence="rare" data-refresh-status="snapshot">
         <h3 style="margin-top:0;font-size:13.5px">Chuỗi giá trị</h3>
         <p style="font-size:12.5px;line-height:1.6;color:var(--ink2);margin:0">Nông dân trồng mía → nhà máy ép/tinh luyện (đường trắng RS, đường tinh luyện RE) → kênh phân phối bán lẻ và kênh công nghiệp (F&amp;B, nước giải khát, bánh kẹo, sữa) → người tiêu dùng cuối. Song song với nguồn cung nội địa, thị trường còn chịu tác động từ đường nhập khẩu chính ngạch (ATIGA, hạn ngạch thuế quan), đường nhập lậu (ước ~30% thị phần) và chất tạo ngọt thay thế (HFCS) — chi tiết ở tab <b>4. Policy/Trade/Tax</b>.</p>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-02" data-update-kind="ai" data-cadence="on-data-change" data-refresh-status="snapshot">
         <h3 style="margin-top:0;font-size:13.5px">Vị trí trong chu kỳ</h3>
         <p style="font-size:12.5px;line-height:1.6;color:var(--ink2);margin:0">Giá thế giới đang ở nhịp giảm sau đỉnh chu kỳ 2023 (0,52 USD/kg), về quanh 0,32–0,34 USD/kg — gần vùng đáy 2015 (0,295) hơn vùng đỉnh. Trong nước, tồn kho cuối vụ 2025/26 (426 nghìn tấn) là mức cao nhất trong 16 niên vụ có số liệu USDA — dấu hiệu ngành đang ở pha dư cung, không phải thiếu hụt. Xem đầy đủ ở tab <b>2. Cung – Cầu</b> và <b>3. Giá – Chi phí – Margin</b>.</p>
       </div>
     </div>
-    <div class="card" style="margin-top:14px">
+    <div class="card" style="margin-top:14px" data-block-id="sugar-03" data-update-kind="static" data-cadence="rare" data-refresh-status="snapshot">
       <h3 style="margin-top:0;font-size:13.5px">5 doanh nghiệp đường niêm yết theo dõi trong dashboard này</h3>
       <p class="note" style="margin:0">SBT — TTC AgriS (HOSE) · QNS — Đường Quảng Ngãi (UPCOM) · LSS — Mía đường Lam Sơn (HOSE) · SLS — Mía đường Sơn La (HNX) · KTS — Đường Kon Tum (UPCOM). Hồ sơ và số liệu tài chính so sánh đầy đủ ở tab <b>6. Key players</b>.</p>
     </div>
@@ -310,7 +317,7 @@ ul.list li{margin-bottom:7px}
     <div class="sectionhead"><div><h2>3. Giá – Chi phí – Margin</h2><p>Giá thế giới là chuỗi tháng liên tục (World Bank). Giá trong nước chỉ hiển thị các mốc thực sự quan sát được — không có đường nối giữa các mốc cách xa nhau.</p></div></div>
     <h3 class="subhead">Giá đường: chu kỳ thế giới và mặt bằng trong nước</h3>
     <div class="grid two">
-      <div class="card">
+      <div class="card" data-block-id="sugar-04" data-update-kind="periodic" data-cadence="monthly" data-refresh-status="snapshot">
         <div class="chart-title">Giá đường thế giới — 24 tháng gần nhất</div>
         <div class="chart-sub">USD/kg, giá đường thô ISA · <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank Commodity Markets (Pink Sheet)</a></div>
         <div id="chWorldRecent"></div>
@@ -318,7 +325,7 @@ ul.list li{margin-bottom:7px}
         <div class="srcrow"><a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank" rel="noopener">World Bank · Commodity Markets (Pink Sheet)</a></div>
         <details class="dtable"><summary>Xem bảng dữ liệu (24 tháng)</summary><div class="tablewrap"><table id="tbl-world-recent"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-05" data-transform="derived" data-update-kind="periodic" data-cadence="monthly" data-refresh-status="snapshot">
         <div class="chart-title">Giá đường thế giới — bình quân năm, 2010–2025</div>
         <div class="chart-sub">USD/kg · chu kỳ dài: đỉnh 2011 (0,57) → đáy 2015 (0,295) → đỉnh 2023 (0,52) → đang giảm</div>
         <div id="chWorldLong"></div>
@@ -328,7 +335,7 @@ ul.list li{margin-bottom:7px}
       </div>
     </div>
     <div class="grid two" style="margin-top:14px">
-      <div class="card">
+      <div class="card" data-block-id="sugar-06" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">Giá đường trong nước — các mốc quan sát thực tế, 2020–2026</div>
         <div class="chart-sub">VND/kg · mỗi điểm là một khoảng giá được báo cáo tại một thời điểm cụ thể (không nội suy)</div>
         <div id="chVnPrice"></div>
@@ -340,7 +347,7 @@ ul.list li{margin-bottom:7px}
         <div class="source-note">Nguồn: VSSA và báo chí trích VSSA (CafeF, VietnamBiz, Nông nghiệp & Môi trường, Dân trí, <a href="https://www.vienmiaduong.vn/" target="_blank" rel="noopener">Viện Nghiên cứu Mía Đường</a>). Mốc 07/2021 có độ tin cậy thấp hơn (không tự tải lại được bài gốc) nhưng vẫn giữ lại, gắn cờ rõ trong bảng dữ liệu (vòng tròn rỗng trên biểu đồ). Một số mốc khác từng xuất hiện trong nguồn thô (~05/2024, một bản trùng lặp gán nhãn 08/2024, và một mốc "07/2025" nghi nhầm năm với 07/2026) đã bị loại bỏ hoàn toàn vì không xác minh lại được nguồn gốc — không đưa vào dashboard dưới bất kỳ hình thức nào, kể cả gắn cờ.</div>
         <details class="dtable"><summary>Xem bảng dữ liệu đầy đủ</summary><div class="tablewrap"><table id="tbl-vn-price"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-07" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">So sánh khu vực — giá đường trắng, T7/2026</div>
         <div class="chart-sub">VND/kg quy đổi · Việt Nam đang thấp nhất khu vực</div>
         <div id="chRegional"></div>
@@ -355,7 +362,7 @@ ul.list li{margin-bottom:7px}
   <section id="supply" class="section">
     <div class="sectionhead"><div><h2>2. Cung – cầu – tồn kho đường Việt Nam</h2><p>Toàn bộ 4 biểu đồ dưới đây dùng chung một bảng cân đối cung–cầu của <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA FAS PSD Online</a> (niên vụ tháng 10–tháng 9), liên tục không đứt quãng từ 2010/11 đến 2025/26.</p></div></div>
     <div class="grid two">
-      <div class="card">
+      <div class="card" data-block-id="sugar-08" data-update-kind="periodic" data-cadence="semiannual" data-refresh-status="snapshot">
         <div class="chart-title">Cân đối cung – cầu: sản lượng vs tiêu thụ nội địa</div>
         <div class="chart-sub">Nghìn tấn, quy đổi giá trị thô · niên vụ 2010/11–2025/26</div>
         <div id="chSupplyDemand"></div>
@@ -366,7 +373,7 @@ ul.list li{margin-bottom:7px}
         <div class="source-note">Từ niên vụ 2019/20–2021/22, một phần sản lượng đến từ đường thô nhập khẩu tái chế (không chỉ từ mía trong nước) — xem ghi chú ở mục 2b.</div>
         <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-supdem"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-09" data-update-kind="periodic" data-cadence="semiannual" data-refresh-status="snapshot">
         <div class="chart-title">Tồn kho cuối niên vụ</div>
         <div class="chart-sub">Nghìn tấn · niên vụ 2010/11–2025/26 — thước đo áp lực cung–cầu trực tiếp nhất</div>
         <div id="chStocks"></div>
@@ -375,14 +382,14 @@ ul.list li{margin-bottom:7px}
       </div>
     </div>
     <div class="grid two" style="margin-top:14px">
-      <div class="card">
+      <div class="card" data-block-id="sugar-10" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">Sản lượng mía ép tại nhà máy</div>
         <div class="chart-sub">Triệu tấn · niên vụ 2017/18–2025/26</div>
         <div id="chCaneCrush"></div>
         <div class="source-note">Chuỗi bắt đầu từ 2017/18 vì các niên vụ trước đó chỉ có số liệu "sản lượng mía cả nước" (khác định nghĩa với "mía ép tại nhà máy"), không gộp chung để tránh sai lệch. * = số liệu công bố dạng "trên X triệu tấn", dùng làm giá trị sàn.</div>
         <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-canecrush"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-11" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">Diện tích vùng mía</div>
         <div class="chart-sub">Nghìn ha, diện tích thu hoạch/liên kết nhà máy · niên vụ 2018/19–2024/25</div>
         <div id="chCaneArea"></div>
@@ -398,7 +405,7 @@ ul.list li{margin-bottom:7px}
     <h3 class="subhead">Giá mía nguyên liệu &amp; giá thành ngành đường</h3>
     <p class="subsub">Giá mía là chuỗi còn nhiều khoảng trống nhất trong dashboard này — được giữ nguyên trạng thái đó thay vì lấp đầy bằng suy diễn.</p>
     <div class="grid two">
-      <div class="card">
+      <div class="card" data-block-id="sugar-12" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">Giá mía nguyên liệu bình quân theo niên vụ</div>
         <div class="chart-sub">Nghìn đồng/tấn tại nhà máy · niên vụ 2018/19–2025/26</div>
         <div id="chCanePrice"></div>
@@ -409,7 +416,7 @@ ul.list li{margin-bottom:7px}
         <div class="source-note">Không tìm thấy số liệu giá mía đáng tin cậy trước niên vụ 2018/19. 21/22*: suy ra từ phát biểu "+100–150 nghìn đ/tấn so với vụ trước", không phải số liệu công bố trực tiếp. 22/23*: chỉ có số liệu Lam Sơn. 25/26*: chỉ có số liệu KCP Đắk Lắk. Cả ba đều không đại diện bình quân toàn ngành.</div>
         <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-caneprice"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-13" data-update-kind="document" data-cadence="annual" data-refresh-status="snapshot">
         <div class="chart-title">Biên lợi nhuận gộp SBT (TTC AgriS) theo niên độ</div>
         <div class="chart-sub">%, niên độ tháng 7 – tháng 6 · doanh nghiệp đường niêm yết lớn nhất, ~46% thị phần nội địa</div>
         <div id="chMargin"></div>
@@ -425,14 +432,14 @@ ul.list li{margin-bottom:7px}
     <div class="sectionhead"><div><h2>4. Policy/Trade/Tax</h2><p>Nhập khẩu chính ngạch (niên vụ, <a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>) được tách riêng khỏi ước tính đường nhập lậu (năm dương lịch, VSSA/<a href="https://vcbs.com.vn" target="_blank" rel="noopener">VCBS</a>) — hai chuỗi khác kỳ, không gộp vào một biểu đồ.</p></div></div>
     <h3 class="subhead" style="margin-top:4px">Thương mại &amp; cạnh tranh chất tạo ngọt</h3>
     <div class="grid two">
-      <div class="card">
+      <div class="card" data-block-id="sugar-14" data-update-kind="periodic" data-cadence="semiannual" data-refresh-status="snapshot">
         <div class="chart-title">Nhập khẩu đường chính ngạch</div>
         <div class="chart-sub">Nghìn tấn · niên vụ 2010/11–2025/26 (<a href="https://apps.fas.usda.gov/psdonline/app/index.html" target="_blank" rel="noopener">USDA PSD</a>)</div>
         <div id="chImports"></div>
         <div class="source-note">Đỉnh nhập khẩu 2019/20–2020/21 (~1,3 triệu tấn/vụ) trùng giai đoạn sản lượng mía trong nước thấp nhất; giảm mạnh sau khi thuế CBPG/CTC có hiệu lực giữa 2021.</div>
         <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-imports"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-15" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">Ước tính đường nhập lậu</div>
         <div class="chart-sub">Nghìn tấn · năm dương lịch, ước tính — KHÔNG phải số liệu hải quan chính thức</div>
         <div id="chSmuggled"></div>
@@ -441,14 +448,14 @@ ul.list li{margin-bottom:7px}
       </div>
     </div>
     <div class="grid two" style="margin-top:14px">
-      <div class="card">
+      <div class="card" data-block-id="sugar-16" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">Nhập khẩu HFCS (siro ngô fructose cao)</div>
         <div class="chart-sub">Nghìn tấn · năm dương lịch — chất tạo ngọt thay thế cạnh tranh trực tiếp với đường mía</div>
         <div id="chHfcs"></div>
         <div class="source-note">Nhập khẩu HFCS tăng hơn gấp đôi 2021→2024 (102,4 → 241,5 nghìn tấn). 2023* là số suy ra từ lũy kế 9 tháng, không phải số cả năm công bố trực tiếp; 2025 (7T)* là lũy kế 7 tháng, chưa phải cả năm — cả hai cột được hiển thị mờ hơn. Không xác nhận được mức chênh lệch giá "20–25%" từng công bố trước đây — các nguồn giá landed cho thấy khoảng chênh rộng hơn (35–55%), nhưng phương pháp so sánh không đồng nhất (HFCS ngọt hơn đường mía 25–60% theo trọng lượng) nên không đưa một con số duy nhất vào dashboard.</div>
         <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-hfcs"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-17" data-update-kind="event" data-cadence="event" data-refresh-status="snapshot">
         <h3 style="margin-top:0;font-size:13.5px">Hạn ngạch thuế quan (TRQ) & cấu trúc cạnh tranh</h3>
         <div class="tabs">
           <button class="tabbtn active" onclick="showTab('trq',this)">Hạn ngạch</button>
@@ -476,7 +483,7 @@ ul.list li{margin-bottom:7px}
   <section id="policy" class="section">
     <h3 class="subhead">Chính sách phòng vệ thương mại &amp; thuế nhập khẩu</h3>
     <p class="subsub">Đã đối chiếu với số hiệu quyết định gốc (Cục Phòng vệ thương mại, Bộ Công Thương) thay vì chỉ dẫn lại mốc thời gian chung chung.</p>
-    <div class="card">
+    <div class="card" data-block-id="sugar-18" data-update-kind="event" data-cadence="event" data-refresh-status="snapshot">
       <div class="timeline">
         <div class="event"><small>01/01/2020</small><b>ATIGA có hiệu lực với đường</b><p>Thông tư 23/2019/TT-BCT: bỏ hạn ngạch thuế quan nhập khẩu đường ASEAN, thuế về 5% (HS 1701) — mở đường cho làn sóng nhập khẩu 2020–2021.</p></div>
         <div class="event"><small>16/02/2021</small><b>Thuế CBPG/CTC tạm thời — đường Thái Lan</b><p>Quyết định 477/QĐ-BCT (ký 09/02/2021): 44,23% (đường tinh luyện) và 29,23% (đường thô), vụ việc AD13-AS01.</p></div>
@@ -492,7 +499,7 @@ ul.list li{margin-bottom:7px}
   <section class="section">
     <div class="sectionhead"><div><h2>5. Catalyst/Risk</h2><p>Các biến dẫn dắt giá và lợi nhuận ngành, phân theo chiều tác động, hơn là chỉ nhìn một mức giá tại một thời điểm.</p></div></div>
     <div class="catriskgrid">
-      <div class="catbox">
+      <div class="catbox" data-update-kind="ai" data-cadence="on-data-change" data-refresh-status="snapshot">
         <h3>Catalyst — yếu tố hỗ trợ</h3>
         <ul>
           <li><b>PVTM vừa gia hạn đến 2031</b> (QĐ 1309 &amp; 1310/QĐ-BCT) — duy trì lá chắn AD/CVD 47,64% với đường Thái Lan, nhập khẩu Thái đã giảm từ 924.000 xuống 82.000 tấn trong giai đoạn áp thuế trước.</li>
@@ -501,7 +508,7 @@ ul.list li{margin-bottom:7px}
           <li><b>Dư địa kiểm soát đường lậu/HFCS tốt hơn</b> — nếu thực thi mạnh tay hơn, có thể thu hẹp phần cung "ngoài sổ sách" hiện ước ~30% thị phần (đường lậu) cộng với HFCS đang tăng nhanh.</li>
         </ul>
       </div>
-      <div class="riskbox">
+      <div class="riskbox" data-update-kind="ai" data-cadence="on-data-change" data-refresh-status="snapshot">
         <h3>Risk — rủi ro</h3>
         <ul>
           <li><b>Tồn kho kỷ lục chưa có dấu hiệu giảm</b> — 426 nghìn tấn cuối vụ 2025/26, cao nhất 16 niên vụ có số liệu USDA — leading indicator trực tiếp nhất của sức ép cung–cầu, hiện đang bất lợi cho giá.</li>
@@ -518,9 +525,9 @@ ul.list li{margin-bottom:7px}
     <h3 class="subhead">Kịch bản 6–12 tháng</h3>
     <p class="subsub">Kịch bản quản trị rủi ro dựa trên dữ liệu đã xác minh ở trên — không phải dự báo thống kê với xác suất cố định.</p>
     <div class="grid three">
-      <div class="scenario active" onclick="selectScenario('base',this)"><span class="badge base">CƠ SỞ</span><div class="range">16 – 17k đ/kg</div><div class="note">Giá đi ngang vùng thấp cho đến khi tồn kho kỷ lục giảm rõ rệt.</div></div>
-      <div class="scenario" onclick="selectScenario('bull',this)"><span class="badge bull">TĂNG</span><div class="range">&gt; 18k đ/kg</div><div class="note">Thế giới hồi phục mạnh, kiểm soát đường lậu/HFCS hiệu quả hơn.</div></div>
-      <div class="scenario" onclick="selectScenario('bear',this)"><span class="badge bear">GIẢM</span><div class="range">&lt; 15k đ/kg</div><div class="note">Tồn kho tiếp tục phá đỉnh, giá thế giới giảm sâu hơn.</div></div>
+      <div class="scenario active" onclick="selectScenario('base',this)" data-update-kind="ai" data-cadence="on-data-change" data-refresh-status="snapshot"><span class="badge base">CƠ SỞ</span><div class="range">16 – 17k đ/kg</div><div class="note">Giá đi ngang vùng thấp cho đến khi tồn kho kỷ lục giảm rõ rệt.</div></div>
+      <div class="scenario" onclick="selectScenario('bull',this)" data-update-kind="ai" data-cadence="on-data-change" data-refresh-status="snapshot"><span class="badge bull">TĂNG</span><div class="range">&gt; 18k đ/kg</div><div class="note">Thế giới hồi phục mạnh, kiểm soát đường lậu/HFCS hiệu quả hơn.</div></div>
+      <div class="scenario" onclick="selectScenario('bear',this)" data-update-kind="ai" data-cadence="on-data-change" data-refresh-status="snapshot"><span class="badge bear">GIẢM</span><div class="range">&lt; 15k đ/kg</div><div class="note">Tồn kho tiếp tục phá đỉnh, giá thế giới giảm sâu hơn.</div></div>
     </div>
     <div class="scenarioDetail" id="scenarioDetail"><b>Kịch bản cơ sở:</b> tồn kho 426 nghìn tấn (cao nhất 16 niên vụ) khiến giá khó phục hồi cho đến khi tốc độ tiêu thụ vượt tốc độ đưa hàng mới + nhập khẩu ra thị trường. Trọng tâm theo dõi: tồn kho theo tháng, tiến độ ép vụ 2026/27, và diễn biến giá thế giới.</div>
   </section>
@@ -530,14 +537,14 @@ ul.list li{margin-bottom:7px}
   <section class="section">
     <div class="sectionhead"><div><h2>6. Key players</h2><p>5 doanh nghiệp đường niêm yết theo dõi trong dashboard này — số liệu tài chính lấy từ bảng so sánh <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a> (FiinPro) đã dùng ở các tab trước; hồ sơ mô tả dưới đây tổng hợp từ thông tin công khai về từng doanh nghiệp.</p></div></div>
     <div class="grid two">
-      <div class="card">
+      <div class="card" data-block-id="sugar-19" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">So sánh biên lợi nhuận gộp mảng đường, FY2022/23</div>
         <div class="chart-sub">% · cùng kỳ báo cáo, 5 doanh nghiệp đường niêm yết</div>
         <div id="chMarginCompare"></div>
         <div class="source-note">Nguồn: <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a>, báo cáo SBT 09/01/2024, số liệu phân khúc do doanh nghiệp công bố.</div>
         <details class="dtable"><summary>Xem bảng dữ liệu</summary><div class="tablewrap"><table id="tbl-margincompare"></table></div></details>
       </div>
-      <div class="card">
+      <div class="card" data-block-id="sugar-20" data-update-kind="document" data-cadence="irregular" data-refresh-status="snapshot">
         <div class="chart-title">Sức khỏe tài chính nhóm đường niêm yết</div>
         <div class="chart-sub">TTM tại 09/01/2024 · <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a> (FiinPro)</div>
         <div class="tablewrap">
@@ -558,7 +565,7 @@ ul.list li{margin-bottom:7px}
     <h3 class="subhead">Hồ sơ từng doanh nghiệp</h3>
     <p class="subsub">Sàn niêm yết và mô tả mô hình kinh doanh dưới đây tổng hợp từ thông tin công khai phổ biến, <b>chưa tra cứu lại từ danh sách niêm yết chính thức trong phiên dựng dashboard này</b> — xác minh lại trước khi dùng cho quyết định giao dịch. Số liệu biên lợi nhuận/tài chính đi kèm lấy từ hai bảng phía trên (đã có nguồn).</p>
     <div class="profilegrid">
-      <div class="profilecard">
+      <div class="profilecard" data-update-kind="static" data-cadence="rare" data-refresh-status="snapshot">
         <h3>SBT · TTC AgriS <span class="exch">HOSE</span></h3>
         <p>Doanh nghiệp đường niêm yết lớn nhất, ~46% thị phần đường nội địa (FY2019/20 và FY2022/23). Vùng nguyên liệu chính tại Tây Ninh; theo thông tin doanh nghiệp tự công bố, còn mở rộng vùng trồng sang Lào, Campuchia và Úc theo mô hình nông nghiệp đa quốc gia (chưa kiểm chứng lại trong dashboard này). Biên lợi nhuận gộp mảng đường thấp nhất nhóm so sánh dù thị phần lớn nhất — gợi ý cạnh tranh giá/chi phí đầu vào cao hơn phần còn lại của ngành.</p>
         <div class="stats">
@@ -567,7 +574,7 @@ ul.list li{margin-bottom:7px}
           <div class="stat">ROE / ROA TTM<br><b>4,9% / 1,7%</b></div>
         </div>
       </div>
-      <div class="profilecard">
+      <div class="profilecard" data-update-kind="static" data-cadence="rare" data-refresh-status="snapshot">
         <h3>QNS · Đường Quảng Ngãi <span class="exch">UPCOM</span></h3>
         <p>Doanh nghiệp đa ngành — mảng đường chỉ là một phần doanh thu, bên cạnh mảng sữa đậu nành Vinasoy (biên lợi nhuận cao, đóng góp lớn vào lợi nhuận hợp nhất). ROE/ROA và tăng trưởng LNST TTM cao nhất trong bảng tài chính, nhưng phản ánh toàn công ty chứ không riêng mảng đường — không nên đọc trực tiếp như hiệu quả ngành đường.</p>
         <div class="stats">
@@ -576,7 +583,7 @@ ul.list li{margin-bottom:7px}
           <div class="stat">ROE / ROA TTM<br><b>25,6% / 17,4%</b></div>
         </div>
       </div>
-      <div class="profilecard">
+      <div class="profilecard" data-update-kind="static" data-cadence="rare" data-refresh-status="snapshot">
         <h3>SLS · Mía đường Sơn La <span class="exch">HNX</span></h3>
         <p>Vùng nguyên liệu tại Sơn La (Tây Bắc) — địa hình miền núi có thể khiến ít cạnh tranh trực tiếp với đường nhập lậu/nhập khẩu qua các cửa khẩu phía Nam và Tây Nam hơn nhóm còn lại (giả thuyết khả dĩ, chưa kiểm chứng riêng trong dashboard này). Biên lợi nhuận gộp mảng đường và ROE/ROA cao nhất nhóm so sánh rõ rệt, dù vốn hóa nhỏ nhất — thanh khoản giao dịch có thể là yếu tố cần lưu ý thêm.</p>
         <div class="stats">
@@ -585,7 +592,7 @@ ul.list li{margin-bottom:7px}
           <div class="stat">ROE / ROA TTM<br><b>54,3% / 42,9%</b></div>
         </div>
       </div>
-      <div class="profilecard">
+      <div class="profilecard" data-update-kind="static" data-cadence="rare" data-refresh-status="snapshot">
         <h3>LSS · Mía đường Lam Sơn <span class="exch">HOSE</span></h3>
         <p>Vùng nguyên liệu tại Thanh Hóa. Biên lợi nhuận gộp mảng đường thấp nhất trong nhóm so sánh FY2022/23. Theo thông tin công khai phổ biến, doanh nghiệp có dây chuyền sản xuất cồn/ethanol từ mật rỉ đường bên cạnh mảng đường chính (xem thêm tab 7 — sản phẩm phụ), nhưng dashboard này chưa có số liệu tách bạch doanh thu theo mảng để định lượng đóng góp.</p>
         <div class="stats">
@@ -594,7 +601,7 @@ ul.list li{margin-bottom:7px}
           <div class="stat">ROE / ROA TTM<br><b>12,5% / 1,5%</b></div>
         </div>
       </div>
-      <div class="profilecard" style="grid-column:1/-1">
+      <div class="profilecard" style="grid-column:1/-1" data-update-kind="static" data-cadence="rare" data-refresh-status="snapshot">
         <h3>KTS · Đường Kon Tum <span class="exch">UPCOM</span></h3>
         <p>Vùng nguyên liệu tại Kon Tum (Tây Nguyên). Doanh nghiệp nhỏ nhất trong nhóm 5 mã theo dõi — chỉ xuất hiện trong bảng so sánh biên lợi nhuận gộp mảng đường, không có trong bảng sức khỏe tài chính gốc của <a href="https://www.vietcap.com.vn/" target="_blank" rel="noopener">Vietcap</a> (khả năng do vốn hóa/thanh khoản thấp hơn ngưỡng bảng so sánh). Biên lợi nhuận gộp mảng đường FY2022/23 xếp giữa nhóm 5 doanh nghiệp. Cần bổ sung số liệu vốn hóa, ROE/ROA, P/E riêng nếu muốn theo dõi sâu hơn.</p>
         <div class="stats">
@@ -772,7 +779,8 @@ function barLineChart(containerId, opts){
   lineSeries.forEach(s=>{
     const pts=linePts[s.name].filter(p=>p);
     if(pts.length>1){
-      const d='M'+pts.map(p=>p[0]+','+p[1]).join(' L');
+      let d='', pen=false;
+      linePts[s.name].forEach(p=>{if(!p){pen=false;return;}d+=(pen?' L':' M')+p[0]+','+p[1];pen=true;});
       svg.appendChild(el('path',{d:d,fill:'none',stroke:s.color,'stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'}));
     }
     linePts[s.name].forEach((p,i)=>{
