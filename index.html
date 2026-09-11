@@ -4,6 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FinSuccess Industry Dashboard Database</title>
+<link rel="stylesheet" href="assets/site-navigation.css?v=54a3825f55f4">
+<script src="assets/site-navigation.js?v=9b367760d97e" data-release="20260911-r2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:ital,wght@0,500;0,600;1,500&display=swap">
@@ -35,6 +37,8 @@ a{color:inherit}
 table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}th,td{padding:9px 7px;border-bottom:1px solid var(--hair);text-align:left;vertical-align:top}th{font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;color:var(--muted)}td b{color:var(--ink)}
 .status{display:inline-flex;border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:850}.s-ready{background:#e7f5f1;color:var(--accent)}.s-empty{background:#eef1f5;color:var(--muted)}
 .note{border-left:4px solid var(--accent);background:#eef8f5;border-radius:8px;padding:12px 13px;color:var(--ink2);font-size:12.5px;line-height:1.55}.warn{border-left-color:var(--red);background:#fbecea}
+.ready-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.industry-card{display:flex;flex-direction:column;gap:12px;min-width:0}.industry-card .actions{margin-top:auto}.industry-card h2{font-size:23px}.industry-card .facts{grid-template-columns:1fr 1fr}.industry-card ul{margin:0;padding-left:18px;color:var(--ink2);font-size:12px;line-height:1.8}.industry-card .btn{width:100%;min-height:42px}.planned-industries{margin-top:24px}.planned-industries>summary{cursor:pointer;font-size:14px;font-weight:700;color:var(--navy)}.tab{text-decoration:none}.ready-grid+.site-release-inline{margin-top:0}
+@media(max-width:900px){.ready-grid{grid-template-columns:1fr}}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.side{position:static}.two,.facts{grid-template-columns:1fr}.wrap{padding:14px}.hero h1{font-size:27px}}
 </style>
 </head>
@@ -42,30 +46,28 @@ table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}th,td{pa
 <div class="topbar">
   <div class="topbar-inner">
     <div class="brand">FinSuccess Research<small>Industry Dashboard Master Database</small></div>
-    <nav class="topnav">
-      <a href="./">Master database</a>
-      <a href="Dau-khi/">Dầu khí</a>
-      <a href="Sugar/">Đường</a>
-      <a href="Bank/">Ngân hàng</a>
-      <a href="Masterplan/">Master plan</a>
+    <nav class="topnav" data-site-navigation="home">
+      <a href="./">Trang tổng</a><a href="Dau-khi/">Dầu khí</a><a href="Sugar/">Đường</a><a href="Bank/">Ngân hàng</a>
     </nav>
   </div>
 </div>
 <main class="wrap">
   <section class="hero">
     <h1>Master database <em>dashboard ngành</em></h1>
-    <p>Trang trung tâm cho toàn bộ dashboard ngành. Mỗi tab bên trái đại diện một ngành; ngành nào đã có dashboard sẽ có nút mở trực tiếp. Khi cập nhật file trong VSCode và push lên GitHub, GitHub Pages sẽ dùng đúng cấu trúc này để cập nhật website.</p>
+    <p>Chọn ngành để mở dashboard đầy đủ. Ba dashboard Dầu khí, Đường và Ngân hàng cùng dùng phiên bản mới nhất đã xuất bản từ project. Trong mỗi ngành, dùng thanh điều hướng phía trên để chuyển ngành hoặc quay về trang tổng.</p>
     <div class="meta">
-      <span class="pill">Root file: index.html</span>
-      <span class="pill">Mỗi ngành một thư mục</span>
-      <span class="pill">Public site: GitHub Pages</span>
-      <span class="pill">Last update: 11/09/2026</span>
+      <span class="pill">3 dashboard ngành</span>
+      <span class="pill">Giao diện cập nhật 11/09/2026</span>
+      <span class="pill">Kỳ số liệu riêng tại từng chart</span>
+      <a class="pill" data-site-route="plan" href="Masterplan/">Master plan ↗</a>
     </div>
   </section>
-  <section class="layout">
+  <section class="ready-grid" id="readyDashboards" aria-label="Mở dashboard ngành"></section>
+  <p class="site-release-inline" data-release-label></p>
+  <details class="planned-industries"><summary>Các ngành đang chuẩn bị</summary><section class="layout">
     <aside class="side" id="industryTabs"></aside>
     <div id="industryPanes"></div>
-  </section>
+  </section></details>
 </main>
 <script>
 const industries=[
@@ -87,8 +89,16 @@ const panes=document.getElementById("industryPanes");
 const statusLabel={ready:"Đã có",planned:"Chưa dựng"};
 const statusClass={ready:"s-ready",planned:"s-empty"};
 function render(){
-  tabs.innerHTML=industries.map((x,i)=>`<button class="tab ${x.status==="ready"?"ready":""} ${i===0?"active":""}" data-id="${x.id}"><strong>${x.name}</strong><span>${statusLabel[x.status]}</span></button>`).join("");
-  panes.innerHTML=industries.map((x,i)=>{
+  const routeFor={"dau-khi":"oil","duong":"sugar","ngan-hang":"bank"};
+  const descriptions={
+    "dau-khi":["Hormuz theo ngày & bình quân 7 ngày","Brent futures, đường cong WTI và crack","Cung – cầu Thế giới / Việt Nam"],
+    "duong":["Sugar No.11 futures và World Bank tháng","USDA: bốn trung tâm cung đường lớn","Cung – cầu Thế giới / Việt Nam"],
+    "ngan-hang":["20 nhóm dữ liệu Wi đã tích hợp","Huy động, tín dụng, NIM và chất lượng tài sản","So sánh ngân hàng, Catalyst / Risk"]
+  };
+  document.getElementById('readyDashboards').innerHTML=industries.filter(x=>x.status==='ready').map(x=>`<article class="card industry-card" data-industry="${x.id}"><span class="status s-ready">Dashboard đã cập nhật</span><h2>${x.name}</h2><p class="sub">${x.headline}</p><ul>${descriptions[x.id].map(t=>`<li>${t}</li>`).join('')}</ul><p class="sub">Nguồn, ngày dữ liệu và hạn chế được ghi tại từng biểu đồ.</p><div class="actions"><a class="btn primary" data-site-route="${routeFor[x.id]}" href="${DashboardSite.href(routeFor[x.id])}">Mở dashboard ${x.name} →</a></div></article>`).join('');
+  const planned=industries.filter(x=>x.status!=='ready');
+  tabs.innerHTML=planned.map((x,i)=>`<button class="tab ${i===0?"active":""}" data-id="${x.id}"><strong>${x.name}</strong><span>${statusLabel[x.status]}</span></button>`).join("");
+  panes.innerHTML=planned.map((x,i)=>{
     const ready=x.status==="ready"&&x.folder;
     const metrics=x.metrics||[["Chưa có","dashboard"],["Cần","source map"],["Cần","watch KPIs"],["Cần","template"]];
     return `<article class="pane ${i===0?"active":""}" id="pane-${x.id}">
@@ -117,8 +127,12 @@ function selectIndustry(id,pushHash){
 }
 render();
 const initial=(location.hash||"").replace("#","");
-if(industries.some(x=>x.id===initial)) selectIndustry(initial,false);
-window.addEventListener("hashchange",()=>{const id=(location.hash||"").replace("#","");if(industries.some(x=>x.id===id)) selectIndustry(id,false);});
+const initialIndustry=industries.find(x=>x.id===initial);
+if(initialIndustry&&initialIndustry.status!=="ready"){
+  document.querySelector('.planned-industries').open=true;
+  selectIndustry(initial,false);
+}
+window.addEventListener("hashchange",()=>{const id=(location.hash||"").replace("#","");const target=industries.find(x=>x.id===id);if(target&&target.status!=="ready"){selectIndustry(id,false);}});
 </script>
 </body>
 </html>

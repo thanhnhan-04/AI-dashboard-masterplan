@@ -46,3 +46,16 @@ MCP Wi (WiGroup) is only reachable through a Claude session with the `claude.ai 
 3. `python3 -m unittest tests/test_bank_wi.py` (10 tests: validation, provider ratios not recomputed, same-month YoY gap, proxy sample/no extrapolation, bond sums, completed-session valuation, forecast target flags, last-good on missing raw).
 
 `assets/bank-wi.js` renders the 20 blocks into the existing cards (charts, tables, range selectors, tooltips), fills the comparison table, KPI tiles, rule-based "Đọc nhanh" and monitor statuses, and rewrites the source table rows. Known Wi gaps: `car` empty for all banks, `interest_rate_gap` missing for NVB/SHB/SSB, `period_type=t` on `sector_ratio_bank`/`sector_fs_bank` returns 500 when growth/estimate columns are requested, no market-wide turnover endpoint, bond principal/interest payments not yet fetched.
+
+## Publish one consistent dashboard release
+
+After changing dashboard pages, shared assets or browser data bundles, run:
+
+```sh
+python3 scripts/prepare_release.py --version YYYYMMDD-rN
+PLAYWRIGHT_MODULE=/path/to/playwright node tests/site-navigation.cjs
+```
+
+Use a new release ID for every publication. The preparer hashes local JS/CSS references in the hub and three industry pages (including JS data bundles), applies the same navigation version, and writes `data/site-release.json` for byte-level verification. It does not update observations or publish. Commit the prepared HTML, assets/data and manifest together, then push to the existing Pages branch (`main`, repository root). Check the Pages build and rerun the navigation test with `SITE_BASE=https://thanhnhan-04.github.io/AI-dashboard-masterplan/` after deployment. `CHROME_PATH` can override the test browser executable.
+
+All hub/sector navigation uses `assets/site-navigation.js`. Historical hub hashes `#ngan-hang`, `#dau-khi`, `#duong` redirect to their canonical versioned dashboard; section hashes inside a sector stay local. The release label refers to site files, not financial observation or analysis dates. Daily local updates still require preparation and publication to appear publicly.

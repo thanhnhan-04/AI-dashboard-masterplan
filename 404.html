@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-release="20260911-r2">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,6 +11,7 @@ const routes = [
   {match: base.toLowerCase() + "bank/", target: base + "Bank/"},
   {match: base.toLowerCase() + "bank/index.html", target: base + "Bank/"},
   {match: base.toLowerCase() + "ngan-hang/", target: base + "Bank/"},
+  {match: base.toLowerCase() + "ngan-hang/index.html", target: base + "Bank/"},
   {match: base.toLowerCase() + "dau-khi/", target: base + "Dau-khi/"},
   {match: base.toLowerCase() + "dau-khi/index.html", target: base + "Dau-khi/"},
   {match: base.toLowerCase() + "sugar/", target: base + "Sugar/"},
@@ -21,7 +22,7 @@ const routes = [
   {match: base.toLowerCase() + "masterplan/index.html", target: base + "Masterplan/"}
 ];
 const route = routes.find(x => path === x.match);
-if(route) location.replace(route.target);
+if(route){const target=new URL(route.target,location.origin);target.searchParams.set('v',document.documentElement.dataset.release);target.hash=location.hash;location.replace(target.href);}
 </script>
 <style>
 body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f5f7fc;color:#101318;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -39,7 +40,9 @@ a.primary{background:#11255a;color:#fff;border-color:#11255a}
     <a class="primary" href="/AI-dashboard-masterplan/">Master database</a>
     <a href="/AI-dashboard-masterplan/Dau-khi/">Dashboard Dầu khí</a>
     <a href="/AI-dashboard-masterplan/Sugar/">Dashboard Đường</a>
+    <a href="/AI-dashboard-masterplan/Bank/">Dashboard Ngân hàng</a>
   </div>
 </main>
+<script>document.querySelectorAll('.actions a').forEach(a=>{const url=new URL(a.href);url.searchParams.set('v',document.documentElement.dataset.release);a.href=url.href;});</script>
 </body>
 </html>
