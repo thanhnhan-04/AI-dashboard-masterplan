@@ -4,7 +4,7 @@
 
 ## 1. Vai trò của chart, nguồn, AI và analyst
 
-- Mặt dashboard giữ tiêu đề chart, đơn vị, kỳ dữ liệu, legend, nguồn có link và ngày quan sát/ngày kiểm tra. Phương pháp/diễn giải nguồn dài đưa vào icon nhỏ ở hàng nguồn; link nguồn, đơn vị, kỳ dữ liệu và cờ hạn chế quan trọng vẫn hiển thị. Icon nguồn tách khỏi icon insight AI.
+- Mặt dashboard giữ tiêu đề chart, đơn vị, kỳ dữ liệu, legend, một hàng nguồn có link và ngày quan sát/ngày kiểm tra. Theo yêu cầu rút gọn ngày 12/09/2026, phương pháp, lịch chi tiết, giờ kiểm tra, link bổ sung và bảng gốc mở từ **Chi tiết dữ liệu** ở chân card; nút **ⓘ Insight** riêng cho AI. Cờ hạn chế quan trọng vẫn hiển thị.
 - Icon ⓘ trả lời **“Chart này có ý nghĩa gì trong bối cảnh ngành?”**: tín hiệu → cơ chế tác động → nhóm doanh nghiệp/biến lợi nhuận → điều kiện kiểm chứng và giới hạn suy luận. Không chỉ đọc lại số, không gán quan hệ nhân quả khi chưa có bằng chứng.
 - Phần giải thích chart do **AI** viết. AI cũng phụ trách Đọc nhanh, so sánh các nguồn, đọc báo cáo/PDF, nhận diện yếu tố cần follow, cập nhật Catalyst/Risk và đề xuất kịch bản từ dữ liệu công khai.
 - **Analyst chỉ nhập key insight, thông tin/đánh giá riêng, giả định hoặc phản biện của mình.** Không bắt analyst viết lại phần AI đã có đủ dữ liệu để đọc và phân tích. Không tự gán một quan điểm do AI viết là quan điểm analyst.
@@ -96,3 +96,12 @@ Hợp đồng dữ liệu cho IT: block ID, source IDs, update_kind, observation
 - [World Bank](https://www.worldbank.org/en/research/commodity-markets) bản phát hành 02/09/2026 có tháng 8/2026. Đọc đúng cột Sugar, world, đơn vị USD/kg; biểu đồ năm chỉ dùng đủ 12 tháng. Kiểm đường dẫn XLSX khi World Bank đổi tài nguyên, lỗi giữ last-good.
 - [USDA PSD](https://apps.fas.usda.gov/psdonline/app/index.html): bộ tải chọn Production của Brazil, India, Thailand, European Union, nghìn tấn giá trị thô → triệu tấn. Trục là năm bắt đầu niên vụ từng nước; không coi là niên độ lịch thống nhất. Kỳ mới mang cờ ước tính/dự báo; ngày tải không phải ngày phát hành báo cáo.
 - Các hạn chế dữ liệu hiện hữu vẫn hiển thị. Giữ nguyên `.data-gap`, `.gap-row`; không chuyển cảnh báo thiếu số/độ tin cậy thấp/giá trị sàn vào icon nguồn.
+
+
+## 8. Card gọn (12/09/2026, yêu cầu mới nhất)
+
+- `assets/chart-cards.js` chạy qua shared UI sau khi renderer đã dựng dữ liệu: một chân card, giữ các node nguồn/phương pháp/bảng gốc trong native details. Không xóa dữ liệu hoặc ẩn cảnh báo `.data-gap`, `.gap-row`; ghi chú giới hạn chưa gắn class cũng được bảo vệ theo mapping chart ID đã rà soát.
+- Nền biểu đồ trắng; pastel dành cho badge loại nội dung. Lịch công bố gọn ở chân card, lịch đầy đủ trong details; không suy lịch từ tiêu đề. Kỳ tháng/niên vụ trình bày đúng kỳ, không biến khóa ngày đầu kỳ thành ngày quan sát thực tế.
+- Nhóm tồn kho Mỹ dùng tab Dầu thô / Sản phẩm / Mùa vụ diesel / Cushing. Dải số tóm tắt lấy đúng giá trị/kỳ đang vẽ và chênh tuyệt đối so kỳ liền trước đang vẽ; thiếu giá trị thì bỏ phần chênh, không điền 0. Không thêm kết luận đầu tư.
+- ⓘ Insight hỗ trợ hover/focus/click/Escape; popup đặt phía đủ khoảng trống để không che nút. Chi tiết dữ liệu mở bằng click/Enter; Escape đóng và trả focus. Tab tồn kho hỗ trợ phím mũi tên/Home/End.
+- QA thay đổi chỉ giao diện: đối chiếu bảng số, link nguồn, SVG và cảnh báo với bản trước; kiểm desktop/390px và điều hướng. Không cần chạy lại mạng/updater khi không đổi nguồn hoặc phép tổng hợp dữ liệu. Luôn chạy `prepare_release.py` trước xuất bản, đối chiếu manifest sau deploy.

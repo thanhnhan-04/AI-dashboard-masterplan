@@ -27,6 +27,9 @@ function note(hostId,keys,method){
 }
 function plot(id,records,series,unit,digits=1,height=250){
  if(!records.length)return;
+ const host=document.getElementById(id);
+ // Presentation summaries use the exact plotted series and period; no new feed.
+ host.chartReadings=series.filter(([,field])=>Number.isFinite(records.at(-1)[field])).map(([name,field])=>({name,value:records.at(-1)[field],period:records.at(-1).label||records.at(-1).date,previous:records.at(-2)?.[field],previousPeriod:records.at(-2)?.label||records.at(-2)?.date}));
  barLineChart(id,{categories:records.map(r=>r.label||r.date),series:series.map(([name,field,c])=>({name,kind:'line',color:c,values:records.map(r=>r[field]??null)})),unit,digits,height,zeroBase:false,ariaLabel:document.getElementById(id)?.closest('.card,.viz-block')?.querySelector('.chart-title')?.textContent});
 }
 function table(id,headers,rs,fields,digits=1){fillTable(id,headers,rs.map(r=>[r.label||r.date,...fields.map(f=>nf(r[f],digits))]));}

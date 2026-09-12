@@ -22,9 +22,12 @@
   const position=()=>{
     if(!active)return;
     const {button,panel}=active,r=button.getBoundingClientRect(),gap=8;
+    const below=innerHeight-r.bottom-gap-12,above=r.top-gap-12;
+    const down=below>=Math.min(300,above);
+    panel.style.maxHeight=Math.min(480,Math.max(100,down?below:above))+'px';
     const w=panel.offsetWidth,h=panel.offsetHeight;
     panel.style.left=Math.max(12,Math.min(r.right-w,innerWidth-w-12))+'px';
-    panel.style.top=Math.max(12,Math.min(r.bottom+gap,innerHeight-h-12))+'px';
+    panel.style.top=Math.max(12,down?r.bottom+gap:r.top-gap-h)+'px';
   };
   const open=(button,panel)=>{clearTimeout(timer);if(active?.button!==button)close();active={button,panel};panel.hidden=false;button.setAttribute('aria-expanded','true');position()};
   const later=()=>{clearTimeout(timer);if(active?.button.dataset.pinned==='true')return;timer=setTimeout(()=>{if(!active?.panel.contains(document.activeElement)&&document.activeElement!==active?.button)close()},200)};
@@ -55,17 +58,10 @@
     heading.append(button);document.body.append(panel);
     wire(button,panel);
   });
-  // Long methodology lives behind a source icon; source links remain on the card.
-  [...document.querySelectorAll('.source-note')].filter(n=>!n.closest('.chart-info-panel,.data-gap,.gap-row')&&!n.querySelector('.data-gap,.gap-row')&&n.textContent.length>190&&!/độ tin cậy|không xác minh|không có số liệu|giá trị sàn/i.test(n.textContent)).forEach((n,i)=>{
-    const panel=document.createElement('div');panel.className='chart-info-panel source-info-panel';panel.id='source-info-'+i;panel.hidden=true;panel.setAttribute('role','region');panel.setAttribute('aria-label','Phương pháp và diễn giải nguồn');
-    const heading=document.createElement('div');heading.className='info-heading';heading.textContent='Phương pháp & diễn giải nguồn';panel.append(heading);
-    const row=document.createElement('div');row.className='source-note source-compact';row.append('Nguồn / phương pháp');if(/ước tính|dự báo/.test(n.textContent))row.append(' · Có số ước tính/dự báo');if(/không chính thức/.test(n.textContent))row.append(' · Nguồn không chính thức');
-    const seen=new Set();n.querySelectorAll('a[href]').forEach(a=>{if(!seen.has(a.href)){row.append(a.cloneNode(true));seen.add(a.href)}});
-    const button=document.createElement('button');button.className='chart-info-button source-info-button';button.type='button';button.textContent='i';button.setAttribute('aria-label','Xem phương pháp và diễn giải nguồn');button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','false');row.append(button);n.before(row);panel.append(n);document.body.append(panel);wire(button,panel);
-  });
+  window.ChartCards?.compact();
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){const {button,panel}=active;if(panel.contains(document.activeElement))button.focus();button.dataset.pinned='false';close()}});
   document.addEventListener('pointerdown',e=>{if(active&&!active.panel.contains(e.target)&&!active.button.contains(e.target))close()});
   window.addEventListener('resize',position);window.addEventListener('scroll',position,true);
-  document.querySelectorAll('.majortabbtn,.tabbtn').forEach(b=>b.addEventListener('click',close));
+  document.querySelectorAll('.majortabbtn,.tabbtn,.inventory-tabs button,.supply-tabs button').forEach(b=>b.addEventListener('click',close));
   document.querySelectorAll('.majortabbtn').forEach(b=>b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'instant'})));
 })();

@@ -59,3 +59,47 @@
 .chart-info-panel summary{cursor:pointer}
 .refresh-note a{color:#176c80;text-decoration:underline;margin-left:6px}
 .value-chain-card{margin-bottom:14px}.value-chain-scroll{overflow-x:auto;margin:12px 0}.value-chain-scroll svg{display:block;width:100%;min-width:820px;font:14px Arial,sans-serif;fill:#254255}.chain-node{fill:#fff;stroke:#bed1d8;stroke-width:1.3}.chain-edge{fill:none;stroke:#578179;stroke-width:2}.chain-edge.support{stroke-dasharray:5 5}.chain-lane{font-size:13px;font-weight:700}.value-chain-scroll:focus-visible{outline:2px solid #268a76}.supply-tabs{display:flex;gap:8px;margin:12px 0 20px}.supply-tabs button{padding:9px 23px;border:1px solid #c6d8df;border-radius:20px;background:#fff;color:#36566b;cursor:pointer;font-weight:700}.supply-tabs [aria-selected="true"]{background:#dcefe9;border-color:#76ab9b;color:#20594b}.supply-pane[hidden]{display:none!important}.source-info-button{width:20px;height:20px;font-size:12px}.source-compact{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px}.source-compact a{margin:0}.card[data-block-id="fast-price"]{margin:14px 0}.supply-pane .legend{gap:14px}
+
+/* Compact chart cards: classification in badges, provenance on demand. */
+.card.compact-chart-card,.viz-block.compact-chart-card{background:#fff!important;border-top:1px solid #dce5ed!important}
+.compact-chart-card>.update-badge{background:var(--block-bg,#f0f4f6);color:var(--block-accent,#476478);border-radius:5px;padding:3px 7px;font-size:10px;letter-spacing:0;margin-bottom:10px}
+.compact-chart-card .chart-title{line-height:1.45}
+.chart-footer{margin-top:12px;border-top:1px solid #e8edf2;padding-top:10px;font-size:11px;line-height:1.55;color:#627689;clear:both}
+.chart-source-line{display:flex;align-items:baseline;gap:4px 12px;flex-wrap:wrap;font-size:11px;overflow-wrap:anywhere}
+.chart-source-line a{color:#217d70;text-decoration:none;font-weight:650}
+.chart-source-line a::after{content:' ↗'}
+.chart-source-line a:hover{text-decoration:underline}
+.chart-card-actions{margin-top:9px;display:flow-root}
+.chart-insight-action{float:left;width:auto;height:auto;min-height:32px;padding:5px 10px;border-radius:6px;margin:0 12px 4px 0;font:600 11px/1.5 Inter,system-ui,sans-serif;color:#355978;background:#f7fafc}
+.chart-source-details>summary{display:inline-flex;align-items:center;min-height:32px;padding:5px 0;cursor:pointer;color:#48667b;font:600 11px/1.5 Inter,system-ui,sans-serif;list-style:none}
+.chart-source-details>summary::-webkit-details-marker{display:none}
+.chart-source-details>summary::after{content:'＋';margin-left:8px;font-size:14px}
+.chart-source-details[open]>summary::after{content:'−'}
+.source-details-body{clear:both;margin-top:10px;padding:12px 14px;border-radius:8px;background:#f6f8fb;border:1px solid #e3eaf0;overflow-wrap:anywhere;color:#53687b}
+.source-details-body .source-note,.source-details-body .cadence-note,.source-details-body .refresh-note,.source-details-body .source-links{font-size:12px!important;line-height:1.65;margin:6px 0!important}
+.source-details-body .srcrow{margin:8px 0;gap:4px 10px}
+.source-details-body .srcrow a{background:none;border:0;border-radius:0;padding:0;font-size:11px;text-decoration:underline}
+.source-details-body a{color:#217784}
+.source-details-body details{margin-top:12px}
+.card .chart-caveat,.card .chart-freshness,.chart-caveat,.chart-freshness{font-size:11px;line-height:1.55;margin:0 0 7px;color:#687a86}
+.card .chart-freshness,.chart-freshness{color:#95682f}
+.chart-source-details>summary:focus-visible,.classification-key>summary:focus-visible,.inventory-tabs button:focus-visible{outline:3px solid #278e7d;outline-offset:3px;border-radius:5px}
+.classification-key{margin:12px 0 18px;font-size:11px;color:#627689}
+.classification-key>summary{cursor:pointer;width:fit-content}
+.classification-key .update-legend{margin:8px 0}
+.inventory-group{grid-column:1/-1;min-width:0;background:#fff;border:1px solid #dce5ed;border-radius:10px;padding:18px}
+.inventory-group>h3{font-size:16px;margin:0 0 12px;color:#254459}
+.inventory-group>.card{border:0!important;padding:12px 0 0;box-shadow:none;margin:0}
+.inventory-group>.card[hidden]{display:none!important}
+.inventory-tabs{display:flex;gap:7px;flex-wrap:wrap;border-bottom:1px solid #e3eaf0;padding-bottom:10px}
+.inventory-tabs button{background:#f4f7fa;color:#4c6678;border:1px solid #d9e3eb;border-radius:6px;padding:8px 13px;font:600 12px system-ui;cursor:pointer}
+.inventory-tabs button[aria-selected=true]{background:#e2f1ec;border-color:#b4d6cb;color:#216b59}
+.inventory-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 16px}
+.inventory-overview>div{padding:10px 12px;border-left:2px solid #cee5df;background:#f8fbfa}
+.inventory-overview span,.inventory-overview small{display:block;font-size:11px;color:#627689}
+.inventory-overview strong{display:block;font-size:18px;margin:5px 0;color:#245b55}
+.inventory-group [id^=ch] svg{max-height:300px}
+@media(max-width:700px){.inventory-group{padding:14px}.inventory-overview{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.inventory-overview strong{font-size:15px}.inventory-overview>div{padding:8px}.inventory-tabs{gap:5px}.inventory-tabs button{font-size:11px;padding:8px 9px}.source-details-body{padding:10px}.chart-source-line{gap:3px 10px}}
+@media print{.inventory-group>.card[hidden]{display:block!important}.inventory-tabs{display:none}.chart-source-details>.source-details-body{display:block!important}.chart-insight-action{display:none}}
+.inventory-group [id^=ch]{min-height:0!important}
+.chart-card-actions button,.chart-source-details>summary,.inventory-tabs button{scroll-margin-top:190px}
