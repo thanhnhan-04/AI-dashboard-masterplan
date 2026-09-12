@@ -105,3 +105,13 @@ Hợp đồng dữ liệu cho IT: block ID, source IDs, update_kind, observation
 - Nhóm tồn kho Mỹ dùng tab Dầu thô / Sản phẩm / Mùa vụ diesel / Cushing. Dải số tóm tắt lấy đúng giá trị/kỳ đang vẽ và chênh tuyệt đối so kỳ liền trước đang vẽ; thiếu giá trị thì bỏ phần chênh, không điền 0. Không thêm kết luận đầu tư.
 - ⓘ Insight hỗ trợ hover/focus/click/Escape; popup đặt phía đủ khoảng trống để không che nút. Chi tiết dữ liệu mở bằng click/Enter; Escape đóng và trả focus. Tab tồn kho hỗ trợ phím mũi tên/Home/End.
 - QA thay đổi chỉ giao diện: đối chiếu bảng số, link nguồn, SVG và cảnh báo với bản trước; kiểm desktop/390px và điều hướng. Không cần chạy lại mạng/updater khi không đổi nguồn hoặc phép tổng hợp dữ liệu. Luôn chạy `prepare_release.py` trước xuất bản, đối chiếu manifest sau deploy.
+
+
+## 9. Catalyst/Risk theo tín hiệu (12/09/2026)
+
+- Shared `assets/catalyst-board.js/css` chạy sau các renderer và shared UI. Mặc định mở 4 tín hiệu Dầu khí/Đường, 5 tín hiệu Bank; mỗi tín hiệu có số/kỳ, trạng thái, ảnh hưởng, điều kiện cần đổi đánh giá và giới hạn ngắn luôn hiện. Ngưỡng kế thừa là giả định theo dõi, không phải ngưỡng được kiểm định.
+- Tab con Tín hiệu / Dữ liệu & nguồn / Phân tích lưu tách bảng theo dõi khỏi chi tiết. Toàn bộ node nguồn, chart, bảng và cảnh báo gốc được giữ trong đúng view; không nhét `.data-gap,.gap-row` vào details. Khi mở view bằng chứng, cảnh báo đầy đủ luôn hiện cùng dữ liệu. Bản lưu có ngày và nhắc chưa hiệu chỉnh, không được xem là phân tích lại hôm nay.
+- Link bằng chứng mở biểu đồ gốc, tự chọn đúng major tab, địa lý hoặc tab tồn kho; không sao chép chart tạo ID trùng. Bấm Catalyst/Risk tới thẳng bảng tín hiệu; phần giới thiệu ngành vẫn truy cập được khi cuộn lên.
+- Dầu khí lọc khâu kinh doanh; Đường đổi góc nhìn tự chủ mía/nguyên liệu nhập (không tự tính spread khi thiếu kỳ khớp). Bank dùng bộ lọc nhóm/mã đã có: hiển thị riêng các tỷ lệ Wi của mã, trạng thái theo quy tắc vẫn ghi rõ toàn ngành, không tự chấm bank bằng số ngành.
+- Kịch bản mở từng phương án, tóm lược khung cũ với ngày rõ; không gán xác suất mới hay mục tiêu mới. Missing/error/stale có cờ riêng, không suy thiếu số thành tích cực.
+- QA: link bằng chứng từ trạng thái địa lý/nhóm khác, keyboard các tab, missing Wi, giữ bảng/số/link/cảnh báo/analyst drafts, zero duplicate IDs, desktop/390px. Phải đối chiếu bản public sau release.
