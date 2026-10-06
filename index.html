@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard ngành đã chuyển địa chỉ</title>
+<meta name="robots" content="noindex">
+<script>
+// Giữ nguyên đường dẫn ngành (/Dau-khi/, /Sugar/, /Bank/...), query và hash khi chuyển sang địa chỉ mới.
+var NEW_BASE = "https://finsuccess-investment-jsc.github.io/AI-dashboard-masterplan";
+var rest = location.pathname.replace(/^\/AI-dashboard-masterplan/, "");
+location.replace(NEW_BASE + rest + location.search + location.hash);
+</script>
+<style>body{font-family:system-ui,sans-serif;margin:40px 16px;color:#1D2678;background:#fff}</style>
+</head><body>
+<p>Dashboard ngành đã chuyển sang địa chỉ mới: <a id="l" href="https://finsuccess-investment-jsc.github.io/AI-dashboard-masterplan/">finsuccess-investment-jsc.github.io/AI-dashboard-masterplan</a></p>
+</body></html>
